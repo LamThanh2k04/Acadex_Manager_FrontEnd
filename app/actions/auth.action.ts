@@ -23,6 +23,7 @@ export const loginUserAction = async (data: ILoginUser) => {
             success: true,
             role: res.data.token.user.role,
             message: res.message,
+            user: res.data.token.user,
         };
     } catch (error) {
         return { success: false, error: "Tài khoản hoặc mật khẩu không đúng" }

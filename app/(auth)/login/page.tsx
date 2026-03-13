@@ -3,11 +3,11 @@ import LoginForm from "./LoginForm";
 
 export default function Login() {
     return (
-        <div className="bg-[url(/bg-login-mobile.png)] min-h-screen flex items-center justify-center">
+        <div className="bg-[url(/images/bg-login-mobile.png)] min-h-screen flex items-center justify-center">
             <div className="flex items-center md:border md:p-10 md:rounded-xl md:border-gray-200 md:shadow-2xl justify-center  flex-col">
                 <div className="flex items-center gap-3 mt-5">
                     <Image
-                        src="/acadex-logo.jpg"
+                        src="/images/acadex-logo.jpg"
                         className="rounded-xl"
                         alt="Acadex"
                         width={60}

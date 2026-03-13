@@ -10,7 +10,7 @@ export function middleware(request: NextRequest) {
         pathname.startsWith('/lecturer');
 
     if (isAuthRoute && !token) {
-        return NextResponse.redirect(new URL('/login', request.url));
+        return NextResponse.redirect(new URL('/', request.url));
     }
     if (pathname.startsWith('/admin') && role !== 'ADMIN') {
         return NextResponse.redirect(new URL('/unauthorized', request.url));
@@ -23,7 +23,7 @@ export function middleware(request: NextRequest) {
     if (pathname.startsWith('/lecturer') && role !== 'LECTURER') {
         return NextResponse.redirect(new URL('/unauthorized', request.url));
     }
-    if (pathname === '/login' && token && role) {
+    if (pathname === '/' && token && role) {
         return NextResponse.redirect(new URL(`/${role.toLowerCase()}/dashboard`, request.url));
     }
 
@@ -34,6 +34,6 @@ export const config = {
         '/admin/:path*',
         '/student/:path*',
         '/lecturer/:path*',
-        '/login'
+        '/'
     ],
 }
