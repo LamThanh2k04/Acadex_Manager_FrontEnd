@@ -7,7 +7,7 @@ export default function Overview({ data }: { data: IAdminOverview }) {
     return (
         <div className="mt-4">
             <h1 className="text-xl font-bold ml-3">Chào mừng trở lại, Adm.{user?.fullName}</h1>
-            <p className="text-gray-400 text-sm ml-3">Hôm nay có gì mới??</p>
+            <p className="text-gray-400 text-sm ml-3">Hôm nay có gì mới?</p>
             <div className="w-full flex flex-col items-center mt-5">
                 <div className="flex justify-between items-center w-full hover:bg-gray-100 duration-700 ease-in-out transition hover:shadow-xl hover:border-none border p-3 border-orange-100 rounded-xl shadow-sm">
                     <div className="flex flex-col items-center gap-0.5">
