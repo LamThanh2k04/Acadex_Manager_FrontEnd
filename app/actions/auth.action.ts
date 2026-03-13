@@ -6,7 +6,7 @@ export const loginUserAction = async (data: ILoginUser) => {
     try {
         const res = await authService.login(data);
         const cookieStore = await cookies();
-        cookieStore.set("accessToken", res.data.token.accessToken, {
+        cookieStore.set("token", res.data.token.accessToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             maxAge: 60 * 60 * 24,

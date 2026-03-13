@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
-    const token = request.cookies.get('accessToken')?.value;
+    const token = request.cookies.get('token')?.value;
     const role = request.cookies.get('userRole')?.value;
     const { pathname } = request.nextUrl;
     const isAuthRoute = pathname.startsWith('/admin') ||
