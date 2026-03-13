@@ -4,7 +4,7 @@ export default function AdminBottomNav() {
     const user = useAppSelector((state) => state.user.userInfo);
     return (
         <div >
-            Họ tên là: {user?.fullName}
+
         </div>
     )
 }
