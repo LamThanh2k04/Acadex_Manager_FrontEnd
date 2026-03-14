@@ -31,9 +31,9 @@ export interface ITopStudent {
     studentCode: string;
     gpa: number;
     user: IUserToTop
-}
+};
 export interface IPassFailBarChart {
     failed: number;
     passed: number;
     total: number;
-}
+};

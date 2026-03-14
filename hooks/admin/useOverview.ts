@@ -1,5 +1,5 @@
 import { adminService } from "@/app/api/adminService"
-import { IAdminOverview, ITopStudent } from "@/app/types/admin.type"
+import { IAdminOverview, ITopStudent } from "@/app/types/admin/overview.type"
 import { useQuery } from "@tanstack/react-query"
 export const useOverView = () => {
     return useQuery<IAdminOverview>({

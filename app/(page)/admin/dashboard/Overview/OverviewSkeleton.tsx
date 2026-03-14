@@ -1,8 +1,7 @@
 import { Skeleton } from "@/components/ui/skeleton";
-
 export default function OverviewSkeleton() {
     return (
-        <div    >
+        <div>
             <Skeleton className="h-7 w-64 ml-3 mb-2" />
             <Skeleton className="h-4 w-32 ml-3" />
             <div className="w-full flex flex-col items-center mt-5 gap-5">

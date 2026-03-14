@@ -1,7 +1,7 @@
 "use client"
-import { usePassFailBarChart, usePieChartGenders, useRevenueChart } from "@/hooks/useChart";
+import { usePassFailBarChart, usePieChartGenders, useRevenueChart } from "@/hooks/admin/useChart";
 import Overview from "./Overview/Overview";
-import { useOverView, useTopStudentGPA } from '@/hooks/useOverview';
+import { useOverView, useTopStudentGPA } from '@/hooks/admin/useOverview';
 import { RevenueAreaInteractive } from "./RevenueAreaInteractive/RevenueAreaInteractive";
 import { useState } from "react";
 import OverviewSkeleton from "./Overview/OverviewSkeleton";

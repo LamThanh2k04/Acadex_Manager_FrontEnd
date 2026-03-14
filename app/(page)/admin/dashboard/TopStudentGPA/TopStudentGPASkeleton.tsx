@@ -1,5 +1,4 @@
 import { Skeleton } from "@/components/ui/skeleton"
-
 export default function TopStudentGPASkeleton() {
     return (
         <div className="flex flex-col gap-3">

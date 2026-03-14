@@ -1,5 +1,4 @@
 import { Skeleton } from "@/components/ui/skeleton"
-
 export default function PieChartGendersSkeleton() {
     return (
         <div className="bg-white border border-orange-100 rounded-xl shadow-sm p-6 w-fit">

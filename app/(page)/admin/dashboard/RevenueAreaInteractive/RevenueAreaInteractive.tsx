@@ -1,4 +1,3 @@
-"use client"
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
 import {
   Card,
@@ -19,7 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { IRevenueAreaProps } from "@/app/types/admin.type"
+import { IRevenueAreaProps } from "@/app/types/admin/overview.type"
 
 const chartConfig = {
   total: {

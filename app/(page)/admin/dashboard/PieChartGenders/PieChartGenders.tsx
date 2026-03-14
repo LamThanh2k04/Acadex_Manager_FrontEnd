@@ -1,17 +1,15 @@
 "use client"
 import { PieChart, Pie, Cell } from "recharts"
 import { ChartContainer } from "@/components/ui/chart"
-import { IPieChartGendersProps } from "@/app/types/admin.type"
+import { IPieChartGendersProps } from "@/app/types/admin/overview.type"
 import { Mars, Venus } from 'lucide-react';
 const chartConfig = {
     male: { color: "#A8D8EA" },
     female: { color: "#F5D06E" },
-}
-
+};
 export default function PieChartGenders({ data, role, setRole }: IPieChartGendersProps) {
     const malePercent = Math.round((Number(data.males) / data.total) * 100)
     const femalePercent = 100 - malePercent
-
     const outerData = [
         { name: "Male", value: malePercent },
         { name: "Empty", value: 100 - malePercent },
@@ -23,7 +21,6 @@ export default function PieChartGenders({ data, role, setRole }: IPieChartGender
     const label = role === "LECTURER" ? "Giảng viên" : "Sinh viên"
     const maleName = role === "LECTURER" ? "Nam" : "Nam"
     const femaleName = role === "LECTURER" ? "Nữ" : "Nữ"
-
     return (
         <div>
             <div className="flex items-center justify-between mb-2">

@@ -1,6 +1,6 @@
 "use client"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { IPassFailBarChart } from "@/app/types/admin.type"
+import { IPassFailBarChart } from "@/app/types/admin/overview.type"
 export default function BarChartPassFail({ data }: { data: IPassFailBarChart }) {
     const passPercent = data.total > 0
         ? Math.round((data.passed / data.total) * 100)

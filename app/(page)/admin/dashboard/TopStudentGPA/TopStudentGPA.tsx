@@ -1,5 +1,5 @@
 "use client"
-import { ITopStudent } from "@/app/types/admin.type";
+import { ITopStudent } from "@/app/types/admin/overview.type";
 import { useState } from "react";
 export default function TopStudentGPA({ data }: { data: ITopStudent[] }) {
     const [showAll, setShowAll] = useState(false);

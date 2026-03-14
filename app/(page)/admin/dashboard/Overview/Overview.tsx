@@ -1,7 +1,7 @@
 "use client"
 import { TrendingUp, Landmark, DollarSign, UsersRound, School, Users, BookCopy, Notebook } from 'lucide-react';
 import { useAppSelector } from "@/lib/hook";
-import { IAdminOverview } from '@/app/types/admin.type';
+import { IAdminOverview } from '@/app/types/admin/overview.type';
 import ButtonExportPDF from './ButtonExportPDF';
 const overviewItems = (data: IAdminOverview) => [
     {
@@ -37,9 +37,9 @@ const overviewItems = (data: IAdminOverview) => [
 export default function Overview({ data }: { data: IAdminOverview }) {
     const user = useAppSelector((state) => state.user.userInfo);
     return (
-        <div className="mt-4">
+        <div className="mt-14 ">
             <div className="ml-3 mb-5">
-                <h1 className="text-xl font-bold">
+                <h1 className="text-xl font-bold mb-5">
                     Chào mừng trở lại,{" "}
                     <span className="text-[#ec5d15]">Adm. {user?.fullName}</span>
                 </h1>
