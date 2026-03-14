@@ -17,8 +17,6 @@ export const loginUserAction = async (data: ILoginUser) => {
             maxAge: 60 * 60 * 24,
             path: "/"
         })
-        console.log("Backend trả về", res);
-        console.log("Backend trả về user", res.data.token.user);
         return {
             success: true,
             role: res.data.token.user.role,

@@ -1,26 +1,48 @@
 "use client"
-import { useRevenueChart } from "@/hooks/useRevenueChart";
-import Overview from "./Overview";
-import { useOverView } from '@/hooks/useOverview';
-import { RevenueAreaInteractive } from "./RevenueAreaInteractive";
+import { usePassFailBarChart, usePieChartGenders, useRevenueChart } from "@/hooks/useChart";
+import Overview from "./Overview/Overview";
+import { useOverView, useTopStudentGPA } from '@/hooks/useOverview';
+import { RevenueAreaInteractive } from "./RevenueAreaInteractive/RevenueAreaInteractive";
 import { useState } from "react";
+import OverviewSkeleton from "./Overview/OverviewSkeleton";
+import RevenueAreaInteractiveSkeleton from "./RevenueAreaInteractive/RevenueAreaInteractiveSkeleton";
+import PieChartGenders from "./PieChartGenders/PieChartGenders";
+import TopStudentGPASkeleton from "./TopStudentGPA/TopStudentGPASkeleton";
+import TopStudentGPA from "./TopStudentGPA/TopStudentGPA";
+import BarChartPassFailSkeleton from "./BarChartPassFail/BarChartPassFailSkeleton";
+import BarChartPassFail from "./BarChartPassFail/BarChartPassFail";
 export default function DashboardAdmin() {
     const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
-    const { data: dataChart, isLoading: isLoadingRevenueChart } = useRevenueChart(selectedYear);
+    const [selectedRole, setSelectedRole] = useState("LECTURER");
+    const { data: dataRevenueChart, isLoading: isLoadingRevenueChart } = useRevenueChart(selectedYear);
     const { data: dataOverview, isLoading: isLoadingOverview } = useOverView();
-    if (isLoadingOverview || (isLoadingRevenueChart && !dataChart)) {
-        return <div className="h-screen flex items-center justify-center">Đang tải dữ liệu...</div>
-    }
+    const { data: dataPieChartGenders, isLoading: isLoadingPieChartGenders } = usePieChartGenders(selectedRole);
+    const { data: dataTopStudent, isLoading: isLoadingTopStudent } = useTopStudentGPA();
+    const { data: dataPassFail, isLoading: isLoadingPassFail } = usePassFailBarChart()
     return (
         <div className="flex flex-col gap-6 p-6">
-            <Overview data={dataOverview!} />
+            {isLoadingOverview ? <OverviewSkeleton /> : dataOverview && <Overview data={dataOverview} />}
             <div className="bg-white border p-6 rounded-xl border-orange-100 shadow-sm">
-                <h2 className="text-lg font-semibold mb-4">Thống kê doanh thu</h2>
-                <RevenueAreaInteractive
-                    data={dataChart!}
-                    year={selectedYear}
-                    setYear={setSelectedYear}
-                />
+                {isLoadingRevenueChart ? <RevenueAreaInteractiveSkeleton />
+                    :
+                    dataRevenueChart && <RevenueAreaInteractive
+                        data={dataRevenueChart}
+                        year={selectedYear}
+                        setYear={setSelectedYear}
+                    />}
+            </div>
+            <div className="bg-white border p-6 rounded-xl border-orange-100 shadow-sm">
+                {isLoadingPieChartGenders ? <RevenueAreaInteractiveSkeleton /> : dataPieChartGenders && <PieChartGenders
+                    data={dataPieChartGenders}
+                    role={selectedRole}
+                    setRole={setSelectedRole}
+                />}
+            </div>
+            <div className="bg-white border p-6 rounded-xl border-orange-100 shadow-sm">
+                {isLoadingTopStudent ? <TopStudentGPASkeleton /> : dataTopStudent && <TopStudentGPA data={dataTopStudent} />}
+            </div>
+            <div>
+                {isLoadingPassFail ? <BarChartPassFailSkeleton /> : dataPassFail && <BarChartPassFail data={dataPassFail} />}
             </div>
         </div>
     );

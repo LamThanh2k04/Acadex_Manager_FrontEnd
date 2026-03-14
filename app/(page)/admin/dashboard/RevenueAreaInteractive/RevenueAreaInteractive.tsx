@@ -31,7 +31,7 @@ export function RevenueAreaInteractive({ data, year, setYear }: IRevenueAreaProp
     <Card className="border-none shadow-none bg-transparent sm:bg-card sm:shadow-sm sm:border">
       <CardHeader className="flex flex-col items-start gap-4 space-y-0 border-b py-5 sm:flex-row sm:items-center">
         <div className="grid flex-1 gap-1 text-left">
-          <CardDescription>
+          <CardDescription className="text-base text-gray-400">
             Thống kê doanh thu chi tiết theo từng tháng của năm {year}
           </CardDescription>
         </div>

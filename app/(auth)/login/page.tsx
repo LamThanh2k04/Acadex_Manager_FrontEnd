@@ -1,6 +1,5 @@
 import Image from "next/image";
 import LoginForm from "./LoginForm";
-
 export default function Login() {
     return (
         <div className="bg-[url(/images/bg-login-mobile.png)] min-h-screen flex items-center justify-center">
