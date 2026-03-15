@@ -1,3 +1,4 @@
+import { Search } from "lucide-react";
 import { IAdminOverview, IRevenueChart } from "../types/admin/overview.type";
 import { https } from "./config"
 
@@ -29,9 +30,18 @@ export const adminService = {
         });
         return res.data;
     },
+    getScheduleCalendar: async (date: string, page: number) => {
+        const res = await https.get(`http://localhost:8000/api/admin/dashboard/getAllSchedules?date=${date}&page=${page}`);
+        console.log(res);
+        return res.data.data;
+    },
     // student
-    getAllStudent: async (search: string) => {
-        const res = await https.get(`/api/admin/student/getAllStudents?search=${search}`);
+    getAllStudent: async (search: string, page: number) => {
+        const params = new URLSearchParams();
+        if (search) params.set("search", search);
+        params.set("page", page.toString());
+        const res = await https.get(`/api/admin/student/getAllStudents?${params.toString()}`);
+        console.log(res);
         return res.data.data;
     }
 };

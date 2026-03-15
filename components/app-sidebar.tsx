@@ -1,3 +1,4 @@
+"use client"
 import * as React from "react"
 import { Minus, Plus, LayoutDashboard, Users, GraduationCap, Building2, BookOpen, BookCopy, School, Award, MapPin, DoorOpen, Clock, CalendarDays, ClipboardCheck, ClipboardList, Bell, LibraryBig, ClipboardClock } from 'lucide-react';
 import {
@@ -22,6 +23,7 @@ import {
 import Image from 'next/image';
 import Link from "next/link";
 import { NavUser } from "./nav-user";
+import { usePathname } from "next/navigation";
 const data = {
   navMain: [
     {
@@ -75,8 +77,10 @@ const data = {
   ],
 }
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const pathName = usePathname();
+
   return (
-    <Sidebar style={{ height: "100vh", position: "sticky", width: "200px", top: 0 }} className="rounded-xl bg-white hidden md:flex" collapsible="none" {...props}>
+    <Sidebar style={{ height: "100vh", position: "sticky", width: "200px", top: 0 }} className="rounded-xl bg-white mr-3 hidden md:flex" collapsible="none" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>

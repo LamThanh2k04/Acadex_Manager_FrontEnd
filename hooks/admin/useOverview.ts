@@ -1,5 +1,5 @@
 import { adminService } from "@/app/api/adminService"
-import { IAdminOverview, ITopStudent } from "@/app/types/admin/overview.type"
+import { IAdminOverview, IScheduleResponseData, ITopStudent } from "@/app/types/admin/overview.type"
 import { useQuery } from "@tanstack/react-query"
 export const useOverView = () => {
     return useQuery<IAdminOverview>({
@@ -13,5 +13,12 @@ export const useTopStudentGPA = () => {
         queryKey: ["top-student"],
         queryFn: () => adminService.getTopStudentGPA(),
         staleTime: 5 * 60 * 1000,
+    });
+};
+export const useScheduleCalendar = (date: string, page: number) => {
+    return useQuery<IScheduleResponseData>({
+        queryKey: ["schedule-calendar", date, page],
+        queryFn: () => adminService.getScheduleCalendar(date, page),
+        staleTime: 6 * 50 * 1000,
     });
 };

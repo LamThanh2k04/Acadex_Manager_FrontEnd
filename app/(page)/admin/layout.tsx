@@ -15,7 +15,7 @@ export default async function LayoutAdmin({ children }: Readonly<{ children: Rea
                 <header>
                     <Header />
                 </header>
-                <main className='md:bg-gray-50'>
+                <main>
                     {children}
                 </main>
             </SidebarInset>

@@ -1,13 +1,11 @@
 export interface IStudentManagerProps {
     data: IStudentManagerRespone;
-    search: string;
-    setSearch: (search: string) => void
 }
 export interface IStudentManagerRespone {
-    pagination: Pagination;
+    pagination: IPagination;
     students: IStudentManager[]
 }
-export interface Pagination {
+export interface IPagination {
     limit: number;
     page: number;
     total: number;
@@ -33,7 +31,7 @@ export interface IStudent {
     graduateYear: number;
     personalEmail: string;
     placeOfBirth: string;
-    status: string;
+    status: "STUDYING" | "GRADUATE" | "TRUANT";
     studentCode: string;
     class: IClassStudent;
     faculty: IFacultyStudent;

@@ -5,7 +5,7 @@ export default function TopStudentGPA({ data }: { data: ITopStudent[] }) {
     const [showAll, setShowAll] = useState(false);
     const showItems = showAll ? data : data.slice(0, 2);
     return (
-        <div>
+        <div className="bg-white border p-6 rounded-xl border-orange-100 shadow-sm">
             <div className="flex items-center justify-between">
                 <h1 className="text-sm">Top sinh viên GPA cao </h1>
                 <button className="flex items-center justify-center text-sm" onClick={() => setShowAll(!showAll)}>{showAll ? "Rút gọn" : `Xem tất cả (${data.length})`}</button>

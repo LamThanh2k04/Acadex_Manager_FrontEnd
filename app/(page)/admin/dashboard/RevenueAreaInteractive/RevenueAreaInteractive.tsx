@@ -27,11 +27,11 @@ const chartConfig = {
 } satisfies ChartConfig
 export function RevenueAreaInteractive({ data, year, setYear }: IRevenueAreaProps) {
   return (
-    <Card className="border-none shadow-none bg-transparent sm:bg-card sm:shadow-sm sm:border">
+    <Card className="border-none shadow-none bg-transparent lg:h-full sm:bg-card sm:shadow-sm sm:border">
       <CardHeader className="flex flex-col items-start gap-4 space-y-0 border-b py-5 sm:flex-row sm:items-center">
         <div className="grid flex-1 gap-1 text-left">
           <CardDescription className="text-base text-gray-400">
-            Thống kê doanh thu chi tiết theo từng tháng của năm {year}
+            Thống kê doanh thu năm {year}
           </CardDescription>
         </div>
         <Select value={year.toString()} onValueChange={(v) => setYear(Number(v))}>
@@ -45,11 +45,10 @@ export function RevenueAreaInteractive({ data, year, setYear }: IRevenueAreaProp
           </SelectContent>
         </Select>
       </CardHeader>
-
       <CardContent className="pl-2 pr-2 pt-4 sm:px-6 sm:pt-6">
         <ChartContainer
           config={chartConfig}
-          className="aspect-auto h-62.5 sm:h-87.5 w-full"
+          className="aspect-auto h-62.5 w-full"
         >
           <AreaChart
             data={data}

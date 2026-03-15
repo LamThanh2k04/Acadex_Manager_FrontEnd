@@ -24,11 +24,11 @@ export default function PieChartGenders({ data, role, setRole }: IPieChartGender
     return (
         <div>
             <div className="flex items-center justify-between mb-2">
-                <h2 className="text-lg font-semibold text-gray-400 mr-2">{label}</h2>
+                <h2 className="text-lg md:text-sm md:mr-6 font-semibold text-gray-400 mr-2">{label}</h2>
                 <div className="flex gap-2">
                     <button
                         onClick={() => setRole("STUDENT")}
-                        className={`text-xs px-3 py-1 rounded-full border transition
+                        className={`text-xs px-3 py-1 rounded-full md:rounded-sm border transition
                             ${role === "STUDENT"
                                 ? "bg-orange-100 border-orange-300 text-orange-600 font-medium"
                                 : "border-gray-200 text-gray-400"
@@ -38,7 +38,7 @@ export default function PieChartGenders({ data, role, setRole }: IPieChartGender
                     </button>
                     <button
                         onClick={() => setRole("LECTURER")}
-                        className={`text-xs px-3 py-1 rounded-full border transition
+                        className={`text-xs px-3 py-1 rounded-full md:rounded-sm border transition
                             ${role === "LECTURER"
                                 ? "bg-orange-100 border-orange-300 text-orange-600 font-medium"
                                 : "border-gray-200 text-gray-400"

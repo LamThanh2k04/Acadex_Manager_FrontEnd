@@ -33,12 +33,11 @@ const overviewItems = (data: IAdminOverview) => [
         bgIcon: <Notebook className="size-5" />,
     },
 ]
-
 export default function Overview({ data }: { data: IAdminOverview }) {
     const user = useAppSelector((state) => state.user.userInfo);
     return (
-        <div className="mt-14 ">
-            <div className="ml-3 mb-5">
+        <div className="mt-14 lg:mt-3 ">
+            <div className="ml-3 mb-5 md:hidden">
                 <h1 className="text-xl font-bold mb-5">
                     Chào mừng trở lại,{" "}
                     <span className="text-[#ec5d15]">Adm. {user?.fullName}</span>
@@ -48,7 +47,6 @@ export default function Overview({ data }: { data: IAdminOverview }) {
                     <ButtonExportPDF />
                 </div>
             </div>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
                 {overviewItems(data).map((item, index) => (
                     <div
@@ -64,7 +62,7 @@ export default function Overview({ data }: { data: IAdminOverview }) {
                             <p className="text-gray-400 text-xs font-medium uppercase tracking-wide">
                                 {item.label}
                             </p>
-                            <p className="flex items-center gap-1 font-bold text-2xl text-gray-800">
+                            <p className="flex items-center gap-1 md:text-xl font-bold text-2xl text-gray-800">
                                 {item.valueIcon}
                                 {item.value?.toLocaleString("vi-VN")}
                             </p>
@@ -73,7 +71,7 @@ export default function Overview({ data }: { data: IAdminOverview }) {
                                 {item.percent} tháng này
                             </p>
                         </div>
-                        <div className="bg-orange-100 group-hover:bg-orange-200
+                        <div className="bg-orange-100 md:ml-1 group-hover:bg-orange-200
                                         rounded-xl text-[#ec5d15] p-3
                                         transition-colors duration-300">
                             {item.bgIcon}
