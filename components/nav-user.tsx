@@ -1,6 +1,6 @@
 "use client"
 import { useAppSelector } from "@/lib/hook"
-import { ChevronsUpDown, Settings, LogOut } from "lucide-react"
+import { ChevronsUpDown, Settings, LogOut, UserRound } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
     DropdownMenu,

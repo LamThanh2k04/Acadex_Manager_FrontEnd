@@ -1,6 +1,7 @@
 import { Search } from "lucide-react";
 import { IAdminOverview, IRevenueChart } from "../types/admin/overview.type";
 import { https } from "./config"
+import { IAddStudent } from "../types/admin/student.type";
 
 export const adminService = {
     // dashboard admin
@@ -32,7 +33,6 @@ export const adminService = {
     },
     getScheduleCalendar: async (date: string, page: number) => {
         const res = await https.get(`http://localhost:8000/api/admin/dashboard/getAllSchedules?date=${date}&page=${page}`);
-        console.log(res);
         return res.data.data;
     },
     // student
@@ -41,7 +41,22 @@ export const adminService = {
         if (search) params.set("search", search);
         params.set("page", page.toString());
         const res = await https.get(`/api/admin/student/getAllStudents?${params.toString()}`);
-        console.log(res);
         return res.data.data;
+    },
+    createStudent: async (formData: FormData) => {
+        const res = await https.post("/api/admin/student/createStudent", formData);
+        return res.data;
+    },
+    getAllProgramSimple: async () => {
+        const res = await https.get("http://localhost:8000/api/admin/program/getAllProgramsSimple");
+        return res.data.data.programs;
+    },
+    getAllClassSimple: async () => {
+        const res = await https.get("http://localhost:8000/api/admin/class/getAllClassesSimple");
+        return res.data.data.classes;
+    },
+    updateStudentStatusActive: async (studentId: number) => {
+        const res = await https.put(`/api/admin/student/updateStudentStatusActive/${studentId}`);
+        return res.data;
     }
 };

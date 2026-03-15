@@ -19,6 +19,7 @@ export interface IStudentManager {
     fullName: string;
     gender: string;
     phoneNumber: string;
+    isActive: boolean;
     student: IStudent;
 };
 export interface IStudent {
@@ -57,3 +58,21 @@ export interface IMajorStudent {
 export interface IProgramStudent {
     name: string;
 };
+export interface IAddStudent {
+    fullName: string;
+    email: string;
+    password: string;
+    studentCode: string;
+    gender: "MALE" | "FEMALE";
+    avatar: FileList;
+    classId: string;
+    programId: string;
+};
+export interface IProgramSimple {
+    id: number;
+    name: string;
+}
+export interface IClassSimple {
+    id: number;
+    name: string;
+}

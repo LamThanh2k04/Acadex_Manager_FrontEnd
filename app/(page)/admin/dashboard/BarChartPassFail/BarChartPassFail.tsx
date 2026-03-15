@@ -6,7 +6,6 @@ export default function BarChartPassFail({ data }: { data: IPassFailBarChart }) 
         ? Math.round((data.passed / data.total) * 100)
         : 0
     const failPercent = 100 - passPercent
-
     return (
         <Card className="border border-orange-100 shadow-sm">
             <CardHeader>

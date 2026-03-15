@@ -6,11 +6,12 @@ import StudentTableSkeleton from "./StudentTableSkeleton";
 export default function Students() {
     const searchParams = useSearchParams();
     const search = searchParams.get("search") ?? "";
-    const page = Number(searchParams.get("page") ?? "1")
+    const page = Number(searchParams.get("page") ?? "1");
     const { data: dataStudentTable, isLoading } = useGetAllStudent(search, page);
+    console.log("isLoading:", isLoading)
+    console.log("data:", dataStudentTable)
     return (
         <>
-
             {isLoading ? <StudentTableSkeleton /> : dataStudentTable &&
                 <StudentTable data={dataStudentTable} />}
         </>

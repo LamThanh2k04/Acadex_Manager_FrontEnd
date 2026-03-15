@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/sidebar"
 import Image from 'next/image';
 import Link from "next/link";
-import { NavUser } from "./nav-user";
+import dynamic from "next/dynamic"
 import { usePathname } from "next/navigation";
 const data = {
   navMain: [
@@ -77,8 +77,10 @@ const data = {
   ],
 }
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const pathName = usePathname();
-
+  const NavUser = dynamic(
+    () => import("./nav-user").then(m => m.NavUser),
+    { ssr: false }
+  )
   return (
     <Sidebar style={{ height: "100vh", position: "sticky", width: "200px", top: 0 }} className="rounded-xl bg-white mr-3 hidden md:flex" collapsible="none" {...props}>
       <SidebarHeader>
