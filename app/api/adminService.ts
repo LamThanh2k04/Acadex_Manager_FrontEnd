@@ -1,7 +1,7 @@
 import { Search } from "lucide-react";
 import { IAdminOverview, IRevenueChart } from "../types/admin/overview.type";
 import { https } from "./config"
-import { IAddStudent } from "../types/admin/student.type";
+import { IAddStudent, IUpdateStudentInfo } from "../types/admin/student.type";
 
 export const adminService = {
     // dashboard admin
@@ -58,5 +58,17 @@ export const adminService = {
     updateStudentStatusActive: async (studentId: number) => {
         const res = await https.put(`/api/admin/student/updateStudentStatusActive/${studentId}`);
         return res.data;
+    },
+    updateStudentInfo: async (studentId: number, formData: FormData) => {
+        const res = await https.put(`/api/admin/student/updateStudentInfo/${studentId}`, formData);
+        return res.data;
+    },
+    getClassesByProgram: async (programId: number) => {
+        const res = await https.get(`/api/admin/class/getClassesByProgram/${programId}`);
+        return res.data.data.classes;
+    },
+    updateResetPasswordStudent: async (studentId: number, newPassword: string) => {
+        const res = await https.put(`/api/admin/student/resetPasswordStudent/${studentId}`, { newPassword });
+        return res.data
     }
 };

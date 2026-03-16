@@ -41,6 +41,7 @@ export interface IStudent {
 
 };
 export interface IClassStudent {
+    id: number;
     name: string;
     homeroomLecturer: IHomeRoomLecturer
 };
@@ -56,6 +57,7 @@ export interface IMajorStudent {
     name: string
 };
 export interface IProgramStudent {
+    id: number
     name: string;
 };
 export interface IAddStudent {
@@ -75,4 +77,25 @@ export interface IProgramSimple {
 export interface IClassSimple {
     id: number;
     name: string;
-}
+};
+export interface IUpdateStudentInfo {
+    fullName: string;
+    email: string;
+    phoneNumber: string;
+    address: string;
+    studentCode: string;
+    personalEmail: string;
+    citizenId: string;
+    placeOfBirth: string;
+    ethnicity: string
+    gender: "MALE" | "FEMALE";
+    dateOfBirth: string;
+    admissionYear: number;
+    graduateYear: number;
+    classId: number;
+    status: "STUDYING" | "GRADUATE" | "TRUANT";
+    avatar: FileList;
+};
+export interface INewPasswordForStudent {
+    newPassword: string;
+};

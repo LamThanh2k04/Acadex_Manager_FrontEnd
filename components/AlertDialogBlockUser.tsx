@@ -23,7 +23,7 @@ export default function AlertDialogBlockUser({ studentId }: { studentId: number 
                 <AlertDialogHeader>
                     <AlertDialogTitle>Bạn có chắc chắn khóa tài khoản người dùng này không?</AlertDialogTitle>
                     <AlertDialogDescription>
-                        Hành động này sẽ khiến chặn tài khoản người dùng không còn thể truy cập vào hệ thống
+                        Hành động này sẽ chặn tài khoản người dùng không thể truy cập vào hệ thống
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>

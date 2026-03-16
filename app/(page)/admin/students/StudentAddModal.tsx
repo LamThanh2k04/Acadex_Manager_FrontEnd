@@ -5,9 +5,10 @@ import { useClassSimple, useCreateStudent, useProgramSimple } from "@/hooks/admi
 import { useForm } from "react-hook-form"
 import { Loader, Upload } from 'lucide-react'
 import { useRef, useState } from "react"
-
+import { EyeClosed, Eye } from 'lucide-react';
 export default function StudentAddModal({ onClose }: { onClose: () => void }) {
-    const { register, handleSubmit, formState: { errors } } = useForm<IAddStudent>({ mode: "onBlur" })
+    const { register, handleSubmit, formState: { errors } } = useForm<IAddStudent>({ mode: "onBlur" });
+    const [toggle, setToggle] = useState(false);
     const { data: programData, isLoading: isLoadingProgram } = useProgramSimple()
     const { data: classData, isLoading: isLoadingClass } = useClassSimple()
     const mutation = useCreateStudent(onClose)
@@ -112,19 +113,22 @@ export default function StudentAddModal({ onClose }: { onClose: () => void }) {
                                 <label className="text-sm font-medium text-gray-600">
                                     Mật khẩu <span className="text-red-500">*</span>
                                 </label>
-                                <input
-                                    type="password"
-                                    placeholder="••••••••"
-                                    className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-orange-300"
-                                    {...register("password", {
-                                        required: "Mật khẩu không được để trống",
-                                        minLength: { value: 6, message: "Mật khẩu phải gồm 6 ký tự" },
-                                        pattern: {
-                                            value: /^[A-Za-z0-9]{6,}$/,
-                                            message: "Mật khẩu phải gồm chữ và số"
-                                        }
-                                    })}
-                                />
+                                <div className="relative">
+                                    <input
+                                        type={toggle ? "text" : "password"}
+                                        placeholder="••••••••"
+                                        className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-orange-300"
+                                        {...register("password", {
+                                            required: "Mật khẩu không được để trống",
+                                            minLength: { value: 6, message: "Mật khẩu phải gồm 6 ký tự" },
+                                            pattern: {
+                                                value: /^[A-Za-z0-9]{6,}$/,
+                                                message: "Mật khẩu phải gồm chữ và số"
+                                            }
+                                        })}
+                                    />
+                                    <button type="button" className="absolute top-2 left-35 text-gray-300" onClick={() => { setToggle(!toggle) }}>{toggle ? <EyeClosed /> : <Eye />}</button>
+                                </div>
                                 <ErrorResponse error={errors.password} />
                             </div>
                         </div>

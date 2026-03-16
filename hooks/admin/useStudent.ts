@@ -1,5 +1,5 @@
 import { adminService } from "@/app/api/adminService"
-import { IAddStudent, IClassSimple, IProgramSimple, IStudentManagerRespone } from "@/app/types/admin/student.type";
+import { IAddStudent, IClassSimple, INewPasswordForStudent, IProgramSimple, IStudentManagerRespone, IUpdateStudentInfo } from "@/app/types/admin/student.type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import toast from "react-hot-toast";
 
@@ -38,6 +38,12 @@ export const useClassSimple = () => {
         queryFn: () => adminService.getAllClassSimple(),
     })
 };
+export const useClassedByProgram = (programId: number) => {
+    return useQuery({
+        queryKey: ["class-by-programId"],
+        queryFn: () => adminService.getClassesByProgram(programId)
+    })
+}
 export const useUpdateStudentStatusActive = () => {
     const queryClient = useQueryClient();
     return useMutation({
@@ -49,6 +55,38 @@ export const useUpdateStudentStatusActive = () => {
         },
         onError: () => {
             toast.error("Cập nhật trạng thái thất bại")
+        }
+    })
+};
+export const useUpdateStudentInfo = (onClose: () => void) => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationKey: ["update-student-info"],
+        mutationFn: ({ studentId, formData }: { studentId: number, formData: FormData }) => adminService.updateStudentInfo(studentId, formData),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["get-all-student"] });
+            toast.success("Cập nhật thông tin sinh viên thành công"),
+                onClose()
+        },
+        onError: (error: any) => {
+            const message = error.response?.data?.message ?? "Cập nhật thông tin sinh viên thất bại"
+            toast.error(message)
+        }
+    })
+};
+export const useUpdatePasswordStudent = (onClose: () => void) => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationKey: ['update-password-student'],
+        mutationFn: ({ studentId, newPassword }: { studentId: number, newPassword: string }) => adminService.updateResetPasswordStudent(studentId, newPassword),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["get-all-student"] });
+            toast.success("Cập nhật mật khẩu thành công");
+            onClose()
+        },
+        onError: (error: any) => {
+            const message = error.response?.data?.message ?? "Cập nhật mật khẩu thất bại";
+            toast.error(message);
         }
     })
 }

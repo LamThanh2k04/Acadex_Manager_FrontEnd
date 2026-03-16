@@ -1,5 +1,5 @@
 "use client"
-import { IStudentManagerProps } from '@/app/types/admin/student.type';
+import { IStudentManager, IStudentManagerProps } from '@/app/types/admin/student.type';
 import { Pencil, UserRoundPlus, Settings, User } from 'lucide-react';
 import StudentSearchBar from './StudentSearchBar';
 import { useState } from 'react';
@@ -14,9 +14,15 @@ import Pagination from '@/components/Pagination';
 import Image from 'next/image';
 import AlertDialogBlockUser from '@/components/AlertDialogBlockUser';
 import AlertDialogUnBlockUser from '@/components/AlertDialogUnBlockUser';
+import StudentUpdateModal from './StudentUpdateModal';
+import StudentResetPasswordModal from './StudenResetPasswordModal';
 export default function StudentTable({ data }: IStudentManagerProps) {
     console.log(data);
-    const [isModal, setIsModal] = useState(false);
+    const [isModalCreate, setIsModalCreate] = useState(false);
+    const [isModalUpdate, setIsModalUpdate] = useState(false);
+    const [isModalReset, setIsModalReset] = useState(false);
+    const [studentId, setStudentId] = useState(0);
+    const [selectedStudent, setSelectedStudent] = useState<IStudentManager | null>(null);
     const statusRender = {
         "STUDYING": <span className="bg-purple-400 p-2 rounded-2xl text-green-50">Đang học</span>,
         "GRADUATE": <span className="bg-yellow-400 p-2 rounded-2xl text-orange-50">Đã tốt nghiệp</span>,
@@ -25,10 +31,10 @@ export default function StudentTable({ data }: IStudentManagerProps) {
     return (
         <div className="mt-5 p-5 border rounded-2xl bg-white ml-3 w-[98%]">
             <div className="flex items-center justify-between mb-5">
-                <h1 className="text-2xl font-bold">Danh sách sinh viên</h1>
+                <h1 className="text-2xl font-bold text-gray-500">Danh sách sinh viên</h1>
                 <div className="flex items-center justify-center gap-3">
                     <StudentSearchBar />
-                    <button onClick={() => { setIsModal(true) }} className="border-none hover:bg-orange-400 cursor-pointer hover:text-white transition duration-500 p-2 rounded-full bg-orange-100 text-gray-400 text-sm"><UserRoundPlus /></button>
+                    <button onClick={() => { setIsModalCreate(true) }} className="border-none hover:bg-orange-400 cursor-pointer hover:text-white transition duration-500 p-2 rounded-full bg-orange-100 text-gray-400 text-sm"><UserRoundPlus /></button>
                 </div>
             </div>
             <table className="w-full border-separate border border-gray-100 border-spacing-0 rounded-xl overflow-hidden ">
@@ -74,20 +80,51 @@ export default function StudentTable({ data }: IStudentManagerProps) {
                             <td>{statusRender[st.student.status] ?? <span className="bg-gray-500">{st.student.status}</span>}</td>
                             <td className="text-center">
                                 <span className='mr-2'>{st.isActive === true ? <AlertDialogBlockUser studentId={st.student.id} /> : <AlertDialogUnBlockUser studentId={st.student.id} />}</span>
-                                <button><Pencil className="text-gray-300 hover:text-blue-400 cursor-pointer duration-300 transition-all" /></button>
-                                <button><Settings className="text-gray-300 hover:text-gray-500 ml-2 cursor-pointer duration-300 transition-all" /></button>
+                                <button onClick={() => {
+                                    setIsModalUpdate(true);
+                                    setSelectedStudent(st);
+                                }}><Pencil className="text-gray-300 hover:text-blue-400 cursor-pointer duration-300 transition-all" /></button>
+                                <button onClick={() => {
+                                    setIsModalReset(true)
+                                    setStudentId(st.student.id)
+                                }}><Settings className="text-gray-300 hover:text-gray-500 ml-2 cursor-pointer duration-300 transition-all" /></button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
             <Pagination pagination={data.pagination} />
-            <Dialog open={isModal} onOpenChange={setIsModal}>
+            <Dialog open={isModalCreate} onOpenChange={setIsModalCreate}>
                 <DialogContent className="max-w-2xl">
                     <DialogHeader>
                         <DialogTitle>Thông tin chung</DialogTitle>
                     </DialogHeader>
-                    <StudentAddModal onClose={() => setIsModal(false)} />
+                    <StudentAddModal onClose={() => setIsModalCreate(false)} />
+                </DialogContent>
+            </Dialog>
+            <Dialog open={isModalUpdate} onOpenChange={setIsModalUpdate}>
+                <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                        <DialogTitle>Cập nhật thông tin sinh viên</DialogTitle>
+                    </DialogHeader>
+                    {isModalUpdate && selectedStudent && (
+                        <StudentUpdateModal
+                            key={selectedStudent.student.id}
+                            selectedStudent={selectedStudent}
+                            onClose={() => {
+                                setIsModalUpdate(false)
+                                setSelectedStudent(null)
+                            }}
+                        />
+                    )}
+                </DialogContent>
+            </Dialog>
+            <Dialog open={isModalReset} onOpenChange={setIsModalReset}>
+                <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                        <DialogTitle>Cập nhật mật khẩu dành cho sinh viên</DialogTitle>
+                    </DialogHeader>
+                    <StudentResetPasswordModal studentId={studentId} onClose={() => setIsModalReset(false)} />
                 </DialogContent>
             </Dialog>
         </div>
