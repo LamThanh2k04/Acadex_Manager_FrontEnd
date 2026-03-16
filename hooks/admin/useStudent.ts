@@ -30,18 +30,21 @@ export const useProgramSimple = () => {
     return useQuery<IProgramSimple[]>({
         queryKey: ["program-simple"],
         queryFn: () => adminService.getAllProgramSimple(),
+        staleTime: 6 * 50 * 1000,
     })
 };
 export const useClassSimple = () => {
     return useQuery<IClassSimple[]>({
         queryKey: ["class-simple"],
         queryFn: () => adminService.getAllClassSimple(),
+        staleTime: 6 * 50 * 1000,
     })
 };
 export const useClassedByProgram = (programId: number) => {
     return useQuery({
-        queryKey: ["class-by-programId"],
-        queryFn: () => adminService.getClassesByProgram(programId)
+        queryKey: ["class-by-programId", programId],
+        queryFn: () => adminService.getClassesByProgram(programId),
+        staleTime: 6 * 50 * 1000,
     })
 }
 export const useUpdateStudentStatusActive = () => {

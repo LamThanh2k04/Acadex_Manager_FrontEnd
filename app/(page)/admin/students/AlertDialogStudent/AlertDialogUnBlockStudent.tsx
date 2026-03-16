@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/alert-dialog"
 import { useUpdateStudentStatusActive } from "@/hooks/admin/useStudent";
 import { LockKeyholeOpen } from 'lucide-react';
-export default function AlertDialogUnBlockUser({ studentId }: { studentId: number }) {
+export default function AlertDialogUnBlockStudent({ studentId }: { studentId: number }) {
     const mutation = useUpdateStudentStatusActive();
     return (
         <AlertDialog>

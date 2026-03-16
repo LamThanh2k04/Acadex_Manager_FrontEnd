@@ -2,6 +2,8 @@ import { Search } from "lucide-react";
 import { IAdminOverview, IRevenueChart } from "../types/admin/overview.type";
 import { https } from "./config"
 import { IAddStudent, IUpdateStudentInfo } from "../types/admin/student.type";
+import { useQueryClient } from "@tanstack/react-query";
+import { useEffect } from "react";
 
 export const adminService = {
     // dashboard admin
@@ -35,7 +37,7 @@ export const adminService = {
         const res = await https.get(`http://localhost:8000/api/admin/dashboard/getAllSchedules?date=${date}&page=${page}`);
         return res.data.data;
     },
-    // student
+    // Student Manager
     getAllStudent: async (search: string, page: number) => {
         const params = new URLSearchParams();
         if (search) params.set("search", search);
@@ -70,5 +72,35 @@ export const adminService = {
     updateResetPasswordStudent: async (studentId: number, newPassword: string) => {
         const res = await https.put(`/api/admin/student/resetPasswordStudent/${studentId}`, { newPassword });
         return res.data
-    }
+    },
+    //Lecturer Manager
+    getAllLecturer: async (search: string, page: number) => {
+        const params = new URLSearchParams();
+        if (search) {
+            params.set("search", search);
+        };
+        params.set("page", page.toString());
+        const res = await https.get(`/api/admin/lecturer/getAllLecturers?${params.toString()}`);
+        return res.data.data;
+    },
+    createLecturer: async (formData: FormData) => {
+        const res = await https.post("/api/admin/lecturer/createLecturer", formData)
+        return res.data;
+    },
+    getAllMajorsSimple: async () => {
+        const res = await https.get("/api/admin/major/getAllMajorsSimple");
+        return res.data.data.majors;
+    },
+    updateLecurer: async (lecturerId: number, formData: FormData) => {
+        const res = await https.put(`/api/admin/lecturer/updateLecturerInfo/${lecturerId}`, formData)
+        return res.data;
+    },
+    updateLecturerStatus: async (lecturerId: number) => {
+        const res = await https.put(`/api/admin/lecturer/updateLecturerStatusActive/${lecturerId}`)
+        return res.data;
+    },
+    updateLecturerPassword: async (lecturerId: number, newPassword: string) => {
+        const res = await https.put(`/api/admin/lecturer/resetPasswordLecturer/${lecturerId}`, { newPassword });
+        return res.data;
+    },
 };

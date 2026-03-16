@@ -10,10 +10,10 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import { useUpdateStudentStatusActive } from "@/hooks/admin/useStudent";
+import { useUpdateLecturerStatus } from "@/hooks/admin/useLecturer";
 import { LockKeyhole } from 'lucide-react';
-export default function AlertDialogBlockUser({ studentId }: { studentId: number }) {
-    const mutation = useUpdateStudentStatusActive();
+export default function AlertDialogBlockLecturer({ lecturerId }: { lecturerId: number }) {
+    const mutation = useUpdateLecturerStatus()
     return (
         <AlertDialog>
             <AlertDialogTrigger asChild>
@@ -28,7 +28,7 @@ export default function AlertDialogBlockUser({ studentId }: { studentId: number 
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                     <AlertDialogCancel>Hủy bỏ</AlertDialogCancel>
-                    <AlertDialogAction onClick={() => mutation.mutate(studentId)}>Tiếp tục</AlertDialogAction>
+                    <AlertDialogAction onClick={() => mutation.mutate(lecturerId)}>Tiếp tục</AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>

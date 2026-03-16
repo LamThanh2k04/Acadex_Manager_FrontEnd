@@ -1,69 +1,71 @@
 "use client"
-import { IClassSimple, IStudentManager, IUpdateStudentInfo } from "@/app/types/admin/student.type";
-import { useClassedByProgram, useUpdateStudentInfo } from "@/hooks/admin/useStudent";
-import { useState, useRef } from 'react';
-import { useForm } from "react-hook-form";
+import { ILecturerManager, IUpdateLecturerInfo, IMajorSimple } from '@/app/types/admin/lecturer.type';
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';
 import { Loader, Upload } from 'lucide-react';
-import { ScrollArea } from "@/components/ui/scroll-area"
-export default function StudentUpdateModal({ selectedStudent, onClose }: { onClose: () => void, selectedStudent: IStudentManager }) {
-    const [avatarPreview, setAvatarPreview] = useState(selectedStudent.avatar ?? null);
-    const fileRef = useRef<HTMLInputElement>(null)
-    const mutation = useUpdateStudentInfo(onClose);
-    const { data: dataClassed, isLoading } = useClassedByProgram(selectedStudent.student.program.id);
-    const { register, handleSubmit, formState: { errors } } = useForm<IUpdateStudentInfo>({
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { useUpdateLecturer, useGetMajorsSimple } from '@/hooks/admin/useLecturer';
+import { useForm } from "react-hook-form";
+import { useEffect, useRef, useState } from 'react';
+
+export default function LecturerUpdateModal({ onClose, selectedLecturer }: { selectedLecturer: ILecturerManager, onClose: () => void }) {
+    const [avatarPreview, setAvatarPreview] = useState(selectedLecturer.avatar ?? null);
+    const mutation = useUpdateLecturer(onClose);
+    const fileRef = useRef<HTMLInputElement>(null);
+    const { data: majorData, isLoading: isLoadingMajorData } = useGetMajorsSimple();
+
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm<IUpdateLecturerInfo>({
         defaultValues: {
-            fullName: selectedStudent.fullName,
-            email: selectedStudent.email,
-            phoneNumber: selectedStudent.phoneNumber,
-            address: selectedStudent.address,
-            studentCode: selectedStudent.student.studentCode,
-            personalEmail: selectedStudent.student.personalEmail,
-            citizenId: selectedStudent.student.citizenId,
-            placeOfBirth: selectedStudent.student.placeOfBirth,
-            ethnicity: selectedStudent.student.ethnicity,
-            gender: selectedStudent.gender as "MALE" | "FEMALE",
-            dateOfBirth: selectedStudent.dateOfBirth
-                ? new Date(selectedStudent.dateOfBirth).toISOString().split("T")[0]
+            fullName: selectedLecturer.fullName,
+            email: selectedLecturer.email,
+            lecturerCode: selectedLecturer.lecturer.lecturerCode,
+            personalEmail: selectedLecturer.lecturer.personalEmail,
+            placeOfBirth: selectedLecturer.lecturer.placeOfBirth,
+            ethnicity: selectedLecturer.lecturer.ethnicity,
+            address: selectedLecturer.address,
+            phoneNumber: selectedLecturer.phoneNumber,
+            citizenId: selectedLecturer.lecturer.citizenId,
+            majorId: selectedLecturer.lecturer.major.id,
+            dateOfBirth: selectedLecturer.dateOfBirth
+                ? new Date(selectedLecturer.dateOfBirth).toISOString().split("T")[0]
                 : "",
-            admissionYear: selectedStudent.student.admissionYear,
-            graduateYear: selectedStudent.student.graduateYear,
-            classId: selectedStudent.student.class.id,
-            status: selectedStudent.student.status as "STUDYING" | "GRADUATE" | "TRUANT",
+            gender: selectedLecturer.gender as "MALE" | "FEMALE",
+            degree: selectedLecturer.lecturer.degree as "BACHELOR" | "MASTER" | "DOCTOR" | "ASSOCIATE_PROFESSOR" | "PROFESSOR",
+            position: selectedLecturer.lecturer.position as "LECTURER" | "HEAD_SUBJECT" | "HEAD_DEPARTMENT",
+            status: selectedLecturer.lecturer.status as "WORKING" | "TRUANT"
         }
     });
     const { ref: registerRef, ...registerAvatar } = register("avatar");
-
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
         if (file) setAvatarPreview(URL.createObjectURL(file))
     }
-    const onSubmit = (data: IUpdateStudentInfo) => {
+    const onSubmit = (data: IUpdateLecturerInfo) => {
         const formData = new FormData();
         formData.append("fullName", data.fullName);
         formData.append("email", data.email);
-        formData.append("phoneNumber", data.phoneNumber);
-        formData.append("address", data.address);
-        formData.append("studentCode", data.studentCode);
+        formData.append("lecturerCode", data.lecturerCode);
         formData.append("personalEmail", data.personalEmail);
-        formData.append("citizenId", data.citizenId);
         formData.append("placeOfBirth", data.placeOfBirth);
         formData.append("ethnicity", data.ethnicity);
+        formData.append("address", data.address);
+        formData.append("phoneNumber", data.phoneNumber);
+        formData.append("citizenId", data.citizenId);
+        formData.append("majorId", data.majorId.toString());
+        formData.append("dateOfBirth", data.dateOfBirth);
         formData.append("gender", data.gender);
-        formData.append("admissionYear", data.admissionYear.toString());
-        formData.append("graduateYear", data.graduateYear.toString());
-        formData.append("classId", data.classId.toString());
+        formData.append("degree", data.degree);
+        formData.append("position", data.position);
         formData.append("status", data.status);
         if (data.avatar?.[0]) {
-            formData.append("avatar", data.avatar[0])
-        };
-        if (data.dateOfBirth) {
-            formData.append("dateOfBirth", data.dateOfBirth);
-        };
-        mutation.mutate({ studentId: selectedStudent.student.id, formData });
+            formData.append("avatar", data.avatar[0]);
+        }
+        mutation.mutate({ formData, lecturerId: selectedLecturer.lecturer.id });
     }
-    console.log(selectedStudent.student.class.name);
-
+    useEffect(() => {
+        if (majorData) {
+            setValue("majorId", selectedLecturer.lecturer.major.id)
+        }
+    }, [majorData]);
     return (
         <ScrollArea className="h-[70vh] pr-4">
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
@@ -227,19 +229,19 @@ export default function StudentUpdateModal({ selectedStudent, onClose }: { onClo
                 </div>
                 <div className="border-t border-gray-100" />
                 <div>
-                    <h2 className="text-base font-semibold text-gray-800 mb-4">Thông tin học tập</h2>
+                    <h2 className="text-base font-semibold text-gray-800 mb-4">Thông tin giảng dạy</h2>
                     <div className="grid grid-cols-2 gap-4">
                         <div className="flex flex-col gap-1">
                             <label className="text-sm font-medium text-gray-600">
-                                Mã sinh viên <span className="text-red-500">*</span>
+                                Mã giảng viên <span className="text-red-500">*</span>
                             </label>
                             <input
                                 type="text"
                                 placeholder="SV001"
                                 className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-orange-300"
-                                {...register("studentCode", { required: "Mã sinh viên không được bỏ trống" })}
+                                {...register("lecturerCode", { required: "Mã giảng viên không được bỏ trống" })}
                             />
-                            <ErrorResponse error={errors.studentCode} />
+                            <ErrorResponse error={errors.lecturerCode} />
                         </div>
                         <div className="flex flex-col gap-1">
                             <label className="text-sm font-medium text-gray-600">Trạng thái</label>
@@ -248,49 +250,54 @@ export default function StudentUpdateModal({ selectedStudent, onClose }: { onClo
                                 {...register("status", { required: "Trạng thái không được bỏ trống" })}
                             >
                                 <option value="">-- Trạng thái --</option>
-                                <option value="STUDYING">Đang học</option>
-                                <option value="GRADUATE">Đã tốt nghiệp</option>
-                                <option value="TRUANT">Đang bảo lưu</option>
+                                <option value="WORKING">Đang dạy</option>
+                                <option value="TRUANT">Đã nghỉ dạy</option>
                             </select>
                             <ErrorResponse error={errors.status} />
                         </div>
                         <div className="flex flex-col gap-1">
-                            <label className="text-sm font-medium text-gray-600">Năm vào trường</label>
-                            <input
-                                type="number"
-                                placeholder="2022..."
+                            <label className="text-sm font-medium text-gray-600">Bằng cấp</label>
+                            <select
                                 className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-orange-300"
-                                {...register("admissionYear", { valueAsNumber: true })}
-                            />
+                                {...register("degree", { required: "Bằng cấp không được bỏ trống" })}
+                            >
+                                <option value="">-- Bằng cấp --</option>
+                                <option value="BACHELOR">Cử nhân</option>
+                                <option value="MASTER">Thạc sĩ</option>
+                                <option value="DOCTOR">Tiến sĩ</option>
+                                <option value="ASSOCIATE_PROFESSOR">Phó giáo sư</option>
+                                <option value="PROFESSOR">Giáo sư</option>
+                            </select>
+                            <ErrorResponse error={errors.degree} />
                         </div>
                         <div className="flex flex-col gap-1">
-                            <label className="text-sm font-medium text-gray-600">Năm tốt nghiệp</label>
-                            <input
-                                type="number"
-                                placeholder="2026"
+                            <label className="text-sm font-medium text-gray-600">Vị trí</label>
+                            <select
                                 className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-orange-300"
-                                {...register("graduateYear", { valueAsNumber: true })}
-                            />
+                                {...register("position", { required: "Vị trí không được bỏ trống" })}
+                            >
+                                <option value="">-- Vị trí --</option>
+                                <option value="LECTURER">Giảng viên</option>
+                                <option value="HEAD_SUBJECT">Trưởng bộ môn</option>
+                                <option value="HEAD_DEPARTMENT">Trưởng khoa</option>
+                            </select>
+                            <ErrorResponse error={errors.position} />
                         </div>
                         <div className="flex flex-col gap-1 col-span-2">
-                            <label className="text-sm font-medium text-gray-600">Lớp học</label>
+                            <label className="text-sm font-medium text-gray-600">Chuyên ngành</label>
                             <select
-                                key={isLoading ? "loading" : selectedStudent.student.class.id}
                                 className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-orange-300"
-                                {...register("classId", {
-                                    required: "Lớp học không được bỏ trống",
-                                    valueAsNumber: true
-                                })}
+                                {...register("majorId", { required: "Chuyên ngành không được bỏ trống" })}
                             >
-                                <option value="">-- Chọn lớp --</option>
-                                {isLoading
+                                <option value="">-- Chọn chuyên ngành --</option>
+                                {isLoadingMajorData
                                     ? <option disabled>Đang tải...</option>
-                                    : dataClassed?.map((cl: IClassSimple) => (
-                                        <option key={cl.id} value={cl.id}>{cl.name}</option>
+                                    : majorData?.map((major: IMajorSimple) => (
+                                        <option key={major.id} value={major.id.toString()}>{major.name}</option>
                                     ))
                                 }
                             </select>
-                            <ErrorResponse error={errors.classId} />
+                            <ErrorResponse error={errors.majorId} />
                         </div>
                     </div>
                 </div>

@@ -18,7 +18,7 @@ export default function StudentAddModal({ onClose }: { onClose: () => void }) {
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
         if (file) setPreview(URL.createObjectURL(file))
-    }
+    };
     const onSubmit = (data: IAddStudent) => {
         const formData = new FormData()
         formData.append("fullName", data.fullName)
