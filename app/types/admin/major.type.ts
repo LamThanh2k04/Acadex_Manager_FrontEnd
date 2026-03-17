@@ -23,5 +23,9 @@ export interface IFacultyOfMajor {
 export interface ICreateMajor {
     name: string;
     facultyId: number;
+};
+export interface IUpdateMajor {
+    name: string;
+    facultyId: number
 }
 export type TFacultyOfMajorSimple = Pick<IFacultyOfMajor, "id" | "name">

@@ -1,16 +1,28 @@
 "use client"
-import { ICreateMajor } from "@/app/types/admin/major.type"
-import { useCreateMajor, useGetAllFacultiesSimple } from "@/hooks/admin/useMajor";
-import { useForm } from "react-hook-form"
+import { IMajorData, IUpdateMajor } from "@/app/types/admin/major.type";
+import { useGetAllFacultiesSimple, useUpdateMajorInfo } from "@/hooks/admin/useMajor";
+import { useForm } from "react-hook-form";
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';
 import { Loader } from 'lucide-react';
-export default function MajorCreateModal({ onClose }: { onClose: () => void }) {
-    const { register, handleSubmit, reset, formState: { errors } } = useForm<ICreateMajor>({ mode: "onBlur" });
+import { useEffect } from "react";
+
+export default function MajorUpdateModal({ onClose, selectedMajor }: { onClose: () => void, selectedMajor: IMajorData }) {
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm<IUpdateMajor>({
+        defaultValues: {
+            name: selectedMajor.name,
+            facultyId: selectedMajor.faculty.id
+        }
+    })
+    const mutation = useUpdateMajorInfo(onClose);
     const { data: facultiesSimpleData, isLoading: isLoadingFacultiesSimpleData } = useGetAllFacultiesSimple();
-    const mutation = useCreateMajor(onClose);
-    const onSubmit = (data: ICreateMajor) => {
-        mutation.mutate({ facultyId: data.facultyId, name: data.name })
+    const onSubmit = (data: IUpdateMajor) => {
+        mutation.mutate({ majorId: selectedMajor.id, facultyId: data.facultyId, name: data.name });
     }
+    useEffect(() => {
+        if (facultiesSimpleData) {
+            setValue("facultyId", selectedMajor.faculty.id);
+        }
+    }, [facultiesSimpleData]);
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-1 mb-5">
@@ -48,7 +60,7 @@ export default function MajorCreateModal({ onClose }: { onClose: () => void }) {
             <div className="flex justify-end gap-3">
                 <button
                     type="button"
-                    onClick={() => { onClose(), reset() }}
+                    onClick={onClose}
                     className="px-4 py-2 text-sm border border-gray-200 rounded-lg hover:bg-gray-50 transition cursor-pointer"
                 >
                     Huỷ
@@ -60,12 +72,11 @@ export default function MajorCreateModal({ onClose }: { onClose: () => void }) {
                                hover:bg-orange-500 transition disabled:opacity-50 flex items-center gap-2"
                 >
                     {mutation.isPending
-                        ? <><Loader className="size-4 animate-spin" /> Đang thêm...</>
-                        : "Thêm chuyên ngành"
+                        ? <><Loader className="size-4 animate-spin" /> Đang cập nhật...</>
+                        : "Cập nhật chuyên ngành"
                     }
                 </button>
             </div>
         </form>
     )
-
 }

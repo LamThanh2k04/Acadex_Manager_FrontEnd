@@ -1,52 +1,54 @@
 "use client"
-import { IMajorData, IMajorDataProps } from "@/app/types/admin/major.type";
+
+import { IClassesData, IClassesDataResponseProps } from "@/app/types/admin/classes.type"
 import { Pencil, CirclePlus } from 'lucide-react';
 import Pagination from '@/components/Pagination';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import MajorSearchBar from "../MajorSearchBar/MajorSearchBar";
+import ClassesSearchBar from "../ClassesSearchBar/ClassesSearchBar";
 import { useState } from "react";
-import MajorCreateModal from "../MajorModal/MajorCreateModal";
-import MajorUpdateModal from "../MajorModal/MajorUpdateModal";
-import AlertDialogBlockMajor from "../AlertDialogMajor/AlertDialogBlockMajor";
-import AlertDialogUnBlockMajor from "../AlertDialogMajor/AlertDialogUnBlockMajor";
+import ClassesCreateModal from "../ClassesModal/ClassesCreateModal";
+import ClassesUpdateModal from "../ClassesModal/ClassesUpdateModal";
+import AlertDialogBlockClasses from "../AlertDialogClasses/AlertDialogBlockClasses";
+import AlertDialogUnBlockClasses from "../AlertDialogClasses/AlertDialogUnBlockClasses";
 
-export default function MajorTable({ data }: IMajorDataProps) {
+export default function ClassesTable({ data }: IClassesDataResponseProps) {
     const [isModalCreate, setIsModalCreate] = useState(false);
     const [isModalUpdate, setIsModalUpdate] = useState(false);
-    const [selectedMajor, setSelectedMajor] = useState<IMajorData | null>(null);
+    const [selectedClasses, setSelectedClasses] = useState<IClassesData | null>(null);
     return (
         <div className="mt-5 p-5 border rounded-2xl bg-white ml-3 w-[98%]">
             <div className="flex items-center justify-between mb-5">
-                <h1 className="text-2xl font-bold text-gray-500">Danh sách ngành đào tạo</h1>
+                <h1 className="text-2xl font-bold text-gray-500">Danh sách lớp</h1>
                 <div className="flex items-center justify-center gap-3">
-                    <MajorSearchBar />
+                    <ClassesSearchBar />
                     <button onClick={() => setIsModalCreate(true)} className="border-none hover:bg-orange-400 cursor-pointer hover:text-white transition duration-500 p-2 rounded-full bg-orange-100 text-gray-400 text-sm"><CirclePlus /></button>
                 </div>
             </div>
             <table className="w-full border-separate border border-gray-100 border-spacing-0 rounded-xl overflow-hidden ">
                 <thead className="bg-orange-100 text-gray-500 uppercase text-sm tracking-wide">
                     <tr className="h-12.5 text-center font-medium rounded-tl-xl">
-                        <th>Mã ngành</th>
-                        <th>Ngành</th>
-                        <th>Ngành thuộc khoa</th>
+                        <th>Tên lớp</th>
+                        <th>Lớp thuộc ngành</th>
+                        <th>Giảng viên đảm nhận</th>
                         <th>Trạng thái</th>
                         <th className="text-center">Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {data.majors.map((ma) => (
-                        <tr key={ma.id} className="h-12.5 text-center hover:bg-orange-50 transition-all duration-500">
-                            <td>{ma.code}</td>
-                            <td>{ma.name}</td>
-                            <td>{ma.faculty.name}</td>
-                            <td>{ma.isActive === true ? <span className='bg-green-400 p-2 rounded-2xl text-green-50'>Hoạt động</span> : <span className='bg-red-400 p-2 rounded-2xl text-red-50'>Tạm dừng</span>}</td>
+                    {data.classes.map((cl) => (
+                        <tr key={cl.id} className="h-12.5 text-center hover:bg-orange-50 transition-all duration-500">
+                            <td>{cl.name}</td>
+                            <td>{cl.major.name}</td>
+                            <td>{cl.homeroomLecturer?.user?.fullName ?? "Chưa có giảng viên đảm nhận"}</td>
+                            <td>{cl.isActive === true ? <span className='bg-green-400 p-2 rounded-2xl text-green-50'>Hoạt động</span> : <span className='bg-red-400 p-2 rounded-2xl text-red-50'>Tạm dừng</span>}</td>
                             <td className="text-center">
-                                <span className='mr-2'>{ma.isActive === true ? <AlertDialogBlockMajor majorId={ma.id} /> : <AlertDialogUnBlockMajor majorId={ma.id} />}</span>
+                                <span className='mr-2'>{cl.isActive === true ? <AlertDialogBlockClasses classesId={cl.id} /> : <AlertDialogUnBlockClasses classesId={cl.id} />}</span>
                                 <button onClick={() => {
                                     setIsModalUpdate(true);
-                                    setSelectedMajor(ma);
+                                    setSelectedClasses(cl);
                                 }}><Pencil className="text-gray-300 hover:text-blue-400 cursor-pointer duration-300 transition-all" /></button>
                             </td>
+
                         </tr>
                     ))}
                 </tbody>
@@ -57,21 +59,21 @@ export default function MajorTable({ data }: IMajorDataProps) {
                     <DialogHeader>
                         <DialogTitle>Thông tin chung</DialogTitle>
                     </DialogHeader>
-                    <MajorCreateModal onClose={() => setIsModalCreate(false)} />
+                    <ClassesCreateModal onClose={() => setIsModalCreate(false)} />
                 </DialogContent>
             </Dialog>
             <Dialog open={isModalUpdate} onOpenChange={setIsModalUpdate}>
                 <DialogContent className="max-w-2xl">
                     <DialogHeader>
-                        <DialogTitle>Cập nhật thông tin chuyên ngành</DialogTitle>
+                        <DialogTitle>Cập nhật thông tin lớp học</DialogTitle>
                     </DialogHeader>
-                    {isModalUpdate && selectedMajor && (
-                        <MajorUpdateModal
-                            key={selectedMajor.id}
-                            selectedMajor={selectedMajor}
+                    {isModalUpdate && selectedClasses && (
+                        <ClassesUpdateModal
+                            key={selectedClasses.id}
+                            selectedClasses={selectedClasses}
                             onClose={() => {
                                 setIsModalUpdate(false)
-                                setSelectedMajor(null)
+                                setSelectedClasses(null)
                             }}
                         />
                     )}

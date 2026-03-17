@@ -6,7 +6,7 @@ import { Loader, Upload, EyeClosed, Eye } from 'lucide-react';
 import { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 export default function LecturerCreateModal({ onClose }: { onClose: () => void }) {
-    const { register, handleSubmit, formState: { errors } } = useForm<ICreateLecturer>({ mode: "onBlur" });
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<ICreateLecturer>({ mode: "onBlur" });
     const [preview, setPreview] = useState<string | null>(null);
     const mutation = useCreateLecture(onClose);
     const [toggle, setToggle] = useState(false);
@@ -170,7 +170,7 @@ export default function LecturerCreateModal({ onClose }: { onClose: () => void }
             <div className="flex justify-end gap-3">
                 <button
                     type="button"
-                    onClick={onClose}
+                    onClick={() => { onClose(), reset() }}
                     className="px-4 py-2 cursor-pointer text-sm border border-gray-200 rounded-lg hover:bg-gray-50 transition"
                 >
                     Huỷ

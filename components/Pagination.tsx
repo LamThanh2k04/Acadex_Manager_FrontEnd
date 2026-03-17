@@ -1,8 +1,7 @@
 "use client"
-import { IPagination } from "@/app/types/admin/overview.type"
 import { useSearchParams, useRouter, usePathname } from "next/navigation"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-
+import { IPagination } from "@/app/types/pagination"
 export default function Pagination({ pagination }: { pagination: IPagination }) {
     const searchParams = useSearchParams()
     const pathname = usePathname()
@@ -13,7 +12,6 @@ export default function Pagination({ pagination }: { pagination: IPagination }) 
         params.set("page", newPage.toString())
         router.push(`${pathname}?${params.toString()}`)
     }
-
     if (pagination.totalPages <= 1) return null
     const getPageNumbers = () => {
         const pages: (number | "...")[] = []
@@ -35,7 +33,6 @@ export default function Pagination({ pagination }: { pagination: IPagination }) 
         pages.push(totalPages)
         return pages
     }
-
     return (
         <div className="flex items-center justify-between mt-4 px-2">
             <p className="text-sm text-gray-400">
@@ -68,7 +65,7 @@ export default function Pagination({ pagination }: { pagination: IPagination }) 
                         </span>
                     ) : (
                         <button
-                            key={pageNumber}
+                            key={`page-${pageNumber}-${index}`}
                             onClick={() => handlePageChange(pageNumber)}
                             className={`w-8 h-8 text-sm rounded-lg transition ${pageNumber === pagination.page
                                 ? "bg-[#ec5d15] text-white font-medium"

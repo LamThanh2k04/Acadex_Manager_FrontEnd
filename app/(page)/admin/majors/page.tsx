@@ -2,7 +2,6 @@
 import { useGetAllMajors } from "@/hooks/admin/useMajor"
 import { useSearchParams } from "next/navigation";
 import MajorTable from "./MajorTable/MajorTable";
-
 export default function Majors() {
     const searchParams = useSearchParams();
     const search = searchParams.get("search") ?? "";

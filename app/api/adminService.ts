@@ -1,9 +1,6 @@
-import { Search } from "lucide-react";
 import { IAdminOverview, IRevenueChart } from "../types/admin/overview.type";
 import { https } from "./config"
-import { IAddStudent, IUpdateStudentInfo } from "../types/admin/student.type";
-import { useQueryClient } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { IUpdateClassesInfo } from "../types/admin/classes.type";
 
 export const adminService = {
     // dashboard admin
@@ -140,5 +137,37 @@ export const adminService = {
     getAllFacultiesSimple: async () => {
         const res = await https.get("/api/admin/faculty/getAllFacultiesSimple");
         return res.data.data.faculties;
+    },
+    updateMajorInfo: async (majorId: number, name: string, facultyId: number) => {
+        const res = await https.put(`/api/admin/major/updateMajorInfo/${majorId}`, { name, facultyId });
+        return res.data;
+    },
+    updateMajorStatus: async (majorId: number) => {
+        const res = await https.put(`/api/admin/major/updateMajorStatus/${majorId}`);
+        return res.data;
+    },
+    // Class Manager
+    getAllClasses: async (search: string, page: number) => {
+        const params = new URLSearchParams();
+        if (search) params.set("search", search);
+        params.set("page", page.toString());
+        const res = await https.get(`/api/admin/class/getAllClasses?${params.toString()}`);
+        return res.data.data;
+    },
+    createClasses: async (majorId: number, homeroomLecturerId: number, name: string) => {
+        const res = await https.post("/api/admin/class/createClass", { name, majorId, homeroomLecturerId });
+        return res.data;
+    },
+    getAllHomeroomLecturerSimple: async (majorId: number) => {
+        const res = await https.get(`/api/admin/lecturer/getAvailableHomeroomLecturers/${majorId}`);
+        return res.data.data;
+    },
+    updateClassesInfo: async (classId: number, data: IUpdateClassesInfo) => {
+        const res = await https.put(`/api/admin/class/updateClassInfo/${classId}`, data);
+        return res.data;
+    },
+    updateClassesStatus: async (classId: number) => {
+        const res = await https.put(`/api/admin/class/updateClassStatus/${classId}`);
+        return res.data;
     }
 };

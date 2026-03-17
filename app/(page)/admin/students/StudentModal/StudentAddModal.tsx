@@ -7,7 +7,7 @@ import { Loader, Upload } from 'lucide-react'
 import { useRef, useState } from "react"
 import { EyeClosed, Eye } from 'lucide-react';
 export default function StudentAddModal({ onClose }: { onClose: () => void }) {
-    const { register, handleSubmit, formState: { errors } } = useForm<IAddStudent>({ mode: "onBlur" });
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<IAddStudent>({ mode: "onBlur" });
     const [toggle, setToggle] = useState(false);
     const { data: programData, isLoading: isLoadingProgram } = useProgramSimple()
     const { data: classData, isLoading: isLoadingClass } = useClassSimple()
@@ -189,7 +189,7 @@ export default function StudentAddModal({ onClose }: { onClose: () => void }) {
             <div className="flex justify-end gap-3">
                 <button
                     type="button"
-                    onClick={onClose}
+                    onClick={() => { onClose(), reset() }}
                     className="px-4 py-2 cursor-pointer text-sm border border-gray-200 rounded-lg hover:bg-gray-50 transition"
                 >
                     Huỷ

@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { Loader, Eye, EyeClosed } from 'lucide-react';
 
 export default function FacultyCreateModal({ onClose }: { onClose: () => void }) {
-    const { register, handleSubmit, formState: { errors } } = useForm<ICreateFalcuty>({ mode: "onBlur" });
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<ICreateFalcuty>({ mode: "onBlur" });
     const mutation = useCreateFaculties(onClose);
     const onSubmit = (data: ICreateFalcuty) => {
         mutation.mutate(data.name);
@@ -31,7 +31,7 @@ export default function FacultyCreateModal({ onClose }: { onClose: () => void })
             <div className="flex justify-end gap-3">
                 <button
                     type="button"
-                    onClick={onClose}
+                    onClick={() => { onClose(), reset() }}
                     className="px-4 py-2 text-sm border border-gray-200 rounded-lg hover:bg-gray-50 transition cursor-pointer"
                 >
                     Huỷ

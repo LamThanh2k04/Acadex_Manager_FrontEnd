@@ -1,11 +1,11 @@
 "use client"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { BookSearch } from 'lucide-react';
 import { useDebouncedCallback } from "use-debounce";
-export default function MajorSearchBar() {
+import { BookSearch } from 'lucide-react';
+export default function ClassesSearchBar() {
     const pathName = usePathname();
     const router = useRouter();
-    const searchParams = useSearchParams()
+    const searchParams = useSearchParams();
     const handleSearch = useDebouncedCallback((value: string) => {
         const params = new URLSearchParams(searchParams);
         if (value) {
@@ -18,13 +18,13 @@ export default function MajorSearchBar() {
         router.push(`${pathName}?${params}`);
     }, 500);
     return (
-        <div className="relative text-sm">
+        <div className="relative">
             <BookSearch className="absolute top-1 left-2 text-sm" />
             <input type="text"
-                onChange={(e) => handleSearch(e.target.value)}
-                placeholder="Tìm kiếm theo tên ngành..."
                 defaultValue={searchParams.get("search") ?? ""}
+                onChange={(e) => { handleSearch(e.target.value) }}
                 className="w-70 border px-2 py-1 pl-10 rounded-xl"
+                placeholder="Tìm theo tên lớp..."
             />
         </div>
     )

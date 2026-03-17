@@ -32,3 +32,34 @@ export const useGetAllFacultiesSimple = () => {
         staleTime: 5 * 60 * 1000,
     });
 };
+export const useUpdateMajorInfo = (onClose: () => void) => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationKey: ['update-major-info'],
+        mutationFn: ({ majorId, facultyId, name }: { majorId: number, name: string, facultyId: number, }) => adminService.updateMajorInfo(majorId, name, facultyId),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["get-all-majors"] });
+            toast.success("Cập nhật chuyên ngành thành công");
+            onClose();
+        },
+        onError: (error: any) => {
+            const message = error.response?.data?.message;
+            toast.error(message);
+        }
+    })
+};
+export const useUpdateMajorStatus = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationKey: ["update-major-status"],
+        mutationFn: (majorId: number) => adminService.updateMajorStatus(majorId),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['get-all-majors'] });
+            toast.success("Cập nhật trạng thái chuyên ngành thành công");
+        },
+        onError: (error: any) => {
+            const message = error.response?.data?.message;
+            toast.error(message);
+        }
+    });
+};
