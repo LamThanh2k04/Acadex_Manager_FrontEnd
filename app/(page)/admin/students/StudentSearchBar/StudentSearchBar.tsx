@@ -13,6 +13,7 @@ export default function StudentSearchBar() {
             params.set("page", "1");
             router.push(`${pathName}?${params.toString()}`)
         } else {
+            params.delete("page");
             params.delete("search");
             router.push(`${pathName}?${params.toString()}`)
         }

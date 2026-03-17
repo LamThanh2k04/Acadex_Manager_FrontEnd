@@ -14,6 +14,7 @@ export default function LecturerSearchBar() {
             router.push(`${pathName}?${params.toString()}`)
         } else {
             params.delete("search");
+            params.delete("page");
             router.push(`${pathName}?${params.toString()}`);
         };
     }, 500);

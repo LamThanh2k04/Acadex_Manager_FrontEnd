@@ -1,15 +1,11 @@
+import { IPagination } from "../pagination";
+
 export interface ILecturerDataProps {
     data: ILecturerDataResponse;
-}
+};
 export interface ILecturerDataResponse {
     lecturers: ILecturerManager[];
     pagination: IPagination;
-}
-export interface IPagination {
-    limit: number;
-    page: number;
-    total: number;
-    totalPages: number;
 };
 export interface ILecturerManager {
     address: string;

@@ -1,5 +1,6 @@
 "use client"
 import * as React from "react"
+import { cn } from "@/lib/utils"
 import { Minus, Plus, LayoutDashboard, Users, GraduationCap, Building2, BookOpen, BookCopy, School, Award, MapPin, DoorOpen, Clock, CalendarDays, ClipboardCheck, ClipboardList, Bell, LibraryBig, ClipboardClock } from 'lucide-react';
 import {
   Collapsible,
@@ -24,6 +25,7 @@ import Image from 'next/image';
 import Link from "next/link";
 import dynamic from "next/dynamic"
 import { usePathname } from "next/navigation";
+import { useAppSelector } from "@/lib/hook";
 const data = {
   navMain: [
     {
@@ -77,6 +79,8 @@ const data = {
   ],
 }
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const pathName = usePathname();
+  const user = useAppSelector((state) => state.user.userInfo);
   const NavUser = dynamic(
     () => import("./nav-user").then(m => m.NavUser),
     { ssr: false }
@@ -93,14 +97,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     src="/images/acadex-logo.jpg"
                     className="rounded-xl"
                     alt="Acadex Logo"
-                    width={40}
-                    height={40}
+                    width={60}
+                    height={60}
                     loading="eager"
                   />
                 </div>
                 <div className="flex flex-col gap-0.5 leading-none">
-                  <span className="text-[#ec5d15] font-bold text-sm uppercase">Acadex</span>
-                  <span className="">Admin</span>
+                  <span className="text-[#ec5d15] font-bold text-xl uppercase">Acadex</span>
                 </div>
               </Link>
             </SidebarMenuButton>
@@ -130,7 +133,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                         {item.items.map((item) => (
                           <SidebarMenuSubItem key={item.label}>
                             <SidebarMenuSubButton asChild>
-                              <Link href={item.href} className="flex items-center gap-2">
+                              <Link
+                                href={item.href}
+                                className={cn(
+                                  "flex items-center gap-2",
+                                  pathName === item.href && "bg-orange-300 hover:bg-orange-500"
+                                )}
+                              >
                                 <item.icon className="size-4" />
                                 <span>{item.label}</span>
                               </Link>

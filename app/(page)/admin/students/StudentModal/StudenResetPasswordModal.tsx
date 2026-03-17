@@ -41,7 +41,6 @@ export default function StudentResetPasswordModal({ studentId, onClose }: { stud
                 </div>
                 <ErrorResponse error={errors.newPassword} />
             </div>
-
             <div className="flex justify-end gap-3">
                 <button
                     type="button"

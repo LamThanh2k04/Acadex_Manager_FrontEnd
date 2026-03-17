@@ -1,3 +1,5 @@
+import { IPagination } from "../pagination";
+
 export interface IAdminOverview {
     totalRevenue: number;
     totalStudents: number;
@@ -48,12 +50,6 @@ export interface IScheduleResponseProps {
     page: number;
     setPage: (page: number) => void
     isFetching: boolean
-};
-export interface IPagination {
-    limit: number;
-    page: number;
-    total: number;
-    totalPages: number;
 };
 export interface ISchedule {
     id: number;

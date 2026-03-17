@@ -15,7 +15,7 @@ import {
     SidebarMenuButton,
 } from "@/components/ui/sidebar"
 export function NavUser() {
-    const user = useAppSelector((state) => state.user.userInfo)
+    const user = useAppSelector((state) => state.user.userInfo);
     return (
         <SidebarMenu>
             <SidebarMenuItem>

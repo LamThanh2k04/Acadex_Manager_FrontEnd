@@ -103,4 +103,42 @@ export const adminService = {
         const res = await https.put(`/api/admin/lecturer/resetPasswordLecturer/${lecturerId}`, { newPassword });
         return res.data;
     },
+    //Faculty Manager
+    getAllFaculties: async (search: string, page: number) => {
+        const params = new URLSearchParams();
+        if (search) {
+            params.set("search", search);
+        };
+        params.set("page", page.toString());
+        const res = await https.get(`/api/admin/faculty/getAllFaculties?${params.toString()}`);
+        return res.data.data;
+    },
+    createFaculties: async (name: string) => {
+        const res = await https.post("/api/admin/faculty/createFaculty", { name });
+        return res.data;
+    },
+    updateFacultiesInfo: async (facultyId: number, name: string,) => {
+        const res = await https.put(`/api/admin/faculty/updateFacultyInfo/${facultyId}`, { name });
+        return res.data;
+    },
+    updateFacultiesStatus: async (facultyId: number) => {
+        const res = await https.put(`/api/admin/faculty/updateFacultyStatus/${facultyId}`);
+        return res.data;
+    },
+    //Major Manager
+    getAllMajors: async (search: string, page: number) => {
+        const params = new URLSearchParams();
+        if (search) params.set("search", search);
+        params.set("page", page.toString());
+        const res = await https.get(`http://localhost:8000/api/admin/major/getAllMajors?${params.toString()}`);
+        return res.data.data;
+    },
+    createMajor: async (facultyId: number, name: string) => {
+        const res = await https.post("/api/admin/major/createMajor", { facultyId, name });
+        return res.data;
+    },
+    getAllFacultiesSimple: async () => {
+        const res = await https.get("/api/admin/faculty/getAllFacultiesSimple");
+        return res.data.data.faculties;
+    }
 };
