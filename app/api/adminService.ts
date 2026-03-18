@@ -4,6 +4,7 @@ import { IUpdateClassesInfo } from "../types/admin/classes.type";
 import { ICreateBuilding, TUpdateBuilding } from "../types/admin/building.type";
 import { ICreateRoom, TUpdateRoom } from "../types/admin/room.type";
 import { ICreateSubject, TUpdateSubject } from "../types/admin/subject.type";
+import { ICreateSemester, TUpdateSemester } from "../types/admin/semester.type";
 
 export const adminService = {
     // dashboard admin
@@ -103,7 +104,7 @@ export const adminService = {
         const res = await https.put(`/api/admin/lecturer/resetPasswordLecturer/${lecturerId}`, { newPassword });
         return res.data;
     },
-    //Faculty Manager
+    // Faculty Manager
     getAllFaculties: async (search: string, page: number) => {
         const params = new URLSearchParams();
         if (search) {
@@ -125,7 +126,7 @@ export const adminService = {
         const res = await https.put(`/api/admin/faculty/updateFacultyStatus/${facultyId}`);
         return res.data;
     },
-    //Major Manager
+    // Major Manager
     getAllMajors: async (search: string, page: number) => {
         const params = new URLSearchParams();
         if (search) params.set("search", search);
@@ -236,5 +237,25 @@ export const adminService = {
     updateSubjectStatus: async (subjectId: number) => {
         const res = await https.put(`/api/admin/subject/updateSubjectStatus/${subjectId}`);
         return res.data
+    },
+    // Semester Manager
+    getAllSemester: async (search: string, page: number) => {
+        const params = new URLSearchParams();
+        if (search) params.set("search", search);
+        params.set("page", page.toString());
+        const res = await https.get(`/api/admin/semester/getAllSemesters?${params.toString()}`);
+        return res.data.data;
+    },
+    createSemester: async (data: ICreateSemester) => {
+        const res = await https.post("/api/admin/semester/createSemester", data);
+        return res.data;
+    },
+    updateSemesterInfo: async (semesterId: number, data: TUpdateSemester) => {
+        const res = await https.put(`/api/admin/semester/updateSemesterInfo/${semesterId}`, data);
+        return res.data;
+    },
+    updateSemesterStatus: async (semesterId: number) => {
+        const res = await https.put(`/api/admin/semester/updateSemesterStatus/${semesterId}`);
+        return res.data;
     }
 };
