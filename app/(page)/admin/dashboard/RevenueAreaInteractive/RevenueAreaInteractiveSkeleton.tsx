@@ -3,7 +3,7 @@ export default function RevenueAreaInteractiveSkeleton() {
     return (
         <div>
             <div className="flex flex-col items-start gap-4 space-y-0 border-b py-5 sm:flex-row sm:items-center">
-                <Skeleton className="h-4 w-72 flex-1" />
+                <Skeleton className="h-4 w-30 flex-1" />
                 <Skeleton className="h-9 w-full sm:w-40 rounded-xl" />
             </div>
             <div className="pl-2 pr-2 pt-4 h-[30%] sm:px-6 sm:pt-6">

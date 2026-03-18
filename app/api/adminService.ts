@@ -1,6 +1,8 @@
 import { IAdminOverview, IRevenueChart } from "../types/admin/overview.type";
 import { https } from "./config"
 import { IUpdateClassesInfo } from "../types/admin/classes.type";
+import { ICreateBuilding, TUpdateBuilding } from "../types/admin/building.type";
+import { ICreateRoom, TUpdateRoom } from "../types/admin/room.type";
 
 export const adminService = {
     // dashboard admin
@@ -168,6 +170,50 @@ export const adminService = {
     },
     updateClassesStatus: async (classId: number) => {
         const res = await https.put(`/api/admin/class/updateClassStatus/${classId}`);
+        return res.data;
+    },
+    // Building Manager
+    getAllBuilding: async (search: string, page: number) => {
+        const params = new URLSearchParams();
+        if (search) params.set("search", search);
+        params.set("page", page.toString());
+        const res = await https.get(`/api/admin/building/getAllBuildings?${params.toString()}`);
+        return res.data.data;
+    },
+    createBuilding: async (data: ICreateBuilding) => {
+        const res = await https.post("/api/admin/building/createBuilding", data);
+        return res.data;
+    },
+    updateBuildingInfo: async (buildingId: number, data: TUpdateBuilding) => {
+        const res = await https.put(`/api/admin/building/updateBuildingInfo/${buildingId}`, data);
+        return res.data;
+    },
+    updateBuildingStatus: async (buildingId: number) => {
+        const res = await https.put(`/api/admin/building/updateBuildingStatus/${buildingId}`);
+        return res.data;
+    },
+    // Room Manager
+    getAllRoom: async (search: string, page: number) => {
+        const params = new URLSearchParams()
+        if (search) params.set("search", search);
+        params.set("page", page.toString());
+        const res = await https.get(`/api/admin/room/getAllRooms?${params.toString()}`);
+        return res.data.data;
+    },
+    createRoom: async (data: ICreateRoom) => {
+        const res = await https.post("/api/admin/room/createRoom", data);
+        return res.data;
+    },
+    getAllBuildingSimple: async () => {
+        const res = await https.get("/api/admin/building/getAllBuildingsSimple");
+        return res.data.data.buildings;
+    },
+    updateRoomInfo: async (roomId: number, data: TUpdateRoom) => {
+        const res = await https.put(`/api/admin/room/updateRoomInfo/${roomId}`, data);
+        return res.data;
+    },
+    updateRoomStatus: async (roomId: number) => {
+        const res = await https.put(`/api/admin/room/updateRoomStatus/${roomId}`);
         return res.data;
     }
 };

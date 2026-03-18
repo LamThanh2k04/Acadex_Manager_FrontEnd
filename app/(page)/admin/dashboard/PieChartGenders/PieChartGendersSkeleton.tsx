@@ -1,7 +1,7 @@
 import { Skeleton } from "@/components/ui/skeleton"
 export default function PieChartGendersSkeleton() {
     return (
-        <div className="bg-white border border-orange-100 rounded-xl shadow-sm p-6 w-fit">
+        <div className="bg-white border border-orange-100 rounded-xl shadow-sm p-6 w-[30%]">
             <div className="flex items-center justify-between mb-2">
                 <Skeleton className="h-6 w-28" />
                 <div className="flex gap-2">

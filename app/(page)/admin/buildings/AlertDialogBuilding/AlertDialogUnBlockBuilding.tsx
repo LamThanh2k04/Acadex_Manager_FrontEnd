@@ -1,9 +1,8 @@
-"use client"
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
-import { useUpdateMajorStatus } from '@/hooks/admin/useMajor';
+import { useUpdateBuildingStatus } from '@/hooks/admin/useBuilding';
 import { LockKeyholeOpen } from 'lucide-react';
-export default function AlertDialogUnBlockMajor({ majorId }: { majorId: number }) {
-    const mutation = useUpdateMajorStatus();
+export default function AlertDialogUnBlockBuilding({ buildingId }: { buildingId: number }) {
+    const mutation = useUpdateBuildingStatus()
     return (
         <AlertDialog>
             <AlertDialogTrigger asChild>
@@ -11,14 +10,14 @@ export default function AlertDialogUnBlockMajor({ majorId }: { majorId: number }
             </AlertDialogTrigger>
             <AlertDialogContent>
                 <AlertDialogHeader>
-                    <AlertDialogTitle>Bạn có chắc chắn mở lại để chuyên ngành hoạt động trở lại không?</AlertDialogTitle>
+                    <AlertDialogTitle>Bạn có chắc chắn mở lại để cơ sở hoạt động trở lại không?</AlertDialogTitle>
                     <AlertDialogDescription>
-                        Hành động này sẽ giúp cho chuyên ngành được hoạt động trở lại
+                        Hành động này sẽ giúp cho cơ sở được hoạt động trở lại
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                     <AlertDialogCancel>Hủy bỏ</AlertDialogCancel>
-                    <AlertDialogAction onClick={() => mutation.mutate(majorId)}>Tiếp tục</AlertDialogAction>
+                    <AlertDialogAction onClick={() => mutation.mutate(buildingId)}>Tiếp tục</AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>

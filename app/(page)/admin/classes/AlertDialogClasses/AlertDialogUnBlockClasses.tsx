@@ -6,13 +6,13 @@ export default function AlertDialogUnBlockClasses({ classesId }: { classesId: nu
     return (
         <AlertDialog>
             <AlertDialogTrigger asChild>
-                <button className="text-gray-300 hover:text-red-400 cursor-pointer duration-300 transition-all"><LockKeyholeOpen /></button>
+                <button className="text-gray-300 cursor-pointer hover:text-red-400 duration-300 transition-all"><LockKeyholeOpen /></button>
             </AlertDialogTrigger>
             <AlertDialogContent>
                 <AlertDialogHeader>
-                    <AlertDialogTitle>Bạn có chắc chắn muốn tạm dừng hoạt động của lớp học này không?</AlertDialogTitle>
+                    <AlertDialogTitle>Bạn có chắc chắn mở lại để lớp học hoạt động trở lại không?</AlertDialogTitle>
                     <AlertDialogDescription>
-                        Hành động này sẽ tạm dừng hoạt động của lớp học tạm thời cho đến khi được mở lại
+                        Hành động này sẽ giúp cho lớp học được hoạt động trở lại
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>

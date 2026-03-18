@@ -75,8 +75,6 @@ export default function PieChartGenders({ data, role, setRole }: IPieChartGender
                         </Pie>
                     </PieChart>
                 </ChartContainer>
-
-                {/* Icon giữa */}
                 <div className="absolute inset-0 flex items-center justify-center gap-1">
                     <span className="text-[#A8D8EA] text-3xl"><Mars /></span>
                     <span className="text-[#F5D06E] text-3xl"><Venus /></span>

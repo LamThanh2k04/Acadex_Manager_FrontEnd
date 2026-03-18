@@ -12,7 +12,7 @@ export default function AlertDialogUnBlockFaculty({ facultyId }: { facultyId: nu
                 <AlertDialogHeader>
                     <AlertDialogTitle>Bạn có chắc chắn mở lại để khoa hoạt động trở lại không?</AlertDialogTitle>
                     <AlertDialogDescription>
-                        Hành động này sẽ giúp cho Khoa được hoạt động trở lại
+                        Hành động này sẽ giúp cho khoa được hoạt động trở lại
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
