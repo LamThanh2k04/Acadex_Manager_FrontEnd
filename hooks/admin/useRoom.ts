@@ -6,7 +6,8 @@ import toast from "react-hot-toast";
 export const useGetAllRoom = (search: string, page: number) => {
     return useQuery<IRoomDataResponse>({
         queryKey: ['get-all-room', search, page],
-        queryFn: () => adminService.getAllRoom(search, page)
+        queryFn: () => adminService.getAllRoom(search, page),
+        staleTime: 6 * 50 * 1000
     })
 };
 export const useCreateRoom = (onClose: () => void) => {
@@ -28,7 +29,8 @@ export const useCreateRoom = (onClose: () => void) => {
 export const useGetAllBuildingSimple = () => {
     return useQuery<IBuildingOfRoomSimple[]>({
         queryKey: ['get-all-building-simple'],
-        queryFn: () => adminService.getAllBuildingSimple()
+        queryFn: () => adminService.getAllBuildingSimple(),
+        staleTime: 6 * 50 * 1000
     })
 };
 export const useUpdateRoomInfo = (onClose: () => void) => {

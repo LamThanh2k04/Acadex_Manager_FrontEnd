@@ -6,7 +6,8 @@ import toast from "react-hot-toast";
 export const useGetAllMajors = (search: string, page: number) => {
     return useQuery({
         queryKey: ['get-all-majors', search, page],
-        queryFn: () => adminService.getAllMajors(search, page)
+        queryFn: () => adminService.getAllMajors(search, page),
+        staleTime: 6 * 50 * 1000
     })
 };
 export const useCreateMajor = (onClose: () => void) => {

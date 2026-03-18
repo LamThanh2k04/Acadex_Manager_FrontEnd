@@ -6,7 +6,8 @@ import toast from "react-hot-toast";
 export const useGetAllClasses = (search: string, page: number) => {
     return useQuery({
         queryKey: ["get-all-classes", search, page],
-        queryFn: () => adminService.getAllClasses(search, page)
+        queryFn: () => adminService.getAllClasses(search, page),
+        staleTime: 6 * 50 * 1000
     });
 };
 export const useCreateClasses = (onClose: () => void) => {
@@ -45,7 +46,8 @@ export const useGetAllHomeroomLecturerSimple = (lecturerId: number) => {
     return useQuery<IHoomroomLecturerSimple[]>({
         queryKey: ['get-homeroomLecturer-simple', lecturerId],
         queryFn: () => adminService.getAllHomeroomLecturerSimple(lecturerId),
-        enabled: !!lecturerId
+        enabled: !!lecturerId,
+        staleTime: 5 * 60 * 1000
     })
 };
 export const useUpdateClassesStatus = () => {

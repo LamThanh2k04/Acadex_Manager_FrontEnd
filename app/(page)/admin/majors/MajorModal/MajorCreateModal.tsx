@@ -23,7 +23,7 @@ export default function MajorCreateModal({ onClose }: { onClose: () => void }) {
                         placeholder="Vui lòng nhập tên ngành..."
                         className="border w-60 border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-orange-300"
                         {...register("name", {
-                            required: "Tên ngành không được bở trống",
+                            required: "Tên ngành không được bỏ trống",
                         })}
                     />
                 </div>
@@ -67,5 +67,4 @@ export default function MajorCreateModal({ onClose }: { onClose: () => void }) {
             </div>
         </form>
     )
-
 }

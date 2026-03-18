@@ -3,6 +3,7 @@ import { https } from "./config"
 import { IUpdateClassesInfo } from "../types/admin/classes.type";
 import { ICreateBuilding, TUpdateBuilding } from "../types/admin/building.type";
 import { ICreateRoom, TUpdateRoom } from "../types/admin/room.type";
+import { ICreateSubject, TUpdateSubject } from "../types/admin/subject.type";
 
 export const adminService = {
     // dashboard admin
@@ -215,5 +216,25 @@ export const adminService = {
     updateRoomStatus: async (roomId: number) => {
         const res = await https.put(`/api/admin/room/updateRoomStatus/${roomId}`);
         return res.data;
+    },
+    // Subject Manager 
+    getAllSubject: async (search: string, page: number) => {
+        const params = new URLSearchParams();
+        if (search) params.set("search", search);
+        params.set("page", page.toString());
+        const res = await https.get(`/api/admin/subject/getAllSubjects?${params}`);
+        return res.data.data;
+    },
+    createSubject: async (data: ICreateSubject) => {
+        const res = await https.post("/api/admin/subject/createSubject", data);
+        return res.data;
+    },
+    updateSubjectInfo: async (subjectId: number, data: TUpdateSubject) => {
+        const res = await https.put(`/api/admin/subject/updateSubjectInfo/${subjectId}`, data);
+        return res.data;
+    },
+    updateSubjectStatus: async (subjectId: number) => {
+        const res = await https.put(`/api/admin/subject/updateSubjectStatus/${subjectId}`);
+        return res.data
     }
 };

@@ -6,7 +6,8 @@ import toast from "react-hot-toast";
 export const useGetAllBuilding = (search: string, page: number) => {
     return useQuery<IBuildingDataResponse>({
         queryKey: ['get-all-building', search, page],
-        queryFn: () => adminService.getAllBuilding(search, page)
+        queryFn: () => adminService.getAllBuilding(search, page),
+        staleTime: 6 * 50 * 1000,
     })
 };
 export const useCreateBuilding = (onClose: () => void) => {

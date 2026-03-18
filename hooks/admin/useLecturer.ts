@@ -13,7 +13,8 @@ export const useGetAllLecturer = (search: string, page: number) => {
 export const useGetMajorsSimple = () => {
     return useQuery<IMajorSimple[]>({
         queryKey: ["get-majors-simple"],
-        queryFn: () => adminService.getAllMajorsSimple()
+        queryFn: () => adminService.getAllMajorsSimple(),
+        staleTime: 6 * 50 * 1000
     });
 };
 export const useCreateLecture = (onClose: () => void) => {
