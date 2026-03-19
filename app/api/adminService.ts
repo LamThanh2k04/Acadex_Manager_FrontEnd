@@ -5,9 +5,11 @@ import { ICreateBuilding, TUpdateBuilding } from "../types/admin/building.type";
 import { ICreateRoom, TUpdateRoom } from "../types/admin/room.type";
 import { ICreateSubject, TUpdateSubject } from "../types/admin/subject.type";
 import { ICreateSemester, TUpdateSemester } from "../types/admin/semester.type";
+import { ICreatePeriod, TUpdatePeriod } from "../types/admin/period.type";
+import { ICreateCertification, TUpdateCertificationInfo } from "../types/admin/certification.type";
 
 export const adminService = {
-    // dashboard admin
+    // Dashboard Admin
     getOverView: async (): Promise<IAdminOverview> => {
         const res = await https.get("/api/admin/dashboard/getOverView");
         return res.data.data;
@@ -74,7 +76,7 @@ export const adminService = {
         const res = await https.put(`/api/admin/student/resetPasswordStudent/${studentId}`, { newPassword });
         return res.data
     },
-    //Lecturer Manager
+    // Lecturer Manager
     getAllLecturer: async (search: string, page: number) => {
         const params = new URLSearchParams();
         if (search) {
@@ -256,6 +258,46 @@ export const adminService = {
     },
     updateSemesterStatus: async (semesterId: number) => {
         const res = await https.put(`/api/admin/semester/updateSemesterStatus/${semesterId}`);
+        return res.data;
+    },
+    // Period Manager
+    getAllPeriod: async (search: string, page: number) => {
+        const params = new URLSearchParams();
+        if (search) params.set("search", search);
+        params.set("page", page.toString());
+        const res = await https.get(`/api/admin/period/getAllPeriods?${params}`);
+        return res.data.data;
+    },
+    createPeriod: async (data: ICreatePeriod) => {
+        const res = await https.post("/api/admin/period/createPeriod", data);
+        return res.data;
+    },
+    updatePeriodInfo: async (periodId: number, data: TUpdatePeriod) => {
+        const res = await https.put(`/api/admin/period/updatePeriodInfo/${periodId}`, data);
+        return res.data;
+    },
+    updatePeriodStatus: async (periodId: number) => {
+        const res = await https.put(`/api/admin/period/updatePeriodStatus/${periodId}`);
+        return res.data;
+    },
+    // Certification Manager
+    getAllCertification: async (search: string, page: number) => {
+        const params = new URLSearchParams();
+        if (search) params.set("search", search);
+        params.set("page", page.toString());
+        const res = await https.get(`/api/admin/certificate/getAllCertificates?${params}`);
+        return res.data.data;
+    },
+    createCertification: async (data: ICreateCertification) => {
+        const res = await https.post("/api/admin/certificate/createCertificate", data);
+        return res.data
+    },
+    updateCertificationInfo: async (certificateId: number, data: TUpdateCertificationInfo) => {
+        const res = await https.put(`/api/admin/certificate/updateCertificateInfo/${certificateId}`, data);
+        return res.data
+    },
+    updateCertificationStatus: async (certificateId: number) => {
+        const res = await https.put(`/api/admin/certificate/updateCertificateStatus/${certificateId}`);
         return res.data;
     }
 };

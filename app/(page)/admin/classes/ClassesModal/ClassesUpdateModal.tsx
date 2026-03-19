@@ -111,7 +111,7 @@ export default function ClassesUpdateModal({ onClose, selectedClasses }: { onClo
                 >
                     {mutation.isPending
                         ? <><Loader className="size-4 animate-spin" /> Đang cập nhật...</>
-                        : "Cập nhật lớp học"
+                        : "Lưu thay đổi"
                     }
                 </button>
             </div>

@@ -109,7 +109,7 @@ export default function SubjectUpdateModal({ onClose, selectedSubject }: { onClo
                 >
                     {mutation.isPending
                         ? <><Loader className="size-4 animate-spin" /> Đang cập nhật...</>
-                        : "Cập nhật môn học"
+                        : "Lưu thay đổi"
                     }
                 </button>
             </div>

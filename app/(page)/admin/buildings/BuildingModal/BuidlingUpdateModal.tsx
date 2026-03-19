@@ -89,7 +89,7 @@ export default function BuildingUpdateModal({ onClose, selectedBuilding }: { onC
                 >
                     {mutation.isPending
                         ? <><Loader className="size-4 animate-spin" /> Đang cập nhật...</>
-                        : "Cập nhật cơ sở"
+                        : "Lưu thay đổi"
                     }
                 </button>
             </div>
