@@ -7,8 +7,42 @@ import { ICreateSubject, TUpdateSubject } from "../types/admin/subject.type";
 import { ICreateSemester, TUpdateSemester } from "../types/admin/semester.type";
 import { ICreatePeriod, TUpdatePeriod } from "../types/admin/period.type";
 import { ICreateCertification, TUpdateCertificationInfo } from "../types/admin/certification.type";
+import { ICreateCourse, TUpdateCourse } from "../types/admin/course.type";
 
 export const adminService = {
+    // Simple APIs
+    getAllLecturerSimple: async () => {
+        const res = await https.get("/api/admin/lecturer/getAllLecturersSimple");
+        return res.data.data.lecturers;
+    },
+    getAllSemesterSimple: async () => {
+        const res = await https.get("/api/admin/semester/getAllSemestersSimple");
+        return res.data.data.semesters;
+    },
+    getAllProgramSimple: async () => {
+        const res = await https.get("http://localhost:8000/api/admin/program/getAllProgramsSimple");
+        return res.data.data.programs;
+    },
+    getAllClassSimple: async () => {
+        const res = await https.get("http://localhost:8000/api/admin/class/getAllClassesSimple");
+        return res.data.data.classes;
+    },
+    getAllMajorsSimple: async () => {
+        const res = await https.get("/api/admin/major/getAllMajorsSimple");
+        return res.data.data.majors;
+    },
+    getAllFacultiesSimple: async () => {
+        const res = await https.get("/api/admin/faculty/getAllFacultiesSimple");
+        return res.data.data.faculties;
+    },
+    getAllHomeroomLecturerSimple: async (majorId: number) => {
+        const res = await https.get(`/api/admin/lecturer/getAvailableHomeroomLecturers/${majorId}`);
+        return res.data.data;
+    },
+    getAllBuildingSimple: async () => {
+        const res = await https.get("/api/admin/building/getAllBuildingsSimple");
+        return res.data.data.buildings;
+    },
     // Dashboard Admin
     getOverView: async (): Promise<IAdminOverview> => {
         const res = await https.get("/api/admin/dashboard/getOverView");
@@ -52,14 +86,6 @@ export const adminService = {
         const res = await https.post("/api/admin/student/createStudent", formData);
         return res.data;
     },
-    getAllProgramSimple: async () => {
-        const res = await https.get("http://localhost:8000/api/admin/program/getAllProgramsSimple");
-        return res.data.data.programs;
-    },
-    getAllClassSimple: async () => {
-        const res = await https.get("http://localhost:8000/api/admin/class/getAllClassesSimple");
-        return res.data.data.classes;
-    },
     updateStudentStatusActive: async (studentId: number) => {
         const res = await https.put(`/api/admin/student/updateStudentStatusActive/${studentId}`);
         return res.data;
@@ -90,10 +116,7 @@ export const adminService = {
         const res = await https.post("/api/admin/lecturer/createLecturer", formData)
         return res.data;
     },
-    getAllMajorsSimple: async () => {
-        const res = await https.get("/api/admin/major/getAllMajorsSimple");
-        return res.data.data.majors;
-    },
+
     updateLecurer: async (lecturerId: number, formData: FormData) => {
         const res = await https.put(`/api/admin/lecturer/updateLecturerInfo/${lecturerId}`, formData)
         return res.data;
@@ -140,10 +163,7 @@ export const adminService = {
         const res = await https.post("/api/admin/major/createMajor", { facultyId, name });
         return res.data;
     },
-    getAllFacultiesSimple: async () => {
-        const res = await https.get("/api/admin/faculty/getAllFacultiesSimple");
-        return res.data.data.faculties;
-    },
+
     updateMajorInfo: async (majorId: number, name: string, facultyId: number) => {
         const res = await https.put(`/api/admin/major/updateMajorInfo/${majorId}`, { name, facultyId });
         return res.data;
@@ -164,10 +184,7 @@ export const adminService = {
         const res = await https.post("/api/admin/class/createClass", { name, majorId, homeroomLecturerId });
         return res.data;
     },
-    getAllHomeroomLecturerSimple: async (majorId: number) => {
-        const res = await https.get(`/api/admin/lecturer/getAvailableHomeroomLecturers/${majorId}`);
-        return res.data.data;
-    },
+
     updateClassesInfo: async (classId: number, data: IUpdateClassesInfo) => {
         const res = await https.put(`/api/admin/class/updateClassInfo/${classId}`, data);
         return res.data;
@@ -207,10 +224,6 @@ export const adminService = {
     createRoom: async (data: ICreateRoom) => {
         const res = await https.post("/api/admin/room/createRoom", data);
         return res.data;
-    },
-    getAllBuildingSimple: async () => {
-        const res = await https.get("/api/admin/building/getAllBuildingsSimple");
-        return res.data.data.buildings;
     },
     updateRoomInfo: async (roomId: number, data: TUpdateRoom) => {
         const res = await https.put(`/api/admin/room/updateRoomInfo/${roomId}`, data);
@@ -299,5 +312,35 @@ export const adminService = {
     updateCertificationStatus: async (certificateId: number) => {
         const res = await https.put(`/api/admin/certificate/updateCertificateStatus/${certificateId}`);
         return res.data;
+    },
+    // Course Manager
+    getAllCourse: async (search: string, page: number) => {
+        const params = new URLSearchParams();
+        if (search) params.set("search", search);
+        params.set("page", page.toString());
+        const res = await https.get(`/api/admin/courseSection/getAllCourseSections?${params.toString()}`);
+        return res.data.data;
+    },
+    createCourse: async (data: ICreateCourse) => {
+        const res = await https.post("/api/admin/courseSection/createCourseSection", data);
+        return res.data;
+    },
+    updateCourseInfo: async (courseSectionId: number, data: TUpdateCourse) => {
+        const res = await https.put(`/api/admin/courseSection/updateCourseSectionInfo/${courseSectionId}`, data);
+        return res.data;
+    },
+    updateCourseStatus: async (courseSectionId: number) => {
+        const res = await https.put(`/api/admin/courseSection/updateCourseSectionStatus/${courseSectionId}`);
+        return res.data
+    },
+    // Program
+    getSemeterByProgram: async (programId: number) => {
+        const res = await https.get(`/api/admin/program/getSemesterOrdersPrgram/${programId}`);
+        return res.data.data.semesterOrder;
+    },
+    getSubjectBySemesterOrder: async (programId: number, semesterOrderId: number) => {
+        const res = await https.get(`/api/admin/program/getSubjectsBySemesterOrder/${programId}/semesterOrder/${semesterOrderId}`);
+        return res.data.data.subjects;
     }
+
 };

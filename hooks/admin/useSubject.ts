@@ -6,7 +6,9 @@ import toast from "react-hot-toast";
 export const useGetAllSubjects = (search: string, page: number) => {
     return useQuery({
         queryKey: ['get-all-subject', search, page],
-        queryFn: () => adminService.getAllSubject(search, page)
+        queryFn: () => adminService.getAllSubject(search, page),
+        staleTime: 5 * 60 * 1000,
+        placeholderData: (prevData) => prevData
     })
 };
 export const useCreateSubject = (onClose: () => void) => {
@@ -32,11 +34,11 @@ export const useUpdateSubjectInfo = (onClose: () => void) => {
         mutationFn: ({ subjectId, data }: { subjectId: number, data: TUpdateSubject }) => adminService.updateSubjectInfo(subjectId, data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-all-subject'] });
-            toast.success("Cập nhật thông tin môn học thành công");
+            toast.success("Đã cập nhật thông tin môn học");
             onClose()
         },
         onError: (error: any) => {
-            const message = error.response?.data?.message;
+            const message = error.response?.data?.message ?? "Chưa cập nhật thông tin môn học";
             toast.error(message);
         }
     });
@@ -48,10 +50,10 @@ export const useUpdateSubjectStatus = () => {
         mutationFn: (subjectId: number) => adminService.updateSubjectStatus(subjectId),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-all-subject'] });
-            toast.success("Cập nhật trạng thái môn học thành công");
+            toast.success("Đã cập nhật trạng thái môn học");
         },
         onError: (error: any) => {
-            const message = error.response?.data?.message || "Cập nhật trạng thái môn học thất bại";
+            const message = error.response?.data?.message || "Chưa cập nhật trạng thái môn học";
             toast.error(message);
         }
     });

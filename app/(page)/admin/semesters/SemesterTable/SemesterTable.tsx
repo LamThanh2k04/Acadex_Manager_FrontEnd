@@ -30,7 +30,7 @@ export default function SemesterTable({ data }: ISemesterDataResponseProps) {
             <table className="w-full border-separate border border-gray-100 border-spacing-0 rounded-xl overflow-hidden ">
                 <thead className="bg-orange-100 text-gray-500 uppercase text-sm tracking-wide">
                     <tr className="h-12.5 text-center font-medium rounded-tl-xl">
-                        <th>Tên học kì</th>
+                        <th>Học kì</th>
                         <th>Niên khóa</th>
                         <th>Học kì bắt đầu</th>
                         <th>Học kì kết thúc</th>

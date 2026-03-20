@@ -8,6 +8,7 @@ export const useGetAllFaculties = (search: string, page: number) => {
         queryKey: ['get-all-faculty', search, page],
         queryFn: () => adminService.getAllFaculties(search, page),
         staleTime: 6 * 50 * 1000,
+        placeholderData: (prevData) => prevData
     })
 };
 export const useCreateFaculties = (onClose: () => void) => {
@@ -33,11 +34,11 @@ export const useUpdateFacultiesInfo = (onClose: () => void) => {
         mutationFn: ({ facultyId, name }: { facultyId: number, name: string }) => adminService.updateFacultiesInfo(facultyId, name),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-all-faculty'] });
-            toast.success("Cập nhật khoa thành công");
+            toast.success("Đã cập nhật thông tin khoa");
             onClose()
         },
         onError: (error: any) => {
-            const message = error.response?.data?.message ?? "Cập nhật khoa thất bại";
+            const message = error.response?.data?.message ?? "Chưa cập nhật thông tin khoa";
             toast.error(message);
         }
     });
@@ -49,10 +50,10 @@ export const useUpdateFacultiesStatus = () => {
         mutationFn: (facultyId: number) => adminService.updateFacultiesStatus(facultyId),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["get-all-faculty"] });
-            toast.success("Cập nhật trạng thái khoa thành công");
+            toast.success("Đã cập nhật trạng thái khoa");
         },
         onError: (error: any) => {
-            const message = error.response?.data?.message;
+            const message = error.response?.data?.message ?? "Chưa cập nhật thông tin khoa";
             toast.error(message);
         }
     });

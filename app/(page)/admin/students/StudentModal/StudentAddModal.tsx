@@ -1,7 +1,8 @@
 "use client"
 import ErrorResponse from "@/app/(auth)/login/ErrorResponse"
 import { IAddStudent } from "@/app/types/admin/student.type"
-import { useClassSimple, useCreateStudent, useProgramSimple } from "@/hooks/admin/useStudent"
+import { useCreateStudent } from "@/hooks/admin/useStudent"
+import { useGetAllProgramSimple, useGetAllClassSimple } from "@/hooks/admin/useSimple"
 import { useForm } from "react-hook-form"
 import { Loader, Upload } from 'lucide-react'
 import { useRef, useState } from "react"
@@ -9,8 +10,8 @@ import { EyeClosed, Eye } from 'lucide-react';
 export default function StudentAddModal({ onClose }: { onClose: () => void }) {
     const { register, handleSubmit, reset, formState: { errors } } = useForm<IAddStudent>({ mode: "onBlur" });
     const [toggle, setToggle] = useState(false);
-    const { data: programData, isLoading: isLoadingProgram } = useProgramSimple()
-    const { data: classData, isLoading: isLoadingClass } = useClassSimple()
+    const { data: programData, isLoading: isLoadingProgram } = useGetAllProgramSimple()
+    const { data: classData, isLoading: isLoadingClass } = useGetAllClassSimple()
     const mutation = useCreateStudent(onClose)
     const [preview, setPreview] = useState<string | null>(null)
     const fileRef = useRef<HTMLInputElement>(null)

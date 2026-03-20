@@ -1,5 +1,8 @@
+import { TGender } from "../gender.type";
 import { IPagination } from "../pagination";
 
+type TDegreeLecturer = "BACHELOR" | "MASTER" | "DOCTOR" | "ASSOCIATE_PROFESSOR" | "PROFESSOR";
+type TPositionLecturer = "LECTURER" | "HEAD_SUBJECT" | "HEAD_DEPARTMENT";
 export interface ILecturerDataProps {
     data: ILecturerDataResponse;
 };
@@ -13,7 +16,7 @@ export interface ILecturerManager {
     dateOfBirth: string;
     email: string;
     fullName: string;
-    gender: "MALE" | "FEMALE";
+    gender: TGender;
     isActive: boolean;
     lecturer: ILecturer;
     phoneNumber: string;
@@ -29,7 +32,7 @@ export interface ILecturer {
     personalEmail: string;
     placeOfBirth: string;
     position: string;
-    status: "WORKING" | "TRUANT";
+    status: TStatusLecturer;
 
 }
 export interface IFacultyLecturer {
@@ -45,7 +48,7 @@ export interface ICreateLecturer {
     password: string;
     lecturerCode: string;
     avatar: FileList;
-    gender: "MALE" | "FEMALE";
+    gender: TGender;
     majorId: number;
 };
 export interface IUpdateLecturerInfo {
@@ -60,10 +63,10 @@ export interface IUpdateLecturerInfo {
     citizenId: string;
     majorId: number;
     dateOfBirth: string;
-    gender: "MALE" | "FEMALE";
-    degree: "BACHELOR" | "MASTER" | "DOCTOR" | "ASSOCIATE_PROFESSOR" | "PROFESSOR";
-    position: "LECTURER" | "HEAD_SUBJECT" | "HEAD_DEPARTMENT";
-    status: "WORKING" | "TRUANT";
+    gender: TGender;
+    degree: TDegreeLecturer
+    position: TPositionLecturer
+    status: TStatusLecturer
     avatar: FileList
 }
 export interface IMajorSimple {
@@ -73,3 +76,4 @@ export interface IMajorSimple {
 export interface IResetPasswordLecturer {
     newPassword: string;
 }
+export type TStatusLecturer = "WORKING" | "TRUANT";

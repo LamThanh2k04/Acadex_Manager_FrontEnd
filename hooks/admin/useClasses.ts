@@ -7,7 +7,8 @@ export const useGetAllClasses = (search: string, page: number) => {
     return useQuery({
         queryKey: ["get-all-classes", search, page],
         queryFn: () => adminService.getAllClasses(search, page),
-        staleTime: 6 * 50 * 1000
+        staleTime: 6 * 50 * 1000,
+        placeholderData: (prevData) => prevData
     });
 };
 export const useCreateClasses = (onClose: () => void) => {
@@ -21,7 +22,7 @@ export const useCreateClasses = (onClose: () => void) => {
             onClose()
         },
         onError: (error: any) => {
-            const message = error.response?.data?.message ?? "Thêm lớp học thất bại";
+            const message = error.response?.data?.message ?? "Thêm lớp họp";
             toast.error(message);
         }
     });
@@ -33,11 +34,11 @@ export const useUpdateClassesInfo = (onClose: () => void) => {
         mutationFn: ({ classId, data }: { classId: number, data: IUpdateClassesInfo }) => adminService.updateClassesInfo(classId, data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-all-classes'] });
-            toast.success("Cập nhật thông tin lớp thành công");
+            toast.success("Đã cập nhật thông tin lớp");
             onClose()
         },
         onError: (error: any) => {
-            const message = error.response?.data?.message ?? "Cập nhật thông tin lớp thất bại";
+            const message = error.response?.data?.message ?? "Chưa cập nhật thông tin lớp";
             toast.error(message);
         }
     });
@@ -57,10 +58,10 @@ export const useUpdateClassesStatus = () => {
         mutationFn: (classId: number) => adminService.updateClassesStatus(classId),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-all-classes'] });
-            toast.success("Cập nhật trạng thái lớp học thành công");
+            toast.success("Đã cập nhật trạng thái lớp học");
         },
         onError: (error: any) => {
-            const message = error.response?.data?.message;
+            const message = error.response?.data?.message ?? "Chưa cập nhật trạng thái lớp học";
             toast.error(message);
         }
     });

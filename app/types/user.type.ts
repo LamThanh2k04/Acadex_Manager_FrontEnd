@@ -7,8 +7,9 @@ export interface UserInfo {
     dateOfBirth?: string;
     phoneNumber?: string;
     address?: string;
-    role: "ADMIN" | "LECTURER" | "STUDENT";
+    role: TUSerRole;
     isActive: boolean;
     createdAt: string;
     updateAt: string;
-}
+};
+export type TUSerRole = "ADMIN" | "LECTURER" | "STUDENT";

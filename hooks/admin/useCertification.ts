@@ -7,7 +7,8 @@ export const useGetAllCertification = (search: string, page: number) => {
     return useQuery({
         queryKey: ['get-all-certification', search, page],
         queryFn: () => adminService.getAllCertification(search, page),
-        staleTime: 5 * 60 * 1000
+        staleTime: 5 * 60 * 1000,
+        placeholderData: (prevData) => prevData
     });
 };
 export const useCreateCertification = (onClose: () => void) => {
@@ -33,11 +34,11 @@ export const useUpdateCertificationInfo = (onClose: () => void) => {
         mutationFn: ({ certificateId, data }: { certificateId: number, data: TUpdateCertificationInfo }) => adminService.updateCertificationInfo(certificateId, data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-all-certification'] });
-            toast.success("Cập nhật thông tin chứng chỉ thành công");
+            toast.success("Đã cập nhật thông tin chứng chỉ");
             onClose();
         },
         onError: (error: any) => {
-            const message = error.response?.data?.message ?? "Cập nhật thông tin chứng chỉ thất bại";
+            const message = error.response?.data?.message ?? "Chưa cập nhật thông tin chứng chỉ";
             toast.error(message)
         }
     });
@@ -49,10 +50,10 @@ export const useUpdateCertificationStatus = () => {
         mutationFn: (certificateId: number) => adminService.updateCertificationStatus(certificateId),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-all-certification'] });
-            toast.success("Cập nhật trạng thái chứng chỉ thành công");
+            toast.success("Đã cập nhật trạng thái chứng chỉ");
         },
         onError: (error: any) => {
-            const message = error.response?.data?.message ?? "Cập nhật trạng thái chứng chỉ thất bại";
+            const message = error.response?.data?.message ?? "Chưa cập nhật trạng thái chứng chỉ";
             toast.error(message)
         }
     });

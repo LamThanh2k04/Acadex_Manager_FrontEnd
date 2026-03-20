@@ -26,9 +26,9 @@ export default function RoomTable({ data }: IRoomDataResponseProps) {
             <table className="w-full border-separate border border-gray-100 border-spacing-0 rounded-xl overflow-hidden ">
                 <thead className="bg-orange-100 text-gray-500 uppercase text-sm tracking-wide">
                     <tr className="h-12.5 text-center font-medium rounded-tl-xl">
-                        <th>Tên phòng học</th>
+                        <th>Phòng học</th>
                         <th>Phòng thuộc cơ sở</th>
-                        <th>Địa chỉ phòng học thuộc cơ sở</th>
+                        <th>Địa chỉ phòng học</th>
                         <th>Trạng thái</th>
                         <th className="text-center">Hành động</th>
                     </tr>

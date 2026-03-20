@@ -7,7 +7,8 @@ export const useGetAllRoom = (search: string, page: number) => {
     return useQuery<IRoomDataResponse>({
         queryKey: ['get-all-room', search, page],
         queryFn: () => adminService.getAllRoom(search, page),
-        staleTime: 6 * 50 * 1000
+        staleTime: 6 * 50 * 1000,
+        placeholderData: (prevData) => prevData
     })
 };
 export const useCreateRoom = (onClose: () => void) => {
@@ -40,11 +41,11 @@ export const useUpdateRoomInfo = (onClose: () => void) => {
         mutationFn: ({ roomId, data }: { roomId: number, data: TUpdateRoom }) => adminService.updateRoomInfo(roomId, data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-all-room'] });
-            toast.success("Cập nhật thông tin phòng học thành công");
+            toast.success("Đã cập nhật thông tin phòng học");
             onClose()
         },
         onError: (error: any) => {
-            const message = error.response?.data?.message ?? "Cập nhật thông tin phòng học thất bại";
+            const message = error.response?.data?.message ?? "Chưa cập nhật thông tin phòng học";
             toast.error(message)
         }
     })
@@ -56,9 +57,9 @@ export const useUpdateRoomStatus = () => {
         mutationFn: (roomId: number) => adminService.updateRoomStatus(roomId),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-all-room'] });
-            toast.success("Cập nhật trạng thái phòng học thành công");
+            toast.success("Đã cập nhật trạng thái phòng học");
         }, onError: (error: any) => {
-            const message = error.response?.data?.message;
+            const message = error.response?.data?.message ?? "Chưa cập nhật trạng thái phòng học";
             toast.error(message);
         }
     });

@@ -8,6 +8,7 @@ export const useGetAllSemester = (search: string, page: number) => {
         queryKey: ['get-all-semester', search, page],
         queryFn: () => adminService.getAllSemester(search, page),
         staleTime: 5 * 60 * 1000,
+        placeholderData: (prevData) => prevData
     });
 };
 export const useCreateSemester = (onClose: () => void) => {
@@ -33,11 +34,11 @@ export const useUpdateSemesterInfo = (onClose: () => void) => {
         mutationFn: ({ semesterId, data }: { semesterId: number, data: TUpdateSemester }) => adminService.updateSemesterInfo(semesterId, data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-all-semester'] });
-            toast.success("Cập nhật thông tin học kì thành công");
+            toast.success("Đã cập nhật thông tin học kì");
             onClose();
         },
         onError: (error: any) => {
-            const message = error.response?.data?.message ?? "Cập nhật thông tin học kì thất bại";
+            const message = error.response?.data?.message ?? "Chưa cập nhật thông tin học kì";
             toast.error(message);
         }
     })
@@ -49,10 +50,10 @@ export const useUpdateSemesterStatus = () => {
         mutationFn: (semesterId: number) => adminService.updateSemesterStatus(semesterId),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-all-semester'] });
-            toast.success("Cập nhật trạng thái học kì thành công");
+            toast.success("Đã cập nhật trạng thái học kì");
         },
         onError: (error: any) => {
-            const message = error.response?.data?.message;
+            const message = error.response?.data?.message ?? "Chưa cập nhật trạng thái học kì";
             toast.error(message);
         }
     });

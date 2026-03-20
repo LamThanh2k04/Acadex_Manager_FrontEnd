@@ -8,6 +8,7 @@ export const useGetAllPeriod = (search: string, page: number) => {
         queryKey: ['get-all-period', search, page],
         queryFn: () => adminService.getAllPeriod(search, page),
         staleTime: 5 * 60 * 1000,
+        placeholderData: (prevData) => prevData
     })
 };
 export const useCreatePeriod = (onClose: () => void) => {
@@ -33,11 +34,11 @@ export const useUpdatePeriodInfo = (onClose: () => void) => {
         mutationFn: ({ periodId, data }: { periodId: number, data: TUpdatePeriod }) => adminService.updatePeriodInfo(periodId, data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-all-period'] });
-            toast.success("Cập nhật thông tin tiết học thành công");
+            toast.success("Đã cập nhật thông tin tiết học");
             onClose();
         },
         onError: (error: any) => {
-            const message = error.response?.data?.message;
+            const message = error.response?.data?.message ?? "Chưa cập nhật thông tin tiết học";
             toast.error(message);
         }
     });
@@ -49,10 +50,10 @@ export const useUpdatePeriodStatus = () => {
         mutationFn: (periodId: number) => adminService.updatePeriodStatus(periodId),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-all-period'] });
-            toast.success("Cập nhật trạng thái tiết học thành công");
+            toast.success("Đã cập nhật trạng thái tiết học");
         },
         onError: (error: any) => {
-            const message = error.response?.data?.message;
+            const message = error.response?.data?.message ?? "Chưa cập nhật trạng thái tiết học";
             toast.error(message);
         }
     });

@@ -1,10 +1,8 @@
 import { IRoomData, TUpdateRoom } from "@/app/types/admin/room.type";
 import { useUpdateRoomInfo, useGetAllBuildingSimple } from '@/hooks/admin/useRoom';
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Loader } from 'lucide-react';
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';
-
 export default function RoomUpdateModal({ onClose, selectedRoom }: { onClose: () => void, selectedRoom: IRoomData }) {
     const { register, handleSubmit, reset, formState: { errors }, setValue } = useForm<TUpdateRoom>({
         defaultValues: {
@@ -22,11 +20,13 @@ export default function RoomUpdateModal({ onClose, selectedRoom }: { onClose: ()
             }
         });
     };
-    useEffect(() => {
-        if (buildingDataSimple) {
-            setValue("buildingId", selectedRoom.building.id);
-        }
-    }, [buildingDataSimple]);
+    if (isLoadingBuildingDataSimple) {
+        return (
+            <div className="flex items-center justify-center py-10">
+                <Loader className="size-5 animate-spin text-orange-400" />
+            </div>
+        )
+    }
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-1 mb-5">

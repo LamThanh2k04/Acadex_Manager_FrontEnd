@@ -27,11 +27,11 @@ export default function SubjectTable({ data }: ISubjectDataResponseProps) {
                 <thead className="bg-orange-100 text-gray-500 uppercase text-sm tracking-wide">
                     <tr className="h-12.5 text-center font-medium rounded-tl-xl">
                         <th>Mã môn học</th>
-                        <th>Tên môn học</th>
-                        <th>Số tín chỉ</th>
-                        <th>Số tiết lý thuyết</th>
-                        <th>Số tiết thực hành</th>
-                        <th>Tính vào GPA</th>
+                        <th>Môn học</th>
+                        <th>Tín chỉ</th>
+                        <th>Lý thuyết</th>
+                        <th>Thực hành</th>
+                        <th>GPA</th>
                         <th>Trạng thái</th>
                         <th className="text-center">Hành động</th>
                     </tr>

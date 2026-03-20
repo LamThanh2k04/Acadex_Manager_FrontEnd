@@ -8,6 +8,7 @@ export const useGetAllStudent = (search: string, page: number) => {
         queryKey: ["get-all-student", search, page],
         queryFn: () => adminService.getAllStudent(search, page),
         staleTime: 6 * 50 * 1000,
+        placeholderData: (prevData) => prevData
     });
 };
 export const useCreateStudent = (onClose: () => void) => {
@@ -26,20 +27,6 @@ export const useCreateStudent = (onClose: () => void) => {
         }
     })
 };
-export const useProgramSimple = () => {
-    return useQuery<IProgramSimple[]>({
-        queryKey: ["program-simple"],
-        queryFn: () => adminService.getAllProgramSimple(),
-        staleTime: 6 * 50 * 1000,
-    })
-};
-export const useClassSimple = () => {
-    return useQuery<IClassSimple[]>({
-        queryKey: ["class-simple"],
-        queryFn: () => adminService.getAllClassSimple(),
-        staleTime: 6 * 50 * 1000,
-    })
-};
 export const useClassedByProgram = (programId: number) => {
     return useQuery({
         queryKey: ["class-by-programId", programId],
@@ -54,10 +41,11 @@ export const useUpdateStudentStatusActive = () => {
         mutationFn: (studentId: number) => adminService.updateStudentStatusActive(studentId),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["get-all-student"] })
-            toast.success("Cập nhật trạng thái thành công");
+            toast.success("Đã cập nhật trạng thái sinh viên");
         },
-        onError: () => {
-            toast.error("Cập nhật trạng thái thất bại")
+        onError: (error: any) => {
+            const message = error.response?.data?.message ?? "Chưa cập nhật trạng thái sinh viên";
+            toast.error(message)
         }
     })
 };
@@ -68,11 +56,12 @@ export const useUpdateStudentInfo = (onClose: () => void) => {
         mutationFn: ({ studentId, formData }: { studentId: number, formData: FormData }) => adminService.updateStudentInfo(studentId, formData),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["get-all-student"] });
-            toast.success("Cập nhật thông tin sinh viên thành công"),
+            toast.success("Đã cập nhật thông tin sinh viên"),
                 onClose()
         },
+
         onError: (error: any) => {
-            const message = error.response?.data?.message ?? "Cập nhật thông tin sinh viên thất bại"
+            const message = error.response?.data?.message ?? "Chưa cập nhật thông tin sinh viên"
             toast.error(message)
         }
     })

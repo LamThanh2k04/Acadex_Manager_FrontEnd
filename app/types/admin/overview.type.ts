@@ -56,7 +56,7 @@ export interface ISchedule {
     dayOfWeek: number;
     endTimeMinutes: number;
     startTimeMinutes: number;
-    type: "THEORY" | "PRACTICE" | "ONLINE";
+    type: TTypeSchedule;
     courseSection: ICourseSection;
     room: IRoom;
 };
@@ -83,3 +83,4 @@ export interface ISubject {
     id: number;
     name: string;
 };
+export type TTypeSchedule = "THEORY" | "PRACTICE" | "ONLINE";

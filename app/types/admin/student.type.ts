@@ -1,5 +1,7 @@
+import { TGender } from "../gender.type";
 import { IPagination } from "../pagination";
 
+type TStatusStudent = "STUDYING" | "GRADUATE" | "TRUANT";
 export interface IStudentManagerProps {
     data: IStudentManagerRespone;
 };
@@ -28,7 +30,7 @@ export interface IStudent {
     graduateYear: number;
     personalEmail: string;
     placeOfBirth: string;
-    status: "STUDYING" | "GRADUATE" | "TRUANT";
+    status: TStatusStudent;
     studentCode: string;
     class: IClassStudent;
     faculty: IFacultyStudent;
@@ -61,7 +63,7 @@ export interface IAddStudent {
     email: string;
     password: string;
     studentCode: string;
-    gender: "MALE" | "FEMALE";
+    gender: TGender;
     avatar: FileList;
     classId: string;
     programId: string;
@@ -84,12 +86,12 @@ export interface IUpdateStudentInfo {
     citizenId: string;
     placeOfBirth: string;
     ethnicity: string
-    gender: "MALE" | "FEMALE";
+    gender: TGender;
     dateOfBirth: string;
     admissionYear: number;
     graduateYear: number;
     classId: number;
-    status: "STUDYING" | "GRADUATE" | "TRUANT";
+    status: TStatusStudent;
     avatar: FileList;
 };
 export interface INewPasswordForStudent {

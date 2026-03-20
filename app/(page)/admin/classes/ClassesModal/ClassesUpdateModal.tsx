@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form"
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';
 import { Loader } from 'lucide-react';
 import { useGetMajorsSimple } from '@/hooks/admin/useLecturer';
-import { useEffect } from 'react';
 export default function ClassesUpdateModal({ onClose, selectedClasses }: { onClose: () => void, selectedClasses: IClassesData }) {
     const { register, handleSubmit, watch, setValue, formState: { errors }, reset } = useForm<IUpdateClassesInfo>({
         defaultValues: {
@@ -29,16 +28,13 @@ export default function ClassesUpdateModal({ onClose, selectedClasses }: { onClo
             }
         })
     };
-    useEffect(() => {
-        if (majorSimpleData) {
-            setValue("majorId", selectedClasses.major.id);
-        }
-    }, [majorSimpleData]);
-    useEffect(() => {
-        if (homeroomLecturerData) {
-            setValue("homeroomLecturerId", selectedClasses.homeroomLecturer.id);
-        }
-    }, [homeroomLecturerData]);
+    if (isLoadingMajorSimpleData || isLoadingHomeroomLecturer) {
+        return (
+            <div className="flex items-center justify-center py-10">
+                <Loader className="size-5 animate-spin text-orange-400" />
+            </div>
+        )
+    }
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-1 mb-5">

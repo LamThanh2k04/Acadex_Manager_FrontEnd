@@ -8,6 +8,7 @@ export const useGetAllLecturer = (search: string, page: number) => {
         queryKey: ["get-all-lecturer", search, page],
         queryFn: () => adminService.getAllLecturer(search, page),
         staleTime: 6 * 50 * 1000,
+        placeholderData: (prevData) => prevData
     });
 };
 export const useGetMajorsSimple = () => {
@@ -40,12 +41,12 @@ export const useUpdateLecturer = (onClose: () => void) => {
         mutationFn: ({ lecturerId, formData }: { lecturerId: number, formData: FormData }) => adminService.updateLecurer(lecturerId, formData),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["get-all-lecturer"] });
-            toast.success("Cập nhật giảng viên thành công"),
+            toast.success("Đã cập nhật thông tin giảng viên"),
                 onClose();
         },
 
         onError: (error: any) => {
-            const message = error.response?.data?.message ?? "Cập nhật giảng viên thất bại";
+            const message = error.response?.data?.message ?? "Chưa cập nhật thông tin giảng viên";
             toast.error(message);
         }
     });
@@ -57,10 +58,10 @@ export const useUpdateLecturerStatus = () => {
         mutationFn: (lecturerId: number) => adminService.updateLecturerStatus(lecturerId),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["get-all-lecturer"] });
-            toast.success("Cập nhật trạng thái giảng viên thành công");
+            toast.success("Đã cập nhật trạng thái giảng viên");
         },
         onError: (error: any) => {
-            const message = error.response?.data?.message;
+            const message = error.response?.data?.message ?? "Chưa cập nhật trạng thái giảng viên";
             toast.error(message);
         }
     })

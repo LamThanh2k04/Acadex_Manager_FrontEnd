@@ -4,8 +4,6 @@ import { useGetAllFacultiesSimple, useUpdateMajorInfo } from "@/hooks/admin/useM
 import { useForm } from "react-hook-form";
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';
 import { Loader } from 'lucide-react';
-import { useEffect } from "react";
-
 export default function MajorUpdateModal({ onClose, selectedMajor }: { onClose: () => void, selectedMajor: IMajorData }) {
     const { register, handleSubmit, formState: { errors }, setValue } = useForm<IUpdateMajor>({
         defaultValues: {
@@ -18,11 +16,13 @@ export default function MajorUpdateModal({ onClose, selectedMajor }: { onClose: 
     const onSubmit = (data: IUpdateMajor) => {
         mutation.mutate({ majorId: selectedMajor.id, facultyId: data.facultyId, name: data.name });
     }
-    useEffect(() => {
-        if (facultiesSimpleData) {
-            setValue("facultyId", selectedMajor.faculty.id);
-        }
-    }, [facultiesSimpleData]);
+    if (isLoadingFacultiesSimpleData) {
+        return (
+            <div className="flex items-center justify-center py-10">
+                <Loader className="size-5 animate-spin text-orange-400" />
+            </div>
+        )
+    }
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-1 mb-5">

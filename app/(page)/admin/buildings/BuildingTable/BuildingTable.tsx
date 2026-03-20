@@ -27,7 +27,7 @@ export default function BuildingTable({ data }: IBuildingDataResponseProps) {
                 <thead className="bg-orange-100 text-gray-500 uppercase text-sm tracking-wide">
                     <tr className="h-12.5 text-center font-medium rounded-tl-xl">
                         <th>Mã cơ sở</th>
-                        <th>Tên cơ sở</th>
+                        <th>Cơ sở</th>
                         <th>Ký hiệu cơ sở</th>
                         <th>Địa chỉ</th>
                         <th>Trạng thái</th>

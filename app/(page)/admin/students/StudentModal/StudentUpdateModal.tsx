@@ -62,12 +62,13 @@ export default function StudentUpdateModal({ selectedStudent, onClose }: { onClo
         };
         mutation.mutate({ studentId: selectedStudent.student.id, formData });
     };
-    useEffect(() => {
-        if (dataClassed) {
-            setValue("classId", selectedStudent.student.class.id)
-        }
-    }, [dataClassed])
-    console.log(selectedStudent.student.class.name);
+    if (isLoading) {
+        return (
+            <div className="flex items-center justify-center py-10">
+                <Loader className="size-5 animate-spin text-orange-400" />
+            </div>
+        )
+    }
 
     return (
         <ScrollArea className="h-[70vh] pr-4">

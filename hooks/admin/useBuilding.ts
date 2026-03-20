@@ -1,13 +1,14 @@
 import { adminService } from "@/app/api/adminService"
 import { IBuildingDataResponse, ICreateBuilding, TUpdateBuilding } from "@/app/types/admin/building.type"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import toast from "react-hot-toast";
+import toast from "react-hot-toast"
 
 export const useGetAllBuilding = (search: string, page: number) => {
     return useQuery<IBuildingDataResponse>({
         queryKey: ['get-all-building', search, page],
         queryFn: () => adminService.getAllBuilding(search, page),
         staleTime: 6 * 50 * 1000,
+        placeholderData: (prevData) => prevData
     })
 };
 export const useCreateBuilding = (onClose: () => void) => {
@@ -33,11 +34,11 @@ export const useUpdateBuildingInfo = (onClose: () => void) => {
         mutationFn: ({ buildingId, data }: { buildingId: number, data: TUpdateBuilding }) => adminService.updateBuildingInfo(buildingId, data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-all-building'] });
-            toast.success("Cập nhật cơ sở thành công");
+            toast.success("Đã cập nhật thông tin cơ sở");
             onClose()
         },
         onError: (error: any) => {
-            const message = error.response?.data?.message ?? "Cập nhật cơ sở thất bại";
+            const message = error.response?.data?.message ?? "Chưa cập nhật thông tin cơ sở";
             toast.error(message);
         }
     });
@@ -49,10 +50,10 @@ export const useUpdateBuildingStatus = () => {
         mutationFn: (buildingId: number) => adminService.updateBuildingStatus(buildingId),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-all-building'] });
-            toast.success("Cập nhật trạng thái cơ sở thành công");
+            toast.success("Đã cập nhật trạng thái cơ sở");
         },
         onError: (error: any) => {
-            const message = error.response?.data?.message;
+            const message = error.response?.data?.message ?? "Chưa cập nhật trạng thái cơ sở";
             toast.error(message);
         }
     });

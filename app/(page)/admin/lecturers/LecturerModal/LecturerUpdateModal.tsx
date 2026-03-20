@@ -5,7 +5,7 @@ import { Loader, Upload } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useUpdateLecturer, useGetMajorsSimple } from '@/hooks/admin/useLecturer';
 import { useForm } from "react-hook-form";
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 export default function LecturerUpdateModal({ onClose, selectedLecturer }: { selectedLecturer: ILecturerManager, onClose: () => void }) {
     const [avatarPreview, setAvatarPreview] = useState(selectedLecturer.avatar ?? null);
@@ -61,11 +61,13 @@ export default function LecturerUpdateModal({ onClose, selectedLecturer }: { sel
         }
         mutation.mutate({ formData, lecturerId: selectedLecturer.lecturer.id });
     }
-    useEffect(() => {
-        if (majorData) {
-            setValue("majorId", selectedLecturer.lecturer.major.id)
-        }
-    }, [majorData]);
+    if (isLoadingMajorData) {
+        return (
+            <div className="flex items-center justify-center py-10">
+                <Loader className="size-5 animate-spin text-orange-400" />
+            </div>
+        )
+    }
     return (
         <ScrollArea className="h-[70vh] pr-4">
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">

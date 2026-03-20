@@ -7,7 +7,8 @@ export const useGetAllMajors = (search: string, page: number) => {
     return useQuery({
         queryKey: ['get-all-majors', search, page],
         queryFn: () => adminService.getAllMajors(search, page),
-        staleTime: 6 * 50 * 1000
+        staleTime: 6 * 50 * 1000,
+        placeholderData: (prevData) => prevData
     })
 };
 export const useCreateMajor = (onClose: () => void) => {
@@ -40,11 +41,11 @@ export const useUpdateMajorInfo = (onClose: () => void) => {
         mutationFn: ({ majorId, facultyId, name }: { majorId: number, name: string, facultyId: number, }) => adminService.updateMajorInfo(majorId, name, facultyId),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["get-all-majors"] });
-            toast.success("Cập nhật chuyên ngành thành công");
+            toast.success("Đã cập nhật thông tin chuyên ngành");
             onClose();
         },
         onError: (error: any) => {
-            const message = error.response?.data?.message;
+            const message = error.response?.data?.message ?? "Chưa cập nhật thông tin ngành";
             toast.error(message);
         }
     })
@@ -56,10 +57,10 @@ export const useUpdateMajorStatus = () => {
         mutationFn: (majorId: number) => adminService.updateMajorStatus(majorId),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-all-majors'] });
-            toast.success("Cập nhật trạng thái chuyên ngành thành công");
+            toast.success("Đã cập nhật trạng thái chuyên ngành");
         },
         onError: (error: any) => {
-            const message = error.response?.data?.message;
+            const message = error.response?.data?.message ?? "Chưa cập nhật trạng thái chuyên ngành";
             toast.error(message);
         }
     });
