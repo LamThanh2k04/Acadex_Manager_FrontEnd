@@ -2,6 +2,7 @@ import { adminService } from "@/app/api/adminService"
 import { ICreateSubject, TUpdateSubject } from "@/app/types/admin/subject.type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import toast from "react-hot-toast";
+import { ISubjectBySemesterOrder } from '@/app/types/admin/simpleOrOther.type';
 
 export const useGetAllSubjects = (search: string, page: number) => {
     return useQuery({
@@ -57,4 +58,12 @@ export const useUpdateSubjectStatus = () => {
             toast.error(message);
         }
     });
+};
+export const useGetSubjectBySemesterOrder = (programId: number, semesterOrderId: number) => {
+    return useQuery<ISubjectBySemesterOrder[]>({
+        queryKey: ['get-subject-semesterOrder', semesterOrderId],
+        queryFn: () => adminService.getSubjectBySemesterOrder(programId, semesterOrderId),
+        enabled: !!semesterOrderId,
+        staleTime: 5 * 60 * 1000,
+    })
 };

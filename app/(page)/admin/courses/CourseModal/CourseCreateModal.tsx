@@ -1,7 +1,8 @@
 "use client"
-import { ICreateCourse, ICourseForm } from '@/app/types/admin/course.type';
+import { ICourseForm } from '@/app/types/admin/course.type';
 import { useCreateCourse } from "@/hooks/admin/useCourse";
-import { useGetSemesterByProgram, useGetSubjectBySemesterOrder } from "@/hooks/admin/useProgram";
+import { useGetSemesterByProgram } from "@/hooks/admin/useProgram";
+import { useGetSubjectBySemesterOrder } from "@/hooks/admin/useSubject";
 import { useGetAllClassSimple, useGetAllLecturerSimple, useGetAllProgramSimple, useGetAllSemesterSimple } from "@/hooks/admin/useSimple";
 import { useForm } from "react-hook-form"
 import { Loader } from 'lucide-react';

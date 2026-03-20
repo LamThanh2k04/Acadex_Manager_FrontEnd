@@ -24,3 +24,30 @@ export type TSubjectBySemester = Pick<ISubjectData, "id" | "code" | "name" | "cr
 export interface ISemeterOrderByProgram {
     semesterOrder: number;
 }
+export interface IRoomSimple {
+    id: number;
+    name: string;
+    building: IBuidlingOfRoomSimple;
+};
+export interface IBuidlingOfRoomSimple {
+    name: string;
+    location: string;
+    symbol: string;
+};
+export interface IPeriodSimple {
+    id: number;
+    period: number;
+    startTime: number;
+    endTime: number;
+    startHour: string;
+    endHour: string;
+};
+export interface ICourseSectionBySemester {
+    id: number;
+    sectionCode: string;
+    maxStudents: number;
+    isActive: boolean;
+    subject: TSubjectOfCourseSectionBySemester;
+};
+export type TSubjectOfCourseSectionBySemester = Pick<ISubjectData, "name">;
+

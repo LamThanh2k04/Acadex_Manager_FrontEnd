@@ -28,3 +28,4 @@ export interface ICreateSubject {
     countToGpa: boolean
 };
 export type TUpdateSubject = ICreateSubject;
+export type TSubjectOfCourseSectionSchedule = Pick<ISubjectData, "name">;

@@ -22,3 +22,4 @@ export interface ICreateSemester {
     endDate: string;
 };
 export type TUpdateSemester = ICreateSemester;
+export type TSemesterOfSchedule = Pick<ISemesterData, "name" | "academicYear">;

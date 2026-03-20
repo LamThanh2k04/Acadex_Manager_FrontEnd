@@ -22,3 +22,4 @@ export interface ICreateBuilding {
     location: string;
 };
 export type TUpdateBuilding = Omit<ICreateBuilding, "code">;
+export type TBuildingOfRoomSchedule = Pick<IBuildingData, "name" | "symbol">;

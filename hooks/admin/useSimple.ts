@@ -1,7 +1,7 @@
 import { adminService } from "@/app/api/adminService"
 import { useQuery } from "@tanstack/react-query"
 import { IProgramSimple, IClassSimple } from '@/app/types/admin/student.type';
-import { ILecturerSimple, ISemesterSimple } from "@/app/types/admin/simpleOrOther.type";
+import { ILecturerSimple, IPeriodSimple, IRoomSimple, ISemesterSimple } from "@/app/types/admin/simpleOrOther.type";
 
 export const useGetAllLecturerSimple = () => {
     return useQuery<ILecturerSimple[]>({
@@ -17,15 +17,29 @@ export const useGetAllSemesterSimple = () => {
 };
 export const useGetAllProgramSimple = () => {
     return useQuery<IProgramSimple[]>({
-        queryKey: ["program-simple"],
+        queryKey: ['program-simple'],
         queryFn: () => adminService.getAllProgramSimple(),
         staleTime: 6 * 50 * 1000,
     })
 };
 export const useGetAllClassSimple = () => {
     return useQuery<IClassSimple[]>({
-        queryKey: ["class-simple"],
+        queryKey: ['class-simple'],
         queryFn: () => adminService.getAllClassSimple(),
         staleTime: 6 * 50 * 1000,
+    })
+};
+export const useGetAllRoomSimple = () => {
+    return useQuery<IRoomSimple[]>({
+        queryKey: ['room-simple'],
+        queryFn: () => adminService.getAllRoomSimple(),
+        staleTime: 5 * 60 * 1000,
+    })
+};
+export const useGetAllPeriodSimple = () => {
+    return useQuery<IPeriodSimple[]>({
+        queryKey: ['period-simple'],
+        queryFn: () => adminService.getAllPeriodSimple(),
+        staleTime: 5 * 60 * 1000,
     })
 };

@@ -8,6 +8,7 @@ import { ICreateSemester, TUpdateSemester } from "../types/admin/semester.type";
 import { ICreatePeriod, TUpdatePeriod } from "../types/admin/period.type";
 import { ICreateCertification, TUpdateCertificationInfo } from "../types/admin/certification.type";
 import { ICreateCourse, TUpdateCourse } from "../types/admin/course.type";
+import { TCreateSchedule, TUpdateSchedule } from "../types/admin/schedule.type";
 
 export const adminService = {
     // Simple APIs
@@ -42,6 +43,14 @@ export const adminService = {
     getAllBuildingSimple: async () => {
         const res = await https.get("/api/admin/building/getAllBuildingsSimple");
         return res.data.data.buildings;
+    },
+    getAllRoomSimple: async () => {
+        const res = await https.get("/api/admin/room/getAllRoomsSimple");
+        return res.data.data.rooms;
+    },
+    getAllPeriodSimple: async () => {
+        const res = await https.get("/api/admin/period/getAllPeriodsSimple");
+        return res.data.data.formattedPeriods;
     },
     // Dashboard Admin
     getOverView: async (): Promise<IAdminOverview> => {
@@ -253,6 +262,10 @@ export const adminService = {
         const res = await https.put(`/api/admin/subject/updateSubjectStatus/${subjectId}`);
         return res.data
     },
+    getSubjectBySemesterOrder: async (programId: number, semesterOrderId: number) => {
+        const res = await https.get(`/api/admin/program/getSubjectsBySemesterOrder/${programId}/semesterOrder/${semesterOrderId}`);
+        return res.data.data.subjects;
+    },
     // Semester Manager
     getAllSemester: async (search: string, page: number) => {
         const params = new URLSearchParams();
@@ -272,6 +285,10 @@ export const adminService = {
     updateSemesterStatus: async (semesterId: number) => {
         const res = await https.put(`/api/admin/semester/updateSemesterStatus/${semesterId}`);
         return res.data;
+    },
+    getCourseSectionBySemester: async (semesterId: number) => {
+        const res = await https.get(`/api/admin/courseSection/getCourseSectionBySemester/${semesterId}`);
+        return res.data.data.courseSections;
     },
     // Period Manager
     getAllPeriod: async (search: string, page: number) => {
@@ -333,14 +350,31 @@ export const adminService = {
         const res = await https.put(`/api/admin/courseSection/updateCourseSectionStatus/${courseSectionId}`);
         return res.data
     },
-    // Program
+    // Program Manager
     getSemeterByProgram: async (programId: number) => {
         const res = await https.get(`/api/admin/program/getSemesterOrdersPrgram/${programId}`);
         return res.data.data.semesterOrder;
     },
-    getSubjectBySemesterOrder: async (programId: number, semesterOrderId: number) => {
-        const res = await https.get(`/api/admin/program/getSubjectsBySemesterOrder/${programId}/semesterOrder/${semesterOrderId}`);
-        return res.data.data.subjects;
+
+    // Schedule Manager
+    getAllSchedule: async (search: string, page: number) => {
+        const params = new URLSearchParams();
+        if (search) params.set("search", search);
+        params.set("page", page.toString());
+        const res = await https.get(`/api/admin/schedule/getAllSchedules?${params.toString()}`);
+        return res.data.data;
+    },
+    createSchedule: async (data: TCreateSchedule) => {
+        const res = await https.post("/api/admin/schedule/createSchedule", data);
+        return res.data;
+    },
+    updateScheduleInfo: async (scheduleId: number, data: TUpdateSchedule) => {
+        const res = await https.put(`/api/admin/schedule/updateScheduleInfo/${scheduleId}`, data);
+        return res.data
+    },
+    updateScheduleStatus: async (scheduleId: number) => {
+        const res = await https.put(`/api/admin/schedule/updateScheduleStatus/${scheduleId}`);
+        return res.data
     }
 
 };

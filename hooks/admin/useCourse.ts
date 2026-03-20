@@ -2,6 +2,7 @@ import { adminService } from "@/app/api/adminService"
 import { ICreateCourse, TUpdateCourse } from "@/app/types/admin/course.type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import toast from "react-hot-toast";
+import { ICourseSectionBySemester } from '@/app/types/admin/simpleOrOther.type';
 
 export const useGetAllCourse = (search: string, page: number) => {
     return useQuery({
@@ -57,4 +58,12 @@ export const useUpdateCourseStatus = () => {
             toast.error(message);
         }
     });
+};
+export const useGetCourseSectionBySemester = (semesterId: number) => {
+    return useQuery<ICourseSectionBySemester[]>({
+        queryKey: ['courseSection-semeter', semesterId],
+        queryFn: () => adminService.getCourseSectionBySemester(semesterId),
+        enabled: !!semesterId,
+        staleTime: 5 * 60 * 1000
+    })
 };
