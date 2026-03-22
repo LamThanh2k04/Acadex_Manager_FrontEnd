@@ -371,11 +371,11 @@ export const adminService = {
     },
     updateScheduleInfo: async (scheduleId: number, data: TUpdateSchedule) => {
         const res = await https.put(`/api/admin/schedule/updateScheduleInfo/${scheduleId}`, data);
-        return res.data
+        return res.data;
     },
     updateScheduleStatus: async (scheduleId: number) => {
         const res = await https.put(`/api/admin/schedule/updateScheduleStatus/${scheduleId}`);
-        return res.data
+        return res.data;
     },
     // Exam Manager
     getAllExamsSchedule: async (search: string, page: number) => {
