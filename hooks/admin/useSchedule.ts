@@ -45,6 +45,7 @@ export const useUpdateScheduleInfo = (onClose: () => void) => {
 export const useUpdateScheduleStatus = () => {
     const queryClient = useQueryClient();
     return useMutation({
+        mutationFn: (scheduleId: number) => adminService.updateScheduleStatus(scheduleId),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-all-schedule'] });
             toast.success("Đã cập nhật trạng thái lịch học");

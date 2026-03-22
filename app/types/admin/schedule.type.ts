@@ -23,6 +23,7 @@ export interface IScheduleData {
     meetingLink: string;
     courseSection: ICourseSectionOfSchedule;
     room: IRoomOfSchedule;
+    isActive: boolean;
 };
 export interface ICourseSectionOfSchedule {
     semester: TSemesterOfSchedule;
@@ -77,11 +78,29 @@ export interface IScheduleForm {
     meetingLink?: string;
     type: TTypeSchedule;
 };
-export type TUpdateSchedule = Omit<TCreateSchedule, "courseSectionId">;
+export type TUpdateScheduleBase = Omit<ICreateScheduleBase, "courseSectionId">;
+
+export interface IUpdateScheduleTheory extends TUpdateScheduleBase {
+    type: "THEORY";
+}
+export interface IUpdateSchedulePractice extends TUpdateScheduleBase {
+    type: "PRACTICE";
+    practiceGroup?: number;
+    maxStudents?: number;
+}
+export interface IUpdateScheduleOnline extends TUpdateScheduleBase {
+    type: "ONLINE";
+    meetingLink?: string;
+}
+
+export type TUpdateSchedule = IUpdateScheduleTheory | IUpdateSchedulePractice | IUpdateScheduleOnline;
 export type TUpdateScheduleForm = Omit<IScheduleForm, "courseSectionId">;
 export interface IScheduleFormSemester extends IScheduleForm {
     semesterId: number;
     startPeriodId: number;
     endPeriodId: number;
 };
-
+export interface IScheduleFormUpdate extends TUpdateScheduleForm {
+    startPeriodId: number;
+    endPeriodId: number;
+};

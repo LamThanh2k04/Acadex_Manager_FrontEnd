@@ -9,6 +9,7 @@ import { ICreatePeriod, TUpdatePeriod } from "../types/admin/period.type";
 import { ICreateCertification, TUpdateCertificationInfo } from "../types/admin/certification.type";
 import { ICreateCourse, TUpdateCourse } from "../types/admin/course.type";
 import { TCreateSchedule, TUpdateSchedule } from "../types/admin/schedule.type";
+import { ICreateExamSchedule, TUpdateExamScheduleInfo } from "../types/admin/exam.type";
 
 export const adminService = {
     // Simple APIs
@@ -375,6 +376,38 @@ export const adminService = {
     updateScheduleStatus: async (scheduleId: number) => {
         const res = await https.put(`/api/admin/schedule/updateScheduleStatus/${scheduleId}`);
         return res.data
+    },
+    // Exam Manager
+    getAllExamsSchedule: async (search: string, page: number) => {
+        const params = new URLSearchParams();
+        if (search) params.set("search", search);
+        params.set("page", page.toString());
+        const res = await https.get(`/api/admin/examSchedule/getAllExamSchedules?${params.toString()}`);
+        return res.data.data;
+    },
+    createExamSchedule: async (data: ICreateExamSchedule) => {
+        const res = await https.post("/api/admin/examSchedule/createExamSchedule", data);
+        return res.data
+    },
+    updateExamSchuduleInfo: async (examScheduleId: number, data: TUpdateExamScheduleInfo) => {
+        const res = await https.put(`/api/admin/examSchedule/updateExamScheduleInfo/${examScheduleId}`, data);
+        return res.data;
+    },
+    updateExamScheduleStatus: async (examScheduleId: number) => {
+        const res = await https.put(`/api/admin/examSchedule/updateExamScheduleStatus/${examScheduleId}`);
+        return res.data;
+    },
+    getCourseSectionHaveSchedule: async (semesterId: number) => {
+        const res = await https.get(`/api/admin/examSchedule/getCourseSectionHaveSchedule/${semesterId}`);
+        return res.data.data.courseSections;
+    },
+    getSuggestExamSchedule: async (courseSectionId: number) => {
+        const res = await https.get(`/api/admin/examSchedule/suggestExamSchedule/${courseSectionId}`);
+        return res.data.data;
+    },
+    getAvailableRoomsForExamSchedule: async (date: string, startTime: number, endTime: number) => {
+        const res = await https.get(`/api/admin/examSchedule/getAvailableRooms?date=${date}&startTime=${startTime}&endTime=${endTime}`);
+        return res.data.data.availableRooms;
     }
 
 };

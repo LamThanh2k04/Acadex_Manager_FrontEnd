@@ -1,19 +1,20 @@
-import { IScheduleDataResponseProps } from "@/app/types/admin/schedule.type";
+import { IScheduleData, IScheduleDataResponseProps } from "@/app/types/admin/schedule.type";
 import { Pencil, CirclePlus } from 'lucide-react';
 import Pagination from '@/components/Pagination';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import MajorSearchBar from '@/app/(page)/admin/majors/MajorSearchBar/MajorSearchBar';
-import SubjectCreateModal from '@/app/(page)/admin/subjects/SubjectModal/SubjectCreateModal';
-import SubjectUpdateModal from '@/app/(page)/admin/subjects/SubjectModal/SubjectUpdateModal';
-import AlertDialogBlockSubject from '@/app/(page)/admin/subjects/AlertDialogSubject/AlertDialogBlockSubject';
-import AlertDialogUnBlockSubject from '@/app/(page)/admin/subjects/AlertDialogSubject/AlertDialogUnBlockSubject';
 import { dayOfWeekToString, minutestoHour } from "@/app/utils/schedule";
 import ScheduleSearchBar from "../ScheduleSearchBar/ScheduleSearchBar";
 import { useState } from "react";
 import ScheduleCreateModal from "../ScheduleModal/ScheduleCreateModal";
+import ScheduleUpdateModal from "../ScheduleModal/ScheduleUpdateModal";
+import AlertDialogBlockSchedule from "../AlertDialogSchedule/AlertDialogBlockSchedule";
+import AlertDialogUnBlockSchedule from "../AlertDialogSchedule/AlertDialogUnBlockSchedule";
 
 export default function ScheduleTable({ data }: IScheduleDataResponseProps) {
+    console.log(data);
     const [isModalCreate, setIsModalCreate] = useState(false);
+    const [isModalUpdate, setIsModalUpdate] = useState(false);
+    const [selectedSchedule, setSelectedSchedule] = useState<IScheduleData | null>(null);
     const typeRender = {
         "THEORY": <span className="bg-blue-100 py-2 px-3 rounded-2xl text-blue-300">Lý thuyết</span>,
         "PRACTICE": <span className="bg-orange-100 p-2 rounded-2xl text-orange-300">Thực hành</span>,
@@ -38,6 +39,7 @@ export default function ScheduleTable({ data }: IScheduleDataResponseProps) {
                         <th>Phòng học</th>
                         <th>Giảng viên</th>
                         <th>Sỉ số</th>
+                        <th>Trạng thái</th>
                         <th className="text-center">Hành động</th>
                     </tr>
                 </thead>
@@ -51,11 +53,12 @@ export default function ScheduleTable({ data }: IScheduleDataResponseProps) {
                             <td>{sche.room.name}</td>
                             <td>{sche.courseSection.lecturer?.user?.fullName}</td>
                             <td>{sche.maxStudents}</td>
+                            <td>{sche.isActive === true ? <span className='bg-green-400 p-2 rounded-2xl text-green-50'>Hoạt động</span> : <span className='bg-red-400 p-2 rounded-2xl text-red-50'>Tạm dừng</span>}</td>
                             <td className="text-center">
-                                {/* <span className='mr-2'>{sb.isActive === true ? <AlertDialogBlockSubject subjectId={sb.id} /> : <AlertDialogUnBlockSubject subjectId={sb.id} />}</span> */}
+                                <span className='mr-2'>{sche.isActive === true ? <AlertDialogBlockSchedule scheduleId={sche.id} /> : <AlertDialogUnBlockSchedule scheduleId={sche.id} />}</span>
                                 <button onClick={() => {
-                                    // setIsModalUpdate(true);
-                                    // setSelectedSubject(sb);
+                                    setIsModalUpdate(true);
+                                    setSelectedSchedule(sche);
                                 }}><Pencil className="text-gray-300 hover:text-blue-400 cursor-pointer duration-300 transition-all" /></button>
                             </td>
                         </tr>
@@ -71,23 +74,23 @@ export default function ScheduleTable({ data }: IScheduleDataResponseProps) {
                     <ScheduleCreateModal onClose={() => setIsModalCreate(false)} />
                 </DialogContent>
             </Dialog>
-            {/* <Dialog open={isModalUpdate} onOpenChange={setIsModalUpdate}>
+            <Dialog open={isModalUpdate} onOpenChange={setIsModalUpdate}>
                 <DialogContent className="max-w-2xl">
                     <DialogHeader>
-                        <DialogTitle>Cập nhật thông tin chuyên ngành</DialogTitle>
+                        <DialogTitle>Cập nhật thông tin lịch học</DialogTitle>
                     </DialogHeader>
-                    {isModalUpdate && selectedSubject && (
-                        <SubjectUpdateModal
-                            key={selectedSubject.id}
-                            selectedSubject={selectedSubject}
+                    {isModalUpdate && selectedSchedule && (
+                        <ScheduleUpdateModal
+                            key={selectedSchedule.id}
+                            selectedSchedule={selectedSchedule}
                             onClose={() => {
                                 setIsModalUpdate(false)
-                                setSelectedSubject(null)
+                                setSelectedSchedule(null)
                             }}
                         />
                     )}
                 </DialogContent>
-            </Dialog> */}
+            </Dialog>
         </div >
     )
 }
