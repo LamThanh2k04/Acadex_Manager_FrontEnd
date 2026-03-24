@@ -1,10 +1,10 @@
 import { adminService } from "@/app/api/adminService"
-import { ICreateExamSchedule, TUpdateExamScheduleInfo } from "@/app/types/admin/exam.type";
+import { ICreateExamSchedule, IExamScheduleDataResponse, TUpdateExamScheduleInfo, ICourseSectionHaveSchedule, ISuggestExamSchedule, IAvailableRoomOfExamSchedule } from '@/app/types/admin/exam.type';
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import toast from "react-hot-toast";
 
 export const useGetAllExamSchedule = (search: string, page: number) => {
-    return useQuery({
+    return useQuery<IExamScheduleDataResponse>({
         queryKey: ['get-all-examSchedule', search, page],
         queryFn: () => adminService.getAllExamsSchedule(search, page),
         staleTime: 5 * 60 * 1000,
@@ -56,7 +56,7 @@ export const useUpdateExamScheduleStatus = () => {
     })
 };
 export const useGetCourseSectionHaveSchedule = (semesterId: number) => {
-    return useQuery({
+    return useQuery<ICourseSectionHaveSchedule[]>({
         queryKey: ['get-courSection-schedule', semesterId],
         queryFn: () => adminService.getCourseSectionHaveSchedule(semesterId),
         staleTime: 5 * 60 * 1000,
@@ -64,7 +64,7 @@ export const useGetCourseSectionHaveSchedule = (semesterId: number) => {
     })
 };
 export const useGetSuggestExamSchedule = (courseSectionId: number) => {
-    return useQuery({
+    return useQuery<ISuggestExamSchedule>({
         queryKey: ['get-suggest-examSchedule', courseSectionId],
         queryFn: () => adminService.getSuggestExamSchedule(courseSectionId),
         staleTime: 5 * 60 * 1000,
@@ -72,10 +72,10 @@ export const useGetSuggestExamSchedule = (courseSectionId: number) => {
     })
 };
 export const useGetAvailableRoomForExamSchedule = (date: string, startTime: number, endTime: number) => {
-    return useQuery({
+    return useQuery<IAvailableRoomOfExamSchedule[]>({
         queryKey: ['get-availableRoom-examSchedule'],
         queryFn: () => adminService.getAvailableRoomsForExamSchedule(date, startTime, endTime),
         staleTime: 5 * 60 * 1000,
-        enabled: !!date && !!startTime && !!endTime,
+        enabled: !!date && !!startTime && !!endTime && startTime < endTime,
     })
 };

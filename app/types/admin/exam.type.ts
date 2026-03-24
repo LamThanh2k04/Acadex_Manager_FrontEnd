@@ -1,6 +1,8 @@
 import { IPagination } from "../pagination";
+import { IBuildingData } from "./building.type";
 import { ICourseData } from "./course.type";
 import { IRoomData } from "./room.type";
+import { ISubjectData } from "./subject.type";
 
 export interface IExamScheduleDataResponseProps {
     data: IExamScheduleDataResponse;
@@ -15,6 +17,7 @@ export interface IExamScheduleData {
     startMinute: number;
     endMinute: number;
     note: string;
+    isActive: boolean
     courseSection: TCourseSectionOfExamSchedule;
     room: TRoomOfExamSchedule;
 };
@@ -28,4 +31,29 @@ export interface ICreateExamSchedule {
     roomId: number;
     note: string
 };
+export interface ICreateExamScheduleForm extends ICreateExamSchedule {
+    semesterId: number;
+}
 export type TUpdateExamScheduleInfo = Omit<ICreateExamSchedule, "courseSectionId">;
+export interface ICourseSectionHaveSchedule {
+    id: number;
+    sectionCode: string;
+    subject: TSubjectOfCourseSectionHaveSchedule;
+    lecturer: ILecturerOfCourseSectionHaveSchedule;
+};
+export type TSubjectOfCourseSectionHaveSchedule = Pick<ISubjectData, "name">;
+export interface ILecturerOfCourseSectionHaveSchedule {
+    user: {
+        fullName: string
+    }
+};
+export interface ISuggestExamSchedule {
+    lastStudyDate: string;
+    suggestedExamDate: string;
+};
+export interface IAvailableRoomOfExamSchedule {
+    id: number;
+    name: string;
+    building: TBuildingOfAvailabelRoom;
+};
+export type TBuildingOfAvailabelRoom = Pick<IBuildingData, "id" | "name" | "symbol">;

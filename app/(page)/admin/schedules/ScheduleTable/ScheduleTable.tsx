@@ -37,7 +37,6 @@ export default function ScheduleTable({ data }: IScheduleDataResponseProps) {
                         <th>Môn học</th>
                         <th>Ngày áp dụng</th>
                         <th>Phòng học</th>
-                        <th>Giảng viên</th>
                         <th>Sỉ số</th>
                         <th>Trạng thái</th>
                         <th className="text-center">Hành động</th>
@@ -51,7 +50,6 @@ export default function ScheduleTable({ data }: IScheduleDataResponseProps) {
                             <td>{sche.courseSection.subject.name}</td>
                             <td>{new Date(sche.startDate).toLocaleDateString("vi-VN")} - {new Date(sche.endDate).toLocaleDateString("vi-VN")}</td>
                             <td>{sche.room.name}</td>
-                            <td>{sche.courseSection.lecturer?.user?.fullName}</td>
                             <td>{sche.maxStudents}</td>
                             <td>{sche.isActive === true ? <span className='bg-green-400 p-2 rounded-2xl text-green-50'>Hoạt động</span> : <span className='bg-red-400 p-2 rounded-2xl text-red-50'>Tạm dừng</span>}</td>
                             <td className="text-center">
