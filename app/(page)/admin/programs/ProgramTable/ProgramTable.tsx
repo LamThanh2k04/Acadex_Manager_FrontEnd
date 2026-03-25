@@ -1,5 +1,5 @@
 import { IProgramData, IProgramDataResponseProps } from "@/app/types/admin/program.type";
-import { Pencil, CirclePlus } from 'lucide-react';
+import { Pencil, CirclePlus, Info } from 'lucide-react';
 import Pagination from '@/components/Pagination';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import ProgramSearchBar from "../ProgramSearchBar/ProgramSearchBar";
@@ -8,6 +8,7 @@ import ProgramCreateModal from "../ProgramModal/ProgramCreateModal";
 import ProgramUpdateModal from "../ProgramModal/ProgramUpdateModal";
 import AlertDialogBlockProgram from "../AlertDialogProgram/AlertDialogBlockProgram";
 import AlertDialogUnBlockProgram from "../AlertDialogProgram/AlertDialogUnBlockProgram";
+import Link from "next/link";
 export default function ProgramTable({ data }: IProgramDataResponseProps) {
     console.log(data);
     const [isModalCreate, setIsModalCreate] = useState(false);
@@ -55,13 +56,18 @@ export default function ProgramTable({ data }: IProgramDataResponseProps) {
                             <td>{pr.plannedEducationYear} năm</td>
                             <td>{pr.feePerCredit.toLocaleString("vi-VN")}VNĐ</td>
                             <td>{pr.isActive === true ? <span className='bg-green-400 p-2 rounded-2xl text-green-50'>Hoạt động</span> : <span className='bg-red-400 p-2 rounded-2xl text-red-50'>Tạm dừng</span>}</td>
-                            <td className="text-center">
-                                <span className='mr-2'>{pr.isActive === true ? <AlertDialogBlockProgram programId={pr.id} /> : <AlertDialogUnBlockProgram programId={pr.id} />}</span>
+                            <td className="text-center flex items-center justify-center gap-2">
+
+                                <span>{pr.isActive === true ? <AlertDialogBlockProgram programId={pr.id} /> : <AlertDialogUnBlockProgram programId={pr.id} />}</span>
                                 <button onClick={() => {
                                     setIsModalUpdate(true);
                                     setSelectedProgram(pr);
                                 }}><Pencil className="text-gray-300 hover:text-blue-400 cursor-pointer duration-300 transition-all" /></button>
+                                <Link className="text-gray-300 hover:text-gray-500 cursor-pointer duration-300 transition-all" href={`/admin/programs/${pr.id}`}>
+                                    <Info />
+                                </Link>
                             </td>
+
                         </tr>
                     ))}
                 </tbody>

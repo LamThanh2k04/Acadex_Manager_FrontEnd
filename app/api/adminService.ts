@@ -11,7 +11,7 @@ import { ICreateCourse, TUpdateCourse } from "../types/admin/course.type";
 import { TCreateSchedule, TUpdateSchedule } from "../types/admin/schedule.type";
 import { ICreateExamSchedule, TUpdateExamScheduleInfo } from "../types/admin/exam.type";
 import { ICreateNotification, TUpdateNotification } from "../types/admin/notification.type";
-import { ICreateProgram } from "../types/admin/program.type";
+import { ICreateCertificateOfProgram, ICreateProgram, ICreateSubjectOfProgram, TUpdateSubjectOfProgram } from "../types/admin/program.type";
 import { TUpdateProgramInfo } from '@/app/types/admin/program.type';
 
 export const adminService = {
@@ -55,6 +55,14 @@ export const adminService = {
     getAllPeriodSimple: async () => {
         const res = await https.get("/api/admin/period/getAllPeriodsSimple");
         return res.data.data.formattedPeriods;
+    },
+    getAllSubjectsSimple: async () => {
+        const res = await https.get("/api/admin/subject/getAllSubjectsSimple");
+        return res.data.data.subjects;
+    },
+    getAllCertificatesSimple: async () => {
+        const res = await https.get("/api/admin/certificate/getAllCertificatesSimples");
+        return res.data.data.certificates;
     },
     // Dashboard Admin
     getOverView: async (): Promise<IAdminOverview> => {
@@ -454,6 +462,26 @@ export const adminService = {
     },
     updateProgramStatus: async (programId: number) => {
         const res = await https.put(`/api/admin/program/updateProgramStatus/${programId}`);
+        return res.data;
+    },
+    getProgramInfo: async (programId: number) => {
+        const res = await https.get(`/api/admin/program/getProgramInfo/${programId}`);
+        return res.data.data;
+    },
+    createSubjectToProgram: async (programId: number, data: ICreateSubjectOfProgram) => {
+        const res = await https.post(`/api/admin/program/addSubjectToProgram/${programId}`, data);
+        return res.data;
+    },
+    updateSubjectToProgram: async (programSubjectId: number, data: TUpdateSubjectOfProgram) => {
+        const res = await https.put(`/api/admin/program/updateSubjectToProgram/${programSubjectId}`, data);
+        return res.data;
+    },
+    createCertificateToProgram: async (programId: number, data: ICreateCertificateOfProgram) => {
+        const res = await https.post(`/api/admin/program/addCertificateToProgram/${programId}`, data);
+        return res.data;
+    },
+    updateCertificateToProgram: async (programCertificateId: number) => {
+        const res = await https.put(`/api/admin/program/updateCertificateToProgram/${programCertificateId}`);
         return res.data;
     }
 };

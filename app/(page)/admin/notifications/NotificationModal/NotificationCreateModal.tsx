@@ -7,11 +7,9 @@ import ErrorResponse from "@/app/(auth)/login/ErrorResponse";
 export default function NotificationCreateModal({ onClose }: { onClose: () => void }) {
     const { register, handleSubmit, reset, setValue, watch, formState: { errors },
     } = useForm<ICreateNotification>({ mode: "onBlur", });
-
     const { data: studentData, isLoading: isLoadingStudentData } = useGetStudentBySearch();
     const mutation = useSendNotification(onClose);
     const selectedUserIds = watch("userIds");
-
     const onSubmit = (data: ICreateNotification) => {
         const payload: ICreateNotification = {
             title: data.title,

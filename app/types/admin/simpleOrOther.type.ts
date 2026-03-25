@@ -50,4 +50,14 @@ export interface ICourseSectionBySemester {
     subject: TSubjectOfCourseSectionBySemester;
 };
 export type TSubjectOfCourseSectionBySemester = Pick<ISubjectData, "name">;
+export interface ISubjectSimple {
+    id: number;
+    name: string;
+    isActive: boolean;
+};
+export interface ICertificateSimple {
+    id: number;
+    name: string;
+    description: string;
+};
 

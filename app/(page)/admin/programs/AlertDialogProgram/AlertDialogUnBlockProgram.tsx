@@ -6,7 +6,7 @@ export default function AlertDialogUnBlockProgram({ programId }: { programId: nu
     return (
         <AlertDialog>
             <AlertDialogTrigger asChild>
-                <button className="text-gray-300 cursor-pointer hover:text-red-400 duration-300 transition-all"><LockKeyholeOpen /></button>
+                <button className="text-gray-300 cursor-pointer hover:text-red-400 duration-300 transition-all mt-2"><LockKeyholeOpen /></button>
             </AlertDialogTrigger>
             <AlertDialogContent>
                 <AlertDialogHeader>

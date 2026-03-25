@@ -6,7 +6,7 @@ export default function AlertDialogBlockProgram({ programId }: { programId: numb
     return (
         <AlertDialog>
             <AlertDialogTrigger asChild>
-                <button className="text-gray-300 hover:text-red-400 cursor-pointer duration-300 transition-all"><LockKeyhole /></button>
+                <button className="text-gray-300 hover:text-red-400 cursor-pointer duration-300 transition-all mt-2"><LockKeyhole /></button>
             </AlertDialogTrigger>
             <AlertDialogContent>
                 <AlertDialogHeader>
