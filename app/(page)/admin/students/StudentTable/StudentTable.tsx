@@ -24,8 +24,8 @@ export default function StudentTable({ data }: IStudentManagerProps) {
     const [studentId, setStudentId] = useState(0);
     const [selectedStudent, setSelectedStudent] = useState<IStudentManager | null>(null);
     const statusRender = {
-        "STUDYING": <span className="bg-purple-400 p-2 rounded-2xl text-green-50">Đang học</span>,
-        "GRADUATE": <span className="bg-yellow-400 p-2 rounded-2xl text-orange-50">Đã tốt nghiệp</span>,
+        "STUDYING": <span className="bg-purple-400 p-2 rounded-2xl text-purple-50">Đang học</span>,
+        "GRADUATE": <span className="bg-yellow-400 p-2 rounded-2xl text-yellow-50">Đã tốt nghiệp</span>,
         "TRUANT": <span className="bg-gray-500 p-2 rounded-2xl text-red-50">Đã bảo lưu</span>
     }
     return (

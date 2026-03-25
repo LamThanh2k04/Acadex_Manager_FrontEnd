@@ -10,6 +10,9 @@ import { ICreateCertification, TUpdateCertificationInfo } from "../types/admin/c
 import { ICreateCourse, TUpdateCourse } from "../types/admin/course.type";
 import { TCreateSchedule, TUpdateSchedule } from "../types/admin/schedule.type";
 import { ICreateExamSchedule, TUpdateExamScheduleInfo } from "../types/admin/exam.type";
+import { ICreateNotification, TUpdateNotification } from "../types/admin/notification.type";
+import { ICreateProgram } from "../types/admin/program.type";
+import { TUpdateProgramInfo } from '@/app/types/admin/program.type';
 
 export const adminService = {
     // Simple APIs
@@ -408,6 +411,49 @@ export const adminService = {
     getAvailableRoomsForExamSchedule: async (date: string, startTime: number, endTime: number) => {
         const res = await https.get(`/api/admin/examSchedule/getAvailableRooms?date=${date}&startTime=${startTime}&endTime=${endTime}`);
         return res.data.data.availableRooms;
+    },
+    // Notification Manager
+    getAllNotifications: async (search: string, page: number) => {
+        const params = new URLSearchParams();
+        if (search) params.set("search", search);
+        params.set("page", page.toString());
+        const res = await https.get(`/api/admin/notification/getAllNotifications?${params.toString()}`);
+        return res.data.data;
+    },
+    sendNotification: async (data: ICreateNotification) => {
+        const res = await https.post("/api/admin/notification/sendNotification", data);
+        return res.data;
+    },
+    updateNotification: async (notificationId: number, data: TUpdateNotification) => {
+        const res = await https.put(`/api/admin/notification/updateNotification/${notificationId}`, data);
+        return res.data;
+    },
+    removeNotification: async (notificationId: number) => {
+        const res = await https.delete(`/api/admin/notification/removeNotification/${notificationId}`);
+        return res.data;
+    },
+    getStudentBySearch: async () => {
+        const res = await https.get("/api/admin/notification/getStudentsBySearch");
+        return res.data.data.students;
+    },
+    // Program Manager
+    getAllPrograms: async (search: string, page: number) => {
+        const params = new URLSearchParams();
+        if (search) params.set("search", search);
+        params.set("page", page.toString());
+        const res = await https.get(`/api/admin/program/getAllPrograms?${params.toString()}`);
+        return res.data.data;
+    },
+    createProgram: async (data: ICreateProgram) => {
+        const res = await https.post("/api/admin/program/createProgram", data);
+        return res.data;
+    },
+    updateProgramInfo: async (programId: number, data: TUpdateProgramInfo) => {
+        const res = await https.put(`/api/admin/program/updateProgramInfo/${programId}`, data);
+        return res.data;
+    },
+    updateProgramStatus: async (programId: number) => {
+        const res = await https.put(`/api/admin/program/updateProgramStatus/${programId}`);
+        return res.data;
     }
-
 };

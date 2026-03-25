@@ -1,5 +1,5 @@
 import { IExamScheduleData, IExamScheduleDataResponseProps } from "@/app/types/admin/exam.type";
-import { Pencil, CirclePlus } from 'lucide-react';
+import { Pencil, CalendarPlus } from 'lucide-react';
 import Pagination from '@/components/Pagination';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { minutestoHour } from '@/app/utils/schedule';
@@ -20,7 +20,7 @@ export default function ExamTable({ data }: IExamScheduleDataResponseProps) {
                 <h1 className="text-2xl font-bold text-gray-500">Danh sách lịch thi</h1>
                 <div className="flex items-center justify-center gap-3">
                     <ExamSearchBar />
-                    <button onClick={() => setIsModalCreate(true)} className="border-none hover:bg-orange-400 cursor-pointer hover:text-white transition duration-500 p-2 rounded-full bg-orange-100 text-gray-400 text-sm"><CirclePlus /></button>
+                    <button onClick={() => setIsModalCreate(true)} className="border-none hover:bg-orange-400 cursor-pointer hover:text-white transition duration-500 p-2 rounded-full bg-orange-100 text-gray-400 text-sm"><CalendarPlus /></button>
                 </div>
             </div>
             <table className="w-full border-separate border border-gray-100 border-spacing-0 rounded-xl overflow-hidden ">
