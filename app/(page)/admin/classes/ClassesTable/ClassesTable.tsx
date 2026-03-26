@@ -40,7 +40,7 @@ export default function ClassesTable({ data }: IClassesDataResponseProps) {
                             <td>{cl.name}</td>
                             <td>{cl.major.name}</td>
                             <td>{cl.homeroomLecturer?.user?.fullName ?? "Chưa có giảng viên đảm nhận"}</td>
-                            <td>{cl.isActive === true ? <span className='bg-green-400 p-2 rounded-2xl text-green-50'>Hoạt động</span> : <span className='bg-red-400 p-2 rounded-2xl text-red-50'>Tạm dừng</span>}</td>
+                            <td>{cl.isActive === true ? <span className='bg-green-100 p-2 rounded-2xl text-green-400'>Hoạt động</span> : <span className='bg-red-100 p-2 rounded-2xl text-red-400'>Tạm dừng</span>}</td>
                             <td className="text-center">
                                 <span className='mr-2'>{cl.isActive === true ? <AlertDialogBlockClasses classesId={cl.id} /> : <AlertDialogUnBlockClasses classesId={cl.id} />}</span>
                                 <button onClick={() => {

@@ -60,4 +60,3 @@ export interface ICertificateSimple {
     name: string;
     description: string;
 };
-

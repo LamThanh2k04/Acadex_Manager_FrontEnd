@@ -44,8 +44,8 @@ export default function SubjectTable({ data }: ISubjectDataResponseProps) {
                             <td>{sb.credits}</td>
                             <td>{sb.theoryPeriods}</td>
                             <td>{sb.practicePeriods}</td>
-                            <td>{sb.countToGpa === true ? <span className='bg-purple-400 p-2 rounded-2xl text-purple-50'>Có tính GPA</span> : <span className='bg-yellow-400 p-2 rounded-2xl text-yellow-50'>Không tính GPA</span>}</td>
-                            <td>{sb.isActive === true ? <span className='bg-green-400 p-2 rounded-2xl text-green-50'>Hoạt động</span> : <span className='bg-red-400 p-2 rounded-2xl text-red-50'>Tạm dừng</span>}</td>
+                            <td>{sb.countToGpa === true ? <span className='bg-purple-100 p-2 rounded-2xl text-purple-400'>Có tính GPA</span> : <span className='bg-yellow-100 p-2 rounded-2xl text-yellow-400'>Không tính GPA</span>}</td>
+                            <td>{sb.isActive === true ? <span className='bg-green-100 p-2 rounded-2xl text-green-400'>Hoạt động</span> : <span className='bg-red-100 p-2 rounded-2xl text-red-400'>Tạm dừng</span>}</td>
                             <td className="text-center">
                                 <span className='mr-2'>{sb.isActive === true ? <AlertDialogBlockSubject subjectId={sb.id} /> : <AlertDialogUnBlockSubject subjectId={sb.id} />}</span>
                                 <button onClick={() => {

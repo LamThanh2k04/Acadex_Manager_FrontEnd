@@ -5,9 +5,17 @@ import Link from "next/link";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import SubjectToProgramCreateModal from "./SubjectToProgram/SubjectToProgramCreateModal";
+import { IProgramSubject } from "@/app/types/admin/program.type";
+import SubjectToProgramUpdateModa from "./SubjectToProgram/SubjectToProgramUpdateModal";
+import CertificateToProgramCreateModal from "./CertificateToProgram/CertificateToProgramCreateModal";
+import AlertDialogBlockCertificationToProgram from "./CertificateToProgram/AlertDialogBlockCertificateToProgram";
+import AlertDialogUnBlockCertificationToProgram from "./CertificateToProgram/AlertDialogUnBlockCertificationToProgram";
 export default function ProgramInfo({ programId }: { programId: number }) {
     const { data, isLoading } = useGetProgramInfo(programId);
     const [isModalCreateSubject, setIsModalCreateSubject] = useState(false);
+    const [isModalCreateCertificate, setIsModalCreateCertificate] = useState(false);
+    const [isModalUpdateSubject, setIsModalUpdateSubject] = useState(false);
+    const [selectedProgramSubject, setSelectedProgramSubject] = useState<IProgramSubject | null>(null);
     const program = data?.program;
     if (isLoading) {
         return (
@@ -136,21 +144,26 @@ export default function ProgramInfo({ programId }: { programId: number }) {
                                 <thead className="bg-orange-100 text-gray-500 uppercase text-xs tracking-wide">
                                     <tr className="h-10 text-center">
                                         <th>Môn học</th>
-                                        <th>Số tín chỉ</th>
+                                        <th>Tín chỉ</th>
                                         <th>Kỳ học</th>
+                                        <th>Học phí</th>
                                         <th>Trạng thái</th>
                                         <th>Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {program.programSubjects.map((s: any) => (
+                                    {program.programSubjects.map((s) => (
                                         <tr key={s.id} className="h-10 text-center hover:bg-orange-50 transition">
                                             <td>{s.subject.name} - {s.subject.code}</td>
                                             <td>{s.subject.credits}</td>
                                             <td>{s.semesterOrder}</td>
-                                            <td>{s.isActive === true ? <span className='bg-green-400 p-2 rounded-2xl text-green-50'>Hoạt động</span> : <span className='bg-red-400 p-2 rounded-2xl text-red-50'>Tạm ngưng</span>}</td>
+                                            <td>{s.feePerCredit === null ? 0 : s.feePerCredit.toLocaleString("vi-VN")}VNĐ</td>
+                                            <td>{s.isActive === true ? <span className='bg-green-100 p-2 rounded-2xl text-green-400'>Hoạt động</span> : <span className='bg-red-100 p-2 rounded-2xl text-red-400'>Tạm ngưng</span>}</td>
                                             <td>
-                                                <button><Pencil className="size-4 text-gray-300 cursor-pointer hover:text-blue-400 transition" /></button>
+                                                <button onClick={() => {
+                                                    setSelectedProgramSubject(s);
+                                                    setIsModalUpdateSubject(true)
+                                                }}><Pencil className="size-4 text-gray-300 cursor-pointer hover:text-blue-400 transition" /></button>
                                             </td>
                                         </tr>
                                     ))}
@@ -164,7 +177,7 @@ export default function ProgramInfo({ programId }: { programId: number }) {
                             <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
                                 Chứng chỉ yêu cầu
                             </h2>
-                            <button className="flex items-center gap-1.5 text-sm bg-orange-100 text-orange-500 hover:bg-orange-200 transition px-3 py-1.5 rounded-lg cursor-pointer">
+                            <button onClick={() => setIsModalCreateCertificate(true)} className="flex items-center gap-1.5 text-sm bg-orange-100 text-orange-500 hover:bg-orange-200 transition px-3 py-1.5 rounded-lg cursor-pointer">
                                 <CirclePlus className="size-4" /> Thêm chứng chỉ
                             </button>
                         </div>
@@ -187,9 +200,9 @@ export default function ProgramInfo({ programId }: { programId: number }) {
                                         <tr key={c.id} className="h-10 text-center hover:bg-orange-50 transition">
                                             <td>{c.template.code} - {c.template.name}</td>
                                             <td>{c.template.description}</td>
-                                            <td>{c.template.isActive === true ? <span className='bg-green-400 p-2 rounded-2xl text-green-50'>Hoạt động</span> : <span className='bg-red-400 p-2 rounded-2xl text-red-50'>Tạm ngưng</span>}</td>
+                                            <td>{c.isActive === true ? <span className='bg-green-100 py-2 px-3 rounded-2xl text-green-400'>Hoạt động</span> : <span className='bg-red-100 p-2 rounded-2xl text-red-400'>Tạm ngưng</span>}</td>
                                             <td>
-                                                <button><Pencil className="size-4 text-gray-300 cursor-pointer hover:text-blue-400 transition" /></button>
+                                                <span className='mr-2'>{c.isActive === true ? <AlertDialogBlockCertificationToProgram programCertificateId={c.id} /> : <AlertDialogUnBlockCertificationToProgram programCertificateId={c.id} />}</span>
                                             </td>
                                         </tr>
                                     ))}
@@ -197,16 +210,43 @@ export default function ProgramInfo({ programId }: { programId: number }) {
                             </table>
                         )}
                     </div>
-                    <Dialog open={isModalCreateSubject} onOpenChange={setIsModalCreateSubject}>
-                        <DialogContent className="max-w-2xl">
-                            <DialogHeader>
-                                <DialogTitle>Thông tin chung</DialogTitle>
-                            </DialogHeader>
-                            <SubjectToProgramCreateModal programId={programId} onClose={() => setIsModalCreateSubject(false)} />
-                        </DialogContent>
-                    </Dialog>
                 </div>
             </div>
+            {/* Modal for Subject */}
+            <Dialog open={isModalCreateSubject} onOpenChange={setIsModalCreateSubject}>
+                <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                        <DialogTitle>Thông tin chung</DialogTitle>
+                    </DialogHeader>
+                    <SubjectToProgramCreateModal programId={programId} onClose={() => setIsModalCreateSubject(false)} />
+                </DialogContent>
+            </Dialog>
+            <Dialog open={isModalUpdateSubject} onOpenChange={setIsModalUpdateSubject}>
+                <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                        <DialogTitle>Cập nhật thông tin phòng học</DialogTitle>
+                    </DialogHeader>
+                    {isModalUpdateSubject && selectedProgramSubject && (
+                        <SubjectToProgramUpdateModa
+                            key={selectedProgramSubject.id}
+                            selectedProgramSubject={selectedProgramSubject}
+                            onClose={() => {
+                                setIsModalUpdateSubject(false)
+                                setSelectedProgramSubject(null)
+                            }}
+                        />
+                    )}
+                </DialogContent>
+            </Dialog>
+            {/* Modal for Certificate */}
+            <Dialog open={isModalCreateCertificate} onOpenChange={setIsModalCreateCertificate}>
+                <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                        <DialogTitle>Thông tin chung</DialogTitle>
+                    </DialogHeader>
+                    <CertificateToProgramCreateModal programId={programId} onClose={() => setIsModalCreateCertificate(false)} />
+                </DialogContent>
+            </Dialog>
         </div>
     )
 }

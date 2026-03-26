@@ -43,7 +43,7 @@ export default function PeriodTable({ data }: IPeriodDataResponseProps) {
                             <td>{pe.endTime}</td>
                             <td>{pe.startHour}</td>
                             <td>{pe.endHour}</td>
-                            <td>{pe.isActive === true ? <span className='bg-green-400 p-2 rounded-2xl text-green-50'>Hoạt động</span> : <span className='bg-red-400 p-2 rounded-2xl text-red-50'>Tạm dừng</span>}</td>
+                            <td>{pe.isActive === true ? <span className='bg-green-100 p-2 rounded-2xl text-green-400'>Hoạt động</span> : <span className='bg-red-100 p-2 rounded-2xl text-red-400'>Tạm dừng</span>}</td>
                             <td className="text-center">
                                 <span className='mr-2'>{pe.isActive === true ? <AlertDialogBlockPeriod periodId={pe.id} /> : <AlertDialogUnBlockPeriod periodId={pe.id} />}</span>
                                 <button onClick={() => {

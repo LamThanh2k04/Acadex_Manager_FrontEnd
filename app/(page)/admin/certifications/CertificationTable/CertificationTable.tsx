@@ -39,7 +39,7 @@ export default function CertificationTable({ data }: ICertificationDataResponesP
                             <td>{ce.code}</td>
                             <td>{ce.name}</td>
                             <td>{ce.description}</td>
-                            <td>{ce.isActive === true ? <span className='bg-green-400 p-2 rounded-2xl text-green-50'>Đang mở</span> : <span className='bg-red-400 p-2 rounded-2xl text-red-50'>Tạm đóng</span>}</td>
+                            <td>{ce.isActive === true ? <span className='bg-green-100 p-2 rounded-2xl text-green-400'>Đang mở</span> : <span className='bg-red-100 p-2 rounded-2xl text-red-400'>Tạm đóng</span>}</td>
                             <td className="text-center">
                                 <span className='mr-2'>{ce.isActive === true ? <AlertDialogBlockCertification certificateId={ce.id} /> : <AlertDialogUnBlockCertification certificateId={ce.id} />}</span>
                                 <button onClick={() => {

@@ -1,16 +1,20 @@
 "use client"
 import { ICreateSubjectOfProgram } from "@/app/types/admin/program.type"
-import { useCreateSubjectToProgram } from "@/hooks/admin/useProgram";
-import { useGetAllSubjectSimple } from "@/hooks/admin/useSimple";
+import { useCreateSubjectToProgram, useGetAllSubjectToProgram } from "@/hooks/admin/useProgram";
 import { useForm } from "react-hook-form"
 import { Loader } from 'lucide-react';
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';
 export default function SubjectToProgramCreateModal({ onClose, programId }: { onClose: () => void, programId: number }) {
-    const { register, handleSubmit, setValue, watch, formState: { errors }, reset } = useForm<ICreateSubjectOfProgram>({ mode: "onBlur" });
-    const { data, isLoading } = useGetAllSubjectSimple();
+    const { register, handleSubmit, setValue, clearErrors, setError, watch, formState: { errors }, reset } = useForm<ICreateSubjectOfProgram>({ mode: "onBlur" });
+    const { data, isLoading } = useGetAllSubjectToProgram(programId);
+    console.log(data);
     const mutation = useCreateSubjectToProgram(onClose);
     const selectedSubjectIds = watch("subjectIds");
     const onSubmit = (data: ICreateSubjectOfProgram) => {
+        if (!data.subjectIds || data.subjectIds.length === 0) {
+            setError("subjectIds", { message: "Vui lòng chọn ít nhất 1 môn học" });
+            return;
+        }
         const payload: ICreateSubjectOfProgram = {
             ...(data.subjectIds && data.subjectIds.length > 0 ? { subjectIds: data.subjectIds } : {}),
             semesterOrder: data.semesterOrder,
@@ -43,8 +47,9 @@ export default function SubjectToProgramCreateModal({ onClose, programId }: { on
                     type="number"
                     placeholder="Nhập học phí..."
                     className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-orange-300 resize-none"
+
                     {...register("feePerCredit", {
-                        required: "Vui lòng nhập học phí"
+                        required: "Vui lòng nhập học phí",
                     })}
                 />
                 <ErrorResponse error={errors.feePerCredit} />
@@ -64,7 +69,10 @@ export default function SubjectToProgramCreateModal({ onClose, programId }: { on
                             e.target.selectedOptions,
                             (option) => Number(option.value)
                         );
-                        setValue("subjectIds", selectedValues, { shouldValidate: true });
+                        setValue("subjectIds", selectedValues);
+                        if (selectedValues.length > 0) {
+                            clearErrors("subjectIds");
+                        }
                     }}
                     className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-orange-300 min-h-45"
                 >
@@ -73,13 +81,18 @@ export default function SubjectToProgramCreateModal({ onClose, programId }: { on
                     ) : data?.length ? (
                         data.map((subject) => (
                             <option key={subject.id} value={subject.id}>
-                                {subject.name}
+                                {subject.code} - {subject.name}
                             </option>
                         ))
                     ) : (
                         <option disabled>Không có dữ liệu học kì</option>
                     )}
                 </select>
+                {errors.subjectIds && (
+                    <div className="flex items-center gap-1.5 text-red-500 text-xs mt-1">
+                        <span>{errors.subjectIds.message as string}</span>
+                    </div>
+                )}
             </div>
             <div className="mb-5">
                 <p className="text-sm text-gray-600">

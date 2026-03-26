@@ -11,8 +11,7 @@ import { ICreateCourse, TUpdateCourse } from "../types/admin/course.type";
 import { TCreateSchedule, TUpdateSchedule } from "../types/admin/schedule.type";
 import { ICreateExamSchedule, TUpdateExamScheduleInfo } from "../types/admin/exam.type";
 import { ICreateNotification, TUpdateNotification } from "../types/admin/notification.type";
-import { ICreateCertificateOfProgram, ICreateProgram, ICreateSubjectOfProgram, TUpdateSubjectOfProgram } from "../types/admin/program.type";
-import { TUpdateProgramInfo } from '@/app/types/admin/program.type';
+import { ICreateCertificateOfProgram, ICreateProgram, ICreateSubjectOfProgram, IUpdateSubjectOfProgram, TUpdateProgramInfo } from "../types/admin/program.type";
 
 export const adminService = {
     // Simple APIs
@@ -472,7 +471,7 @@ export const adminService = {
         const res = await https.post(`/api/admin/program/addSubjectToProgram/${programId}`, data);
         return res.data;
     },
-    updateSubjectToProgram: async (programSubjectId: number, data: TUpdateSubjectOfProgram) => {
+    updateSubjectToProgram: async (programSubjectId: number, data: IUpdateSubjectOfProgram) => {
         const res = await https.put(`/api/admin/program/updateSubjectToProgram/${programSubjectId}`, data);
         return res.data;
     },
@@ -483,5 +482,13 @@ export const adminService = {
     updateCertificateToProgram: async (programCertificateId: number) => {
         const res = await https.put(`/api/admin/program/updateCertificateToProgram/${programCertificateId}`);
         return res.data;
+    },
+    getAllSubjectToProgram: async (programId: number) => {
+        const res = await https.get(`/api/admin/program/getAllSubjects/${programId}`);
+        return res.data.data.subjects;
+    },
+    getAllCertificateToProgram: async (programId: number) => {
+        const res = await https.get(`/api/admin/program/getAllCertificates/${programId}`);
+        return res.data.data.certificates;
     }
 };

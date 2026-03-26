@@ -14,12 +14,12 @@ export default function NotificationTable({ data }: INotificationDataResponsePro
     const [isModalUpdate, setIsModalUpdate] = useState(false);
     const [selectedNotification, setSelectedNotification] = useState<INotificationData | null>(null);
     const typeRender = {
-        "PERSONAL": <span className="bg-green-400 p-2 rounded-2xl text-green-50">Cá nhân</span>,
-        "BROADCAST": <span className="bg-orange-400 p-2 rounded-2xl text-orange-50">Một nhóm</span>,
+        "PERSONAL": <span className="bg-green-100 py-2 px-5 rounded-2xl text-green-400">Cá nhân</span>,
+        "BROADCAST": <span className="bg-orange-100 p-2 rounded-2xl text-orange-400">Theo nhóm</span>,
     };
     const targetRoleRender = {
-        "STUDENT": <span className="bg-purple-400 p-2 rounded-2xl text-green-50">Sinh viên</span>,
-        "LECTURER": <span className="bg-yellow-400 p-2 rounded-2xl text-orange-50">Giảng viên</span>,
+        "STUDENT": <span className="bg-purple-100 p-2 rounded-2xl text-purple-400">Sinh viên</span>,
+        "LECTURER": <span className="bg-yellow-100 p-2 rounded-2xl text-orange-400">Giảng viên</span>,
     };
     return (
         <div className="mt-5 p-5 border rounded-2xl bg-white ml-3 w-[98%]">
@@ -48,11 +48,11 @@ export default function NotificationTable({ data }: INotificationDataResponsePro
                             <td>{typeRender[noti.type] ?? <span className="bg-gray-500">{noti.type}</span>}</td>
                             <td>{targetRoleRender[noti.targetRole] ?? <span className="bg-gray-500">{noti.targetRole}</span>}</td>
                             <td className="text-center">
-                                <span className="mr-2"><AlertDialogDeleteNotification notificationId={noti.id} /></span>
                                 <button onClick={() => {
                                     setIsModalUpdate(true);
                                     setSelectedNotification(noti);
                                 }}><Pencil className="text-gray-300 hover:text-blue-400 cursor-pointer duration-300 transition-all" /></button>
+                                <span className="ml-2"><AlertDialogDeleteNotification notificationId={noti.id} /></span>
                             </td>
                         </tr>
                     ))}

@@ -58,7 +58,9 @@ export interface IProgramInfo {
 export interface IProgramSubject {
     id: number;
     semesterOrder: number;
+    feePerCredit: number;
     isActive: boolean;
+    type: TTypeOfMajor;
     subject: ISubjectOfProgramSubject;
 };
 export interface ISubjectOfProgramSubject {
@@ -83,11 +85,26 @@ export interface ICreateSubjectOfProgram {
     type: TTypeOfMajor;
     feePerCredit: number;
 };
-export type TUpdateSubjectOfProgram = Omit<ICreateSubjectOfProgram, "subjectId">;
+export interface IUpdateSubjectOfProgram {
+    semesterOrder: number;
+    type: TTypeOfMajor;
+    feePerCredit: number;
+    isActive: boolean
+};
 export type TTypeOfMajor = "MANDATORY" | "ELECTIVE";
 export interface ICreateCertificateOfProgram {
-    certificateIds: number[];
+    certificateIds?: number[];
 }
 export interface IUpdateCertificateOfProgram {
     isActive: boolean;
+};
+export interface ISubjectToProgram {
+    id: number;
+    name: string;
+    code: string;
+};
+export interface ICertificateToProgram {
+    id: number;
+    name: string;
+    description: string;
 };

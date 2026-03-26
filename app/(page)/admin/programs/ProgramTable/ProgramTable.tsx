@@ -17,7 +17,7 @@ export default function ProgramTable({ data }: IProgramDataResponseProps) {
     const trainingLevelRender = {
         "BACHELOR": <span className="bg-blue-100 py-2 px-3 rounded-2xl text-blue-300">Cử nhân</span>,
         "COLLEGE": <span className="bg-orange-100 p-2 rounded-2xl text-orange-300">Cao đẳng</span>,
-        "MASTER": <span className="bg-green-100 py-2 px-5 rounded-2xl text-green-300">Thạc sĩ</span>
+        "MASTER": <span className="bg-green-100 py-2 px-4 rounded-2xl text-green-300">Thạc sĩ</span>
     };
     const educationTypeRender = {
         "FULL_TIME": <span className="bg-purple-100 py-2 px-5 rounded-2xl text-purple-300">Chính quy</span>,
@@ -55,9 +55,8 @@ export default function ProgramTable({ data }: IProgramDataResponseProps) {
                             <td>{educationTypeRender[pr.educationType] ?? <span className="bg-gray-500">{pr.educationType}</span>}</td>
                             <td>{pr.plannedEducationYear} năm</td>
                             <td>{pr.feePerCredit.toLocaleString("vi-VN")}VNĐ</td>
-                            <td>{pr.isActive === true ? <span className='bg-green-400 p-2 rounded-2xl text-green-50'>Hoạt động</span> : <span className='bg-red-400 p-2 rounded-2xl text-red-50'>Tạm dừng</span>}</td>
+                            <td>{pr.isActive === true ? <span className='bg-green-100 p-2 rounded-2xl text-green-400'>Hoạt động</span> : <span className='bg-red-100 p-2 rounded-2xl text-red-400'>Tạm dừng</span>}</td>
                             <td className="text-center flex items-center justify-center gap-2">
-
                                 <span>{pr.isActive === true ? <AlertDialogBlockProgram programId={pr.id} /> : <AlertDialogUnBlockProgram programId={pr.id} />}</span>
                                 <button onClick={() => {
                                     setIsModalUpdate(true);

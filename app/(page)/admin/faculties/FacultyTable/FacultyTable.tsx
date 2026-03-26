@@ -41,7 +41,7 @@ export default function FacultyTable({ data }: IFacultyProps) {
                         <tr key={fa.id} className="h-12.5 text-center hover:bg-orange-50 transition-all duration-500">
                             <td>{fa.code}</td>
                             <td>{fa.name}</td>
-                            <td>{fa.isActive === true ? <span className='bg-green-400 p-2 rounded-2xl text-green-50'>Hoạt động</span> : <span className='bg-red-400 p-2 rounded-2xl text-red-50'>Tạm dừng</span>}</td>
+                            <td>{fa.isActive === true ? <span className='bg-green-100 p-2 rounded-2xl text-green-400'>Hoạt động</span> : <span className='bg-red-100 p-2 rounded-2xl text-red-400'>Tạm dừng</span>}</td>
 
                             <td className="text-center">
                                 <span className='mr-2'>{fa.isActive === true ? <AlertDialogBlockFaculty facultyId={fa.id} /> : <AlertDialogUnBlockFaculty facultyId={fa.id} />}</span>

@@ -45,7 +45,7 @@ export default function ExamTable({ data }: IExamScheduleDataResponseProps) {
                             <td>({minutestoHour(exam.startMinute)} - {minutestoHour(exam.endMinute)})</td>
                             <td>{exam.room.name}</td>
                             <td>{exam.room.building.symbol}</td>
-                            <td>{exam.isActive === true ? <span className='bg-green-400 p-2 rounded-2xl text-green-50'>Hoạt động</span> : <span className='bg-red-400 p-2 rounded-2xl text-red-50'>Tạm dừng</span>}</td>
+                            <td>{exam.isActive === true ? <span className='bg-green-100 p-2 rounded-2xl text-green-400'>Hoạt động</span> : <span className='bg-red-100 p-2 rounded-2xl text-red-400'>Tạm dừng</span>}</td>
                             <td className="text-center">
                                 <span className='mr-2'>{exam.isActive === true ? <AlertDialogBlockExam examScheduleId={exam.id} /> : <AlertDialogUnBlockExam examScheduleId={exam.id} />}</span>
                                 <button onClick={() => {

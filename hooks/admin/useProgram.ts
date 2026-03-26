@@ -1,7 +1,7 @@
 import { adminService } from "@/app/api/adminService"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { ISemeterOrderByProgram } from '@/app/types/admin/simpleOrOther.type';
-import { ICreateCertificateOfProgram, ICreateProgram, ICreateSubjectOfProgram, IProgramDataResponse, IProgramInfoResponse, TUpdateProgramInfo, TUpdateSubjectOfProgram } from "@/app/types/admin/program.type";
+import { ICreateCertificateOfProgram, ICreateProgram, ICreateSubjectOfProgram, IProgramDataResponse, IProgramInfoResponse, TUpdateProgramInfo, IUpdateSubjectOfProgram, ISubjectToProgram, ICertificateToProgram } from '@/app/types/admin/program.type';
 import toast from "react-hot-toast";
 
 export const useGetSemesterByProgram = (programId: number) => {
@@ -56,6 +56,7 @@ export const useUpdateProgramStatus = () => {
         mutationFn: (programId: number) => adminService.updateProgramStatus(programId),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-all-program'] });
+            queryClient.invalidateQueries({ queryKey: ['get-program-info'] });
             toast.success("Đã cập nhật trạng thái chương trình");
         },
         onError: (error: any) => {
@@ -77,11 +78,12 @@ export const useCreateSubjectToProgram = (onClose: () => void) => {
         mutationFn: ({ programId, data }: { programId: number, data: ICreateSubjectOfProgram }) => adminService.createSubjectToProgram(programId, data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-program-info'] });
-            toast.success("Thêm môn học cho chương trình thành công");
+            queryClient.invalidateQueries({ queryKey: ['get-all-subject-to-program'] });
+            toast.success("Đã thêm môn học cho chương trình");
             onClose()
         },
         onError: (error: any) => {
-            const message = error.response?.data?.message ?? "Thêm môn học cho chương trình thất bại";
+            const message = error.response?.data?.message ?? "Chưa môn học cho chương trình";
             toast.error(message);
         }
     })
@@ -89,7 +91,7 @@ export const useCreateSubjectToProgram = (onClose: () => void) => {
 export const useUpdateSubjectToProgram = (onClose: () => void) => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationFn: ({ programSubjectId, data }: { programSubjectId: number, data: TUpdateSubjectOfProgram }) => adminService.updateSubjectToProgram(programSubjectId, data),
+        mutationFn: ({ programSubjectId, data }: { programSubjectId: number, data: IUpdateSubjectOfProgram }) => adminService.updateSubjectToProgram(programSubjectId, data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-program-info'] });
             toast.success("Đã cập nhật môn học cho chương trình");
@@ -107,11 +109,12 @@ export const useCreateCertificateToProgram = (onClose: () => void) => {
         mutationFn: ({ programId, data }: { programId: number, data: ICreateCertificateOfProgram }) => adminService.createCertificateToProgram(programId, data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-program-info'] });
-            toast.success("Thêm chứng chỉ cho chương trình thành công");
+            queryClient.invalidateQueries({ queryKey: ['get-all-certificate-to-program'] });
+            toast.success("Đã thêm chứng chỉ cho chương trình");
             onClose();
         },
         onError: (error: any) => {
-            const message = error.response?.data?.message ?? "Thêm chứng chỉ cho chương trình thất bại";
+            const message = error.response?.data?.message ?? "Chưa thêm chứng chỉ cho chương trình";
             toast.error(message);
         }
     })
@@ -130,3 +133,17 @@ export const useUpdateCertificationToProgram = () => {
         }
     })
 };
+export const useGetAllSubjectToProgram = (programId: number) => {
+    return useQuery<ISubjectToProgram[]>({
+        queryKey: ['get-all-subject-to-program', programId],
+        queryFn: () => adminService.getAllSubjectToProgram(programId),
+        staleTime: 5 * 60 * 1000,
+    })
+};
+export const useGetAllCertificateToProgram = (programId: number) => {
+    return useQuery<ICertificateToProgram[]>({
+        queryKey: ['get-all-certificate-to-program', programId],
+        queryFn: () => adminService.getAllCertificateToProgram(programId),
+        staleTime: 5 * 60 * 1000,
+    })
+}

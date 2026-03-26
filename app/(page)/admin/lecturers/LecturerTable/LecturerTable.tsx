@@ -21,8 +21,8 @@ export default function LecturerTable({ data }: ILecturerDataProps) {
     const [selectedLecturerId, setSelectedLecturerId] = useState(0);
     const [selectedLecturer, setSelectedLecturer] = useState<ILecturerManager | null>(null);
     const statusRender = {
-        "WORKING": <span className="bg-purple-400 p-2 rounded-2xl text-green-50">Đang làm việc</span>,
-        "TRUANT": <span className="bg-yellow-500 p-2 rounded-2xl text-yellow-50">Đã nghỉ việc</span>
+        "WORKING": <span className="bg-purple-100 p-2 rounded-2xl text-purple-400">Đang làm việc</span>,
+        "TRUANT": <span className="bg-yellow-100 py-2 px-4 rounded-2xl text-yellow-400">Đã nghỉ việc</span>
     }
     return (
         <div className="mt-5 p-5 border rounded-2xl bg-white ml-3 w-[98%]">
@@ -70,7 +70,7 @@ export default function LecturerTable({ data }: ILecturerDataProps) {
                             </td>
                             <td>{lc.lecturer.faculty.name}</td>
                             <td>{lc.lecturer.major.name}</td>
-                            <td>{lc.isActive === true ? <span className='bg-green-400 p-2 rounded-2xl text-green-50'>Hoạt động</span> : <span className='bg-red-400 p-2 rounded-2xl text-red-50'>Bị khóa</span>}</td>
+                            <td>{lc.isActive === true ? <span className='bg-green-100 p-2 rounded-2xl text-green-400'>Hoạt động</span> : <span className='bg-red-100 py-2 px-4 rounded-2xl text-red-400'>Bị khóa</span>}</td>
                             <td>{statusRender[lc.lecturer.status] ?? <span className="bg-gray-500">{lc.lecturer.status}</span>}</td>
                             <td className="text-center">
                                 <span className='mr-2'>{lc.isActive === true ? <AlertDialogBlockLecturer lecturerId={lc.lecturer.id} /> : <AlertDialogUnBlockLecturer lecturerId={lc.lecturer.id} />}</span>

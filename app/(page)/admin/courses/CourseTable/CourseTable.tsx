@@ -44,7 +44,7 @@ export default function CourseTable({ data }: ICourseDataResponseProps) {
                             <td>{course.plannedClass.name}</td>
                             <td>{course.lecturer?.user?.fullName}</td>
                             <td>{course.semester.name}</td>
-                            <td>{course.isActive === true ? <span className='bg-green-400 p-2 rounded-2xl text-green-50'>Hoạt động</span> : <span className='bg-red-400 p-2 rounded-2xl text-red-50'>Tạm dừng</span>}</td>
+                            <td>{course.isActive === true ? <span className='bg-green-100 p-2 rounded-2xl text-green-400'>Hoạt động</span> : <span className='bg-red-100 p-2 rounded-2xl text-red-400'>Tạm dừng</span>}</td>
                             <td className="text-center">
                                 <span className='mr-2'>{course.isActive === true ? <AlertDialogBlockCourse courseSectionId={course.id} /> : <AlertDialogUnBlockCourse courseSectionId={course.id} />}</span>
                                 <button onClick={() => {

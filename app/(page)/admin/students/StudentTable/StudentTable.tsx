@@ -24,9 +24,9 @@ export default function StudentTable({ data }: IStudentManagerProps) {
     const [studentId, setStudentId] = useState(0);
     const [selectedStudent, setSelectedStudent] = useState<IStudentManager | null>(null);
     const statusRender = {
-        "STUDYING": <span className="bg-purple-400 p-2 rounded-2xl text-purple-50">Đang học</span>,
-        "GRADUATE": <span className="bg-yellow-400 p-2 rounded-2xl text-yellow-50">Đã tốt nghiệp</span>,
-        "TRUANT": <span className="bg-gray-500 p-2 rounded-2xl text-red-50">Đã bảo lưu</span>
+        "STUDYING": <span className="bg-purple-100 py-2 px-4 rounded-2xl text-purple-400">Đang học</span>,
+        "GRADUATE": <span className="bg-yellow-100 p-2 rounded-2xl text-yellow-400">Đã tốt nghiệp</span>,
+        "TRUANT": <span className="bg-gray-100 py-2 px-4 rounded-2xl text-gray-400">Đã bảo lưu</span>
     }
     return (
         <div className="mt-5 p-5 border rounded-2xl bg-white ml-3 w-[98%]">
@@ -76,7 +76,7 @@ export default function StudentTable({ data }: IStudentManagerProps) {
                             <td>{st.student.faculty.name}</td>
                             <td>{st.student.major.name}</td>
                             <td>{st.student.class?.homeroomLecturer?.user?.fullName ?? "Chưa có giảng viên đảm nhiệm"}</td>
-                            <td>{st.isActive === true ? <span className='bg-green-400 p-2 rounded-2xl text-green-50'>Hoạt động</span> : <span className='bg-red-400 p-2 rounded-2xl text-red-50'>Bị khóa</span>}</td>
+                            <td>{st.isActive === true ? <span className='bg-green-100 p-2 rounded-2xl text-green-400'>Hoạt động</span> : <span className='bg-red-100 py-2 px-5 rounded-2xl text-red-400'>Bị khóa</span>}</td>
                             <td>{statusRender[st.student.status] ?? <span className="bg-gray-500">{st.student.status}</span>}</td>
                             <td className="text-center">
                                 <span className='mr-2'>{st.isActive === true ? <AlertDialogBlockStudent studentId={st.student.id} /> : <AlertDialogUnBlockStudent studentId={st.student.id} />}</span>

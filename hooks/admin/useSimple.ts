@@ -51,7 +51,7 @@ export const useGetAllSubjectSimple = () => {
     })
 };
 export const useGetCertificateSimple = () => {
-    return useQuery<ICertificateSimple>({
+    return useQuery<ICertificateSimple[]>({
         queryKey: ['certificate-simple'],
         queryFn: () => adminService.getAllCertificatesSimple(),
         staleTime: 5 * 60 * 1000,

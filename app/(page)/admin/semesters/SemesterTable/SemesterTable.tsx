@@ -45,7 +45,7 @@ export default function SemesterTable({ data }: ISemesterDataResponseProps) {
                             <td>{se.academicYear}</td>
                             <td>{new Date(se.startDate).toLocaleDateString("vi-VN")}</td>
                             <td>{new Date(se.endDate).toLocaleDateString("vi-VN")}</td>
-                            <td>{se.isActive === true ? <span className='bg-green-400 p-2 rounded-2xl text-green-50'>Hoạt động</span> : <span className='bg-red-400 p-2 rounded-2xl text-red-50'>Tạm dừng</span>}</td>
+                            <td>{se.isActive === true ? <span className='bg-green-100 p-2 rounded-2xl text-green-400'>Hoạt động</span> : <span className='bg-red-100 p-2 rounded-2xl text-red-400'>Tạm dừng</span>}</td>
                             <td className="text-center">
                                 <span className='mr-2'>{se.isActive === true ? <AlertDialogBlockSemester semesterId={se.id} /> : <AlertDialogUnBlockSemester semesterId={se.id} />}</span>
                                 <button onClick={() => {
