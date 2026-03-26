@@ -12,7 +12,6 @@ import { TCreateSchedule, TUpdateSchedule } from "../types/admin/schedule.type";
 import { ICreateExamSchedule, TUpdateExamScheduleInfo } from "../types/admin/exam.type";
 import { ICreateNotification, TUpdateNotification } from "../types/admin/notification.type";
 import { ICreateCertificateOfProgram, ICreateProgram, ICreateSubjectOfProgram, IUpdateSubjectOfProgram, TUpdateProgramInfo } from "../types/admin/program.type";
-
 export const adminService = {
     // Simple APIs
     getAllLecturerSimple: async () => {
@@ -490,5 +489,33 @@ export const adminService = {
     getAllCertificateToProgram: async (programId: number) => {
         const res = await https.get(`/api/admin/program/getAllCertificates/${programId}`);
         return res.data.data.certificates;
+    },
+    // Request Manager
+    getAllRequest: async (status: string, page: number) => {
+        const params = new URLSearchParams();
+        if (status) params.set("status", status);
+        params.set("page", page.toString());
+        const res = await https.get(`/api/admin/student/getAllRequestCertificatesStudents?${params.toString()}`);
+        return res.data.data;
+    },
+    getInfoRequest: async (certificateId: number) => {
+        const res = await https.get(`/api/admin/student/getInfoRequestCertificateStudent/${certificateId}`);
+        return res.data.data;
+    },
+    approveRequest: async (certificateId: number, note: string) => {
+        const res = await https.post(`/api/admin/student/approveRequestCertificate/${certificateId}`, { note });
+        return res.data;
+    },
+    rejectRequest: async (certificateId: number, note: string) => {
+        const res = await https.post(`/api/admin/student/rejectRequestCertificate/${certificateId}`, { note });
+        return res.data;
+    },
+    // Fee Manager
+    getStudentsTuitionStatus: async (status: string, page: number) => {
+        const params = new URLSearchParams();
+        if (status) params.set("status", status);
+        params.set("page", page.toString());
+        const res = await https.get(`/api/admin/student/getStudentsTuitionStatus?${params.toString()}`);
+        return res.data.data;
     }
 };

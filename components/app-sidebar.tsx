@@ -1,7 +1,7 @@
 "use client"
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { Minus, Plus, LayoutDashboard, Users, GraduationCap, Building2, BookOpen, BookCopy, School, Award, MapPin, DoorOpen, Clock, CalendarDays, ClipboardCheck, ClipboardList, Bell, LibraryBig, ClipboardClock } from 'lucide-react';
+import { Minus, Plus, LayoutDashboard, Users, GraduationCap, Building2, BookOpen, BookCopy, School, Award, MapPin, DoorOpen, Clock, CalendarDays, ClipboardCheck, ClipboardList, Bell, LibraryBig, ClipboardClock, GitPullRequest, CircleDollarSign } from 'lucide-react';
 import {
   Collapsible,
   CollapsibleContent,
@@ -74,6 +74,8 @@ const data = {
       items: [
         { label: "Điểm danh", href: "/admin/attendances", icon: ClipboardCheck },
         { label: "Thông báo", href: "/admin/notifications", icon: Bell },
+        { label: "Yêu cầu", href: "/admin/requests", icon: GitPullRequest },
+        { label: "Học phí", href: "/admin/studentFee", icon: CircleDollarSign },
       ]
     },
   ],
