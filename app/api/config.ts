@@ -1,19 +1,20 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 export const https = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_URL,
     withCredentials: true
 });
-// https.interceptors.request.use(
-//     (config) => {
-//         const token = getCookie("accessToken");
-//         console.log("token: ", token)
-//         console.log(getCookie("accessToken"))
-//         if (token) {
-//             config.headers.Authorization = `Bearer ${token}`
-//         }
-//         return config
-//     },
-//     (error) => {
-//         return Promise.reject(error);
-//     }
-// );
+https.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.response?.status === 401) {
+            toast.error("Phiên đăng nhập hết hạn, vui lòng đăng nhập lại");
+        } else if (error.code === 'NETWORK_ERROR') {
+            toast.error("Lỗi kết nối mạng, vui lòng kiểm tra internet");
+        } else {
+            const message = error.response?.data?.message || "Có lỗi xảy ra";
+            toast.error(message);
+        }
+        return Promise.reject(error);
+    }
+);
