@@ -2,7 +2,7 @@ export default function CustomTooltip({ active, payload, label }: any) {
     if (!active || !payload?.length) return null
     return (
         <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl shadow-lg px-4 py-3 text-xs">
-            <p className="font-semibold text-gray-800 dark:text-gray-100 mb-2 max-w-[160px] leading-snug">
+            <p className="font-semibold text-gray-800 dark:text-gray-100 mb-2 max-w-40 leading-snug">
                 {label}
             </p>
             {payload.map((entry: any) => (
