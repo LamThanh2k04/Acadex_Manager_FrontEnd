@@ -14,6 +14,12 @@ import {
 import { useAppSelector } from '@/lib/hook';
 export default function DropDownMenu() {
     const user = useAppSelector((state) => state.user.userInfo);
+    const initials = user?.fullName
+        .split(" ")
+        .slice(-2)
+        .map((w: string) => w[0])
+        .join("")
+        .toUpperCase()
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -29,7 +35,7 @@ export default function DropDownMenu() {
                             className="object-cover rounded-full p-0.5"
                         />
                     ) : (
-                        <User className="text-orange-500 text-2xl" />
+                        <span className="text-orange-400 text-xl">{initials}</span>
                     )}
                 </Button>
             </DropdownMenuTrigger>

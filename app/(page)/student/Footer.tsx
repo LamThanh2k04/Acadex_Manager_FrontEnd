@@ -5,19 +5,9 @@ import { SiZalo } from "react-icons/si";
 export default function Footer() {
     return (
         <div>
-            <div className="flex items-start p-2 gap-1">
-                <Image
-                    src="/images/acadex-logo.jpg"
-                    width={50}
-                    height={50}
-                    alt="Acadex Logo"
-                    className="rounded-xl"
-                />
-                <h1 className="flex flex-col text-[#ec5d15] font-bold">Acadex <span className="uppercase font-medium text-[12px]">Hệ thống giáo dục</span></h1>
-            </div>
             <div className="p-2 text-gray-500 text-sm">
                 <p>300A Nguyễn Tất Thành, Phường 13, Quận 12, TP. Hồ Chí Minh</p>
-                <p>Hotline: <span className="text-[#ec5d15] font-bold">1900 636 648</span></p>
+                <p>Hotline: <span className="text-[#ec5d15] font-bold">1900 363 618</span></p>
             </div>
             <div className="p-2 text-sm">
                 <p className="text-[16px] font-bold">Kết nối với chúng tôi</p>

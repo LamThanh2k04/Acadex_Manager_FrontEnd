@@ -6,7 +6,7 @@ export default function LayoutStudent({ children }: Readonly<{ children: React.R
             <header>
                 <Header />
             </header>
-            <main className="bg-gray-100">
+            <main className="bg-gray-100 mt-5 min-h-screen p-5 pt-24">
                 {children}
             </main>
             <footer>
