@@ -3,17 +3,12 @@ import { ISemesterData, ISemesterDataResponseProps } from "@/app/types/admin/sem
 import { Pencil, CirclePlus } from 'lucide-react';
 import Pagination from '@/components/Pagination';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import SubjectCreateModal from '@/app/(page)/admin/subjects/SubjectModal/SubjectCreateModal';
-import SubjectUpdateModal from '@/app/(page)/admin/subjects/SubjectModal/SubjectUpdateModal';
-import AlertDialogBlockSubject from '@/app/(page)/admin/subjects/AlertDialogSubject/AlertDialogBlockSubject';
-import AlertDialogUnBlockSubject from '@/app/(page)/admin/subjects/AlertDialogSubject/AlertDialogUnBlockSubject';
 import { useState } from "react";
 import SemesterSearchBar from "../SemesterSearchBar/SemesterSearchBar";
 import SemesterCreateModal from "../SemesterModal/SemesterCreateModal";
 import SemesterUpdateModal from "../SemesterModal/SemesterUpdateModal";
 import AlertDialogBlockSemester from "../AlertDialogSemester/AlertDialogBlockSemester";
 import AlertDialogUnBlockSemester from "../AlertDialogSemester/AlertDialogUnBlockSemester";
-
 export default function SemesterTable({ data }: ISemesterDataResponseProps) {
     const [isModalCreate, setIsModalCreate] = useState(false);
     const [isModalUpdate, setIsModalUpdate] = useState(false);
@@ -21,7 +16,14 @@ export default function SemesterTable({ data }: ISemesterDataResponseProps) {
     return (
         <div className="mt-5 p-5 border rounded-2xl bg-white ml-3 w-[98%]">
             <div className="flex items-center justify-between mb-5">
-                <h1 className="text-2xl font-bold text-gray-500">Danh sách học kì</h1>
+                <div>
+                    <h1 className="text-2xl font-bold text-gray-700">
+                        Danh sách học kì
+                    </h1>
+                    <p className="mt-1 text-sm text-gray-400">
+                        Quản lý học kì dành cho sinh viên.
+                    </p>
+                </div>
                 <div className="flex items-center justify-center gap-3">
                     <SemesterSearchBar />
                     <button onClick={() => setIsModalCreate(true)} className="border-none hover:bg-orange-400 cursor-pointer hover:text-white transition duration-500 p-2 rounded-full bg-orange-100 text-gray-400 text-sm"><CirclePlus /></button>

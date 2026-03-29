@@ -2,6 +2,7 @@
 import { useGetAllClasses } from "@/hooks/admin/useClasses"
 import ClassesTable from "./ClassesTable/ClassesTable";
 import { useSearchParams } from "next/navigation";
+import ClassesTableSkeleton from "./ClassesTable/ClassesTableSkeleton";
 export default function Classes() {
     const searchParams = useSearchParams();
     const search = searchParams.get("search") ?? "";
@@ -10,7 +11,7 @@ export default function Classes() {
     console.log(classesData);
     return (
         <div>
-            {isLoadingClassesData ? "" : classesData && <ClassesTable data={classesData} />}
+            {isLoadingClassesData ? <ClassesTableSkeleton /> : classesData && <ClassesTable data={classesData} />}
         </div>
     )
 }

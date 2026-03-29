@@ -26,4 +26,14 @@ export const loginUserAction = async (data: ILoginUser) => {
     } catch (error) {
         return { success: false, error: "Tài khoản hoặc mật khẩu không đúng" }
     };
-}   
+};
+export const logoutUserAction = async () => {
+    try {
+        const cookiesStore = await cookies();
+        cookiesStore.delete("token");
+        cookiesStore.delete("userRole");
+        return { success: true };
+    } catch (error) {
+        return { success: false, error: "Có lỗi xảy ra khi đăng xuất" };
+    }
+};

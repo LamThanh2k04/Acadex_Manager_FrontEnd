@@ -1,6 +1,5 @@
 import { adminService } from "@/app/api/adminService"
 import { useQuery } from "@tanstack/react-query"
-
 export const useGetStudentsTuitionStatus = (status: string, page: number) => {
     return useQuery({
         queryKey: ['get-all-student-tuition-status', status, page],

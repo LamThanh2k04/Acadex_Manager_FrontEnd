@@ -510,12 +510,12 @@ export const adminService = {
         const res = await https.post(`/api/admin/student/rejectRequestCertificate/${certificateId}`, { note });
         return res.data;
     },
-    // Fee Manager
+    // Student Fee Manager
     getStudentsTuitionStatus: async (status: string, page: number) => {
         const params = new URLSearchParams();
         if (status) params.set("status", status);
         params.set("page", page.toString());
         const res = await https.get(`/api/admin/student/getStudentsTuitionStatus?${params.toString()}`);
         return res.data.data;
-    }
+    },
 };

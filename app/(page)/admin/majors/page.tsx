@@ -2,6 +2,7 @@
 import { useGetAllMajors } from "@/hooks/admin/useMajor"
 import { useSearchParams } from "next/navigation";
 import MajorTable from "./MajorTable/MajorTable";
+import MajorTableSkeleton from "./MajorTable/MajorTableSkeleton";
 export default function Majors() {
     const searchParams = useSearchParams();
     const search = searchParams.get("search") ?? "";
@@ -10,7 +11,7 @@ export default function Majors() {
     console.log(majorData);
     return (
         <div>
-            {isLoadingMajorData ? "" : majorData && <MajorTable data={majorData} />}
+            {isLoadingMajorData ? <MajorTableSkeleton /> : majorData && <MajorTable data={majorData} />}
         </div>
     )
 }

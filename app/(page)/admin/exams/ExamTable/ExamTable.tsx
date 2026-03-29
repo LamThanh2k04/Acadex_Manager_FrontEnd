@@ -9,7 +9,6 @@ import ExamCreateModal from "../ExamModal/ExamCreateModal";
 import ExamUpdateModal from "../ExamModal/ExamUpdateModal";
 import AlertDialogBlockExam from "../AlertDialogExam/AlertDialoBlockExam";
 import AlertDialogUnBlockExam from "../AlertDialogExam/AlertDialogUnBlockExam";
-
 export default function ExamTable({ data }: IExamScheduleDataResponseProps) {
     const [isModalCreate, setIsModalCreate] = useState(false);
     const [isModalUpdate, setIsModalUpdate] = useState(false);
@@ -17,7 +16,14 @@ export default function ExamTable({ data }: IExamScheduleDataResponseProps) {
     return (
         <div className="mt-5 p-5 border rounded-2xl bg-white ml-3 w-[98%]">
             <div className="flex items-center justify-between mb-5">
-                <h1 className="text-2xl font-bold text-gray-500">Danh sách lịch thi</h1>
+                <div>
+                    <h1 className="text-2xl font-bold text-gray-700">
+                        Danh sách lịch thi dành cho sinh viên
+                    </h1>
+                    <p className="mt-1 text-sm text-gray-400">
+                        Quản lý lịch thi dành cho sinh viên.
+                    </p>
+                </div>
                 <div className="flex items-center justify-center gap-3">
                     <ExamSearchBar />
                     <button onClick={() => setIsModalCreate(true)} className="border-none hover:bg-orange-400 cursor-pointer hover:text-white transition duration-500 p-2 rounded-full bg-orange-100 text-gray-400 text-sm"><CalendarPlus /></button>

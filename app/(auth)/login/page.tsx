@@ -2,17 +2,17 @@ import Image from "next/image";
 import LoginForm from "./LoginForm";
 export default function Login() {
     return (
-        <div className="bg-[url(/images/bg-login-mobile.png)] min-h-screen flex items-center justify-center">
-            <div className="flex items-center md:border md:p-10 md:rounded-xl md:border-gray-200 md:shadow-2xl justify-center  flex-col">
+        <div className="bg-[url(/images/bg-login-mobile.png)] min-h-screen flex items-center justify-center w-full">
+            <div className="flex items-center md:border md:py-10 md:px-20 md:rounded-xl md:border-gray-200 md:shadow-2xl justify-center flex-col">
                 <div className="flex items-center gap-3 mt-5">
                     <Image
                         src="/images/acadex-logo.jpg"
                         className="rounded-xl"
                         alt="Acadex"
-                        width={60}
-                        height={60}
+                        width={80}
+                        height={80}
                     />
-                    <span className="text-[#ec5d15] font-bold text-xl">Hệ thống giáo dục <span className="font-bold">ACADEX</span></span>
+                    <span className="text-[#ec5d15] font-bold text-2xl">Hệ thống giáo dục <span className="font-bold">ACADEX</span></span>
                 </div>
                 <div className="mt-5 text-center">
                     <p className="text-2xl font-extrabold">Chào mừng trở lại</p>

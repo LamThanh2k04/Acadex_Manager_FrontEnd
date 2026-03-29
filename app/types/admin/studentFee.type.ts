@@ -17,4 +17,4 @@ export interface IStudentTuitionStatusData {
     remainingAmout: number;
     status: TStatusOfStudentFee
 };
-export type TStatusOfStudentFee = "PAID" | "UNPAID"
+export type TStatusOfStudentFee = "PAID" | "UNPAID";

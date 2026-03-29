@@ -9,7 +9,6 @@ import BuildingCreateModal from "../BuildingModal/BuildingCreateModal";
 import BuildingUpdateModal from "../BuildingModal/BuidlingUpdateModal";
 import AlertDialogBlockBuilding from "../AlertDialogBuilding/AlertDialogBlockBuilding";
 import AlertDialogUnBlockBuilding from "../AlertDialogBuilding/AlertDialogUnBlockBuilding";
-
 export default function BuildingTable({ data }: IBuildingDataResponseProps) {
     const [isModalCreate, setIsModalCreate] = useState(false);
     const [isModalUpdate, setIsModalUpdate] = useState(false);
@@ -17,7 +16,14 @@ export default function BuildingTable({ data }: IBuildingDataResponseProps) {
     return (
         <div className="mt-5 p-5 border rounded-2xl bg-white ml-3 w-[98%]">
             <div className="flex items-center justify-between mb-5">
-                <h1 className="text-2xl font-bold text-gray-500">Danh sách cơ sở</h1>
+                <div>
+                    <h1 className="text-2xl font-bold text-gray-700">
+                        Danh sách cơ sở
+                    </h1>
+                    <p className="mt-1 text-sm text-gray-400">
+                        Quản lý cơ sở dành cho sinh viên.
+                    </p>
+                </div>
                 <div className="flex items-center justify-center gap-3">
                     <BuildingSearchBar />
                     <button onClick={() => setIsModalCreate(true)} className="border-none hover:bg-orange-400 cursor-pointer hover:text-white transition duration-500 p-2 rounded-full bg-orange-100 text-gray-400 text-sm"><GitPullRequestCreateArrow /></button>

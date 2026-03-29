@@ -1,5 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton"
-export default function SemesterTableSkeleton() {
+export default function StudentFeeTableSkeleton() {
     return (
         <div className="mt-5 p-5 border rounded-2xl bg-white ml-3 w-[98%]">
             <div className="flex items-center justify-between mb-5">
@@ -8,8 +8,7 @@ export default function SemesterTableSkeleton() {
                     <Skeleton className="h-4 w-80 rounded-lg" />
                 </div>
                 <div className="flex items-center gap-3">
-                    <Skeleton className="h-9 w-60 rounded-lg" />
-                    <Skeleton className="h-9 w-9 rounded-full" />
+                    <Skeleton className="h-9 w-52 rounded-lg" />
                 </div>
             </div>
             <table className="w-full border-separate border border-gray-100 border-spacing-0 rounded-xl overflow-hidden">

@@ -35,14 +35,14 @@ const data = {
       ]
     },
     {
-      label: "Con người",
+      label: "Quản lý người dùng",
       items: [
         { label: "Sinh viên", href: "/admin/students", icon: GraduationCap },
         { label: "Giảng viên", href: "/admin/lecturers", icon: Users },
       ]
     },
     {
-      label: "Học thuật",
+      label: "Quản lý học thuật",
       items: [
         { label: "Khoa", href: "/admin/faculties", icon: Building2 },
         { label: "Ngành", href: "/admin/majors", icon: BookOpen },
@@ -82,7 +82,6 @@ const data = {
 }
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathName = usePathname();
-  const user = useAppSelector((state) => state.user.userInfo);
   const NavUser = dynamic(
     () => import("./nav-user").then(m => m.NavUser),
     { ssr: false }
@@ -118,32 +117,34 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             {data.navMain.map((item, index) => (
               <Collapsible
                 key={item.label}
-                defaultOpen={index === 1}
+                defaultOpen={index === 0}
                 className="group/collapsible"
               >
                 <SidebarMenuItem>
                   <CollapsibleTrigger asChild>
                     <SidebarMenuButton>
-                      {item.label}{" "}
+                      {item.label}
                       <Plus className="ml-auto group-data-[state=open]/collapsible:hidden" />
                       <Minus className="ml-auto group-data-[state=closed]/collapsible:hidden" />
                     </SidebarMenuButton>
                   </CollapsibleTrigger>
                   {item.items?.length ? (
-                    <CollapsibleContent>
+                    <CollapsibleContent
+                      id={`sidebar-${item.label.replace(/\s+/g, "-").toLowerCase()}`}
+                    >
                       <SidebarMenuSub>
-                        {item.items.map((item) => (
-                          <SidebarMenuSubItem key={item.label}>
+                        {item.items.map((subItem) => (
+                          <SidebarMenuSubItem key={subItem.label}>
                             <SidebarMenuSubButton asChild>
                               <Link
-                                href={item.href}
+                                href={subItem.href}
                                 className={cn(
                                   "flex items-center gap-2",
-                                  pathName === item.href && "bg-orange-300 hover:bg-orange-500"
+                                  pathName === subItem.href && "bg-orange-300 hover:bg-orange-500"
                                 )}
                               >
-                                <item.icon className="size-4" />
-                                <span>{item.label}</span>
+                                <subItem.icon className="size-4" />
+                                <span>{subItem.label}</span>
                               </Link>
                             </SidebarMenuSubButton>
                           </SidebarMenuSubItem>

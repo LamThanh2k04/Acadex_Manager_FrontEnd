@@ -1,5 +1,4 @@
 "use client"
-
 import { IClassesData, IClassesDataResponseProps } from "@/app/types/admin/classes.type"
 import { Pencil, CirclePlus } from 'lucide-react';
 import Pagination from '@/components/Pagination';
@@ -10,7 +9,6 @@ import ClassesCreateModal from "../ClassesModal/ClassesCreateModal";
 import ClassesUpdateModal from "../ClassesModal/ClassesUpdateModal";
 import AlertDialogBlockClasses from "../AlertDialogClasses/AlertDialogBlockClasses";
 import AlertDialogUnBlockClasses from "../AlertDialogClasses/AlertDialogUnBlockClasses";
-
 export default function ClassesTable({ data }: IClassesDataResponseProps) {
     const [isModalCreate, setIsModalCreate] = useState(false);
     const [isModalUpdate, setIsModalUpdate] = useState(false);
@@ -18,7 +16,14 @@ export default function ClassesTable({ data }: IClassesDataResponseProps) {
     return (
         <div className="mt-5 p-5 border rounded-2xl bg-white ml-3 w-[98%]">
             <div className="flex items-center justify-between mb-5">
-                <h1 className="text-2xl font-bold text-gray-500">Danh sách lớp</h1>
+                <div>
+                    <h1 className="text-2xl font-bold text-gray-700">
+                        Danh sách lớp học
+                    </h1>
+                    <p className="mt-1 text-sm text-gray-400">
+                        Quản lý lớp học dành cho sinh viên.
+                    </p>
+                </div>
                 <div className="flex items-center justify-center gap-3">
                     <ClassesSearchBar />
                     <button onClick={() => setIsModalCreate(true)} className="border-none hover:bg-orange-400 cursor-pointer hover:text-white transition duration-500 p-2 rounded-full bg-orange-100 text-gray-400 text-sm"><CirclePlus /></button>

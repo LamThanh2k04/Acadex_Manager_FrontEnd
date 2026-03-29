@@ -16,7 +16,14 @@ export default function CourseTable({ data }: ICourseDataResponseProps) {
     return (
         <div className="mt-5 p-5 border rounded-2xl bg-white ml-3 w-[98%]">
             <div className="flex items-center justify-between mb-5">
-                <h1 className="text-2xl font-bold text-gray-500">Danh sách ngành đào tạo</h1>
+                <div>
+                    <h1 className="text-2xl font-bold text-gray-700">
+                        Danh sách học phần
+                    </h1>
+                    <p className="mt-1 text-sm text-gray-400">
+                        Quản lý học phần dành cho sinh viên.
+                    </p>
+                </div>
                 <div className="flex items-center justify-center gap-3">
                     <CourseSearchBar />
                     <button onClick={() => setIsModalCreate(true)} className="border-none hover:bg-orange-400 cursor-pointer hover:text-white transition duration-500 p-2 rounded-full bg-orange-100 text-gray-400 text-sm"><CirclePlus /></button>

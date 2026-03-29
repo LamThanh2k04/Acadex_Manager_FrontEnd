@@ -9,7 +9,6 @@ import ScheduleCreateModal from "../ScheduleModal/ScheduleCreateModal";
 import ScheduleUpdateModal from "../ScheduleModal/ScheduleUpdateModal";
 import AlertDialogBlockSchedule from "../AlertDialogSchedule/AlertDialogBlockSchedule";
 import AlertDialogUnBlockSchedule from "../AlertDialogSchedule/AlertDialogUnBlockSchedule";
-
 export default function ScheduleTable({ data }: IScheduleDataResponseProps) {
     console.log(data);
     const [isModalCreate, setIsModalCreate] = useState(false);
@@ -23,7 +22,14 @@ export default function ScheduleTable({ data }: IScheduleDataResponseProps) {
     return (
         <div className="mt-5 p-5 border rounded-2xl bg-white ml-3 w-[98%]">
             <div className="flex items-center justify-between mb-5">
-                <h1 className="text-2xl font-bold text-gray-500">Danh sách lịch học</h1>
+                <div>
+                    <h1 className="text-2xl font-bold text-gray-700">
+                        Danh sách lịch học dành cho sinh viên
+                    </h1>
+                    <p className="mt-1 text-sm text-gray-400">
+                        Quản lý lịch học dành cho sinh viên.
+                    </p>
+                </div>
                 <div className="flex items-center justify-center gap-3">
                     <ScheduleSearchBar />
                     <button onClick={() => setIsModalCreate(true)} className="border-none hover:bg-orange-400 cursor-pointer hover:text-white transition duration-500 p-2 rounded-full bg-orange-100 text-gray-400 text-sm"><CalendarPlus /></button>

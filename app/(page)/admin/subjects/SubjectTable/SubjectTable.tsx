@@ -3,13 +3,12 @@ import { ISubjectData, ISubjectDataResponseProps } from "@/app/types/admin/subje
 import { Pencil, CirclePlus } from 'lucide-react';
 import Pagination from '@/components/Pagination';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import MajorSearchBar from '@/app/(page)/admin/majors/MajorSearchBar/MajorSearchBar';
 import { useState } from "react";
 import SubjectCreateModal from "../SubjectModal/SubjectCreateModal";
 import SubjectUpdateModal from "../SubjectModal/SubjectUpdateModal";
 import AlertDialogBlockSubject from "../AlertDialogSubject/AlertDialogBlockSubject";
 import AlertDialogUnBlockSubject from "../AlertDialogSubject/AlertDialogUnBlockSubject";
-
+import SubjectSearchBar from "../SubjectSearchBar/SubjectSearchBar";
 export default function SubjectTable({ data }: ISubjectDataResponseProps) {
     const [isModalCreate, setIsModalCreate] = useState(false);
     const [isModalUpdate, setIsModalUpdate] = useState(false);
@@ -17,9 +16,16 @@ export default function SubjectTable({ data }: ISubjectDataResponseProps) {
     return (
         <div className="mt-5 p-5 border rounded-2xl bg-white ml-3 w-[98%]">
             <div className="flex items-center justify-between mb-5">
-                <h1 className="text-2xl font-bold text-gray-500">Danh sách môn học</h1>
+                <div>
+                    <h1 className="text-2xl font-bold text-gray-700">
+                        Danh sách môn học
+                    </h1>
+                    <p className="mt-1 text-sm text-gray-400">
+                        Quản lý môn học dành cho sinh viên.
+                    </p>
+                </div>
                 <div className="flex items-center justify-center gap-3">
-                    <MajorSearchBar />
+                    <SubjectSearchBar />
                     <button onClick={() => setIsModalCreate(true)} className="border-none hover:bg-orange-400 cursor-pointer hover:text-white transition duration-500 p-2 rounded-full bg-orange-100 text-gray-400 text-sm"><CirclePlus /></button>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 "use client"
 import { INotificationData, INotificationDataResponseProps } from "@/app/types/admin/notification.type";
-import { Pencil, BellPlus, CircleX } from 'lucide-react';
+import { Pencil, BellPlus } from 'lucide-react';
 import Pagination from '@/components/Pagination';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import NotificationSearchBar from "../NotificationSearchBar/NotificationSearchBar";
@@ -24,7 +24,14 @@ export default function NotificationTable({ data }: INotificationDataResponsePro
     return (
         <div className="mt-5 p-5 border rounded-2xl bg-white ml-3 w-[98%]">
             <div className="flex items-center justify-between mb-5">
-                <h1 className="text-2xl font-bold text-gray-500">Danh sách thông báo</h1>
+                <div>
+                    <h1 className="text-2xl font-bold text-gray-700">
+                        Danh sách thông báo đến sinh viên và giảng viên
+                    </h1>
+                    <p className="mt-1 text-sm text-gray-400">
+                        Quản lý thông báo đến sinh viên và giảng viên.
+                    </p>
+                </div>
                 <div className="flex items-center justify-center gap-3">
                     <NotificationSearchBar />
                     <button onClick={() => setIsModalCreate(true)} className="border-none hover:bg-orange-400 cursor-pointer hover:text-white transition duration-500 p-2 rounded-full bg-orange-100 text-gray-400 text-sm"><BellPlus /></button>

@@ -24,7 +24,7 @@ export default function ClassesSearchBar() {
                 defaultValue={searchParams.get("search") ?? ""}
                 onChange={(e) => { handleSearch(e.target.value) }}
                 className="w-70 border px-2 py-1 pl-10 rounded-xl"
-                placeholder="Tìm theo tên lớp..."
+                placeholder="Tìm kiếm theo tên lớp..."
             />
         </div>
     )
