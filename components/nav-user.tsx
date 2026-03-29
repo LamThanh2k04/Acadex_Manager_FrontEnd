@@ -29,7 +29,6 @@ import { useRouter } from "next/navigation"
 import { removeUser } from "@/lib/features/user/userSlice"
 import { logoutUserAction } from "@/app/actions/auth.action"
 import toast from "react-hot-toast"
-
 export function NavUser() {
     const user = useAppSelector((state) => state.user.userInfo)
     const dispatch = useAppDispatch()

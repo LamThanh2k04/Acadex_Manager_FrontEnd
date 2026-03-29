@@ -25,7 +25,6 @@ import Image from 'next/image';
 import Link from "next/link";
 import dynamic from "next/dynamic"
 import { usePathname } from "next/navigation";
-import { useAppSelector } from "@/lib/hook";
 const data = {
   navMain: [
     {
@@ -80,10 +79,10 @@ const data = {
     },
   ],
 }
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebarAdmin({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathName = usePathname();
   const NavUser = dynamic(
-    () => import("./nav-user").then(m => m.NavUser),
+    () => import("../../../components/nav-user").then(m => m.NavUser),
     { ssr: false }
   )
   return (
@@ -98,13 +97,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     src="/images/acadex-logo.jpg"
                     className="rounded-xl"
                     alt="Acadex Logo"
-                    width={60}
-                    height={60}
+                    width={70}
+                    height={70}
                     loading="eager"
                   />
                 </div>
-                <div className="flex flex-col gap-0.5 leading-none">
+                <div className="flex flex-col leading-none">
                   <span className="text-[#ec5d15] font-bold text-xl uppercase">Acadex</span>
+                  <span className="text-xs text-muted-foreground">Quản trị viên</span>
                 </div>
               </Link>
             </SidebarMenuButton>
