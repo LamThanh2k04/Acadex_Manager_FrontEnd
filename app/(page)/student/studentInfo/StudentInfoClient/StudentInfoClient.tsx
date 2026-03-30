@@ -183,12 +183,12 @@ export default function StudentInfo({ data }: IStudentInfoProps) {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <InfoRow
                         label="Năm vào trường"
-                        value={data.student.admissionYear.toString()}
+                        value={data.student.admissionYear}
                         icon={<GraduationCap size={18} />}
                     />
                     <InfoRow
                         label="Năm ra trường"
-                        value={data.student.graduateYear.toString()}
+                        value={data.student.graduateYear}
                         icon={<GraduationCap size={18} />}
                     />
                     <InfoRow
