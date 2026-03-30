@@ -1,14 +1,14 @@
 "use client"
-import * as React from "react"
 import * as SwitchPrimitives from "@radix-ui/react-switch"
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
+import { useEffect, useState } from "react"
 export default function SwitchMode() {
     const { theme, setTheme } = useTheme()
-    const [mounted, setMounted] = React.useState(false)
-    React.useEffect(() => setMounted(true), [])
+    const [mounted, setMounted] = useState(false)
+    useEffect(() => setMounted(true), [])
     if (!mounted) return null
     const isDark = theme === "dark"
     return (

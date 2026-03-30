@@ -4,11 +4,7 @@ import { FaFacebook, FaLinkedin } from "react-icons/fa";
 import { SiZalo } from "react-icons/si";
 export default function Footer() {
     return (
-        <div>
-            <div className="p-2 text-gray-500 text-sm">
-                <p>300A Nguyễn Tất Thành, Phường 13, Quận 12, TP. Hồ Chí Minh</p>
-                <p>Hotline: <span className="text-[#ec5d15] font-bold">1900 363 618</span></p>
-            </div>
+        <div className="bg-white rounded-xl mt-5">
             <div className="p-2 text-sm">
                 <p className="text-[16px] font-bold">Kết nối với chúng tôi</p>
                 <div>
@@ -46,6 +42,10 @@ export default function Footer() {
                         </div>
                     </Link>
                 </div>
+            </div>
+            <div className="p-2 text-gray-500 text-sm">
+                <p>300A Nguyễn Tất Thành, Phường 13, Quận 12, TP. Hồ Chí Minh</p>
+                <p>Hotline: <span className="text-[#ec5d15] font-bold">1900 363 618</span></p>
             </div>
             <div className="border-t text-[10px] text-gray-400 p-2 text-center">
                 <p>© 2026 Acadex - Hệ thống quản lý giáo dục. Nơi chia sẻ tri thức và phát triển kỹ năng.</p>

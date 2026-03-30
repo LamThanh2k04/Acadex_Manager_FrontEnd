@@ -29,7 +29,7 @@ export default function StudentInfo({ data }: IStudentInfoProps) {
         .join("")
         .toUpperCase()
     return (
-        <div className="bg-white dark:bg-gray-900 rounded-2xl border-none dark:border-gray-800 overflow-hidden">
+        <div className="bg-white dark:bg-gray-900 rounded-2xl border-none mt-6 dark:border-gray-800 overflow-hidden">
             <div className="px-5 pt-5 pb-4">
                 <div className="flex flex-col items-center text-center gap-3 mb-5">
                     <div className="relative">

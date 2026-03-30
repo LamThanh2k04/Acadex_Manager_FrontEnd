@@ -12,6 +12,7 @@ import {
     DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 import { useAppSelector } from '@/lib/hook';
+import Link from 'next/link';
 export default function DropDownMenu() {
     const user = useAppSelector((state) => state.user.userInfo);
     const initials = user?.fullName
@@ -51,15 +52,19 @@ export default function DropDownMenu() {
                     </div>
                 </DropdownMenuLabel>
                 <DropdownMenuGroup className="space-y-1">
-                    <DropdownMenuItem className="flex items-center gap-3 p-2.5 rounded-xl cursor-pointer focus:bg-orange-50 focus:text-orange-600 transition-colors">
-                        <User className="h-4 w-4 opacity-70" />
-                        <span className="flex-1 font-medium">Thông tin cá nhân</span>
-                        <ChevronRight className="h-3 w-3 opacity-30" />
+                    <DropdownMenuItem>
+                        <Link href="/student/studentInfo" className='flex items-center gap-3 rounded-xl cursor-pointer focus:bg-orange-50 focus:text-orange-600 transition-colors w-full'>
+                            <User className="h-4 w-4 opacity-70" />
+                            <span className="flex-1 font-medium">Thông tin cá nhân</span>
+                            <ChevronRight className="h-3 w-3 opacity-30" />
+                        </Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="flex items-center gap-3 p-2.5 rounded-xl cursor-pointer focus:bg-orange-50 focus:text-orange-600 transition-colors">
-                        <Lock className="h-4 w-4 opacity-70" />
-                        <span className="flex-1 font-medium">Đổi mật khẩu</span>
-                        <ChevronRight className="h-3 w-3 opacity-30" />
+                    <DropdownMenuItem>
+                        <button className='flex items-center gap-3 rounded-xl cursor-pointer focus:bg-orange-50 focus:text-orange-600 transition-colors'>
+                            <Lock className="h-4 w-4 opacity-70" />
+                            <span className="flex-1 w-21 font-medium">Đổi mật khẩu</span>
+                            <ChevronRight className="h-3 w-3 ml-21 opacity-30" />
+                        </button>
                     </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator className="my-2 bg-orange-50" />
