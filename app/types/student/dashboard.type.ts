@@ -1,5 +1,4 @@
 import { ISemesterSimple } from "./simple.type";
-
 // student info
 export interface IStudentInfoProps {
     data: IStudentInfo;
@@ -20,7 +19,7 @@ export interface IStudentOfStudentInfo {
     id: number;
     studentCode: string;
     personalEmail: string;
-    citizenId: number;
+    citizenId: string;
     placeOfBirth: string;
     ethnicity: string;
     admissionYear: number;

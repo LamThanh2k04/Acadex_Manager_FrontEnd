@@ -1,8 +1,8 @@
 "use client";
-import { IStudentInfoProps } from "@/app/types/student/studentInfo.type";
 import Image from "next/image";
 import { GraduationCap, IdCard, BookOpen, UserRound, Mail, Phone, MapPin, CalendarDays } from "lucide-react";
 import InfoRow from "../../dashboard/StudentInfo/InfoRow";
+import { IStudentInfoProps } from "@/app/types/student/studentInfo.type";
 const STATUS_MAP = {
     STUDYING: {
         label: "Đang học",
@@ -21,7 +21,6 @@ const STATUS_MAP = {
     },
 } as const;
 type StatusKey = keyof typeof STATUS_MAP;
-
 export default function StudentInfo({ data }: IStudentInfoProps) {
     const status = STATUS_MAP[data.student.status as StatusKey] ?? {
         label: data.student.status,
