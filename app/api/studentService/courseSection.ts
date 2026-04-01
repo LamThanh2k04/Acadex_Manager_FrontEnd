@@ -20,11 +20,11 @@ export const cancelCourseSection = async (enrollmentId: number) => {
     const res = await https.post(`/api/student/courseSection/cancelCourseSection/${enrollmentId}`);
     return res.data;
 };
-export const getAllEnrollmentCourseSection = async () => {
-    const res = await https.get("/api/student/courseSection/getAllEnrollmentCourseSection");
+export const getAllEnrollmentCourseSection = async (semesterId: number) => {
+    const res = await https.get(`/api/student/courseSection/getAllEnrollmentCourseSection/${semesterId}`);
     return res.data.data;
 };
 export const getAllSchedulesByCourseSectionRegister = async (courseSectionId: number) => {
-    const res = await https.get(`/api/student/courseSection/getAllSchedulesByCourseSectionRegister/:courseSectionId`);
+    const res = await https.get(`/api/student/courseSection/getAllSchedulesByCourseSectionRegister/${courseSectionId}`);
     return res.data.data.schedules;
 };

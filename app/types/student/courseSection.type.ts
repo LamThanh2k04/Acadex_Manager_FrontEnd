@@ -1,17 +1,24 @@
 import { TEnrollmentStatus } from '@/app/types/student/curriculumFramework.type';
+import { ISemesterSimple } from './simple.type';
 
 // Subject by Semester
+export interface ISubjectsBySemesterDataProps {
+    subjects: ISubjectOfSubjectsBySemester[];
+    selectedSemesterId: number | null;
+}
 export interface ISubjectsBySemesterData {
     subjects: ISubjectOfSubjectsBySemester[];
 }
 export interface ISubjectOfSubjectsBySemester {
-    id: number;
-    code: string;
-    name: string;
-    theoryMinutes: number;
-    practiceMinutes: number;
-    credits: number;
-    countToGpa: boolean;
+    subject: {
+        id: number;
+        code: string;
+        name: string;
+        theoryMinutes: number;
+        practiceMinutes: number;
+        credits: number;
+        countToGpa: boolean;
+    };
 };
 // CourseSection By Subject
 export interface ICourseSectionBySubjectData {
@@ -46,7 +53,9 @@ export interface IScheduleByCourseSection {
     theory: ITheoryOfScheduleByCourseSection[];
     online: TOnlineOfScheduleByCourseSection[];
     practices: IPracticeOfScheduleByCourseSection[];
-}
+};
+export type TScheduleGroupItem = ITheoryOfScheduleByCourseSection | IPracticeOfScheduleByCourseSection | TOnlineOfScheduleByCourseSection;
+
 export interface ITheoryOfScheduleByCourseSection {
     slot: string;
     lecturer: string;
@@ -77,6 +86,10 @@ export interface IRegisterCourseSection {
     practiceGroup: number;
 };
 // EnrollmentCourseSection
+export interface IEnrollmentCourseSectionDataProps {
+    data: IEnrollmentCourseSectionData;
+    selectedSemesterId: number | null;
+};
 export interface IEnrollmentCourseSectionData {
     enrollments: IEnrollmentCourseSection[];
     totalCredit: number;
@@ -89,6 +102,7 @@ export interface IEnrollmentCourseSection {
     fee: number;
     isPaid: boolean;
     status: TEnrollmentStatus;
+    enrolledAt: string;
 };
 export interface ICourseSectionOfEnrollmentCourseSection {
     id: number;

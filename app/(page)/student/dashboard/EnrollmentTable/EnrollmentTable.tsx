@@ -8,7 +8,6 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 export default function EnrollmentTable({ enrollments, semesters, selectedSemesterId, onChangeSemester, }: IEnrollmentSemesterProps) {
-    console.log(selectedSemesterId);
     const selectedSemester = semesters.find((s) => s.id === selectedSemesterId)
     const totalCredits = enrollments.reduce(
         (sum, e) => sum + e.courseSection.subject.credits,

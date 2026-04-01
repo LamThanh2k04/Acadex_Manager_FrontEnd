@@ -5,7 +5,7 @@ import StudentInfoSkeleton from "./StudentInfo/StudentInfoSkeleton";
 import EnrollmentTableSkeleton from "./EnrollmentTable/EnrollmentTableSkeleton";
 import EnrollmentTable from "./EnrollmentTable/EnrollmentTable";
 import { useEffect, useState } from "react";
-import { getAllSemestersSimple } from '@/hooks/student/useSimple';
+import { useGetAllSemestersSimple } from '@/hooks/student/useSimple';
 import TotalScoreForChartSkeleton from "./TotalScoreForChart/TotalScoreForChartSkeleton";
 import TotalScoreForChart from "./TotalScoreForChart/TotalScoreForChart";
 import ResultStudyCreditsForPieChartSkeleton from './ResultStudyCreditsForPieChart/ResultStudyCreditsForPieChartSkeleton';
@@ -14,7 +14,7 @@ import StudentShortcut from './StudentShortcut/StudentShortcut';
 export default function DashboardStudent() {
     const [selectedSemesterId, setSelectedSemesterId] = useState<number | null>(null);
     const { data: infoStudentData, isLoading: isLoadingInfoStudent } = useGetInfoStudent();
-    const { data: semestersSimpleData, isLoading: isLoadingSemestersSimple } = getAllSemestersSimple();
+    const { data: semestersSimpleData, isLoading: isLoadingSemestersSimple } = useGetAllSemestersSimple();
     useEffect(() => {
         if (semestersSimpleData && semestersSimpleData.length > 0) {
             setSelectedSemesterId(semestersSimpleData[0].id);

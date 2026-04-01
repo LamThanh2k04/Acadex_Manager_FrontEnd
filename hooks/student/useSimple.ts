@@ -1,7 +1,7 @@
 import { getAllSemestersSimpleStudent } from "@/app/api/studentService/simple"
 import { ISemesterSimple } from "@/app/types/student/simple.type"
 import { useQuery } from "@tanstack/react-query"
-export const getAllSemestersSimple = () => {
+export const useGetAllSemestersSimple = () => {
     return useQuery<ISemesterSimple[]>({
         queryKey: ['get-all-semesters-simple'],
         queryFn: () => getAllSemestersSimpleStudent(),
