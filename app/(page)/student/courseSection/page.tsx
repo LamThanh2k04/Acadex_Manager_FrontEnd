@@ -27,7 +27,7 @@ export default function CourseSection() {
     const { data: subjectsBySemesterData, isLoading: isLoadingSubjectsBySemester } = useGetSubjectsBySemester(selectedSemesterId as number);
     const { data: enrollmentData, isLoading: isLoadingEnrollment } = useGetAllEnrollmentCourseSection(selectedSemesterId as number);
 
-    if (isLoadingSemesterSimple) return <SubjectBySemesterSkeleton />;
+    if (isLoadingSemesterSimple || isLoadingSubjectsBySemester) return <SubjectBySemesterSkeleton />;
 
     return (
         <div className="container mx-auto p-4 space-y-6 mt-5">
@@ -62,12 +62,14 @@ export default function CourseSection() {
                         <div className="w-1.5 h-4 bg-[#ec5d15] rounded-full"></div>
                         <h2 className="text-sm font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wide">Danh sách môn học mở</h2>
                     </div>
-                    <SubjectBySemester
-                        subjects={subjectsBySemesterData?.subjects ?? []}
-                        selectedSemesterId={selectedSemesterId}
-                    />
-                </section>
+                    {subjectsBySemesterData &&
+                        <SubjectBySemester
+                            subjects={subjectsBySemesterData}
+                            selectedSemesterId={selectedSemesterId}
+                        />
+                    }
 
+                </section>
                 <hr className="border-gray-100 dark:border-gray-800" />
                 <section>
                     <div className="flex items-center gap-2 mb-3 px-1">

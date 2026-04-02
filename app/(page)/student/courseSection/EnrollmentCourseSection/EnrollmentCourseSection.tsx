@@ -1,10 +1,9 @@
 "use client"
 import { IEnrollmentCourseSectionDataProps, IEnrollmentCourseSection } from '@/app/types/student/courseSection.type';
-import { BookOpen, CreditCard, GraduationCap, CheckCircle2, Clock, XCircle, User, AlertCircle, CalendarSearch, Trash2, LockKeyhole } from 'lucide-react';
+import { BookOpen, CreditCard, GraduationCap, CheckCircle2, Clock, XCircle, User, AlertCircle, CalendarSearch, Trash2 } from 'lucide-react';
 import { useCancelCourseSection } from '@/hooks/student/useCourseSection';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import ScheduleOfCourseSection from '@/app/(page)/student/courseSection/Modal/ScheduleOfCourseSection/ScheduleOfCourseSection';
 import { useState } from 'react';
 import ScheduleOfEnrollment from '../Modal/ScheduleOfEnrollment/ScheduleOfEnrollment';
 
@@ -181,7 +180,7 @@ export default function EnrollmentCourseSection({ data, selectedSemesterId }: IE
                                 <Clock size={10} />
                                 <span>Đăng ký lúc {formatDate(enrollment.enrolledAt)}</span>
                             </div>
-                            <div className="flex items-center gap-2 mb-3">
+                            <div className="flex items-center gap-2 mb-3 p-2">
                                 <button
                                     onClick={() => {
                                         setIsModalOpen(true);

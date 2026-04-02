@@ -1,10 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { getSubjectsBySemester, getCourseSectionsBySubject, getScheduleByCourseSection, registerCourseSection, cancelCourseSection, getAllEnrollmentCourseSection, getAllSchedulesByCourseSectionRegister } from '@/app/api/studentService/courseSection';
-import { IRegisterCourseSection, ISchedulesByCourseSectionRegister, IEnrollmentCourseSectionData, IScheduleByCourseSection, ICourseSectionBySubjectData, ISubjectsBySemesterData, INewCourseSectionBySubject } from '@/app/types/student/courseSection.type';
+import { IRegisterCourseSection, ISchedulesByCourseSectionRegister, IEnrollmentCourseSectionData, IScheduleByCourseSection, ICourseSectionBySubjectData, ISubjectsBySemesterData, INewCourseSectionBySubject, ISubjectOfSubjectsBySemester } from '@/app/types/student/courseSection.type';
 import toast from "react-hot-toast";
 
 export const useGetSubjectsBySemester = (semesterId: number) => {
-    return useQuery<ISubjectsBySemesterData>({
+    return useQuery<ISubjectOfSubjectsBySemester[]>({
         queryKey: ['get-subjects-by-semester', semesterId],
         queryFn: () => getSubjectsBySemester(semesterId),
         staleTime: 5 * 60 * 1000,
@@ -27,7 +27,7 @@ export const useGetScheduleByCourseSection = (courseSectionId: number) => {
         enabled: !!courseSectionId
     })
 };
-export const useRegisterCourseSection = (onClose: () => void) => {
+export const useRegisterCourseSection = () => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: (data: IRegisterCourseSection) => registerCourseSection(data),
@@ -37,7 +37,6 @@ export const useRegisterCourseSection = (onClose: () => void) => {
             queryClient.invalidateQueries({ queryKey: ['get-schedule-by-courseSection'] });
             queryClient.invalidateQueries({ queryKey: ['get-all-enrollment-courseSection'] });
             toast.success("Đăng ký học phần thành công");
-            onClose();
         },
         onError: (error: any) => {
             const message = error.response?.data?.message ?? "Đăng ký học phần thất bại";
