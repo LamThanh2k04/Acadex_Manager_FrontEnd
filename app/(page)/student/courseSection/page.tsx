@@ -1,5 +1,4 @@
 "use client"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useGetAllEnrollmentCourseSection, useGetSubjectsBySemester } from "@/hooks/student/useCourseSection";
 import { useEffect, useState } from "react";
 import SubjectBySemester from "./SubjectBySemester/SubjectBySemester";
@@ -64,7 +63,7 @@ export default function CourseSection() {
                         <h2 className="text-sm font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wide">Danh sách môn học mở</h2>
                     </div>
                     <SubjectBySemester
-                        subjects={subjectsBySemesterData ?? []}
+                        subjects={subjectsBySemesterData?.subjects ?? []}
                         selectedSemesterId={selectedSemesterId}
                     />
                 </section>

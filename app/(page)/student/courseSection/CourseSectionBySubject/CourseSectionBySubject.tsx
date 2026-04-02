@@ -8,7 +8,8 @@ export default function CourseSectionBySubject({ subjectId, semesterId }: { subj
     const { data: courseSections, isLoading } = useGetCourseSectionsBySubject(subjectId, semesterId);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedCourseSectionId, setSelectedCourseSectionId] = useState<number | null>(null);
-    const { mutate: registerCourseSection } = useRegisterCourseSection();
+    const onClose = () => { setIsModalOpen(false) };
+    const { mutate: registerCourseSection } = useRegisterCourseSection(onClose);
     if (isLoading) {
         return (
             <div className="flex items-center justify-center py-10 gap-2 text-gray-400">

@@ -5,15 +5,7 @@ import { IRegisterCourseSection, TScheduleGroupItem, IPracticeOfScheduleByCourse
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 
-export default function ScheduleOfCourseSection({
-    selectedCourseSectionId,
-    onClose,
-    onRegister
-}: {
-    selectedCourseSectionId: number | null;
-    onClose: () => void;
-    onRegister: (data: IRegisterCourseSection) => void;
-}) {
+export default function ScheduleOfCourseSection({ selectedCourseSectionId, onClose, onRegister }: { selectedCourseSectionId: number | null; onClose: () => void; onRegister: (data: IRegisterCourseSection) => void; }) {
     const { data, isLoading } = useGetScheduleByCourseSection(selectedCourseSectionId as number);
     const [selectedGroup, setSelectedGroup] = useState<number | null>(null);
 
@@ -128,15 +120,12 @@ export default function ScheduleOfCourseSection({
 
     return (
         <div className="flex flex-col max-h-[70vh]">
-            {/* Scrollable content */}
             <div className="flex-1 overflow-y-auto py-2 pr-2 custom-scrollbar">
                 <RenderScheduleGroup
                     title="Lý thuyết"
                     items={data?.theory || []}
                     badgeColor="bg-blue-500"
                 />
-
-                {/* Practice group selector */}
                 {hasPractice && (
                     <div className="mb-4 p-3 bg-orange-50 dark:bg-orange-900/10 rounded-2xl border border-orange-100 dark:border-orange-900/30">
                         <p className="text-[11px] font-bold text-orange-500 mb-2 uppercase tracking-widest">
@@ -181,8 +170,6 @@ export default function ScheduleOfCourseSection({
                     </div>
                 )}
             </div>
-
-            {/* Footer actions - fixed at bottom */}
             {!hasNoData && (
                 <div className="flex justify-end gap-3 pt-4 mt-2 border-t border-gray-100 dark:border-gray-800">
                     <button

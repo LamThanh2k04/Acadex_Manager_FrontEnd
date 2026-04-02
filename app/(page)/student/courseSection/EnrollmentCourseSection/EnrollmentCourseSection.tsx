@@ -3,6 +3,10 @@ import { IEnrollmentCourseSectionDataProps, IEnrollmentCourseSection } from '@/a
 import { BookOpen, CreditCard, GraduationCap, CheckCircle2, Clock, XCircle, User, AlertCircle, CalendarSearch, Trash2, LockKeyhole } from 'lucide-react';
 import { useCancelCourseSection } from '@/hooks/student/useCourseSection';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import ScheduleOfCourseSection from '@/app/(page)/student/courseSection/Modal/ScheduleOfCourseSection/ScheduleOfCourseSection';
+import { useState } from 'react';
+import ScheduleOfEnrollment from '../Modal/ScheduleOfEnrollment/ScheduleOfEnrollment';
 
 const STATUS_CONFIG: Record<string, { label: string; className: string }> = {
     REGISTERED: {
@@ -26,6 +30,8 @@ export default function EnrollmentCourseSection({ data, selectedSemesterId }: IE
     if (!data) return null;
     const { mutate: cancelCourseSection } = useCancelCourseSection();
     const { enrollments, totalCredit, totalEnrollment } = data;
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedCourseSectionId, setSelectedCourseSectionId] = useState<number | null>(null);
     const paidCount = enrollments.filter(e => e.isPaid).length;
     const unpaidCount = enrollments.filter(e => !e.isPaid).length;
     if (!selectedSemesterId) {
@@ -177,7 +183,10 @@ export default function EnrollmentCourseSection({ data, selectedSemesterId }: IE
                             </div>
                             <div className="flex items-center gap-2 mb-3">
                                 <button
-                                    // onClick={() => onShowSchedule(enrollment.courseSection.id)}
+                                    onClick={() => {
+                                        setIsModalOpen(true);
+                                        setSelectedCourseSectionId(enrollment.courseSection.id)
+                                    }}
                                     className="flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-bold text-blue-600 bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/20 dark:text-blue-400 dark:hover:bg-blue-900/30 rounded-lg transition-colors"
                                 >
                                     <CalendarSearch size={13} />
@@ -213,6 +222,14 @@ export default function EnrollmentCourseSection({ data, selectedSemesterId }: IE
                     );
                 })}
             </div>
+            <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+                <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                        <DialogTitle>Thông tin chung</DialogTitle>
+                    </DialogHeader>
+                    <ScheduleOfEnrollment selectedCourseSectionId={selectedCourseSectionId} onClose={() => setIsModalOpen(false)} />
+                </DialogContent>
+            </Dialog>
         </div>
     );
 }

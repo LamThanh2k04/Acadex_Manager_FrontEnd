@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { getSubjectsBySemester, getCourseSectionsBySubject, getScheduleByCourseSection, registerCourseSection, cancelCourseSection, getAllEnrollmentCourseSection, getAllSchedulesByCourseSectionRegister } from '@/app/api/studentService/courseSection';
-import { IRegisterCourseSection, ISchedulesByCourseSectionRegisterData, IEnrollmentCourseSectionData, IScheduleByCourseSection, ICourseSectionBySubjectData, ISubjectsBySemesterData, INewCourseSectionBySubject } from '@/app/types/student/courseSection.type';
+import { IRegisterCourseSection, ISchedulesByCourseSectionRegister, IEnrollmentCourseSectionData, IScheduleByCourseSection, ICourseSectionBySubjectData, ISubjectsBySemesterData, INewCourseSectionBySubject } from '@/app/types/student/courseSection.type';
 import toast from "react-hot-toast";
 
 export const useGetSubjectsBySemester = (semesterId: number) => {
@@ -27,7 +27,7 @@ export const useGetScheduleByCourseSection = (courseSectionId: number) => {
         enabled: !!courseSectionId
     })
 };
-export const useRegisterCourseSection = () => {
+export const useRegisterCourseSection = (onClose: () => void) => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: (data: IRegisterCourseSection) => registerCourseSection(data),
@@ -36,8 +36,8 @@ export const useRegisterCourseSection = () => {
             queryClient.invalidateQueries({ queryKey: ['get-courseSections-by-subject'] });
             queryClient.invalidateQueries({ queryKey: ['get-schedule-by-courseSection'] });
             queryClient.invalidateQueries({ queryKey: ['get-all-enrollment-courseSection'] });
-
             toast.success("Đăng ký học phần thành công");
+            onClose();
         },
         onError: (error: any) => {
             const message = error.response?.data?.message ?? "Đăng ký học phần thất bại";
@@ -67,12 +67,14 @@ export const useGetAllEnrollmentCourseSection = (semesterId: number) => {
         queryKey: ['get-all-enrollment-courseSection', semesterId],
         queryFn: () => getAllEnrollmentCourseSection(semesterId),
         staleTime: 5 * 60 * 1000,
+        enabled: !!semesterId,
     })
 };
 export const useGetAllSchedulesByCourseSectionRegister = (courseSectionId: number) => {
-    return useQuery<ISchedulesByCourseSectionRegisterData>({
+    return useQuery<ISchedulesByCourseSectionRegister[]>({
         queryKey: ['get-all-schedules-by-courseSection', courseSectionId],
         queryFn: () => getAllSchedulesByCourseSectionRegister(courseSectionId),
         staleTime: 5 * 60 * 1000,
+        enabled: !!courseSectionId,
     })
 }
