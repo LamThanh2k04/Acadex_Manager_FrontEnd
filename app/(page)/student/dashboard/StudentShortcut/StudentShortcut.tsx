@@ -1,4 +1,4 @@
-import { User, GraduationCap, Book, BookOpenCheck, Wallet, CreditCard, NotebookPen, FileSliders } from 'lucide-react';
+import { User, GraduationCap, Book, BookOpenCheck, Wallet, CreditCard, Calendar, FileSliders } from 'lucide-react';
 import Link from 'next/link';
 export default function StudentShortcut() {
     const shortcuts = [
@@ -40,9 +40,9 @@ export default function StudentShortcut() {
         },
         {
             id: 7,
-            label: "Điểm danh",
-            href: "/student/attendance",
-            icon: NotebookPen,
+            label: "Xem lịch học và lịch thi",
+            href: "/student/schedule",
+            icon: Calendar,
         },
         {
             id: 8,
