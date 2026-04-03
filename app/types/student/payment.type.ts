@@ -32,12 +32,16 @@ export interface ICreatePayment {
 };
 // Paid Enrollment
 export interface IPaidEnrollmentDataProps {
-    data: IPaidEnrollmentData;
+    data: IPaidEnrollmentDataResponse;
 };
+export interface IPaidEnrollmentDataResponse {
+    enrollment: IPaidEnrollmentData[];
+    total: number;
+}
 export interface IPaidEnrollmentData {
     semesterName: string;
     academicYear: string;
-    enrollments: IEnrollmentOfPaid;
+    enrollments: IEnrollmentOfPaid[];
     totalCredits: number;
     totalFee: number;
 };

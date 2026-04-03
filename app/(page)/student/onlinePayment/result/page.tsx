@@ -21,7 +21,7 @@ export default function PaymentResultPage() {
             toast.error("Có lỗi xảy ra trong quá trình thanh toán");
         }
         const timer = setTimeout(() => {
-            router.push('/student/payment');
+            router.push('/student/onlinePayment');
         }, 2000);
 
         return () => clearTimeout(timer);

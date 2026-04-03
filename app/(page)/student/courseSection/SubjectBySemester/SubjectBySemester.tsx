@@ -28,10 +28,10 @@ export default function SubjectBySemester({ subjects, selectedSemesterId }: ISub
                                 Mã môn học
                             </th>
                             <th className="text-left text-[10px] font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500 px-4 py-2.5 whitespace-nowrap">
-                                Thời gian bắt đầu
+                                Số giờ lý thuyết
                             </th>
                             <th className="text-left text-[10px] font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500 px-4 py-2.5 whitespace-nowrap">
-                                Thời gian kết thúc
+                                Số giờ thực hành
                             </th>
                             <th className="text-center text-[10px] font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500 px-4 py-2.5 whitespace-nowrap">
                                 Tín chỉ

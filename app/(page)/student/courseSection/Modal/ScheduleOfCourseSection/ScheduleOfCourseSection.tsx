@@ -4,7 +4,6 @@ import { minutestoHour, dayOfWeekToString } from '@/app/utils/schedule';
 import { IRegisterCourseSection, TScheduleGroupItem, IPracticeOfScheduleByCourseSection } from '@/app/types/student/courseSection.type';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-
 export default function ScheduleOfCourseSection({ selectedCourseSectionId, onClose, onRegister }: { selectedCourseSectionId: number | null; onClose: () => void; onRegister: (data: IRegisterCourseSection) => void; }) {
     const { data, isLoading } = useGetScheduleByCourseSection(selectedCourseSectionId as number);
     const [selectedGroup, setSelectedGroup] = useState<number | null>(null);
@@ -35,11 +34,15 @@ export default function ScheduleOfCourseSection({ selectedCourseSectionId, onClo
     const RenderScheduleGroup = ({
         title,
         items,
-        badgeColor
+        badgeColor,
+        selectedId,
+        type
     }: {
         title: string;
         items: TScheduleGroupItem[];
         badgeColor: string;
+        selectedId: number | null,
+        type?: string
     }) => {
         if (!items || items.length === 0) return null;
         return (
@@ -52,65 +55,72 @@ export default function ScheduleOfCourseSection({ selectedCourseSectionId, onClo
                 </div>
 
                 <div className="space-y-3">
-                    {items.map((group, idx) => (
-                        <div
-                            key={idx}
-                            className="group/card border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden bg-white dark:bg-gray-900/50"
-                        >
-                            <div className="px-4 py-2 bg-gray-50/50 dark:bg-gray-800/50 border-b border-gray-100 dark:border-gray-800 flex justify-between items-center">
-                                <div className="flex items-center gap-3">
-                                    <div className="flex items-center gap-1.5 text-[11px] font-medium text-gray-500">
-                                        <User size={12} /> {group.lecturer}
-                                    </div>
-                                    <div className="w-1 h-1 rounded-full bg-gray-300"></div>
-                                    <div className="text-[11px] font-bold text-[#ec5d15]">{group.plannedClass}</div>
-                                </div>
-                                <div className="text-[10px] font-mono font-bold text-gray-400 bg-white dark:bg-gray-800 px-2 py-0.5 rounded border border-gray-100 dark:border-gray-700">
-                                    {group.slot}
-                                </div>
-                            </div>
-                            <div className="p-3 space-y-2">
-                                {(Array.isArray(group.schedules) ? group.schedules : [group.schedules]).map((sched: any) => (
-                                    <div
-                                        key={sched.id}
-                                        className="flex flex-col md:flex-row items-center gap-4 p-3 rounded-xl border border-transparent hover:border-orange-100 dark:hover:border-orange-900/30 hover:bg-orange-50/30 dark:hover:bg-orange-900/10 transition-all"
-                                    >
-                                        <div className="flex flex-col items-center justify-center min-w-15 h-15 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 group-hover/card:scale-105 transition-transform">
-                                            <span className="text-[9px] font-bold text-gray-400 uppercase leading-none mb-1">
-                                                {sched.dayOfWeek === 8 ? "CN" : `T.${sched.dayOfWeek}`}
-                                            </span>
-                                            <span className="text-sm font-black text-gray-700 dark:text-gray-200">
-                                                {dayOfWeekToString(sched.dayOfWeek)}
-                                            </span>
+                    {items.map((group, idx) => {
+                        const isHighlighted = type === 'practice' && (group as IPracticeOfScheduleByCourseSection).group === selectedId;
+                        return (
+                            <div
+                                key={idx}
+                                className={`group/card border rounded-2xl overflow-hidden transition-all duration-300 
+                                ${isHighlighted
+                                        ? 'border-[#ec5d15] bg-orange-50/50 dark:bg-orange-900/20 ring-2 ring-[#ec5d15]/20 shadow-lg'
+                                        : 'border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900/50'
+                                    }`}
+                            >
+                                <div className="px-4 py-2 bg-gray-50/50 dark:bg-gray-800/50 border-b border-gray-100 dark:border-gray-800 flex justify-between items-center">
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex items-center gap-1.5 text-[11px] font-medium text-gray-500">
+                                            <User size={12} /> {group.lecturer}
                                         </div>
-                                        <div className="flex-1">
-                                            <div className="flex items-center gap-3 mb-1">
-                                                <div className="flex items-center gap-1.5 text-sm font-bold text-gray-700 dark:text-gray-100">
-                                                    <Clock size={14} className="text-[#ec5d15]" />
-                                                    {minutestoHour(sched.startTimeMinutes)} - {minutestoHour(sched.endTimeMinutes)}
+                                        <div className="w-1 h-1 rounded-full bg-gray-300"></div>
+                                        <div className="text-[11px] font-bold text-[#ec5d15]">{group.plannedClass}</div>
+                                    </div>
+                                    <div className="text-[10px] font-mono font-bold text-gray-400 bg-white dark:bg-gray-800 px-2 py-0.5 rounded border border-gray-100 dark:border-gray-700">
+                                        {group.slot}
+                                    </div>
+                                </div>
+                                <div className="p-3 space-y-2">
+                                    {(Array.isArray(group.schedules) ? group.schedules : [group.schedules]).map((sched: any) => (
+                                        <div
+                                            key={sched.id}
+                                            className="flex flex-col md:flex-row items-center gap-4 p-3 rounded-xl border border-transparent hover:border-orange-100 dark:hover:border-orange-900/30 hover:bg-orange-50/30 dark:hover:bg-orange-900/10 transition-all"
+                                        >
+                                            <div className="flex flex-col items-center justify-center min-w-15 h-15 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 group-hover/card:scale-105 transition-transform">
+                                                <span className="text-[9px] font-bold text-gray-400 uppercase leading-none mb-1">
+                                                    {sched.dayOfWeek === 8 ? "CN" : `T.${sched.dayOfWeek}`}
+                                                </span>
+                                                <span className="text-sm font-black text-gray-700 dark:text-gray-200">
+                                                    {dayOfWeekToString(sched.dayOfWeek)}
+                                                </span>
+                                            </div>
+                                            <div className="flex-1">
+                                                <div className="flex items-center gap-3 mb-1">
+                                                    <div className="flex items-center gap-1.5 text-sm font-bold text-gray-700 dark:text-gray-100">
+                                                        <Clock size={14} className="text-[#ec5d15]" />
+                                                        {minutestoHour(sched.startTimeMinutes)} - {minutestoHour(sched.endTimeMinutes)}
+                                                    </div>
+                                                    {sched.room ? (
+                                                        <div className="flex items-center gap-1.5 text-xs text-gray-500">
+                                                            <MapPin size={13} /> {sched.room}
+                                                        </div>
+                                                    ) : sched.meetingLink ? (
+                                                        <div className="flex items-center gap-1.5 text-xs text-blue-500 font-medium">
+                                                            <Video size={13} /> Trực tuyến
+                                                        </div>
+                                                    ) : null}
                                                 </div>
-                                                {sched.room ? (
-                                                    <div className="flex items-center gap-1.5 text-xs text-gray-500">
-                                                        <MapPin size={13} /> {sched.room}
-                                                    </div>
-                                                ) : sched.meetingLink ? (
-                                                    <div className="flex items-center gap-1.5 text-xs text-blue-500 font-medium">
-                                                        <Video size={13} /> Trực tuyến
-                                                    </div>
-                                                ) : null}
-                                            </div>
-                                            <div className="flex items-center gap-1.5 text-[10px] text-gray-400">
-                                                <Calendar size={12} />
-                                                <span>{new Date(sched.startDate).toLocaleDateString('vi-VN')}</span>
-                                                <span className="opacity-50">→</span>
-                                                <span>{new Date(sched.endDate).toLocaleDateString('vi-VN')}</span>
+                                                <div className="flex items-center gap-1.5 text-[10px] text-gray-400">
+                                                    <Calendar size={12} />
+                                                    <span>{new Date(sched.startDate).toLocaleDateString('vi-VN')}</span>
+                                                    <span className="opacity-50">→</span>
+                                                    <span>{new Date(sched.endDate).toLocaleDateString('vi-VN')}</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        )
+                    })}
                 </div>
             </div>
         );
@@ -125,6 +135,8 @@ export default function ScheduleOfCourseSection({ selectedCourseSectionId, onClo
                     title="Lý thuyết"
                     items={data?.theory || []}
                     badgeColor="bg-blue-500"
+                    type="theory"
+                    selectedId={selectedGroup}
                 />
                 {hasPractice && (
                     <div className="mb-4 p-3 bg-orange-50 dark:bg-orange-900/10 rounded-2xl border border-orange-100 dark:border-orange-900/30">
@@ -148,17 +160,19 @@ export default function ScheduleOfCourseSection({ selectedCourseSectionId, onClo
                         </div>
                     </div>
                 )}
-
                 <RenderScheduleGroup
                     title="Thực hành"
                     items={data?.practices || []}
                     badgeColor="bg-emerald-500"
+                    type="practice"
+                    selectedId={selectedGroup}
                 />
-
                 <RenderScheduleGroup
                     title="Trực tuyến"
                     items={data?.online || []}
                     badgeColor="bg-purple-500"
+                    type="online"
+                    selectedId={selectedGroup}
                 />
 
                 {hasNoData && (

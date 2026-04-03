@@ -1,10 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { getUnpaidEnrollment, createPayment, getPaidEnrollment } from '@/app/api/studentService/payment';
-import { ICreatePayment } from "@/app/types/student/payment.type";
+import { ICreatePayment, IPaidEnrollmentData, IGetUnPaidEnrollmentData, IPaidEnrollmentDataResponse } from '@/app/types/student/payment.type';
 import toast from "react-hot-toast";
 
 export const useGetUnPaidEnrollment = () => {
-    return useQuery({
+    return useQuery<IGetUnPaidEnrollmentData>({
         queryKey: ['get-unpaid-enrollment'],
         queryFn: () => getUnpaidEnrollment(),
         staleTime: 5 * 60 * 1000,
@@ -26,7 +26,7 @@ export const useCreatePayment = () => {
     })
 };
 export const useGetPaidEnrollment = () => {
-    return useQuery({
+    return useQuery<IPaidEnrollmentDataResponse>({
         queryKey: ['get-paid-enrollment'],
         queryFn: () => getPaidEnrollment(),
         staleTime: 5 * 60 * 1000,

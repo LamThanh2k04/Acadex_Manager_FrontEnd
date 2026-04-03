@@ -38,7 +38,7 @@ export default function UnPaidEnrollment({ data }: IGetUnPaidEnrollmentDataProps
     };
     if (enrollments.length === 0) {
         return (
-            <div className="mt-8 p-12 bg-gray-50/50 dark:bg-gray-900/20 border border-gray-100 dark:border-gray-800 rounded-3xl flex flex-col items-center justify-center text-center">
+            <div className="mt-8 p-12 bg-gray-50/50 dark:bg-gray-900/20 border border-gray-100 dark:border-gray-800 rounded-3xl flex flex-col items-center justify-center text-center min-h-screen">
                 <div className="w-16 h-16 bg-white dark:bg-gray-800 rounded-2xl shadow-sm flex items-center justify-center mb-4">
                     <CheckCircle2 size={24} className="text-green-400" />
                 </div>
