@@ -31,7 +31,7 @@ export default function UnPaidEnrollment({ data }: IGetUnPaidEnrollmentDataProps
             { enrollmentIds: selectedEnrollments },
             {
                 onSuccess: (res) => {
-                    window.open(res.data.paymentUrl, '_blank');
+                    window.location.href = res.data.paymentUrl;
                 }
             }
         );

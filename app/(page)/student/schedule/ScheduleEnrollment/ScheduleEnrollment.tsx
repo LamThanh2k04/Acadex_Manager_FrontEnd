@@ -80,28 +80,25 @@ const STUDY_TYPE_LABEL: Record<TTypeOfStudySchedules, string> = {
  * RRULE byweekday:
  * MO=0, TU=1, WE=2, TH=3, FR=4, SA=5, SU=6
  */
+// ✅ Fix - backend 2-8
 const DOW_TO_RRULE_NUM: Record<number, number> = {
-    1: 0,
-    2: 1,
-    3: 2,
-    4: 3,
-    5: 4,
-    6: 5,
-    7: 6,
+    2: 0, // Thứ 2 → MO
+    3: 1, // Thứ 3 → TU
+    4: 2, // Thứ 4 → WE
+    5: 3, // Thứ 5 → TH
+    6: 4, // Thứ 6 → FR
+    7: 5, // Thứ 7 → SA
+    8: 6, // Chủ nhật → SU
 };
 
-/**
- * JS Date.getDay():
- * 0 = Chủ nhật, 1 = Thứ 2 ... 6 = Thứ 7
- */
 const DOW_TO_JS: Record<number, number> = {
-    1: 1,
-    2: 2,
-    3: 3,
-    4: 4,
-    5: 5,
-    6: 6,
-    7: 0,
+    2: 1, // Thứ 2 → JS Monday
+    3: 2, // Thứ 3 → JS Tuesday
+    4: 3, // Thứ 4 → JS Wednesday
+    5: 4, // Thứ 5 → JS Thursday
+    6: 5, // Thứ 6 → JS Friday
+    7: 6, // Thứ 7 → JS Saturday
+    8: 0, // Chủ nhật → JS Sunday
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -180,14 +177,15 @@ const isValidDateString = (value: string | null): value is string => {
 // ─────────────────────────────────────────────────────────────────────────────
 
 const toStudyEvent = (schedule: IStudySchedules, index: number) => {
-    const firstDate = findFirstOccurrence(schedule.startDate, schedule.dayOfWeek);
-    const startTimeLabel = tietToTime(schedule.startTime);
+    // ✅ Cắt ISO string trước khi xử lý
+    const startDateOnly = schedule.startDate.slice(0, 10);
+    const endDateOnly = schedule.endDate.slice(0, 10);
 
-    /**
-     * endTime là tiết cuối cùng,
-     * nên +1 để ra thời điểm kết thúc thực tế
-     */
-    const endTimeLabel = tietToTime(schedule.endTime + 1);
+    const firstDate = findFirstOccurrence(startDateOnly, schedule.dayOfWeek);
+
+    // ✅ minutesToTime - số phút từ 00:00
+    const startTimeLabel = minutesToTime(schedule.startTime);
+    const endTimeLabel = minutesToTime(schedule.endTime);
 
     const color = STUDY_TYPE_COLOR[schedule.type] ?? STUDY_TYPE_COLOR.THEORY;
 
@@ -209,8 +207,8 @@ const toStudyEvent = (schedule: IStudySchedules, index: number) => {
         rrule: {
             freq: "weekly",
             byweekday: [DOW_TO_RRULE_NUM[schedule.dayOfWeek]],
-            dtstart: `${firstDate}T${startTimeLabel}:00`,
-            until: `${schedule.endDate}T23:59:59`,
+            dtstart: `${firstDate}T${startTimeLabel}:00`,   // ✅ "2026-03-25T15:40:00"
+            until: `${endDateOnly}T23:59:59`,               // ✅ "2026-03-30T23:59:59"
         },
         duration: getDuration(startTimeLabel, endTimeLabel),
         backgroundColor: color.bg,
@@ -221,6 +219,9 @@ const toStudyEvent = (schedule: IStudySchedules, index: number) => {
 };
 
 const toExamEvent = (exam: IExamSchedules) => {
+    // ✅ Slice ISO string
+    const examDateOnly = exam.examDate.slice(0, 10);
+
     const startTimeLabel = minutesToTime(exam.startMinute);
     const endTimeLabel = minutesToTime(exam.endMinute);
 
@@ -236,10 +237,10 @@ const toExamEvent = (exam: IExamSchedules) => {
     };
 
     return {
-        id: `exam-${exam.subjectCode}-${exam.examDate}`,
+        id: `exam-${exam.subjectCode}-${examDateOnly}`,
         title: exam.subjectName,
-        start: `${exam.examDate}T${startTimeLabel}:00`,
-        end: `${exam.examDate}T${endTimeLabel}:00`,
+        start: `${examDateOnly}T${startTimeLabel}:00`,  // ✅
+        end: `${examDateOnly}T${endTimeLabel}:00`,      // ✅
         backgroundColor: EXAM_COLOR.bg,
         borderColor: EXAM_COLOR.border,
         textColor: EXAM_COLOR.text,
@@ -446,9 +447,20 @@ export default function ScheduleEnrollment({
         const studyEvents =
             selectedType === "EXAM"
                 ? []
-                : (data.studySchedules ?? []).map((item, index) =>
-                    toStudyEvent(item, index)
-                );
+                : (data.studySchedules ?? []).map((item, index) => {
+                    const event = toStudyEvent(item, index);
+
+                    // ✅ Log để kiểm tra
+                    console.log("Study schedule:", {
+                        subjectCode: item.subjectCode,
+                        startDate: item.startDate,
+                        endDate: item.endDate,
+                        dayOfWeek: item.dayOfWeek,
+                        rrule: event.rrule,
+                    });
+
+                    return event;
+                });
 
         const examEvents =
             selectedType === "STUDY"
@@ -459,12 +471,16 @@ export default function ScheduleEnrollment({
     }, [data, selectedType]);
 
     useEffect(() => {
-        const calendarApi: CalendarApi | undefined =
-            calendarRef.current?.getApi();
+        const calendarApi: CalendarApi | undefined = calendarRef.current?.getApi();
 
         if (!calendarApi || !selectedDate) return;
 
-        calendarApi.gotoDate(selectedDate);
+        // ✅ Defer ra ngoài render cycle của React
+        const timer = setTimeout(() => {
+            calendarApi.gotoDate(selectedDate);
+        }, 0);
+
+        return () => clearTimeout(timer);
     }, [selectedDate]);
 
     const handleEventClick = (info: EventClickArg) => {

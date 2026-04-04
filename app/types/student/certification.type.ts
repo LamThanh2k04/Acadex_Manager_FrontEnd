@@ -1,4 +1,7 @@
 // Certificate Program
+export interface ICertificateProgramProps {
+    data: ICertificateProgram;
+};
 export interface ICertificateProgram {
     result: IResultOfCertificateProgram[];
 };
