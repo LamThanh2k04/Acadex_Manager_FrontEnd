@@ -20,5 +20,6 @@ export const useScheduleCalendar = (date: string, page: number) => {
         queryKey: ["schedule-calendar", date, page],
         queryFn: () => adminService.getScheduleCalendar(date, page),
         staleTime: 6 * 50 * 1000,
+        placeholderData: (prevData) => prevData,
     });
 };

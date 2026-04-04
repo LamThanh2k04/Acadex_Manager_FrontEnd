@@ -3,6 +3,7 @@ import { usePassFailBarChart, usePieChartGenders, useRevenueChart } from "@/hook
 import Overview from "./Overview/Overview";
 import { useOverView, useScheduleCalendar, useTopStudentGPA } from '@/hooks/admin/useOverview';
 import { RevenueAreaInteractive } from "./RevenueAreaInteractive/RevenueAreaInteractive";
+import { format } from "date-fns"
 import { useState } from "react";
 import OverviewSkeleton from "./Overview/OverviewSkeleton";
 import RevenueAreaInteractiveSkeleton from "./RevenueAreaInteractive/RevenueAreaInteractiveSkeleton";
@@ -16,7 +17,9 @@ import ScheduleCalendar from "./ScheduleCalendar/ScheduleCalendar";
 export default function DashboardAdmin() {
     const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
     const [selectedRole, setSelectedRole] = useState("LECTURER");
-    const [selectedDate, setSelectedDate] = useState("2025-10-27");
+    const [selectedDate, setSelectedDate] = useState<string>(
+        format(new Date(), "yyyy-MM-dd")
+    );
     const [selectedPageSchedule, setSelectedPageSchedule] = useState(1);
     const { data: dataRevenueChart, isLoading: isLoadingRevenueChart } = useRevenueChart(selectedYear);
     const { data: dataOverview, isLoading: isLoadingOverview } = useOverView();
