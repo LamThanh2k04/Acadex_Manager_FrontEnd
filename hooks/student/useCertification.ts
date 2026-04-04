@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { getCertificateProgram, submitCertificate, getAllCertificateStudent } from '@/app/api/studentService/certification';
-import { ICertificateProgram, ISubmitCertificate } from '@/app/types/student/certification.type';
+import { ICertificateProgram, ISubmitCertificate, ICertificicateStudentData } from '@/app/types/student/certification.type';
 import toast from "react-hot-toast";
 
 export const useGetCertificationProgram = () => {
@@ -26,7 +26,7 @@ export const useSubmitCertification = (onClose: () => void) => {
     })
 };
 export const useGetCertificationStudent = () => {
-    return useQuery({
+    return useQuery<ICertificicateStudentData>({
         queryKey: ['get-certification-student'],
         queryFn: () => getAllCertificateStudent(),
         staleTime: 5 * 60 * 1000,

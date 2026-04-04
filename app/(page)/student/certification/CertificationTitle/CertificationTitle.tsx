@@ -1,5 +1,7 @@
 export default function CertificationTitle() {
     return (
-        <div></div>
+        <div className="mt-10">
+            Hello
+        </div>
     )
 }

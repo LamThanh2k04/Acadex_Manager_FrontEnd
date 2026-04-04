@@ -1,4 +1,8 @@
 // Certificate Program
+export interface ICertificatePercentProps {
+    dataCertificationProgram: ICertificateProgram;
+    dataCertificationStudent: ICertificicateStudentData;
+};
 export interface ICertificateProgramProps {
     data: ICertificateProgram;
 };
@@ -20,6 +24,12 @@ export interface ISubmitCertificate {
     issueDate: string;
 };
 // Certificate Student
+export interface ICertificicateStudentDataProps {
+    data: ICertificicateStudentData;
+}
+export interface ICertificicateStudentData {
+    certificates: ICertificicateStudent[];
+};
 export interface ICertificicateStudent {
     fileUrl: string;
     issueDate: string;
