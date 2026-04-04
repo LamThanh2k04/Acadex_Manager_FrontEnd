@@ -9,6 +9,9 @@ https.interceptors.response.use(
     (error) => {
         if (error.response?.status === 401) {
             toast.error("Phiên đăng nhập hết hạn, vui lòng đăng nhập lại");
+            setTimeout(() => {
+                window.location.href = "/";
+            }, 1500);
         } else if (error.code === 'NETWORK_ERROR') {
             toast.error("Lỗi kết nối mạng, vui lòng kiểm tra internet");
         } else {
