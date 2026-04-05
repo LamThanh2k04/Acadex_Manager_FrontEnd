@@ -1,6 +1,17 @@
+"use client"
 import { ICertificicateStudentDataProps, TStatusOfCertificateStudent } from "@/app/types/student/certification.type";
 import { Upload, Hourglass, CircleCheck } from 'lucide-react';
 import Image from "next/image";
+import { useState } from "react";
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+import StudentAddModal from '@/app/(page)/admin/students/StudentModal/StudentAddModal';
+import CertificationSubmitModal from "./CertificationSubmitModal";
 const STATUS_CONFIG: Record<TStatusOfCertificateStudent, {
     label: string;
     className: string;
@@ -30,8 +41,8 @@ const STATUS_CONFIG: Record<TStatusOfCertificateStudent, {
         disabled: true,
     },
 };
-
 export default function CertificationStudent({ data }: ICertificicateStudentDataProps) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
     if (data.certificates.length === 0) {
         return (
             <p className="text-sm text-gray-400 text-center py-8">
@@ -85,6 +96,7 @@ export default function CertificationStudent({ data }: ICertificicateStudentData
                             <div className="pt-2">
                                 <button
                                     disabled={config.disabled}
+                                    onClick={() => setIsModalOpen(true)}
                                     className={`flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl border transition-all
                                         ${config.disabled
                                             ? "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200"
@@ -99,6 +111,14 @@ export default function CertificationStudent({ data }: ICertificicateStudentData
                     </div>
                 );
             })}
+            <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+                <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                        <DialogTitle>Nộp lại chứng chỉ</DialogTitle>
+                    </DialogHeader>
+                    <CertificationSubmitModal onClose={() => setIsModalOpen(false)} />
+                </DialogContent>
+            </Dialog>
         </div>
     );
 }
