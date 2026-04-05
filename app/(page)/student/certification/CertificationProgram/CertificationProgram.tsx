@@ -31,7 +31,7 @@ export default function CertificationProgram({ dataCertificationProgram, dataCer
                     }}
                 />
             </div>
-            <p className="text-xs text-gray-400 mt-1.5">
+            <p className="text-xs text-gray-400 font-bold mt-1.5">
                 {percent === 100
                     ? 'Bạn đã hoàn thành tất cả chứng chỉ!'
                     : `Còn ${TOTAL_REQUIRED - issuedStudentLength} chứng chỉ chưa hoàn thành`
