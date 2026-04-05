@@ -16,7 +16,6 @@ import StudentUpdateModal from '../StudentModal/StudentUpdateModal';
 import StudentResetPasswordModal from '../StudentModal/StudenResetPasswordModal';
 import AlertDialogBlockStudent from '@/app/(page)/admin/students/AlertDialogStudent/AlertDialogBlockStudent';
 import AlertDialogUnBlockStudent from '@/app/(page)/admin/students/AlertDialogStudent/AlertDialogUnBlockStudent';
-import ClassesSearchBar from '@/app/(page)/admin/classes/ClassesSearchBar/ClassesSearchBar';
 export default function StudentTable({ data }: IStudentManagerProps) {
     console.log(data);
     const [isModalCreate, setIsModalCreate] = useState(false);
