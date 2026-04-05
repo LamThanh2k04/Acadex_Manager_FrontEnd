@@ -15,7 +15,7 @@ export default function CertificationProgramResult({ data }: ICertificateProgram
         );
     }
     return (
-        <div className="mt-6 overflow-hidden rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900/50 shadow-sm">
+        <div className="mt-3 overflow-hidden rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900/50 shadow-sm">
             <table className="w-full text-sm">
                 <thead>
                     <tr className="bg-gray-50 dark:bg-gray-800/50 border-b border-gray-100 dark:border-gray-800">
