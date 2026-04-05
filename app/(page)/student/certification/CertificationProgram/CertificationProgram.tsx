@@ -1,16 +1,10 @@
 "use client"
 import { ICertificatePercentProps } from '@/app/types/student/certification.type';
 export default function CertificationProgram({ dataCertificationProgram, dataCertificationStudent }: ICertificatePercentProps) {
-    console.log(dataCertificationProgram);
-    console.log(dataCertificationStudent);
     const TOTAL_REQUIRED = dataCertificationProgram.result.length ?? 0;
-    console.log(TOTAL_REQUIRED);
     const issuedStudent = dataCertificationStudent?.certificates?.filter((st) => st.status === "ISSUED");
-    console.log(issuedStudent);
     const issuedStudentLength = issuedStudent?.length;
-    console.log(issuedStudentLength);
     const percent = TOTAL_REQUIRED > 0 ? Math.round((issuedStudentLength / TOTAL_REQUIRED) * 100) : 0;
-    console.log(percent);
     return (
         <div className=' ml-3 border p-5 rounded-xl w-90 bg-white hover:border-orange-400 transition-colors duration-300'>
             <div className="flex items-center justify-between mb-2">
