@@ -8,7 +8,6 @@ import {
     DialogContent,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog"
 import CertificationSubmitModal from "./CertificationSubmitModal";
 export default function CertificationStudent({ data }: ICertificicateStudentDataProps) {
