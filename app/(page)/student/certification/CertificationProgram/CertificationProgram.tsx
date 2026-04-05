@@ -1,6 +1,5 @@
 "use client"
 import { ICertificatePercentProps } from '@/app/types/student/certification.type';
-import { CircleCheckBig } from 'lucide-react';
 export default function CertificationProgram({ dataCertificationProgram, dataCertificationStudent }: ICertificatePercentProps) {
     console.log(dataCertificationProgram);
     console.log(dataCertificationStudent);
