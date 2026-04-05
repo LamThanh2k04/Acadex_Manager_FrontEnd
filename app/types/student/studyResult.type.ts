@@ -1,9 +1,12 @@
 export interface IStudyResultDataProps {
-    data: IStudyResultData;
+    data: IStudyResultDataResponse;
+};
+export interface IStudyResultDataResponse {
+    studyResults: IStudyResultData[];
 };
 export interface IStudyResultData {
     semester: ISemesterOfStudyResult;
-    subject: ISubjectOfStudyResult[];
+    subjects: ISubjectOfStudyResult[];
 };
 export interface ISemesterOfStudyResult {
     name: string;
