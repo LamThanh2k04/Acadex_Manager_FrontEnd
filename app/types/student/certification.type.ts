@@ -47,4 +47,15 @@ export interface ITemplateOfCertificateStudent {
 };
 export interface IAdminOfCertificateStudent {
     fullName: string;
-}
+};
+export interface ICertificationProgramAllResponse {
+    certificates: ICertificationProgramAll[]
+};
+export interface ICertificationProgramAll {
+    template: ITemplateOfCertificationProgramAll;
+};
+export interface ITemplateOfCertificationProgramAll {
+    id: number;
+    name: string;
+    description: string;
+};
