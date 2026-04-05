@@ -1,3 +1,6 @@
+export interface IStudyResultDataProps {
+    data: IStudyResultData;
+};
 export interface IStudyResultData {
     semester: ISemesterOfStudyResult;
     subject: ISubjectOfStudyResult[];
