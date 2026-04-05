@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { getCertificateProgram, submitCertificate, getAllCertificateStudent, getAllCertificationProgram } from '@/app/api/studentService/certification';
-import { ICertificateProgram, ISubmitCertificate, ICertificicateStudentData, ICertificationProgramAllResponse } from '@/app/types/student/certification.type';
+import { ICertificateProgram, ICertificicateStudentData, ICertificationProgramAll } from '@/app/types/student/certification.type';
 import toast from "react-hot-toast";
 
 export const useGetCertificationProgram = () => {
@@ -15,7 +15,7 @@ export const useSubmitCertification = (onClose: () => void) => {
     return useMutation({
         mutationFn: (formData: FormData) => submitCertificate(formData),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['get-certification'] });
+            queryClient.invalidateQueries({ queryKey: ['get-certification-program'] });
             toast.success("Nộp chứng chỉ thành công");
             onClose();
         },
@@ -33,7 +33,7 @@ export const useGetCertificationStudent = () => {
     })
 };
 export const useGetAllCertificationProgram = () => {
-    return useQuery<ICertificationProgramAllResponse>({
+    return useQuery<ICertificationProgramAll[]>({
         queryKey: ['get-all-certification-program'],
         queryFn: () => getAllCertificationProgram(),
         staleTime: 5 * 60 * 1000,
