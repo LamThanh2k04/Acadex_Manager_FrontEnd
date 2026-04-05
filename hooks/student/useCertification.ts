@@ -13,7 +13,7 @@ export const useGetCertificationProgram = () => {
 export const useSubmitCertification = (onClose: () => void) => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationFn: (data: ISubmitCertificate) => submitCertificate(data),
+        mutationFn: (formData: FormData) => submitCertificate(formData),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-certification'] });
             toast.success("Nộp chứng chỉ thành công");
@@ -38,4 +38,4 @@ export const useGetAllCertificationProgram = () => {
         queryFn: () => getAllCertificationProgram(),
         staleTime: 5 * 60 * 1000,
     })
-}
+};
