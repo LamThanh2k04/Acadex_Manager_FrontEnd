@@ -46,5 +46,5 @@ export interface ITemplateOfCertificateStudent {
     name: string;
 };
 export interface IAdminOfCertificateStudent {
-    name: string;
+    fullName: string;
 }

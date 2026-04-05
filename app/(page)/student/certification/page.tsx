@@ -12,7 +12,7 @@ export default function Certification() {
             {certificationProgram && certificationStudent && (
                 <CertificationProgram dataCertificationProgram={certificationProgram} dataCertificationStudent={certificationStudent} />
             )}
-            {certificationStudent && <CertificationStudent />}
+            {certificationStudent && <CertificationStudent data={certificationStudent} />}
         </div>
     )
 }
