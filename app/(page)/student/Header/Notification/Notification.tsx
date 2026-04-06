@@ -10,7 +10,6 @@ export default function Notification() {
         <div>
             <NotificationDropdown
                 data={allNotificationData}
-                selectedId={selectedId}
                 onSelectedId={setSelectedId}
             />
             {selectedId && (
