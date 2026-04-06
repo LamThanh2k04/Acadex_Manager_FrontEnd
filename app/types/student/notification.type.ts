@@ -1,7 +1,7 @@
 export type TNotificationType = "BROADCAST" | "PERSONAL";
 export type TTargetRole = "STUDENT" | "LECTURER" | "ADMIN";
 export interface INotificationDataResponseProps {
-    data: INotificationDataResponse;
+    data?: INotificationDataResponse;
     onSelectedId: (notificationId: number) => void
 };
 export interface INotificationDataResponse {
