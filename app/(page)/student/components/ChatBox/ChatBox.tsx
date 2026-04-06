@@ -4,12 +4,8 @@ import ChatBubble from "./ChatBubble";
 import ChatMessage from "./ChatMessage";
 import { IMessage } from "@/app/types/student/chatbox.type";
 export default function ChatBox() {
-    const WELCOME_MSG: IMessage = {
-        role: "assistant",
-        content: "Xin chào! Tôi là trợ lý Acadex, tôi có thể giúp gì cho bạn?"
-    };
     const [isOpen, setIsOpen] = useState(false);
-    const [messages, setMessages] = useState<IMessage[]>([WELCOME_MSG]);
+    const [messages, setMessages] = useState<IMessage[]>([]);
     return (
         <div>
             {isOpen && (
