@@ -1,5 +1,6 @@
 import { getAllNotifications, getInfoNotification } from "@/app/api/studentService/notification"
-import { INotificationData, INotificationDataResponse } from "@/app/types/student/notification.type";
+import { INotificationDataResponse } from '@/app/types/student/notification.type';
+import { useAppSelector } from "@/lib/hook";
 import { disconnectSocket, getSocket } from "@/lib/socket";
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { useEffect } from "react";
@@ -7,23 +8,25 @@ import toast from "react-hot-toast";
 
 export const useGetAllNotification = () => {
     const queryClient = useQueryClient();
-    const query = useQuery({
+    const user = useAppSelector((state) => state.user.userInfo);
+    const userId = user?.id;
+    const query = useQuery<INotificationDataResponse>({
         queryKey: ['get-all-notification'],
         queryFn: getAllNotifications,
     });
     useEffect(() => {
-        const socket = getSocket();
+        const socket = getSocket(userId);
         socket.connect();
-        socket.on("new-notification", (newNotification: INotificationData) => {
+        socket.on("notification:new", () => {
             queryClient.invalidateQueries({ queryKey: ['get-all-notification'] });
-            toast(newNotification.notification.title, { icon: "🔔" });
+            toast("Bạn có thông báo mới", { icon: "🔔" });
         })
         return () => {
-            socket.off("new-notification");
+            socket.off("notification:new");
             disconnectSocket();
         };
 
-    }, [queryClient]);
+    }, [userId, queryClient]);
     return query;
 };
 export const useGetNotificationInfo = (notificationId: number) => {
