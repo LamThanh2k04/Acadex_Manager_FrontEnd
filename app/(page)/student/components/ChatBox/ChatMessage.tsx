@@ -1,16 +1,11 @@
 "use client"
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Bot, Trash2 } from "lucide-react";
 import ChatInput from "./ChatInput";
 import { IMessage } from '@/app/types/student/chatbox.type';
 import { useChatBoxMessage } from "@/hooks/student/useChatBox";
 import ChatData from "./ChatData";
 import { WelcomeBubble } from "./WelcomeBubble";
-
-const WELCOME_MESSAGE: IMessage = {
-    role: "assistant",
-    content: "Xin chào! 👋 Tôi là trợ lý Acadex, tôi có thể giúp bạn tra cứu lịch học, điểm số, học phí và nhiều thông tin khác. Bạn cần hỗ trợ gì?",
-};
 function MessageBubble({ message }: { message: IMessage }) {
     const isUser = message.role === "user";
     return (
@@ -54,6 +49,8 @@ function TypingIndicator() {
 }
 export default function ChatMessages({ message, setMessage }: { message: IMessage[], setMessage: React.Dispatch<React.SetStateAction<IMessage[]>> }) {
     const { mutate: sendMessage, isPending } = useChatBoxMessage();
+    const [resetKey, setResetKey] = useState(0);
+    const [shouldAnimate, setShouldAnimate] = useState(true);
     const bottomRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
         bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -77,7 +74,14 @@ export default function ChatMessages({ message, setMessage }: { message: IMessag
             }
         );
     };
-    const handleClear = () => setMessage([WELCOME_MESSAGE]);
+    const handleClear = () => {
+        setShouldAnimate(true);
+        setMessage([]);
+        setResetKey(prev => prev + 1);
+    };
+    const handleWelcomeDone = () => {
+        setShouldAnimate(false);
+    };
     return (
         <div className="flex flex-col h-full">
             <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 rounded-t-2xl">
@@ -105,12 +109,14 @@ export default function ChatMessages({ message, setMessage }: { message: IMessag
                 )}
             </div>
             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 bg-white dark:bg-gray-900/50">
+                <WelcomeBubble
+                    key={resetKey}
+                    initialAnimate={shouldAnimate}
+                    onDone={handleWelcomeDone}
+                />
                 {message.map((msg, index) => (
                     <div key={index}>
-                        {index === 0 && msg.role === "assistant"
-                            ? <WelcomeBubble />
-                            : <MessageBubble message={msg} />
-                        }
+                        <MessageBubble message={msg} />
                         {msg.response && <ChatData response={msg.response} />}
                     </div>
                 ))}

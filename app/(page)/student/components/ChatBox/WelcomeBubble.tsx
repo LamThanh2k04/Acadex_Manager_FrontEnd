@@ -1,11 +1,15 @@
-// ChatMessages.tsx
 import { useEffect, useState } from "react";
 import { Bot } from "lucide-react";
 const WELCOME_TEXT = "Xin chào! 👋 Tôi là trợ lý Acadex, tôi có thể giúp bạn tra cứu lịch học, điểm số, học phí và nhiều thông tin khác. Bạn cần hỗ trợ gì?";
-export function WelcomeBubble() {
+interface WelcomeBubbleProps {
+    initialAnimate?: boolean;
+    onDone?: () => void;
+}
+export function WelcomeBubble({ initialAnimate = true, onDone }: WelcomeBubbleProps) {
     const [displayed, setDisplayed] = useState("");
     const [done, setDone] = useState(false);
     useEffect(() => {
+        if (!initialAnimate) return;
         let i = 0;
         const timer = setInterval(() => {
             if (i < WELCOME_TEXT.length) {
@@ -13,12 +17,13 @@ export function WelcomeBubble() {
                 i++;
             } else {
                 setDone(true);
+                if (onDone) onDone();
                 clearInterval(timer);
             }
         }, 25);
 
         return () => clearInterval(timer);
-    }, []);
+    }, [initialAnimate]);
     return (
         <div className="flex items-end gap-2">
             <div className="shrink-0 w-7 h-7 rounded-full bg-[#ec5d15] flex items-center justify-center shadow-sm">

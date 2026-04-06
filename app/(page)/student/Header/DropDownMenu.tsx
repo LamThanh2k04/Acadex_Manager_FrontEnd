@@ -28,8 +28,11 @@ import { logoutUserAction } from '@/app/actions/auth.action';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import ResetPasswordModal from './ResetPasswordModal';
 export default function DropDownMenu() {
     const user = useAppSelector((state) => state.user.userInfo);
+    const [isOpenResetPassword, setIsOpenResetPassword] = useState(false);
     const dispatch = useAppDispatch();
     const router = useRouter();
     const [openAlert, setOpenAlert] = useState(false)
@@ -87,7 +90,9 @@ export default function DropDownMenu() {
                             </Link>
                         </DropdownMenuItem>
                         <DropdownMenuItem>
-                            <button className='flex items-center gap-3 rounded-xl cursor-pointer focus:bg-orange-50 focus:text-orange-600 transition-colors'>
+                            <button
+                                onClick={() => setIsOpenResetPassword(true)}
+                                className='flex items-center gap-3 rounded-xl cursor-pointer focus:bg-orange-50 focus:text-orange-600 transition-colors'>
                                 <Lock className="h-4 w-4 opacity-70" />
                                 <span className="flex-1 w-21 font-medium">Đổi mật khẩu</span>
                                 <ChevronRight className="h-3 w-3 ml-21 opacity-30" />
@@ -125,6 +130,14 @@ export default function DropDownMenu() {
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>
+            <Dialog open={isOpenResetPassword} onOpenChange={setIsOpenResetPassword}>
+                <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                        <DialogTitle>Cài đặt lại mật khẩu</DialogTitle>
+                    </DialogHeader>
+                    <ResetPasswordModal onClose={() => setIsOpenResetPassword(false)} />
+                </DialogContent>
+            </Dialog>
         </>
     )
 }
