@@ -18,7 +18,7 @@ export default function Header() {
                     <h1 className="text-xl font-bold flex flex-col">Acadex <span className="text-[7px] border p-1 rounded-xl border-orange-100 text-orange-300">Học tập và không ngừng phát triển</span> </h1>
                 </div>
             </Link>
-            <div className="flex items-center gap-3 justify-center">
+            <div className="flex items-center gap-2 justify-center">
                 <Notification />
                 <DropDownMenu />
                 <SwitchMode />
