@@ -1,9 +1,11 @@
 "use client"
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Bot, Trash2 } from "lucide-react";
 import ChatInput from "./ChatInput";
 import { IMessage } from '@/app/types/student/chatbox.type';
 import { useChatBoxMessage } from "@/hooks/student/useChatBox";
+import ChatData from "./ChatData";
+import { WelcomeBubble } from "./WelcomeBubble";
 
 const WELCOME_MESSAGE: IMessage = {
     role: "assistant",
@@ -50,28 +52,32 @@ function TypingIndicator() {
         </div>
     );
 }
-export default function ChatMessages() {
-    const [messages, setMessages] = useState<IMessage[]>([WELCOME_MESSAGE]);
+export default function ChatMessages({ message, setMessage }: { message: IMessage[], setMessage: React.Dispatch<React.SetStateAction<IMessage[]>> }) {
     const { mutate: sendMessage, isPending } = useChatBoxMessage();
     const bottomRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
         bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, [messages, isPending]);
+    }, [message, isPending]);
     const handleSend = (message: string) => {
-        setMessages((prev) => [...prev, { role: "user", content: message }]);
+        setMessage((prev) => [...prev, { role: "user", content: message }]);
         sendMessage(
             { ask: message },
             {
                 onSuccess: (res) => {
-                    setMessages((prev) => [
+                    console.log("res từ API:", res);
+                    setMessage((prev) => [
                         ...prev,
-                        { role: "assistant", content: res.message },
+                        {
+                            role: "assistant",
+                            content: res.text,
+                            response: res
+                        },
                     ]);
                 },
             }
         );
     };
-    const handleClear = () => setMessages([WELCOME_MESSAGE]);
+    const handleClear = () => setMessage([WELCOME_MESSAGE]);
     return (
         <div className="flex flex-col h-full">
             <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 rounded-t-2xl">
@@ -81,7 +87,7 @@ export default function ChatMessages() {
                     </div>
                     <div>
                         <p className="text-xs font-bold text-gray-800 dark:text-gray-100">
-                            Trợ lý Acadex
+                            Trợ lý ảo Acadex
                         </p>
                         <div className="flex items-center gap-1">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -89,7 +95,7 @@ export default function ChatMessages() {
                         </div>
                     </div>
                 </div>
-                {messages.length > 1 && (
+                {message.length > 1 && (
                     <button
                         onClick={handleClear}
                         className="p-1.5 rounded-lg text-gray-400 hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors cursor-pointer"
@@ -99,8 +105,14 @@ export default function ChatMessages() {
                 )}
             </div>
             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 bg-white dark:bg-gray-900/50">
-                {messages.map((msg, index) => (
-                    <MessageBubble key={index} message={msg} />
+                {message.map((msg, index) => (
+                    <div key={index}>
+                        {index === 0 && msg.role === "assistant"
+                            ? <WelcomeBubble />
+                            : <MessageBubble message={msg} />
+                        }
+                        {msg.response && <ChatData response={msg.response} />}
+                    </div>
                 ))}
                 {isPending && <TypingIndicator />}
                 <div ref={bottomRef} />

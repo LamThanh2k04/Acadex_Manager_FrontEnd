@@ -8,7 +8,7 @@ export default function ChatBubble({ isOpen, onToggle }: ChatBubbleProps) {
     return (
         <button
             onClick={onToggle}
-            className={`fixed bottom-15 right-3 z-50 w-14 h-14 rounded-full shadow-lg
+            className={`fixed bottom-15 right-3 z-50 w-10 h-10 rounded-full shadow-lg
                         flex items-center justify-center transition-all duration-300
                         active:scale-95 cursor-pointer
                         ${isOpen
@@ -22,8 +22,6 @@ export default function ChatBubble({ isOpen, onToggle }: ChatBubbleProps) {
                     : <Bot size={22} className="text-white" />
                 }
             </div>
-
-            {/* Pulse animation khi chưa mở */}
             {!isOpen && (
                 <span className="absolute inset-0 rounded-full bg-[#ec5d15] animate-ping opacity-30" />
             )}
