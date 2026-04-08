@@ -52,7 +52,7 @@ export default function DropDownMenu() {
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Button
-                        className="group relative p-2 h-12  w-12 rounded-xl border-2 border-transparent bg-orange-50 hover:border-orange-500 hover:bg-orange-100 transition-all duration-300 focus-visible:ring-0 focus:outline-none overflow-hidden"
+                        className="group relative p-2 h-12  w-12 rounded-full border-2 border-transparent bg-orange-50 hover:border-orange-500 hover:bg-orange-100 transition-all duration-300 focus-visible:ring-0 focus:outline-none overflow-hidden"
                         variant="outline"
                     >
                         {user?.avatar ? (
@@ -60,7 +60,7 @@ export default function DropDownMenu() {
                                 src={user?.avatar}
                                 fill
                                 alt="User Avatar"
-                                className="object-cover rounded-xx p-1"
+                                className="object-cover rounded-xl p-1"
                             />
                         ) : (
                             <span className="text-orange-400 text-xl">{initials}</span>

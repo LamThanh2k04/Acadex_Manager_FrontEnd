@@ -8,7 +8,7 @@ export default function Overview({ data }: { data: IOverview | undefined }) {
             value: data?.totalStudents || 0,
             icon: UsersRound,
             color: "text-orange-600",
-            bgColor: "bg-orange-50",
+            bgColor: "bg-white",
             borderColor: "border-orange-100"
         },
         {
@@ -16,7 +16,7 @@ export default function Overview({ data }: { data: IOverview | undefined }) {
             value: data?.totalClasses || 0,
             icon: School,
             color: "text-orange-600",
-            bgColor: "bg-orange-50",
+            bgColor: "bg-white",
             borderColor: "border-orange-100"
         },
         {
@@ -24,7 +24,7 @@ export default function Overview({ data }: { data: IOverview | undefined }) {
             value: data?.totalSchedulesToday || 0,
             icon: CalendarMinus2,
             color: "text-orange-600",
-            bgColor: "bg-orange-50",
+            bgColor: "bg-white",
             borderColor: "border-orange-100"
         },
         {
@@ -32,7 +32,7 @@ export default function Overview({ data }: { data: IOverview | undefined }) {
             value: `${data?.attendanceRate || 0}%`,
             icon: CalendarCheck,
             color: "text-orange-600",
-            bgColor: "bg-orange-50",
+            bgColor: "bg-white",
             borderColor: "border-orange-100"
         }
     ];

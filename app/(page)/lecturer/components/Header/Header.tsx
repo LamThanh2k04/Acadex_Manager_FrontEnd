@@ -5,7 +5,7 @@ import SwitchMode from './SwitchMode';
 export default function Header() {
     return (
         <div className="flex items-center justify-between fixed top-0 w-full bg-white z-50 shadow-sm p-2">
-            <Link href="/student/dashboard" className="flex items-start gap-1 p-2">
+            <Link href="/lecturer/dashboard" className="flex items-start gap-1 p-2">
                 <Image
                     src="/images/acadex-logo.jpg"
                     width={50}
