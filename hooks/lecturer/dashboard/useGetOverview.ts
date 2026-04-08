@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
-import { getOverview } from '@/app/api/lecturerService/dashboard/overView';
 import { IOverview } from "@/app/types/lecturer/dashboard/overview.type";
+import { getOverview } from "@/app/api/lecturerService/dashboard/overview";
 
 export const useGetOverview = () => {
     return useQuery<IOverview>({
