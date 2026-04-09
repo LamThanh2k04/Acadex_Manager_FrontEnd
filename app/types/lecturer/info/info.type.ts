@@ -1,3 +1,6 @@
+export interface ILecturerInfoResponse {
+    lecturer: ILecturerInfo;
+};
 export interface ILecturerInfo {
     fullName: string;
     avatar: string;
@@ -17,9 +20,9 @@ export interface ILecturerForLecturerInfo {
     placeOfBirth: string | null;
     ethnicity: string | null;
     degree: string | null;
-    position: string | null;
+    position: string;
     status: TStatusLectuer;
-    falcuty: IFalcutyOfLecturer;
+    faculty: IFalcutyOfLecturer;
     major: IMajorLecturer;
 };
 type TStatusLectuer = "WORKING" | "TRUANT";

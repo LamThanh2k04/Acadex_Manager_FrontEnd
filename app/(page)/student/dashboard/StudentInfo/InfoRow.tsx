@@ -1,4 +1,4 @@
-export default function InfoRow({ icon, label, value }: { icon: React.ReactNode; label: string; value: string | number }) {
+export default function InfoRow({ icon, label, value }: { icon: React.ReactNode; label: string; value: string | null }) {
     return (
         <div className="flex items-start gap-2.5 py-2.5 border-b border-gray-100 dark:border-gray-800 last:border-0">
             <span className="mt-0.5 shrink-0 text-[#ec5d15]/70">{icon}</span>
