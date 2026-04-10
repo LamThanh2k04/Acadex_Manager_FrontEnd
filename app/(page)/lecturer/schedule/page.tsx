@@ -1,18 +1,13 @@
-"use client";
-import { useSearchParams } from "next/navigation";
-import { CalendarDays, Filter } from "lucide-react";
-import { useGetScheduleEnrollment } from "@/hooks/student/useScheduleEnrollment";
-import ScheduleEnrollment from "./ScheduleEnrollment/ScheduleEnrollment";
-import ScheduleSelectDate from "./ScheduleSelectDate/ScheduleSelectDate";
-import ScheduleSelectType from "./ScheduleSelectType/ScheduleSelectType";
-import { IScheduleEnrollmentParams } from "@/app/types/student/scheduleEnrollment.type";
+"use client"
+import { useGetSchedule } from '@/hooks/lecturer/schedule/useGetSchedule';
+import { useSearchParams } from 'next/navigation';
+import ScheduleLecturer from './ScheduleLeturer/ScheduleLecturer';
+import { CalendarDays, Filter } from 'lucide-react';
+import ScheduleSelectDate from './ScheduleSelectDate/ScheduleSelectDate';
 export default function Schedule() {
     const searchParams = useSearchParams();
-    const rawType = searchParams.get("type");
-    const type: IScheduleEnrollmentParams["type"] =
-        rawType === "STUDY" || rawType === "EXAM" ? rawType : undefined;
     const date = searchParams.get("date") ?? "";
-    const { data } = useGetScheduleEnrollment({ type, date });
+    const { data: scheduleData } = useGetSchedule(date);
     return (
         <section className="space-y-6 p-4 md:p-6 mt-5">
             <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-neutral-800 dark:bg-neutral-950">
@@ -28,7 +23,7 @@ export default function Schedule() {
                         </div>
 
                         <p className="text-sm text-gray-500 dark:text-gray-400">
-                            Theo dõi lịch học, lịch thi hoặc các lịch đăng ký của bạn theo ngày.
+                            Theo dõi lịch giảng dạy của bạn theo ngày.
                         </p>
                     </div>
 
@@ -59,12 +54,6 @@ export default function Schedule() {
                 </div>
 
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                    <div className="rounded-xl border border-gray-100 bg-gray-50 p-3 dark:border-neutral-800 dark:bg-neutral-900">
-                        <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                            Loại lịch
-                        </label>
-                        <ScheduleSelectType />
-                    </div>
 
                     <div className="rounded-xl border border-gray-100 bg-gray-50 p-3 dark:border-neutral-800 dark:bg-neutral-900">
                         <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -75,8 +64,8 @@ export default function Schedule() {
                 </div>
             </div>
             <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm dark:border-neutral-800 dark:bg-neutral-950 md:p-5">
-                {data ? (
-                    <ScheduleEnrollment data={data} />
+                {scheduleData ? (
+                    <ScheduleLecturer data={scheduleData} />
                 ) : (
                     <div className="flex min-h-55 flex-col items-center justify-center rounded-2xl border border-dashed border-gray-200 bg-gray-50 px-4 text-center dark:border-neutral-800 dark:bg-neutral-900">
                         <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-gray-100 dark:bg-neutral-800">

@@ -17,4 +17,4 @@ export interface IStudySchedulesOfSchedule {
     type: TTypeLecturer;
     room: string;
 };
-type TTypeLecturer = "THEORY" | "PRACTICE" | "ONLINE";
+export type TTypeLecturer = "THEORY" | "PRACTICE" | "ONLINE";

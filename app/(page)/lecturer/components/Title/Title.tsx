@@ -2,6 +2,7 @@
 import { useAppSelector } from "@/lib/hook"
 import Image from 'next/image';
 import { PencilLine, GraduationCap, Mail, CalendarDays, Phone, CheckCircle2, XCircle } from 'lucide-react';
+import Link from "next/link";
 
 export default function Title() {
     const user = useAppSelector((state) => state.user.userInfo);
@@ -14,10 +15,10 @@ export default function Title() {
         .toUpperCase() || "??";
 
     return (
-        <div className="mt-10 overflow-hidden bg-[#FFFF] rounded-[32px] p-6 relative shadow-sm">
-            <button className="absolute top-5 right-5 p-2 bg-orange-100 rounded-lg text-orange-400 active:scale-95 transition-transform">
+        <div className="mt-5 overflow-hidden bg-[#FFFF] rounded-[32px] p-6 relative shadow-sm">
+            <Link href="/lecturer/info" className="absolute top-5 right-5 p-2 bg-orange-100 rounded-lg text-orange-400 active:scale-95 transition-transform">
                 <PencilLine size={16} />
-            </button>
+            </Link>
 
             <div className="flex flex-col items-center text-center">
                 <div className="relative mb-4">
