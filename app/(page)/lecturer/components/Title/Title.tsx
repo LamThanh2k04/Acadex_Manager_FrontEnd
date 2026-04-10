@@ -60,7 +60,7 @@ export default function Title() {
                             </div>
                             <div>
                                 <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-bold">Cấp bậc</p>
-                                <p className="font-semibold text-sm">Grade 12</p>
+                                <p className="font-semibold text-sm">Thạc sĩ</p>
                             </div>
                         </div>
 

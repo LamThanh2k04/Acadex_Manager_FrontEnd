@@ -25,7 +25,7 @@ export interface ISemesterCourseSection {
     name: string;
     academicYear: string;
 };
-export interface IStudentEnrollmentIsPaid {
+export interface IStudentEnrollmentIsPaidData {
     students: IStudentEnrollmentIsPaid[];
     pagination: IPagination;
 }

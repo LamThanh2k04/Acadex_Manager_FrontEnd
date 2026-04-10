@@ -5,5 +5,5 @@ export const getAllCourseSectionForLecturerSimple = async () => {
 };
 export const getAllSemesterSimple = async () => {
     const res = await https.get("/api/lecturer/courseSection/getAllSemestersSimple");
-    return res.data.data;
+    return res.data.data.semesters;
 };
