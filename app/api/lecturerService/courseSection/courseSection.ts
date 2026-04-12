@@ -13,7 +13,7 @@ export const getEnrollmentIsPaid = async (courseSectionId: number, search: strin
     const res = await https.get(`/api/lecturer/courseSection/getAllStudentEnrollmentIsPaid/${courseSectionId}?${params}`);
     return res.data.data;
 };
-export const confirmGrade = async (data: IConfirmGrade) => {
+export const confirmGrade = async (data: IConfirmGrade[]) => {
     const res = await https.post("/api/lecturer/grade/confirmGrades", data);
     return res.data;
 };

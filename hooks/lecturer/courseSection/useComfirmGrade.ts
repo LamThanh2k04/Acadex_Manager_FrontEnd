@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 export const useComfirmGrade = (onClose: () => void) => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationFn: (data: IConfirmGrade) => confirmGrade(data),
+        mutationFn: (data: IConfirmGrade[]) => confirmGrade(data),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-student-enrollment-is-paid'] });
             queryClient.invalidateQueries({ queryKey: ['get-courseSection'] });

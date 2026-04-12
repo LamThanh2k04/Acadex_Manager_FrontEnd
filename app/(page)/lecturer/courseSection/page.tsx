@@ -20,7 +20,7 @@ export default function CourseSection() {
     const sections: ICourseSection[] = courseSectionData?.courseSections ?? [];
     const selectedSection = sections.find((s) => s.id === selectedSectionId) ?? null;
     return (
-        <div className="mx-auto max-w-7xl space-y-6 p-6 mt-5">
+        <div className="mx-auto max-w-7xl space-y-6 p-2 mt-5">
             <div>
                 <p className="text-xs uppercase tracking-wider text-gray-400">Giảng dạy</p>
                 <h1 className="mt-1 text-xl font-semibold text-gray-900">Học phần giảng dạy</h1>

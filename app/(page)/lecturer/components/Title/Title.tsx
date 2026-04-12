@@ -15,7 +15,7 @@ export default function Title() {
         .toUpperCase() || "??";
 
     return (
-        <div className="mt-5 overflow-hidden bg-[#FFFF] rounded-[32px] p-6 relative shadow-sm">
+        <div className="mt-7 overflow-hidden bg-[#FFFF] rounded-[32px] p-6 relative shadow-sm">
             <Link href="/lecturer/info" className="absolute top-5 right-5 p-2 bg-orange-100 rounded-lg text-orange-400 active:scale-95 transition-transform">
                 <PencilLine size={16} />
             </Link>

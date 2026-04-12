@@ -44,7 +44,6 @@ export function StudentEnrollmentIsPaid({
             </div>
 
             <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white">
-                {/* thead */}
                 <div className="grid grid-cols-[2fr_1fr_repeat(4,0.8fr)_0.8fr_0.8fr_0.6fr] gap-x-2 border-b border-gray-100 bg-gray-50 px-4 py-2.5">
                     {["Họ tên", "MSSV", "CC1", "CC2", "Giữa kỳ", "Cuối kỳ", "Tổng", "Điểm TK", ""].map((h) => (
                         <span key={h} className="text-xs font-medium text-gray-500">{h}</span>
@@ -63,7 +62,6 @@ export function StudentEnrollmentIsPaid({
                                 key={s.enrollmentId}
                                 className="grid grid-cols-[2fr_1fr_repeat(4,0.8fr)_0.8fr_0.8fr_0.6fr] gap-x-2 border-b border-gray-100 px-4 py-3 last:border-0 hover:bg-gray-50"
                             >
-                                {/* name */}
                                 <div className="flex min-w-0 items-center gap-2.5">
                                     {s.avatar ? (
                                         <img src={s.avatar} className="h-7 w-7 shrink-0 rounded-full object-cover" alt="" />
@@ -99,9 +97,11 @@ export function StudentEnrollmentIsPaid({
                     })
                 )}
             </div>
-
             {gradeTarget && (
-                <GradeModal student={gradeTarget} onClose={() => setGradeTarget(null)} />
+                <GradeModal student={gradeTarget}
+                    open={!!gradeTarget}
+                    onClose={() => setGradeTarget(null)}
+                />
             )}
         </>
     );

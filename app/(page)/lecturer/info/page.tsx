@@ -5,7 +5,7 @@ import { useGetInfoLecturer } from '@/hooks/lecturer/info/useGetInfoLecturer';
 export default function Info() {
     const { data: infoLecturerData } = useGetInfoLecturer();
     return (
-        <div>
+        <div className="mt-3">
             {infoLecturerData && <LecturerInfo data={infoLecturerData} />}
         </div>
     )

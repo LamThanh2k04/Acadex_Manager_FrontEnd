@@ -7,5 +7,6 @@ export const useGetOverview = () => {
         queryKey: ['get-overview'],
         queryFn: () => getOverview(),
         staleTime: 5 * 60 * 1000,
+        placeholderData: (prevData) => prevData
     })
 };

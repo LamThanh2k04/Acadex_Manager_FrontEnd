@@ -32,7 +32,6 @@ interface ILecturerInfoProps {
 }
 
 export default function LecturerInfo({ data }: ILecturerInfoProps) {
-    console.log(data)
     const lecturer = data.lecturer;
     const info = data?.lecturer.lecturer;
     const status = STATUS_MAP[info.status];
