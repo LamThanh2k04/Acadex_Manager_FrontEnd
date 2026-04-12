@@ -1,10 +1,13 @@
+import { IPagination } from "../../pagination";
+
 export interface IHomeroomClass {
     lecturerName: string;
     lecturerCode: string;
     avatarLecturer: string;
-    lecturerFalcuty: string;
+    lecturerFaculty: string;
     lecturerMajor: string;
     students: IStudentOfHomeroomClass[];
+    pagination: IPagination;
 };
 export interface IStudentOfHomeroomClass {
     studentCode: string;
