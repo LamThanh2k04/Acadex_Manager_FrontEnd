@@ -1,6 +1,6 @@
 export interface ITopStudent {
     student: IStudentOfTopStudent;
-    grade: IGradeOfTopStudent;
+    grades: IGradeOfTopStudent;
 };
 export interface IStudentOfTopStudent {
     studentCode: string;

@@ -8,5 +8,6 @@ export const useAvgGradeClass = (courseSectionId: number) => {
         queryFn: () => getAvgGradeClass(courseSectionId),
         staleTime: 5 * 60 * 1000,
         enabled: !!courseSectionId,
+        placeholderData: (prevData) => prevData,
     })
 };
