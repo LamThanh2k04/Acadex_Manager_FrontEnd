@@ -37,8 +37,8 @@ export default function Overview({ data }: { data: IAdminOverview }) {
     const user = useAppSelector((state) => state.user.userInfo);
     return (
         <div className="mt-14 lg:mt-3 ">
-            <div className="ml-3 mb-5 md:hidden">
-                <h1 className="text-xl font-bold mb-5">
+            <div className="ml-3 mb-5 md:mb-2">
+                <h1 className="text-xl font-bold mb-5 md:mb-2 md:text-3xl">
                     Chào mừng trở lại,{" "}
                     <span className="text-[#ec5d15]">Adm. {user?.fullName}</span>
                 </h1>
