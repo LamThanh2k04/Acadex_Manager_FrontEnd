@@ -18,7 +18,6 @@ export default function CourseSection() {
     const { data: courseSectionData, isLoading: loadingSections } =
         useGetCourseSection(activeSemesterId, search);
     const sections: ICourseSection[] = courseSectionData?.courseSections ?? [];
-    console.log(courseSectionData);
     const selectedSection = sections.find((s) => s.id === selectedSectionId) ?? null;
     return (
         <div className="mx-auto max-w-7xl space-y-6 p-6 mt-5">

@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query"
 import { getAvgGradeClass } from '@/app/api/lecturerService/dashboard/avgClassGrade';
+import { IAvgGradeClass } from '@/app/types/lecturer/dashboard/avgGradeClass.type';
 
 export const useAvgGradeClass = (courseSectionId: number) => {
-    return useQuery({
-        queryKey: ['get-avg-grade-class'],
+    return useQuery<IAvgGradeClass[]>({
+        queryKey: ['get-avg-grade-class', courseSectionId],
         queryFn: () => getAvgGradeClass(courseSectionId),
         staleTime: 5 * 60 * 1000,
+        enabled: !!courseSectionId,
     })
 };
