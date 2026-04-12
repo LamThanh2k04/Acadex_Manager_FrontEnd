@@ -1,6 +1,6 @@
 "use client"
 import Image from 'next/image';
-import { User, Lock, LogOut, ChevronRight } from 'lucide-react';
+import { User, LogOut, ChevronRight, Lock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
     DropdownMenu,
@@ -28,9 +28,12 @@ import { logoutUserAction } from '@/app/actions/auth.action';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import ResetPasswordModal from './ResetPasswordModal';
 export default function DropDownMenu() {
     const user = useAppSelector((state) => state.user.userInfo);
     const dispatch = useAppDispatch();
+    const [isOpenResetPassword, setIsOpenResetPassword] = useState(false);
     const router = useRouter();
     const [openAlert, setOpenAlert] = useState(false)
     const handleLogout = async () => {
@@ -97,6 +100,15 @@ export default function DropDownMenu() {
                         <LogOut className="h-4 w-4" />
                         <span className="font-bold">Đăng xuất</span>
                     </DropdownMenuItem>
+                    <DropdownMenuItem>
+                        <button
+                            onClick={() => setIsOpenResetPassword(true)}
+                            className='flex items-center gap-3 rounded-xl cursor-pointer focus:bg-orange-50 focus:text-orange-600 transition-colors'>
+                            <Lock className="h-4 w-4 opacity-70" />
+                            <span className="flex-1 w-21 font-medium">Đổi mật khẩu</span>
+                            <ChevronRight className="h-3 w-3 ml-21 opacity-30" />
+                        </button>
+                    </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
             <AlertDialog open={openAlert} onOpenChange={setOpenAlert}>
@@ -118,6 +130,14 @@ export default function DropDownMenu() {
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>
+            <Dialog open={isOpenResetPassword} onOpenChange={setIsOpenResetPassword}>
+                <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                        <DialogTitle>Cài đặt lại mật khẩu</DialogTitle>
+                    </DialogHeader>
+                    <ResetPasswordModal onClose={() => setIsOpenResetPassword(false)} />
+                </DialogContent>
+            </Dialog>
         </>
     )
 }
