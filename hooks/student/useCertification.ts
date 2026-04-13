@@ -16,6 +16,7 @@ export const useSubmitCertification = (onClose: () => void) => {
         mutationFn: (formData: FormData) => submitCertificate(formData),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['get-certification-program'] });
+            queryClient.invalidateQueries({ queryKey: ['get-certification-student'] });
             toast.success("Nộp chứng chỉ thành công");
             onClose();
         },
