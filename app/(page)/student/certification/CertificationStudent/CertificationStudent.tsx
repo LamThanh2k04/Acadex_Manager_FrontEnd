@@ -12,13 +12,6 @@ import {
 import CertificationSubmitModal from "./CertificationSubmitModal";
 export default function CertificationStudent({ data }: ICertificicateStudentDataProps) {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    if (data.certificates.length === 0) {
-        return (
-            <p className="text-sm text-gray-400 text-center py-8">
-                Hiện tại sinh viên vẫn chưa nộp yêu cầu duyệt chứng chỉ nào
-            </p>
-        );
-    }
     const statusRender = {
         "REVOKED": <span className="bg-red-100 py-2 px-5 rounded-2xl text-red-400">Từ chối</span>,
         "ISSUED": <span className="bg-green-100 p-2 rounded-2xl text-green-400">Đã xét duyệt</span>,
@@ -35,8 +28,8 @@ export default function CertificationStudent({ data }: ICertificicateStudentData
                     Nộp chứng chỉ
                 </button>
             </div>
-            {data.certificates.map((ce, index) => {
-                return (
+            {data.certificates.length > 0 ? (
+                data.certificates.map((ce, index) => (
                     <div
                         key={index}
                         className="flex flex-col sm:flex-row gap-4 bg-white border border-gray-100 rounded-2xl p-4 shadow-sm"
@@ -78,12 +71,17 @@ export default function CertificationStudent({ data }: ICertificicateStudentData
                             )}
                         </div>
                     </div>
-                );
-            })}
+                ))
+            ) : (
+                <p className="text-[12px] md:text-[14px] text-gray-400 text-center py-8">
+                    Hiện tại sinh viên vẫn chưa nộp yêu cầu duyệt chứng chỉ nào
+                </p>
+            )}
+
             <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
                 <DialogContent className="max-w-2xl">
                     <DialogHeader>
-                        <DialogTitle>Nộp lại chứng chỉ</DialogTitle>
+                        <DialogTitle>Nộp chứng chỉ</DialogTitle>
                     </DialogHeader>
                     <CertificationSubmitModal onClose={() => setIsModalOpen(false)} />
                 </DialogContent>
