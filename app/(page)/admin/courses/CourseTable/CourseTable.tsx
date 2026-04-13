@@ -75,7 +75,7 @@ export default function CourseTable({ data }: ICourseDataResponseProps) {
             <Dialog open={isModalUpdate} onOpenChange={setIsModalUpdate}>
                 <DialogContent className="max-w-2xl">
                     <DialogHeader>
-                        <DialogTitle>Cập nhật thông tin chuyên ngành</DialogTitle>
+                        <DialogTitle>Cập nhật thông tin học phần</DialogTitle>
                     </DialogHeader>
                     {isModalUpdate && selectedCourse && (
                         <CourseUpdateModal

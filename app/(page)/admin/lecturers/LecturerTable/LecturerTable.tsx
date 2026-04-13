@@ -104,7 +104,7 @@ export default function LecturerTable({ data }: ILecturerDataProps) {
             <Dialog open={isModalUpdate} onOpenChange={setIsModalUpdate}>
                 <DialogContent className="max-w-2xl">
                     <DialogHeader>
-                        <DialogTitle>Cập nhật thông tin sinh viên</DialogTitle>
+                        <DialogTitle>Cập nhật thông tin giảng viên</DialogTitle>
                     </DialogHeader>
                     {isModalUpdate && selectedLecturer && (
                         <LecturerUpdateModal

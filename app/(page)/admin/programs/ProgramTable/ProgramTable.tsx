@@ -90,7 +90,7 @@ export default function ProgramTable({ data }: IProgramDataResponseProps) {
             <Dialog open={isModalUpdate} onOpenChange={setIsModalUpdate}>
                 <DialogContent className="max-w-2xl">
                     <DialogHeader>
-                        <DialogTitle>Cập nhật thông tin lịch học</DialogTitle>
+                        <DialogTitle>Cập nhật thông tin chương trình</DialogTitle>
                     </DialogHeader>
                     {isModalUpdate && selectedProgram && (
                         <ProgramUpdateModal

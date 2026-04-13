@@ -67,7 +67,7 @@ export default function FacultyTable({ data }: IFacultyProps) {
             <Dialog open={isModalUpdate} onOpenChange={setIsModalUpdate}>
                 <DialogContent className="max-w-2xl">
                     <DialogHeader>
-                        <DialogTitle>Cập nhật thông tin sinh viên</DialogTitle>
+                        <DialogTitle>Cập nhật thông tin khoa</DialogTitle>
                     </DialogHeader>
                     {isModalUpdate && selectedFaculty && (
                         <FacultyUpdateModal

@@ -75,7 +75,7 @@ export default function SubjectTable({ data }: ISubjectDataResponseProps) {
             <Dialog open={isModalUpdate} onOpenChange={setIsModalUpdate}>
                 <DialogContent className="max-w-2xl">
                     <DialogHeader>
-                        <DialogTitle>Cập nhật thông tin chuyên ngành</DialogTitle>
+                        <DialogTitle>Cập nhật thông tin môn học</DialogTitle>
                     </DialogHeader>
                     {isModalUpdate && selectedSubject && (
                         <SubjectUpdateModal

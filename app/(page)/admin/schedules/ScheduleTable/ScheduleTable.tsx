@@ -71,7 +71,7 @@ export default function ScheduleTable({ data }: IScheduleDataResponseProps) {
             </table>
             <Pagination pagination={data.pagination} />
             <Dialog open={isModalCreate} onOpenChange={setIsModalCreate}>
-                <DialogContent className="max-w-2xl">
+                <DialogContent className="max-w-3xl w-full">
                     <DialogHeader>
                         <DialogTitle>Thông tin chung</DialogTitle>
                     </DialogHeader>

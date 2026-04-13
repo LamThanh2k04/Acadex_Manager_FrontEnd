@@ -224,7 +224,7 @@ export default function ProgramInfo({ programId }: { programId: number }) {
             <Dialog open={isModalUpdateSubject} onOpenChange={setIsModalUpdateSubject}>
                 <DialogContent className="max-w-2xl">
                     <DialogHeader>
-                        <DialogTitle>Cập nhật thông tin phòng học</DialogTitle>
+                        <DialogTitle>Cập nhật thông tin môn học</DialogTitle>
                     </DialogHeader>
                     {isModalUpdateSubject && selectedProgramSubject && (
                         <SubjectToProgramUpdateModa
