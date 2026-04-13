@@ -79,7 +79,7 @@ export default function ScheduleTable({ data }: IScheduleDataResponseProps) {
                 </DialogContent>
             </Dialog>
             <Dialog open={isModalUpdate} onOpenChange={setIsModalUpdate}>
-                <DialogContent className="max-w-2xl">
+                <DialogContent className="max-w-3xl w-full">
                     <DialogHeader>
                         <DialogTitle>Cập nhật thông tin lịch học</DialogTitle>
                     </DialogHeader>
