@@ -10,14 +10,17 @@ import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { useAppDispatch } from '@/lib/hook';
 import { setUser } from '@/lib/features/user/userSlice';
+import { useQueryClient } from '@tanstack/react-query';
 export default function LoginForm() {
     const [toggle, setToggle] = useState(false);
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<ILoginUser>({ mode: "onBlur" })
     const router = useRouter();
+    const queryClient = useQueryClient();
     const dispatch = useAppDispatch();
     const onSubmit = async (data: ILoginUser) => {
         const result = await loginUserAction(data);
         if (result.success) {
+            queryClient.clear();
             dispatch(setUser(result.user));
             localStorage.setItem("user_info", JSON.stringify(result.user));
             toast.success(result.message);

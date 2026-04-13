@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react"
 import { useAppDispatch, useAppSelector } from "@/lib/hook"
-import { ChevronsUpDown, Settings, LogOut } from "lucide-react"
+import { ChevronsUpDown, LogOut, ChevronRight, Lock } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
     DropdownMenu,
@@ -29,20 +29,24 @@ import { useRouter } from "next/navigation"
 import { removeUser } from "@/lib/features/user/userSlice"
 import { logoutUserAction } from "@/app/actions/auth.action"
 import toast from "react-hot-toast"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import ResetPasswordModal from '@/app/(page)/lecturer/components/Header/ResetPasswordModal';
+import { useQueryClient } from "@tanstack/react-query";
 export function NavUser() {
     const user = useAppSelector((state) => state.user.userInfo)
     const dispatch = useAppDispatch()
     const router = useRouter()
+    const [isOpenResetPassword, setIsOpenResetPassword] = useState(false);
     const [openAlert, setOpenAlert] = useState(false)
-
+    const queryClient = useQueryClient();
     const handleLogout = async () => {
         await logoutUserAction()
+        queryClient.clear();
         localStorage.removeItem("user_info")
         dispatch(removeUser())
         router.push("/login")
         toast.success("Đăng xuất thành công")
     }
-
     return (
         <>
             <SidebarMenu>
@@ -77,11 +81,21 @@ export function NavUser() {
                                 </div>
                             </div>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem className="cursor-pointer gap-2">
-                                <Settings className="size-4" />
-                                Cài đặt
-                            </DropdownMenuItem>
-                            <DropdownMenuSeparator />
+                            {user?.role === "LECTURER" ? (
+                                <>
+                                    <DropdownMenuItem>
+                                        <button
+                                            onClick={() => setIsOpenResetPassword(true)}
+                                            className='flex items-center gap-3 rounded-xl cursor-pointer focus:bg-orange-50 focus:text-orange-600 transition-colors'>
+                                            <Lock className="h-4 w-4 opacity-70" />
+                                            <span className="flex-1 w-21 font-medium">Đổi mật khẩu</span>
+                                            <ChevronRight className="h-3 w-3 ml-21 opacity-30" />
+                                        </button>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuSeparator />
+                                </>
+                            ) : null}
+
                             <DropdownMenuItem
                                 className="cursor-pointer gap-2 text-red-500 focus:text-red-500 focus:bg-red-50"
                                 onSelect={(e) => {
@@ -115,6 +129,14 @@ export function NavUser() {
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>
+            <Dialog open={isOpenResetPassword} onOpenChange={setIsOpenResetPassword}>
+                <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                        <DialogTitle>Cài đặt lại mật khẩu</DialogTitle>
+                    </DialogHeader>
+                    <ResetPasswordModal onClose={() => setIsOpenResetPassword(false)} />
+                </DialogContent>
+            </Dialog>
         </>
     )
 }
