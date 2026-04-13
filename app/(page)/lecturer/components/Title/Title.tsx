@@ -71,7 +71,9 @@ export default function Title() {
                             </div>
                             <div>
                                 <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-bold">Ngày sinh</p>
-                                <p className="font-semibold text-sm">{user?.dateOfBirth || "Chưa cập nhật ngày sinh"}</p>
+                                <p className="font-semibold text-sm">{user?.dateOfBirth ? (
+                                    new Date(user?.dateOfBirth).toLocaleDateString("vi-VN")
+                                ) : "Chưa cập nhật ngày sinh"}</p>
                             </div>
                         </div>
 

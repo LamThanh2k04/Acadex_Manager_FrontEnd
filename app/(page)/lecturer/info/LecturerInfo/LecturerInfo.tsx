@@ -148,7 +148,7 @@ export default function LecturerInfo({ data }: ILecturerInfoProps) {
                     <InfoRow
                         icon={<BadgeCheck className="size-4 text-orange-400" />}
                         label="Chức vụ"
-                        value={info.position ?? "Hiện chưa cập nhật"}
+                        value={info.position === "LECTURER" ? "Giảng viên" : info.position === "HEAD_SUBJECT" ? "Trưởng bộ môn" : info.position === "HEAD_DEPARTMENT" ? "Trưởng bộ phận" : info.position ?? "Hiện chưa cập nhật"}
                     />
                 </div>
             </div>
