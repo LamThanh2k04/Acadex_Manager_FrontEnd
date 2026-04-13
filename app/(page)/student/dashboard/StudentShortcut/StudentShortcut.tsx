@@ -52,7 +52,7 @@ export default function StudentShortcut() {
         },
     ]
     return (
-        <div className='grid grid-cols-2 gap-2'>
+        <div className='grid grid-cols-2 md:grid-cols-4 gap-2'>
             {shortcuts.map((shortcut) => (
                 <div key={shortcut.id} className='mt-5 border px-3 py-10 bg-white rounded-xl hover:bg-orange-100 hover:text-orange-400 active:bg-orange-100 active:text-orange-400 duration-300 transition-all'>
                     <Link href={shortcut.href} className='flex flex-col gap-2 items-center justify-center'>

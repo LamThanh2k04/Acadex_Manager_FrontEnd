@@ -20,13 +20,13 @@ export default function CertificationStudent({ data }: ICertificicateStudentData
         );
     }
     const statusRender = {
-        "REVOKED": <span className="bg-red-100 py-2 px-4 rounded-2xl text-red-400">Từ chối</span>,
+        "REVOKED": <span className="bg-red-100 py-2 px-5 rounded-2xl text-red-400">Từ chối</span>,
         "ISSUED": <span className="bg-green-100 p-2 rounded-2xl text-green-400">Đã xét duyệt</span>,
-        "PENDING": <span className="bg-gray-100 py-2 px-4 rounded-2xl text-gray-400">Chờ xét duyệt</span>
+        "PENDING": <span className="bg-gray-100 p-2 rounded-2xl text-gray-400">Chờ xét duyệt</span>
     }
     return (
         <div className="space-y-4 p-5">
-            <div className="pt-2 flex items-center justify-end">
+            <div className="pt-2 flex items-center justify-start">
                 <button
                     onClick={() => setIsModalOpen(true)}
                     className="flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl border transition-all bg-[#ec5d15] text-white border-[#ec5d15] hover:bg-[#d44d0f] active:scale-95 shadow-md shadow-orange-200 "
@@ -41,7 +41,7 @@ export default function CertificationStudent({ data }: ICertificicateStudentData
                         key={index}
                         className="flex flex-col sm:flex-row gap-4 bg-white border border-gray-100 rounded-2xl p-4 shadow-sm"
                     >
-                        <div className="shrink-0 flex items-start justify-between">
+                        <div className="shrink-0 md:flex-col flex items-start justify-between">
                             <Image
                                 src={ce.fileUrl}
                                 alt={ce.template.name}

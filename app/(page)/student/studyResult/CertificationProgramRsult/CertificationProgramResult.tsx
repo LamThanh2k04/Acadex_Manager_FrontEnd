@@ -71,9 +71,9 @@ export default function CertificationProgramResult({ data }: ICertificateProgram
                                 )}
                             </td>
                             <td className="px-4 py-3.5 text-center">
-                                <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold border
+                                <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold border
                                     ${re.status === "Hoàn tất"
-                                        ? "bg-emerald-50 text-emerald-600 border-emerald-200 dark:bg-emerald-900/20 dark:border-emerald-900/30"
+                                        ? "bg-emerald-50 text-emerald-600 md:px-5 border-emerald-200 dark:bg-emerald-900/20 dark:border-emerald-900/30"
                                         : "bg-gray-50 text-gray-400 border-gray-200 dark:bg-gray-800 dark:border-gray-700"
                                     }`}
                                 >

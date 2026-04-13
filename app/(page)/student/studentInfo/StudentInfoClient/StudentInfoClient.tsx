@@ -65,8 +65,8 @@ export default function StudentInfo({ data }: IStudentInfoProps) {
                                 )}
                             </div>
 
-                            <div>
-                                <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+                            <div className="md:mt-4">
+                                <h1 className="text-2xl md:text-3xl md:text-orange-100 font-bold text-gray-900">
                                     {data.fullName}
                                 </h1>
                                 <p className="mt-1 text-sm md:text-base text-gray-500 dark:text-gray-400">
@@ -84,7 +84,7 @@ export default function StudentInfo({ data }: IStudentInfoProps) {
                                 </div>
                             </div>
                         </div>
-                        <div className="rounded-2xl border border-orange-100 bg-orange-50 px-4 py-3 shadow-sm dark:border-orange-900/30 dark:bg-orange-900/10">
+                        <div className="rounded-2xl border md:mb-2 border-orange-100 bg-orange-50 px-4 py-3 shadow-sm dark:border-orange-900/30 dark:bg-orange-900/10">
                             <div className="flex items-center gap-2 text-[#ec5d15] font-semibold">
                                 <GraduationCap size={18} />
                                 <span>Hồ sơ sinh viên</span>
@@ -182,12 +182,12 @@ export default function StudentInfo({ data }: IStudentInfoProps) {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <InfoRow
                         label="Năm vào trường"
-                        value={data.student.admissionYear}
+                        value={data.student.admissionYear.toString()}
                         icon={<GraduationCap size={18} />}
                     />
                     <InfoRow
                         label="Năm ra trường"
-                        value={data.student.graduateYear}
+                        value={data.student.graduateYear.toString()}
                         icon={<GraduationCap size={18} />}
                     />
                     <InfoRow

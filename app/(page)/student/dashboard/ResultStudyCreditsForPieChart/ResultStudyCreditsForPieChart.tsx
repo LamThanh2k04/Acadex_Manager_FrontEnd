@@ -96,8 +96,8 @@ export default function CreditProgressChart({ data }: IResultStudyCreditsForPieC
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-3 mt-4">
-                    <div className="bg-orange-50 dark:bg-orange-900/20 rounded-xl px-4 py-3">
-                        <p className="text-[10px] font-medium uppercase tracking-wide text-orange-300 dark:text-orange-700 mb-0.5">
+                    <div className="bg-orange-50 md:flex md:items-center md:justify-center md:flex-col dark:bg-orange-900/20 rounded-xl px-4 py-3">
+                        <p className="text-[10px] md:text-[14px] font-medium uppercase tracking-wide text-orange-400 dark:text-orange-700 mb-0.5">
                             Đã tích lũy
                         </p>
                         <p className="text-xl font-bold text-[#ec5d15] leading-none">
@@ -105,8 +105,8 @@ export default function CreditProgressChart({ data }: IResultStudyCreditsForPieC
                             <span className="text-xs font-medium ml-1 opacity-60">TÍN CHỈ</span>
                         </p>
                     </div>
-                    <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl px-4 py-3">
-                        <p className="text-[10px] font-medium uppercase tracking-wide text-gray-400 dark:text-gray-500 mb-0.5">
+                    <div className="bg-gray-50 md:flex md:items-center md:justify-center md:flex-col dark:bg-gray-800/60 rounded-xl px-4 py-3">
+                        <p className="text-[10px] md:text-[14px] font-medium uppercase tracking-wide text-gray-400 dark:text-gray-500 mb-0.5">
                             Còn lại
                         </p>
                         <p className="text-xl font-bold text-gray-700 dark:text-gray-300 leading-none">
@@ -115,7 +115,7 @@ export default function CreditProgressChart({ data }: IResultStudyCreditsForPieC
                         </p>
                     </div>
                 </div>
-                <p className="mt-3 text-center text-[11px] text-gray-400 dark:text-gray-600 leading-relaxed">
+                <p className="mt-3 text-center text-[11px] md:text-[14px] text-gray-400 dark:text-gray-600 leading-relaxed">
                     {percent >= 100
                         ? "Bạn đã hoàn thành chương trình đào tạo!"
                         : percent >= 75

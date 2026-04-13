@@ -79,7 +79,7 @@ export default function EnrollmentTable({ enrollments, semesters, selectedSemest
                                         <div className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
                                             <BookOpen size={18} className="text-gray-300 dark:text-gray-600" />
                                         </div>
-                                        <p className="text-xs text-gray-400 dark:text-gray-500">
+                                        <p className="text-xs md:text-[14px] text-gray-400 dark:text-gray-500">
                                             Không có học phần nào trong học kỳ này
                                         </p>
                                     </div>

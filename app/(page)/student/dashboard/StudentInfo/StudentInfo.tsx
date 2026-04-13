@@ -83,11 +83,11 @@ export default function StudentInfo({ data }: IStudentInfoProps) {
                         </span>
                     </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6">
-                    <InfoRow icon={<IdCard size={14} />} label="Mã số sinh viên" value={data.student.studentCode} />
-                    <InfoRow icon={<BookOpen size={14} />} label="Lớp học" value={data.student.class.name} />
-                    <InfoRow icon={<GraduationCap size={14} />} label="Giảng viên đảm nhiệm" value={data.student.class.homeroomLecturer.user.fullName} />
-                    <InfoRow icon={<UserRound size={14} />} label="Giới tính" value={data.gender === "MALE" ? "Nam" : "Nữ"} />
+                <div className="grid grid-cols-1 md:grid-cols-4 md:ml-20 gap-x-6">
+                    <InfoRow icon={<IdCard size={18} />} label="Mã số sinh viên" value={data.student.studentCode} />
+                    <InfoRow icon={<BookOpen size={18} />} label="Lớp học" value={data.student.class.name} />
+                    <InfoRow icon={<GraduationCap size={18} />} label="Giảng viên đảm nhiệm" value={data.student.class.homeroomLecturer.user.fullName} />
+                    <InfoRow icon={<UserRound size={18} />} label="Giới tính" value={data.gender === "MALE" ? "Nam" : "Nữ"} />
                 </div>
 
             </div>
