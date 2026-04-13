@@ -89,6 +89,15 @@ export default function DropDownMenu() {
                                 <ChevronRight className="h-3 w-3 opacity-30" />
                             </Link>
                         </DropdownMenuItem>
+                        <DropdownMenuItem>
+                            <button
+                                onClick={() => setIsOpenResetPassword(true)}
+                                className='flex items-center gap-3 rounded-xl cursor-pointer focus:bg-orange-50 focus:text-orange-600 transition-colors'>
+                                <Lock className="h-4 w-4 opacity-70" />
+                                <span className="flex-1 w-21 font-medium">Đổi mật khẩu</span>
+                                <ChevronRight className="h-3 w-3 ml-21 opacity-30" />
+                            </button>
+                        </DropdownMenuItem>
                     </DropdownMenuGroup>
                     <DropdownMenuSeparator className="my-2 bg-orange-50" />
                     <DropdownMenuItem
@@ -99,15 +108,6 @@ export default function DropDownMenu() {
                         className="flex items-center gap-3 p-2.5 rounded-xl cursor-pointer text-red-500 focus:bg-red-50 focus:text-red-600 transition-colors">
                         <LogOut className="h-4 w-4" />
                         <span className="font-bold">Đăng xuất</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                        <button
-                            onClick={() => setIsOpenResetPassword(true)}
-                            className='flex items-center gap-3 rounded-xl cursor-pointer focus:bg-orange-50 focus:text-orange-600 transition-colors'>
-                            <Lock className="h-4 w-4 opacity-70" />
-                            <span className="flex-1 w-21 font-medium">Đổi mật khẩu</span>
-                            <ChevronRight className="h-3 w-3 ml-21 opacity-30" />
-                        </button>
                     </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>

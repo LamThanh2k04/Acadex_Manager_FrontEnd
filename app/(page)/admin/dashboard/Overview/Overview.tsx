@@ -43,7 +43,7 @@ export default function Overview({ data }: { data: IAdminOverview }) {
                     <span className="text-[#ec5d15]">Adm. {user?.fullName}</span>
                 </h1>
                 <div className='flex items-center justify-between'>
-                    <p className="text-gray-400 text-sm mt-1">Hôm nay có gì mới?</p>
+                    <p className="text-gray-400 text-sm md:text-[16px] mt-1">Hôm nay có gì mới?</p>
                     <ButtonExportPDF />
                 </div>
             </div>

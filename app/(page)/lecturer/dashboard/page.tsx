@@ -8,24 +8,30 @@ import AvgGradeClass from "./AvgGradeClass/AvgGradeClass";
 import { useGetTopStudent } from '@/hooks/lecturer/dashboard/useGetTopStudent';
 import TopStudent from "./TopStudent/TopStudent";
 export default function DashboardLecturer() {
-    const [courseSectionId, setCourseSectionId] = useState<number>(0);
+    const [courseSectionId, setCourseSectionId] = useState<number | null>(null);
+
     const { data: overviewData } = useGetOverview();
     const { data: courseSectionLecturerData } = useGetCourseSectionSimple();
+    const { data: avgGradeClassData } = useAvgGradeClass(courseSectionId as number);
+    const { data: topStudentData } = useGetTopStudent(courseSectionId as number);
+
     const courseSection = courseSectionLecturerData ?? [];
-    const activeCourseSectionId = courseSectionId || courseSection[0]?.id || 0;
-    const { data: avgGradeClassData } = useAvgGradeClass(activeCourseSectionId);
-    const { data: topStudentData } = useGetTopStudent(activeCourseSectionId);
+
     return (
         <div className="flex flex-col gap-5 p-2">
             {overviewData && <Overview data={overviewData} />}
-            {avgGradeClassData && <AvgGradeClass data={avgGradeClassData ?? []}
+            <AvgGradeClass
+                data={avgGradeClassData ?? []}
                 courseSection={courseSection}
-                selectedId={activeCourseSectionId}
-                onSelectId={setCourseSectionId} />}
-            {topStudentData && <TopStudent data={topStudentData ?? []}
+                selectedId={courseSectionId}
+                onSelectId={setCourseSectionId}
+            />
+            <TopStudent
+                data={topStudentData ?? []}
                 courseSection={courseSection}
-                selectedId={activeCourseSectionId}
-                onSelectId={setCourseSectionId} />}
+                selectedId={courseSectionId}
+                onSelectId={setCourseSectionId}
+            />
         </div>
-    )
+    );
 }

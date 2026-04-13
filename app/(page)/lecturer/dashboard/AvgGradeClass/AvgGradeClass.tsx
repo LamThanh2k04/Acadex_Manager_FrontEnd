@@ -6,9 +6,7 @@ import {
     BarChart as HorizontalBarChart,
 } from "recharts";
 import { ChartContainer, type ChartConfig } from "@/components/ui/chart";
-
-// ─── types ───────────────────────────────────────────────────────────────────
-
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 interface IAvgGradeItem {
     className: string;
     avgScore: number;
@@ -23,8 +21,8 @@ interface ICourseSectionSimple {
 interface IAvgGradeClassProps {
     data: IAvgGradeItem[];
     courseSection: ICourseSectionSimple[];
-    selectedId: number;
-    onSelectId: (id: number) => void;
+    selectedId: number | null;
+    onSelectId: (id: number | null) => void;
 }
 
 // ─── helpers ─────────────────────────────────────────────────────────────────
@@ -175,9 +173,6 @@ function VerticalBars({ data, avg }: { data: IAvgGradeItem[]; avg: number }) {
         </ChartContainer>
     );
 }
-
-// ─── main ────────────────────────────────────────────────────────────────────
-
 export default function AvgGradeClass({
     data,
     courseSection,
@@ -187,7 +182,6 @@ export default function AvgGradeClass({
     if (!data || data.length === 0) {
         return (
             <div className="rounded-2xl border bg-card p-4 md:p-5 space-y-4">
-                {/* header + select — giữ nguyên như khi có data */}
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                     <div>
                         <p className="text-sm font-medium">Điểm trung bình theo lớp</p>
@@ -195,21 +189,26 @@ export default function AvgGradeClass({
                             So sánh điểm TB giữa các lớp trong học phần
                         </p>
                     </div>
-                    <select
-                        value={selectedId}
-                        onChange={(e) => onSelectId(Number(e.target.value))}
-                        className="w-full sm:w-auto text-sm rounded-xl border bg-muted/50 px-3 py-2 outline-none focus:ring-2 focus:ring-ring"
+                    <Select
+                        value={selectedId ? String(selectedId) : undefined}
+                        onValueChange={(val) => onSelectId(Number(val))}
                     >
-                        <option value={0}>Tất cả học phần</option>
-                        {courseSection.map((s) => (
-                            <option key={s.id} value={s.id}>
-                                {s.subject.name} — {s.sectionCode}
-                            </option>
-                        ))}
-                    </select>
+                        <SelectTrigger className="w-30 h-8 text-xs rounded-lg border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:ring-1 focus:ring-[#ec5d15]/40">
+                            <SelectValue placeholder="Chọn môn học" />
+                        </SelectTrigger>
+                        <SelectContent className="dark:bg-gray-900 dark:border-gray-700">
+                            {courseSection.map((c) => (
+                                <SelectItem
+                                    key={c.id}
+                                    value={String(c.id)}
+                                    className="text-xs cursor-pointer focus:bg-orange-50 focus:text-[#ec5d15] dark:focus:bg-orange-900/20"
+                                >
+                                    {c.subject.name} — {c.sectionCode}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
                 </div>
-
-                {/* empty state */}
                 <div className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-gray-200 bg-gray-50 py-12 text-center">
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-gray-400">
@@ -232,8 +231,6 @@ export default function AvgGradeClass({
 
     return (
         <div className="rounded-2xl border bg-card p-4 md:p-5 space-y-4">
-
-            {/* header */}
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                 <div>
                     <p className="text-sm font-medium">Điểm trung bình theo lớp</p>
@@ -241,23 +238,41 @@ export default function AvgGradeClass({
                         So sánh điểm TB giữa các lớp trong học phần
                     </p>
                 </div>
-
-                {/* select — full width mobile, auto width desktop */}
-                <select
-                    value={selectedId}
-                    onChange={(e) => onSelectId(Number(e.target.value))}
+                <Select
+                    value={selectedId ? String(selectedId) : undefined}
+                    onValueChange={(val) => onSelectId(Number(val))}
+                >
+                    <SelectTrigger className="w-30 h-8 text-xs rounded-lg border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:ring-1 focus:ring-[#ec5d15]/40">
+                        <SelectValue placeholder="Chọn môn học" />
+                    </SelectTrigger>
+                    <SelectContent className="dark:bg-gray-900 dark:border-gray-700">
+                        {courseSection.map((c) => (
+                            <SelectItem
+                                key={c.id}
+                                value={String(c.id)}
+                                className="text-xs cursor-pointer focus:bg-orange-50 focus:text-[#ec5d15] dark:focus:bg-orange-900/20"
+                            >
+                                {c.subject.name} — {c.sectionCode}
+                            </SelectItem>
+                        ))}
+                    </SelectContent>
+                </Select>
+                {/* <select
+                    value={selectedId ?? ""}
+                    onChange={(e) => {
+                        const val = e.target.value;
+                        onSelectId(val === "" ? null : Number(val));
+                    }}
                     className="w-full sm:w-auto text-sm rounded-xl border bg-muted/50 px-3 py-2 outline-none focus:ring-2 focus:ring-ring"
                 >
-                    <option value={0}>Tất cả học phần</option>
+                    <option value="">Tất cả học phần</option>
                     {courseSection.map((s) => (
                         <option key={s.id} value={s.id}>
                             {s.subject.name} — {s.sectionCode}
                         </option>
                     ))}
-                </select>
+                </select> */}
             </div>
-
-            {/* stat cards: 2 col mobile → 3 col desktop */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5">
                 <StatCard
                     label="Cao nhất"
@@ -269,7 +284,6 @@ export default function AvgGradeClass({
                     value={minItem.avgScore.toFixed(1)}
                     sub={minItem.className}
                 />
-                {/* card thứ 3: span 2 col trên mobile, 1 col trên desktop */}
                 <div className="col-span-2 md:col-span-1">
                     <StatCard
                         label="TB toàn học phần"
@@ -278,8 +292,6 @@ export default function AvgGradeClass({
                     />
                 </div>
             </div>
-
-            {/* chart: horizontal mobile — vertical desktop */}
             <div className="block md:hidden">
                 <HorizontalBars data={data} avg={avg} />
             </div>

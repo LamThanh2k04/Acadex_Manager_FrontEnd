@@ -1,6 +1,7 @@
 "use client";
 
 import { ITopStudent } from "@/app/types/lecturer/dashboard/topStudent.type";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 interface ICourseSectionSimple {
     id: number;
@@ -11,8 +12,8 @@ interface ICourseSectionSimple {
 interface ITopStudentProps {
     data: ITopStudent[];
     courseSection: ICourseSectionSimple[];
-    selectedId: number;
-    onSelectId: (id: number) => void;
+    selectedId: number | null;
+    onSelectId: (id: number | null) => void;
 }
 
 // ─── helpers ─────────────────────────────────────────────────────────────────
@@ -71,18 +72,40 @@ function CardHeader({ courseSection, selectedId, onSelectId }: Pick<ITopStudentP
                     5 sinh viên có điểm cao nhất học phần
                 </p>
             </div>
-            <select
-                value={selectedId}
-                onChange={(e) => onSelectId(Number(e.target.value))}
+            <Select
+                value={selectedId ? String(selectedId) : undefined}
+                onValueChange={(val) => onSelectId(Number(val))}
+            >
+                <SelectTrigger className="w-30 h-8 text-xs rounded-lg border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:ring-1 focus:ring-[#ec5d15]/40">
+                    <SelectValue placeholder="Chọn môn học" />
+                </SelectTrigger>
+                <SelectContent className="dark:bg-gray-900 dark:border-gray-700">
+                    {courseSection.map((c) => (
+                        <SelectItem
+                            key={c.id}
+                            value={String(c.id)}
+                            className="text-xs cursor-pointer focus:bg-orange-50 focus:text-[#ec5d15] dark:focus:bg-orange-900/20"
+                        >
+                            {c.subject.name} — {c.sectionCode}
+                        </SelectItem>
+                    ))}
+                </SelectContent>
+            </Select>
+            {/* <select
+                value={selectedId ?? ""}
+                onChange={(e) => {
+                    const val = e.target.value;
+                    onSelectId(val === "" ? null : Number(val));
+                }}
                 className="w-full sm:w-auto text-sm rounded-xl border bg-muted/50 px-3 py-2 outline-none focus:ring-2 focus:ring-ring"
             >
-                <option value={0}>Tất cả học phần</option>
+                <option value="">Tất cả học phần</option>
                 {courseSection.map((s) => (
                     <option key={s.id} value={s.id}>
                         {s.subject.name} — {s.sectionCode}
                     </option>
                 ))}
-            </select>
+            </select> */}
         </div>
     );
 }
@@ -205,7 +228,6 @@ function RankRow({ item, rank }: { item: ITopStudent; rank: number }) {
 // ─── main ────────────────────────────────────────────────────────────────────
 
 export default function TopStudent({ data, courseSection, selectedId, onSelectId }: ITopStudentProps) {
-    console.log(data);
     if (!data || data.length === 0) {
         return (
             <div className="rounded-2xl border bg-card p-4 md:p-5 space-y-4">

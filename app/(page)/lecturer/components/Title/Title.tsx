@@ -17,7 +17,9 @@ export default function Title() {
     return (
         <div className="mt-7 overflow-hidden bg-[#FFFF] rounded-[32px] p-6 relative shadow-sm">
             <div className="absolute top-5 right-5 p-2 active:scale-95 transition-transform">
-                <SwitchMode />
+                <div className="hidden md:flex">
+                    <SwitchMode />
+                </div>
             </div>
             <div className="flex flex-col items-center text-center">
                 <div className="relative mb-4">
