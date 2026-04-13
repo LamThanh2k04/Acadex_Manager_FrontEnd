@@ -37,7 +37,7 @@ export default function LecturerInfo({ data }: ILecturerInfoProps) {
     const status = STATUS_MAP[info.status];
 
     return (
-        <div className="max-w-xl mx-auto px-4 py-6 space-y-4">
+        <div className="max-w-xl mx-auto px-4 py-6 space-y-4 md:grid md:grid-cols-2 md:max-w-7xl md:gap-5">
             <div className="bg-white border border-gray-100 rounded-2xl p-5 flex flex-col items-center text-center">
                 {lecturer.avatar ? (
                     <img
@@ -76,13 +76,13 @@ export default function LecturerInfo({ data }: ILecturerInfoProps) {
                     <InfoRow
                         icon={<Phone className="size-4 text-orange-400" />}
                         label="Số điện thoại"
-                        value={lecturer.phoneNumber}
+                        value={lecturer.phoneNumber ?? "Hiện chưa cập nhật"}
                     />
                     <div className="h-px bg-gray-50" />
                     <InfoRow
                         icon={<MapPin className="size-4 text-orange-400" />}
                         label="Địa chỉ"
-                        value={lecturer.address}
+                        value={lecturer.address ?? "Hiện chưa cập nhật"}
                     />
                 </div>
             </div>
@@ -100,19 +100,19 @@ export default function LecturerInfo({ data }: ILecturerInfoProps) {
                     <InfoRow
                         icon={<BadgeCheck className="size-4 text-orange-400" />}
                         label="CCCD"
-                        value={info.citizenId}
+                        value={info.citizenId ?? "Hiện chưa cập nhật"}
                     />
                     <div className="h-px bg-gray-50" />
                     <InfoRow
                         icon={<MapPin className="size-4 text-orange-400" />}
                         label="Nơi sinh"
-                        value={info.placeOfBirth}
+                        value={info.placeOfBirth ?? "Hiện chưa cập nhật"}
                     />
                     <div className="h-px bg-gray-50" />
                     <InfoRow
                         icon={<User className="size-4 text-orange-400" />}
                         label="Dân tộc"
-                        value={info.ethnicity}
+                        value={info.ethnicity ?? "Hiện chưa cập nhật"}
                     />
                     <div className="h-px bg-gray-50" />
                     <InfoRow
@@ -142,13 +142,13 @@ export default function LecturerInfo({ data }: ILecturerInfoProps) {
                     <InfoRow
                         icon={<GraduationCap className="size-4 text-orange-400" />}
                         label="Học vị"
-                        value={info.degree ? DEGREE_MAP[info.degree] ?? info.degree : null}
+                        value={info.degree ? DEGREE_MAP[info.degree] ?? info.degree : "Hiện chưa cập nhật"}
                     />
                     <div className="h-px bg-gray-50" />
                     <InfoRow
                         icon={<BadgeCheck className="size-4 text-orange-400" />}
                         label="Chức vụ"
-                        value={info.position}
+                        value={info.position ?? "Hiện chưa cập nhật"}
                     />
                 </div>
             </div>

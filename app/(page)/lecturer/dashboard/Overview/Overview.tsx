@@ -7,7 +7,7 @@ export default function Overview({ data }: { data: IOverview | undefined }) {
             label: "Tổng học sinh",
             value: data?.totalStudents || 0,
             icon: UsersRound,
-            color: "text-orange-600",
+            color: "text-[#ec5d15]",
             bgColor: "bg-white",
             borderColor: "border-orange-100"
         },
@@ -15,7 +15,7 @@ export default function Overview({ data }: { data: IOverview | undefined }) {
             label: "Tổng lớp học",
             value: data?.totalClasses || 0,
             icon: School,
-            color: "text-orange-600",
+            color: "text-[#ec5d15]",
             bgColor: "bg-white",
             borderColor: "border-orange-100"
         },
@@ -23,7 +23,7 @@ export default function Overview({ data }: { data: IOverview | undefined }) {
             label: "Lịch dạy hôm nay",
             value: data?.totalSchedulesToday || 0,
             icon: CalendarMinus2,
-            color: "text-orange-600",
+            color: "text-[#ec5d15]",
             bgColor: "bg-white",
             borderColor: "border-orange-100"
         },
@@ -31,7 +31,7 @@ export default function Overview({ data }: { data: IOverview | undefined }) {
             label: "Tỉ lệ chuyên cần",
             value: `${data?.attendanceRate || 0}%`,
             icon: CalendarCheck,
-            color: "text-orange-600",
+            color: "text-[#ec5d15]",
             bgColor: "bg-white",
             borderColor: "border-orange-100"
         }

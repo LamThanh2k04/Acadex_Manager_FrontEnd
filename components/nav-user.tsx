@@ -51,7 +51,7 @@ export function NavUser() {
                         <DropdownMenuTrigger asChild>
                             <SidebarMenuButton size="lg" className="hover:bg-orange-50">
                                 <Avatar className="w-8 h-8 rounded-lg">
-                                    <AvatarImage src={user?.avatar} />
+                                    <AvatarImage src={user?.avatar || undefined} />
                                     <AvatarFallback className="rounded-lg bg-orange-100 text-[#ec5d15] font-semibold">
                                         {user?.fullName?.charAt(0)}
                                     </AvatarFallback>
@@ -66,7 +66,7 @@ export function NavUser() {
                         <DropdownMenuContent side="top" align="start" className="w-56">
                             <div className="flex items-center gap-2 p-2">
                                 <Avatar className="w-8 h-8 rounded-lg">
-                                    <AvatarImage src={user?.avatar ?? ""} />
+                                    <AvatarImage src={user?.avatar || undefined} />
                                     <AvatarFallback className="rounded-lg bg-orange-100 text-[#ec5d15]">
                                         {user?.fullName?.charAt(0) ?? "A"}
                                     </AvatarFallback>

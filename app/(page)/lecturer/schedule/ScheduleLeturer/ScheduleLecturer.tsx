@@ -15,12 +15,6 @@ import {
     IStudySchedulesOfSchedule,
     TTypeLecturer,
 } from "@/app/types/lecturer/schedule/schedule.type";
-import { TTypeOfStudySchedules } from '@/app/types/student/scheduleEnrollment.type';
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Types
-// ─────────────────────────────────────────────────────────────────────────────
-
 interface StudyMeta {
     kind: "STUDY";
     type: TTypeLecturer;
@@ -32,11 +26,6 @@ interface StudyMeta {
     startTimeLabel: string;
     endTimeLabel: string;
 }
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Constants
-// ─────────────────────────────────────────────────────────────────────────────
-
 const STUDY_TYPE_COLOR: Record<
     TTypeLecturer,
     { bg: string; text: string; border: string }
@@ -52,46 +41,30 @@ const STUDY_TYPE_LABEL: Record<TTypeLecturer, string> = {
     ONLINE: "Trực tuyến",
 };
 
-/**
- * Backend dayOfWeek: 2 = Thứ 2 ... 7 = Thứ 7, 8 = Chủ nhật
- *
- * RRULE byweekday: MO=0, TU=1, WE=2, TH=3, FR=4, SA=5, SU=6
- */
 const DOW_TO_RRULE_NUM: Record<number, number> = {
-    2: 0, // Thứ 2 → MO
-    3: 1, // Thứ 3 → TU
-    4: 2, // Thứ 4 → WE
-    5: 3, // Thứ 5 → TH
-    6: 4, // Thứ 6 → FR
-    7: 5, // Thứ 7 → SA
-    8: 6, // Chủ nhật → SU
+    2: 0,
+    3: 1,
+    4: 2,
+    5: 3,
+    6: 4,
+    7: 5,
+    8: 6,
 };
 
 const DOW_TO_JS: Record<number, number> = {
-    2: 1, // Thứ 2 → JS Monday
-    3: 2, // Thứ 3 → JS Tuesday
-    4: 3, // Thứ 4 → JS Wednesday
-    5: 4, // Thứ 5 → JS Thursday
-    6: 5, // Thứ 6 → JS Friday
-    7: 6, // Thứ 7 → JS Saturday
-    8: 0, // Chủ nhật → JS Sunday
+    2: 1,
+    3: 2,
+    4: 3,
+    5: 4,
+    6: 5,
+    7: 6,
+    8: 0,
 };
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Helpers
-// ─────────────────────────────────────────────────────────────────────────────
-
-/** Convert số phút từ 00:00 → HH:mm. Ví dụ: 420 → "07:00" */
 const minutesToTime = (minutes: number): string => {
     const hour = Math.floor(minutes / 60);
     const minute = minutes % 60;
     return `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
 };
-
-/**
- * Từ startDate của môn, tìm ngày đầu tiên khớp đúng dayOfWeek
- * để dtstart của RRULE không bị lệch thứ.
- */
 const findFirstOccurrence = (startDate: string, dayOfWeek: number): string => {
     const targetDay = DOW_TO_JS[dayOfWeek];
     const date = new Date(startDate);
@@ -101,7 +74,6 @@ const findFirstOccurrence = (startDate: string, dayOfWeek: number): string => {
     return date.toISOString().slice(0, 10);
 };
 
-/** Tính duration "HH:mm" cho FullCalendar RRULE */
 const getDuration = (start: string, end: string): string => {
     const [sh, sm] = start.split(":").map(Number);
     const [eh, em] = end.split(":").map(Number);
@@ -118,11 +90,6 @@ const isValidDateString = (value: string | null): value is string => {
     if (!value) return false;
     return !Number.isNaN(new Date(value).getTime());
 };
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Convert data → calendar event
-// ─────────────────────────────────────────────────────────────────────────────
-
 const toStudyEvent = (schedule: IStudySchedulesOfSchedule, index: number) => {
     const startDateOnly = schedule.startDate.slice(0, 10);
     const endDateOnly = schedule.endDate.slice(0, 10);
@@ -161,11 +128,6 @@ const toStudyEvent = (schedule: IStudySchedulesOfSchedule, index: number) => {
         extendedProps: meta,
     };
 };
-
-// ─────────────────────────────────────────────────────────────────────────────
-// UI nhỏ
-// ─────────────────────────────────────────────────────────────────────────────
-
 function LegendDot({ color, label }: { color: string; label: string }) {
     return (
         <div className="flex items-center gap-1.5">
@@ -174,7 +136,6 @@ function LegendDot({ color, label }: { color: string; label: string }) {
         </div>
     );
 }
-
 function DetailRow({ label, value }: { label: string; value: string }) {
     return (
         <div className="flex items-start gap-3">
@@ -183,11 +144,6 @@ function DetailRow({ label, value }: { label: string; value: string }) {
         </div>
     );
 }
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Event content
-// ─────────────────────────────────────────────────────────────────────────────
-
 function EventContent({ info }: { info: EventContentArg }) {
     const meta = info.event.extendedProps as StudyMeta;
     const isMonthView = info.view.type === "dayGridMonth";
@@ -208,7 +164,6 @@ function EventContent({ info }: { info: EventContentArg }) {
             </div>
         );
     }
-
     return (
         <div className="h-full overflow-hidden px-1.5 py-1">
             <p
@@ -232,14 +187,8 @@ function EventContent({ info }: { info: EventContentArg }) {
         </div>
     );
 }
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Modal
-// ─────────────────────────────────────────────────────────────────────────────
-
 function EventModal({ meta, onClose }: { meta: StudyMeta; onClose: () => void }) {
     const color = STUDY_TYPE_COLOR[meta.type];
-
     return (
         <div
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 px-4"
@@ -249,7 +198,6 @@ function EventModal({ meta, onClose }: { meta: StudyMeta; onClose: () => void })
                 className="w-full max-w-sm overflow-hidden rounded-2xl bg-white shadow-xl"
                 onClick={(e) => e.stopPropagation()}
             >
-                {/* Header */}
                 <div
                     className="px-5 py-4"
                     style={{
@@ -290,8 +238,6 @@ function EventModal({ meta, onClose }: { meta: StudyMeta; onClose: () => void })
                         </button>
                     </div>
                 </div>
-
-                {/* Body */}
                 <div className="space-y-2.5 px-5 py-4">
                     <DetailRow
                         label="Thời gian"
@@ -308,11 +254,6 @@ function EventModal({ meta, onClose }: { meta: StudyMeta; onClose: () => void })
         </div>
     );
 }
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Main component
-// ─────────────────────────────────────────────────────────────────────────────
-
 interface IScheduleLecturerProps {
     data: IScheduleLecturer;
 }
@@ -348,7 +289,6 @@ export default function ScheduleLecturer({ data }: IScheduleLecturerProps) {
 
     return (
         <div className="w-full">
-            {/* Week info */}
             <p className="mb-4 text-sm text-gray-500">
                 Tuần:{" "}
                 <span className="font-medium text-gray-700">
@@ -359,8 +299,6 @@ export default function ScheduleLecturer({ data }: IScheduleLecturerProps) {
                     {formatDateVN(data.weekEnd)}
                 </span>
             </p>
-
-            {/* Calendar */}
             <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white">
                 <FullCalendar
                     ref={calendarRef}
@@ -385,15 +323,11 @@ export default function ScheduleLecturer({ data }: IScheduleLecturerProps) {
                     slotMaxTime="22:00:00"
                 />
             </div>
-
-            {/* Legend */}
             <div className="mt-3 flex flex-wrap gap-4 text-xs text-gray-500">
                 <LegendDot color="#3B82F6" label="Lý thuyết" />
                 <LegendDot color="#10B981" label="Thực hành" />
                 <LegendDot color="#8B5CF6" label="Trực tuyến" />
             </div>
-
-            {/* Modal */}
             {selectedMeta && (
                 <EventModal
                     meta={selectedMeta}

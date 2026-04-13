@@ -1,8 +1,8 @@
 "use client"
 import { useAppSelector } from "@/lib/hook"
 import Image from 'next/image';
-import { PencilLine, GraduationCap, Mail, CalendarDays, Phone, CheckCircle2, XCircle } from 'lucide-react';
-import Link from "next/link";
+import { GraduationCap, Mail, CalendarDays, Phone, CheckCircle2, XCircle } from 'lucide-react';
+import SwitchMode from "../Header/SwitchMode";
 
 export default function Title() {
     const user = useAppSelector((state) => state.user.userInfo);
@@ -16,10 +16,9 @@ export default function Title() {
 
     return (
         <div className="mt-7 overflow-hidden bg-[#FFFF] rounded-[32px] p-6 relative shadow-sm">
-            <Link href="/lecturer/info" className="absolute top-5 right-5 p-2 bg-orange-100 rounded-lg text-orange-400 active:scale-95 transition-transform">
-                <PencilLine size={16} />
-            </Link>
-
+            <div className="absolute top-5 right-5 p-2 active:scale-95 transition-transform">
+                <SwitchMode />
+            </div>
             <div className="flex flex-col items-center text-center">
                 <div className="relative mb-4">
                     <div className="w-32 h-32 rounded-full border-4 border-white overflow-hidden bg-white shadow-lg">
@@ -53,7 +52,7 @@ export default function Title() {
                             </span>
                         )}
                     </div>
-                    <div className="mt-6 space-y-4 border-t border-blue-200/50 pt-6 text-left w-full">
+                    <div className="mt-6 space-y-4 md:grid md:grid-cols-4 border-t border-blue-200/50 pt-6 text-left w-full">
                         <div className="flex items-center gap-4 text-zinc-700">
                             <div className="bg-white/50 p-2 rounded-lg">
                                 <GraduationCap size={18} className="text-zinc-800" />

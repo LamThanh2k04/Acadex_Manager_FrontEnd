@@ -48,16 +48,15 @@ export default function Schedule() {
                             Bộ lọc lịch
                         </h2>
                         <p className="text-xs text-gray-500 dark:text-gray-400">
-                            Chọn loại lịch và ngày để xem nhanh thông tin.
+                            Chọn ngày để xem nhanh thông tin.
                         </p>
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-
+                <div className="grid grid-cols-1 gap-4">
                     <div className="rounded-xl border border-gray-100 bg-gray-50 p-3 dark:border-neutral-800 dark:bg-neutral-900">
                         <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                            Ngày
+                            Vui lòng chọn ngày phù hợp với lịch của bạn
                         </label>
                         <ScheduleSelectDate />
                     </div>

@@ -13,7 +13,6 @@ export function StudentEnrollmentIsPaid({
     const searchParams = useSearchParams();
     const search = searchParams.get("searchStudent") ?? "";
     const { data, isLoading } = useGetStudentEnrollmentIsPaid(courseSectionId, search);
-    console.log(courseSectionId);
     console.log("student data: ", data);
     const students: IStudentEnrollmentIsPaid[] = data?.students ?? [];
     const scoreColor = (score: number | null) => {
@@ -45,7 +44,7 @@ export function StudentEnrollmentIsPaid({
 
             <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white">
                 <div className="grid grid-cols-[2fr_1fr_repeat(4,0.8fr)_0.8fr_0.8fr_0.6fr] gap-x-2 border-b border-gray-100 bg-gray-50 px-4 py-2.5">
-                    {["Họ tên", "MSSV", "CC1", "CC2", "Giữa kỳ", "Cuối kỳ", "Tổng", "Điểm TK", ""].map((h) => (
+                    {["Họ tên", "MSSV", "CC1", "CC2", "Giữa kỳ", "Cuối kỳ", "Tổng kết"].map((h) => (
                         <span key={h} className="text-xs font-medium text-gray-500">{h}</span>
                     ))}
                 </div>
@@ -84,11 +83,10 @@ export function StudentEnrollmentIsPaid({
                                 <span className={`self-center text-sm font-medium ${scoreColor(s.totalScore)}`}>
                                     {s.totalScore}
                                 </span>
-                                <span className="self-center text-sm text-gray-400">—</span>
                                 <button
                                     type="button"
                                     onClick={() => setGradeTarget(s)}
-                                    className="self-center rounded-lg border border-gray-200 px-2 py-1 text-xs text-gray-500 hover:border-blue-300 hover:text-blue-600"
+                                    className="self-center rounded-lg border-none px-4 py-1 text-[10px] md:text-[12px] bg-orange-100 text-orange-400 hover:bg-orange-400 hover:text-white duration-300 transition-all"
                                 >
                                     Nhập điểm
                                 </button>

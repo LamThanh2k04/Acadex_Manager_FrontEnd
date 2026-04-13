@@ -12,7 +12,7 @@ export default function SwitchMode() {
     if (!mounted) return null
     const isDark = theme === "dark"
     return (
-        <div className="flex items-center space-x-2">
+        <div className="md:flex items-center space-x-2 hidden">
             <SwitchPrimitives.Root
                 checked={isDark}
                 onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}

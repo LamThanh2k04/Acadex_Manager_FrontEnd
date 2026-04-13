@@ -103,11 +103,10 @@ export default function GradeModal({
                 </DrawerHeader>
                 <div className="grid grid-cols-2 gap-4 py-4">
                     {fields.map(({ label, key }) => (
-                        <div key={key} className="flex flex-col gap-1">
-                            <label className="text-xs font-medium text-gray-500">
+                        <div key={key} className="flex flex-col gap-1 md:grid md:grid-cols-2">
+                            <label className="text-xs md:text-[14px] font-medium text-gray-500">
                                 {label}
                             </label>
-
                             <input
                                 type="text"
                                 inputMode="decimal"
@@ -127,15 +126,14 @@ export default function GradeModal({
                 </div>
                 <DrawerFooter className="flex-row gap-3">
                     <DrawerClose asChild>
-                        <button className="flex-1 rounded-xl border py-2 text-sm font-medium">
+                        <button className="flex-1 cursor-pointer bg-gray-100 text-gray-400 hover:bg-gray-500 hover:text-white duration-300 transition-all rounded-xl border py-2 text-sm font-medium">
                             Huỷ
                         </button>
                     </DrawerClose>
-
                     <button
                         disabled={!isValid() || isPending}
                         onClick={handleSubmit}
-                        className="flex-1 rounded-xl bg-orange-100 py-2 text-sm font-semibold text-orange-400 transition hover:bg-orange-500 disabled:opacity-50"
+                        className="flex-1 rounded-xl bg-orange-100 py-2 text-sm font-semibold text-orange-400 transition-all duration-300 hover:bg-orange-500 hover:text-white cursor-pointer disabled:opacity-50"
                     >
                         {isPending ? "Đang lưu..." : "Xác nhận"}
                     </button>
