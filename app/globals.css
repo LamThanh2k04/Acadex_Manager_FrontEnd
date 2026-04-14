@@ -132,3 +132,21 @@
     @apply font-sans;
   }
 }
+
+.dark .fc {
+  background-color: #111827;
+  color: #666b7a;
+}
+
+.dark .fc-theme-standard td,
+.dark .fc-theme-standard th {
+  border-color: #ccd1d8;
+}
+
+.dark .fc-daygrid-day {
+  background-color: #111827;
+}
+
+.dark .fc-scrollgrid {
+  border-color: #1f2937;
+}

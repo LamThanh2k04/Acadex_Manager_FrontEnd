@@ -32,6 +32,9 @@ export default function ScheduleSelectType() {
           cursor-pointer
           appearance-none
           rounded-xl
+        dark:bg-gray-900
+          dark:border-gray-800
+          dark:text-white
           border border-orange-200
           bg-white
           px-4 py-2.5 pr-10

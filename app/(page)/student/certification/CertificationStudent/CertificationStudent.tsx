@@ -32,7 +32,7 @@ export default function CertificationStudent({ data }: ICertificicateStudentData
                 data.certificates.map((ce, index) => (
                     <div
                         key={index}
-                        className="flex flex-col sm:flex-row gap-4 bg-white border border-gray-100 rounded-2xl p-4 shadow-sm"
+                        className="flex flex-col sm:flex-row gap-4 bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-800 rounded-2xl p-4 shadow-sm"
                     >
                         <div className="shrink-0 md:flex-col flex items-start justify-between">
                             <Image
@@ -49,8 +49,7 @@ export default function CertificationStudent({ data }: ICertificicateStudentData
                         </div>
                         <div className="flex-1 min-w-0 space-y-1">
                             <div className="flex items-start justify-between gap-2 flex-wrap">
-
-                                <h2 className="text-sm font-bold text-gray-800">
+                                <h2 className="text-sm font-bold text-gray-800 dark:text-gray-400">
                                     {ce.template.code} - {ce.template.name}
                                 </h2>
                             </div>
@@ -79,7 +78,7 @@ export default function CertificationStudent({ data }: ICertificicateStudentData
             )}
 
             <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-                <DialogContent className="max-w-2xl">
+                <DialogContent className="max-w-2xl dark:bg-gray-900">
                     <DialogHeader>
                         <DialogTitle>Nộp chứng chỉ</DialogTitle>
                     </DialogHeader>

@@ -8,7 +8,7 @@ export default function LayoutStudent({ children }: Readonly<{ children: React.R
             defaultTheme="light"
             enableSystem={false}
         >
-            <main className="bg-gray-100 min-h-screen pt-15 relative">
+            <main className="bg-gray-100 dark:bg-[#232946] min-h-screen pt-15 relative">
                 {children}
                 <ChatBox />
             </main>

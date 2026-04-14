@@ -118,7 +118,7 @@ export default function CertificationSubmitModal({ onClose }: { onClose: () => v
                         <select
                             {...register("templateId", { required: "Vui lòng chọn chứng chỉ" })}
                             className="w-full appearance-none text-sm px-4 py-2.5 pr-10 rounded-xl border border-gray-200 bg-white
-                                       text-gray-700 focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100
+                                       text-gray-700 focus:outline-none dark:bg-gray-800 dark:text-white focus:border-orange-400 focus:ring-2 focus:ring-orange-100
                                        transition-all cursor-pointer disabled:opacity-50"
                             disabled={isLoading}
                         >
@@ -147,7 +147,7 @@ export default function CertificationSubmitModal({ onClose }: { onClose: () => v
                         {...register("issueDate", {
                             required: "Vui lòng chọn ngày cấp",
                         })}
-                        className="w-full text-sm px-4 py-2.5 rounded-xl border border-gray-200 bg-white
+                        className="w-full text-sm px-4 py-2.5 rounded-xl border dark:bg-gray-800 dark:text-white border-gray-200 bg-white
                                    text-gray-700 focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100
                                    transition-all"
                     />

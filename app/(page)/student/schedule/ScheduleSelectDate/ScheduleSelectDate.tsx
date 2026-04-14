@@ -32,6 +32,9 @@ export default function ScheduleSelectDate() {
           rounded-xl
           border border-orange-200
           bg-white
+          dark:bg-gray-900
+          dark:border-gray-800
+          dark:text-white
           px-4 py-2.5
           text-sm text-gray-700
           shadow-sm

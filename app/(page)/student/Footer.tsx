@@ -6,14 +6,14 @@ import { MapPin, Phone } from "lucide-react";
 
 export default function Footer() {
     return (
-        <div className="bg-white rounded-xl mt-5">
+        <div className="bg-white dark:bg-gray-900 rounded-xl mt-5">
             <div className="p-4 md:grid md:grid-cols-3 md:gap-8 md:items-start">
                 <div>
                     <p className="text-[16px] font-bold mb-2">Kết nối với chúng tôi</p>
                     <div className="space-y-1">
                         <Link href="https://www.facebook.com/acadex.edu.vn"
                             target="_blank" rel="noopener noreferrer"
-                            className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                            className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                         >
                             <FaFacebook size={28} className="text-blue-600" />
                             <div>
@@ -23,7 +23,7 @@ export default function Footer() {
                         </Link>
                         <Link href="https://zalo.me"
                             target="_blank" rel="noopener noreferrer"
-                            className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                            className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                         >
                             <SiZalo size={28} className="text-blue-500" />
                             <div>
@@ -33,7 +33,7 @@ export default function Footer() {
                         </Link>
                         <Link href="https://linkedin.com"
                             target="_blank" rel="noopener noreferrer"
-                            className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                            className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                         >
                             <FaLinkedin size={28} className="text-blue-700" />
                             <div>

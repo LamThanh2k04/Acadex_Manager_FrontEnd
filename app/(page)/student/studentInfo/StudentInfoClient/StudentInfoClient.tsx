@@ -42,7 +42,7 @@ export default function StudentInfo({ data }: IStudentInfoProps) {
                 : "bg-gray-400";
     return (
         <div className="w-full max-w-6xl mx-auto space-y-6">
-            <div className="overflow-hidden rounded-3xl border border-orange-100 bg-white shadow-lg dark:border-gray-800 dark:bg-gray-950">
+            <div className="overflow-hidden rounded-3xl border border-orange-100 bg-white shadow-lg dark:border-gray-900 dark:bg-gray-900">
                 <div className="h-28 md:h-36 bg-linear-to-r from-[#ec5d15] via-[#f07835] to-[#f6a26a]" />
                 <div className="relative px-5 md:px-8 pb-8">
                     <div className="-mt-12 md:-mt-14 flex flex-col md:flex-row md:items-end md:justify-between gap-5">
@@ -96,7 +96,7 @@ export default function StudentInfo({ data }: IStudentInfoProps) {
                     </div>
                 </div>
             </div>
-            <div className="rounded-3xl border border-orange-100 bg-white p-5 md:p-6 shadow-lg dark:border-gray-800 dark:bg-gray-950">
+            <div className="rounded-3xl border border-orange-100 bg-white p-5 md:p-6 shadow-lg dark:border-gray-800 dark:bg-gray-900">
                 <div className="mb-5 flex items-center gap-3">
                     <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-orange-100 text-[#ec5d15]">
                         <UserRound size={22} />
@@ -164,7 +164,7 @@ export default function StudentInfo({ data }: IStudentInfoProps) {
                     />
                 </div>
             </div>
-            <div className="rounded-3xl border border-orange-100 bg-white p-5 md:p-6 shadow-lg dark:border-gray-800 dark:bg-gray-950">
+            <div className="rounded-3xl border border-orange-100 bg-white p-5 md:p-6 shadow-lg dark:border-gray-800 dark:bg-gray-900">
                 <div className="mb-5 flex items-center gap-3">
                     <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-orange-100 text-[#ec5d15]">
                         <BookOpen size={22} />

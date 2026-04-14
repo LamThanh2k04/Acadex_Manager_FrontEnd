@@ -6,7 +6,7 @@ export default function CertificationProgram({ dataCertificationProgram, dataCer
     const issuedStudentLength = issuedStudent?.length;
     const percent = TOTAL_REQUIRED > 0 ? Math.round((issuedStudentLength / TOTAL_REQUIRED) * 100) : 0;
     return (
-        <div className=' ml-3 border p-5 rounded-xl w-90 md:w-115 bg-white hover:border-orange-400 transition-colors duration-300'>
+        <div className=' ml-3 border p-5 rounded-xl w-90 md:w-115 bg-white hover:border-orange-400 dark:bg-gray-900 dark:hover:border-gray-400 transition-colors duration-300'>
             <div className="flex items-center justify-between mb-2">
                 <span className="text-[18px] font-medium text-gray-700 dark:text-gray-300">
                     Tiến độ hoàn thành chứng chỉ
