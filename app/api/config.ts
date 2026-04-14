@@ -14,9 +14,6 @@ https.interceptors.response.use(
             }, 1500);
         } else if (error.code === 'NETWORK_ERROR') {
             toast.error("Lỗi kết nối mạng, vui lòng kiểm tra internet");
-        } else {
-            const message = error.response?.data?.message || "Có lỗi xảy ra";
-            toast.error(message);
         }
         return Promise.reject(error);
     }

@@ -268,15 +268,17 @@ export default function StudentUpdateModal({ selectedStudent, onClose }: { onClo
                                 className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-orange-300"
                                 {...register("admissionYear", { valueAsNumber: true })}
                             />
+                            <ErrorResponse error={errors.admissionYear} />
                         </div>
                         <div className="flex flex-col gap-1">
                             <label className="text-sm font-medium text-gray-600">Năm tốt nghiệp</label>
                             <input
                                 type="number"
-                                placeholder="2026"
+                                placeholder="2026..."
                                 className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-orange-300"
                                 {...register("graduateYear", { valueAsNumber: true })}
                             />
+                            <ErrorResponse error={errors.graduateYear} />
                         </div>
                         <div className="flex flex-col gap-1 col-span-2">
                             <label className="text-sm font-medium text-gray-600">Lớp học</label>
