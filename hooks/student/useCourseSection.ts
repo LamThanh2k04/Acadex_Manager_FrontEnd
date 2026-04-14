@@ -36,6 +36,7 @@ export const useRegisterCourseSection = () => {
             queryClient.invalidateQueries({ queryKey: ['get-courseSections-by-subject'] });
             queryClient.invalidateQueries({ queryKey: ['get-schedule-by-courseSection'] });
             queryClient.invalidateQueries({ queryKey: ['get-all-enrollment-courseSection'] });
+            queryClient.invalidateQueries({ queryKey: ['get-unpaid-enrollment'] });
             toast.success("Đăng ký học phần thành công");
         },
         onError: (error: any) => {
