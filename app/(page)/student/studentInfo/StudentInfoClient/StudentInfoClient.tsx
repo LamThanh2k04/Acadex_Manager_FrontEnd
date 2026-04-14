@@ -66,7 +66,7 @@ export default function StudentInfo({ data }: IStudentInfoProps) {
                             </div>
 
                             <div className="md:mt-4">
-                                <h1 className="text-2xl md:text-3xl md:text-orange-100 font-bold text-gray-900">
+                                <h1 className="text-2xl md:text-3xl md:text-orange-100 dark:text-orange-100 font-bold text-gray-900">
                                     {data.fullName}
                                 </h1>
                                 <p className="mt-1 text-sm md:text-base text-gray-500 dark:text-gray-400">
