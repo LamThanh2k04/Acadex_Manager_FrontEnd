@@ -15,7 +15,7 @@ export default function Title() {
         .toUpperCase() || "??";
 
     return (
-        <div className="mt-7 overflow-hidden bg-[#FFFF] rounded-[32px] p-6 relative shadow-sm">
+        <div className="mt-7 overflow-hidden bg-[#FFFF] dark:bg-gray-900 duration-300 transition-colors rounded-[32px] p-6 relative shadow-sm">
             <div className="absolute top-5 right-5 p-2 active:scale-95 transition-transform">
                 <div className="hidden md:flex">
                     <SwitchMode />
@@ -40,7 +40,7 @@ export default function Title() {
                     </div>
                 </div>
                 <div className="w-full">
-                    <h1 className="text-[15px] font-bold text-zinc-800 leading-tight">
+                    <h1 className="text-[15px] font-bold text-zinc-800 dark:text-white duration-300 transition-colors leading-tight">
                         Chào mừng trở lại, ThS.{user?.fullName}
                     </h1>
                     <div className="mt-2 flex justify-center">
@@ -56,44 +56,44 @@ export default function Title() {
                     </div>
                     <div className="mt-6 space-y-4 md:grid md:grid-cols-4 border-t border-blue-200/50 pt-6 text-left w-full">
                         <div className="flex items-center gap-4 text-zinc-700">
-                            <div className="bg-white/50 p-2 rounded-lg">
-                                <GraduationCap size={18} className="text-zinc-800" />
+                            <div className="bg-white/50 p-2 dark:bg-[#ec5d15] duration-300 transition-colors rounded-lg">
+                                <GraduationCap size={18} className="text-zinc-800 duration-300 transition-colors dark:text-white" />
                             </div>
                             <div>
-                                <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-bold">Cấp bậc</p>
-                                <p className="font-semibold text-sm">Thạc sĩ</p>
+                                <p className="text-[10px] uppercase tracking-wider text-zinc-500 dark:text-white duration-300 transition-colors font-bold">Cấp bậc</p>
+                                <p className="font-semibold text-sm dark:text-[#eebbc3] duration-300 transition-colors">Thạc sĩ</p>
                             </div>
                         </div>
 
                         <div className="flex items-center gap-4 text-zinc-700">
-                            <div className="bg-white/50 p-2 rounded-lg">
-                                <CalendarDays size={18} className="text-zinc-800" />
+                            <div className="bg-white/50 dark:bg-[#ec5d15] duration-300 transition-colors p-2 rounded-lg">
+                                <CalendarDays size={18} className="text-zinc-800 duration-300 transition-colors dark:text-white" />
                             </div>
                             <div>
-                                <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-bold">Ngày sinh</p>
-                                <p className="font-semibold text-sm">{user?.dateOfBirth ? (
+                                <p className="text-[10px] uppercase tracking-wider text-zinc-500 dark:text-white duration-300 transition-colors font-bold">Ngày sinh</p>
+                                <p className="font-semibold text-sm dark:text-[#eebbc3] duration-300 transition-colors">{user?.dateOfBirth ? (
                                     new Date(user?.dateOfBirth).toLocaleDateString("vi-VN")
                                 ) : "Chưa cập nhật ngày sinh"}</p>
                             </div>
                         </div>
 
                         <div className="flex items-center gap-4 text-zinc-700">
-                            <div className="bg-white/50 p-2 rounded-lg">
-                                <Mail size={18} className="text-zinc-800" />
+                            <div className="bg-white/50 p-2 rounded-lg dark:bg-[#ec5d15] duration-300 transition-colors">
+                                <Mail size={18} className="text-zinc-800 duration-300 transition-colors dark:text-white" />
                             </div>
                             <div className="overflow-hidden">
-                                <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-bold">Email</p>
-                                <p className="font-semibold text-sm truncate">{user?.email || "Chưa cập nhật email"}</p>
+                                <p className="text-[10px] uppercase tracking-wider text-zinc-500 dark:text-white duration-300 transition-colors font-bold">Email</p>
+                                <p className="font-semibold text-sm truncate dark:text-[#eebbc3] duration-300 transition-colors">{user?.email || "Chưa cập nhật email"}</p>
                             </div>
                         </div>
 
                         <div className="flex items-center gap-4 text-zinc-700">
-                            <div className="bg-white/50 p-2 rounded-lg">
-                                <Phone size={18} className="text-zinc-800" />
+                            <div className="bg-white/50 p-2 rounded-lg dark:bg-[#ec5d15] duration-300 transition-colors">
+                                <Phone size={18} className="text-zinc-800 duration-300 transition-colors dark:text-white" />
                             </div>
                             <div>
-                                <p className="text-[10px] uppercase tracking-wider text-zinc-500 font-bold">Điện thoại</p>
-                                <p className="font-semibold text-sm">{user?.phoneNumber || "Chưa cập nhật số điện thoại"}</p>
+                                <p className="text-[10px] uppercase tracking-wider text-zinc-500 dark:text-white duration-300 transition-colors font-bold">Điện thoại</p>
+                                <p className="font-semibold text-sm dark:text-[#eebbc3] duration-300 transition-colors">{user?.phoneNumber || "Chưa cập nhật số điện thoại"}</p>
                             </div>
                         </div>
                     </div>

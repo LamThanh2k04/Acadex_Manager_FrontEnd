@@ -37,11 +37,11 @@ export default function Pagination({ pagination }: { pagination: IPagination }) 
         <div className="flex items-center justify-between mt-4 px-2">
             <p className="text-sm text-gray-400">
                 Tổng{" "}
-                <span className="font-medium text-gray-600">
+                <span className="font-medium text-gray-600 dark:text-[#eebbc3]">
                     {pagination.total}
                 </span>{" "}
                 bản ghi — Trang{" "}
-                <span className="font-medium text-gray-600">
+                <span className="font-medium text-gray-600 dark:text-[#eebbc3]">
                     {pagination.page}
                 </span>
                 /{pagination.totalPages}

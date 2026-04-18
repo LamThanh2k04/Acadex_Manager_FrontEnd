@@ -17,7 +17,7 @@ export default async function LayoutLecturer({ children }: Readonly<{ children: 
                 <AppSidebarLecturer />
                 <div className="flex-1 flex flex-col">
                     <Header />
-                    <main className="min-h-screen pt-15 md:p-3 md:pt-0 pb-16 md:pb-0 bg-gray-100">
+                    <main className="min-h-screen pt-15 md:p-3 dark:bg-[#232946] transition-colors duration-300 md:pt-0 pb-16 md:pb-0 bg-gray-100">
                         {children}
                     </main>
                 </div>

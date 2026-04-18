@@ -14,7 +14,7 @@ function PasswordInput({ label, placeholder, error, registration }: {
     const [show, setShow] = useState(false);
     return (
         <div className="space-y-1.5">
-            <label className="flex items-center gap-1.5 text-xs font-semibold text-gray-600 uppercase tracking-wider">
+            <label className="flex items-center gap-1.5 text-xs font-semibold dark:text-white text-gray-600 uppercase tracking-wider">
                 <Lock size={11} className="text-[#ec5d15]" />
                 {label}
             </label>

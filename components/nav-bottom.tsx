@@ -29,7 +29,7 @@ export default function NavBottom() {
         }
     ]
     return (
-        <nav className='fixed bottom-0 flex items-center md:hidden w-full justify-around bg-white p-3 rounded-xl'>
+        <nav className='fixed bottom-0 z-1 flex items-center md:hidden w-full justify-around bg-white dark:bg-gray-900 p-3 rounded-xl'>
             {navbars.map((nav, index) => {
                 const isActive = pathName === nav.href;
                 return (

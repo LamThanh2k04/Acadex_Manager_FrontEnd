@@ -30,6 +30,8 @@ export default function ScheduleSelectDate() {
                 onChange={(e) => handleSelectDate(e.target.value)}
                 className="
           rounded-xl
+          dark:bg-[#eebbc3]
+          dark:text-[#232946]
           border border-orange-200
           bg-white
           px-4 py-2.5

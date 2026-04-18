@@ -29,7 +29,7 @@ export default function SearchInput() {
                 defaultValue={searchParams.get("search") ?? ""}
                 onChange={(e) => handleSearch(e.target.value)}
                 placeholder="Tìm kiếm tên môn học"
-                className="w-full rounded-xl border border-gray-200 bg-gray-50 py-2 pl-9 pr-4 text-sm outline-none placeholder:text-gray-400 focus:border-blue-300 focus:bg-white focus:ring-2 focus:ring-blue-100"
+                className="w-full rounded-xl border border-gray-200 bg-gray-50 dark:bg-gray-900 dark:border-none py-2 pl-9 pr-4 text-sm outline-none placeholder:text-gray-400 focus:border-blue-300 focus:bg-white focus:ring-2 focus:ring-blue-100"
             />
         </div>
     );

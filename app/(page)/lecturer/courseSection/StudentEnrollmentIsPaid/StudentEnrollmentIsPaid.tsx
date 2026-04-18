@@ -13,7 +13,6 @@ export function StudentEnrollmentIsPaid({
     const searchParams = useSearchParams();
     const search = searchParams.get("searchStudent") ?? "";
     const { data, isLoading } = useGetStudentEnrollmentIsPaid(courseSectionId, search);
-    console.log("student data: ", data);
     const students: IStudentEnrollmentIsPaid[] = data?.students ?? [];
     const scoreColor = (score: number | null) => {
         if (score === null) return "text-gray-300";
@@ -43,7 +42,7 @@ export function StudentEnrollmentIsPaid({
             </div>
 
             <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white">
-                <div className="grid grid-cols-[2fr_1fr_repeat(4,0.8fr)_0.8fr_0.8fr_0.6fr] gap-x-2 border-b border-gray-100 bg-gray-50 px-4 py-2.5">
+                <div className="grid grid-cols-[2fr_1fr_repeat(4,0.8fr)_0.8fr_0.8fr_0.6fr] gap-x-2 border-b border-gray-100 bg-gray-50 px-4 py-2.5 dark:bg-gray-900">
                     {["Họ tên", "MSSV", "CC1", "CC2", "Giữa kỳ", "Cuối kỳ", "Tổng kết"].map((h) => (
                         <span key={h} className="text-xs font-medium text-gray-500">{h}</span>
                     ))}
@@ -59,7 +58,7 @@ export function StudentEnrollmentIsPaid({
                         return (
                             <div
                                 key={s.enrollmentId}
-                                className="grid grid-cols-[2fr_1fr_repeat(4,0.8fr)_0.8fr_0.8fr_0.6fr] gap-x-2 border-b border-gray-100 px-4 py-3 last:border-0 hover:bg-gray-50"
+                                className="grid grid-cols-[2fr_1fr_repeat(4,0.8fr)_0.8fr_0.8fr_0.6fr] gap-x-2 border-b border-gray-100 dark:bg-gray-900 px-4 py-3 last:border-0 hover:bg-gray-50"
                             >
                                 <div className="flex min-w-0 items-center gap-2.5">
                                     {s.avatar ? (
@@ -72,7 +71,7 @@ export function StudentEnrollmentIsPaid({
                                             {getInitials(s.fullName)}
                                         </div>
                                     )}
-                                    <span className="truncate text-sm text-gray-800">{s.fullName}</span>
+                                    <span className="truncate text-sm text-gray-800 dark:text-white">{s.fullName}</span>
                                 </div>
                                 <span className="self-center text-sm text-gray-500">{s.studentCode}</span>
                                 {([s.theory1, s.theory2, s.midterm, s.final] as (number | null)[]).map((v, i) => (
@@ -86,7 +85,7 @@ export function StudentEnrollmentIsPaid({
                                 <button
                                     type="button"
                                     onClick={() => setGradeTarget(s)}
-                                    className="self-center rounded-lg border-none px-4 py-1 text-[10px] md:text-[12px] bg-orange-100 text-orange-400 hover:bg-orange-400 hover:text-white duration-300 transition-all"
+                                    className="self-center rounded-lg border-none px-4 py-1 text-[10px] md:text-[12px] dark:bg-[#eebbc3] dark:text-[#232946] bg-orange-100 text-orange-400 hover:bg-orange-400 hover:text-white duration-300 transition-all"
                                 >
                                     Nhập điểm
                                 </button>

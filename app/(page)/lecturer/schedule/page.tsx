@@ -10,7 +10,7 @@ export default function Schedule() {
     const { data: scheduleData } = useGetSchedule(date);
     return (
         <section className="space-y-6 p-4 md:p-6 mt-5">
-            <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-neutral-800 dark:bg-neutral-950">
+            <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-none dark:bg-gray-900">
                 <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                     <div>
                         <div className="mb-2 flex items-center gap-2">
@@ -38,7 +38,7 @@ export default function Schedule() {
                     )}
                 </div>
             </div>
-            <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-neutral-800 dark:bg-neutral-950">
+            <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-none dark:bg-gray-900">
                 <div className="mb-4 flex items-center gap-2">
                     <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-300">
                         <Filter className="h-4 w-4" />
@@ -54,7 +54,7 @@ export default function Schedule() {
                 </div>
 
                 <div className="grid grid-cols-1 gap-4">
-                    <div className="rounded-xl border border-gray-100 bg-gray-50 p-3 dark:border-neutral-800 dark:bg-neutral-900">
+                    <div className="rounded-xl border border-gray-100 bg-gray-50 p-3 dark:border-neutral-800 dark:bg-gray-900">
                         <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
                             Vui lòng chọn ngày phù hợp với lịch của bạn
                         </label>
@@ -66,7 +66,7 @@ export default function Schedule() {
                 {scheduleData ? (
                     <ScheduleLecturer data={scheduleData} />
                 ) : (
-                    <div className="flex min-h-55 flex-col items-center justify-center rounded-2xl border border-dashed border-gray-200 bg-gray-50 px-4 text-center dark:border-neutral-800 dark:bg-neutral-900">
+                    <div className="flex min-h-55 flex-col items-center justify-center rounded-2xl border border-dashed border-gray-200 bg-gray-50 px-4 text-center dark:border-neutral-800 dark:bg-gray-900">
                         <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-gray-100 dark:bg-neutral-800">
                             <CalendarDays className="h-6 w-6 text-gray-500 dark:text-gray-400" />
                         </div>

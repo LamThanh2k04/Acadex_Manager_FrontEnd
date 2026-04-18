@@ -104,7 +104,7 @@ export default function GradeModal({
                 <div className="grid grid-cols-2 gap-4 py-4">
                     {fields.map(({ label, key }) => (
                         <div key={key} className="flex flex-col gap-1 md:grid md:grid-cols-2">
-                            <label className="text-xs md:text-[14px] font-medium text-gray-500">
+                            <label className="text-xs md:text-[14px] font-medium text-gray-500 dark:text-white">
                                 {label}
                             </label>
                             <input

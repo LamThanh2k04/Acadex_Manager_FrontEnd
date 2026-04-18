@@ -289,13 +289,13 @@ export default function ScheduleLecturer({ data }: IScheduleLecturerProps) {
 
     return (
         <div className="w-full">
-            <p className="mb-4 text-sm text-gray-500">
+            <p className="mb-4 text-sm text-gray-500 dark:text-white">
                 Tuần:{" "}
-                <span className="font-medium text-gray-700">
+                <span className="font-medium text-gray-700 dark:text-[#eebbc3]">
                     {formatDateVN(data.weekStart)}
                 </span>
                 {" – "}
-                <span className="font-medium text-gray-700">
+                <span className="font-medium text-gray-700 dark:text-[#eebbc3]">
                     {formatDateVN(data.weekEnd)}
                 </span>
             </p>

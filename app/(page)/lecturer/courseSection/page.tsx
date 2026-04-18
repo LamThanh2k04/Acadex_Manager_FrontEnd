@@ -22,22 +22,21 @@ export default function CourseSection() {
     return (
         <div className="mx-auto max-w-7xl space-y-6 p-2 mt-5">
             <div>
-                <p className="text-xs uppercase tracking-wider text-gray-400">Giảng dạy</p>
-                <h1 className="mt-1 text-xl font-semibold text-gray-900">Học phần giảng dạy</h1>
+                <p className="text-xs uppercase tracking-wider text-gray-400 dark:text-white">Giảng dạy</p>
+                <h1 className="mt-1 text-xl font-semibold text-gray-900 dark:text-[#eebbc3]">Học phần giảng dạy</h1>
             </div>
 
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-[380px_1fr]">
                 <div className="space-y-3">
                     <div className="flex gap-2">
-                        <SearchInputCourseSection
-                        />
+                        <SearchInputCourseSection />
                         <select
                             value={selectedSemesterId}
                             onChange={(e) => {
                                 setSelectedSemesterId(Number(e.target.value));
                                 setSelectedSectionId(null);
                             }}
-                            className="shrink-0 rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm outline-none focus:border-blue-300 focus:ring-2 focus:ring-blue-100"
+                            className="shrink-0 rounded-xl border dark:bg-gray-900 dark:border-none dark:text-gray-400 border-gray-200 bg-gray-50 px-3 py-2 text-sm outline-none focus:border-blue-300 focus:ring-2 focus:ring-blue-100"
                         >
                             {semesters.map((s) => (
                                 <option key={s.id} value={s.id}>
@@ -47,13 +46,13 @@ export default function CourseSection() {
                         </select>
                     </div>
                     <div className="grid grid-cols-2 gap-2">
-                        <div className="rounded-xl bg-gray-50 px-4 py-3">
-                            <p className="text-xs text-gray-400">Tổng học phần</p>
-                            <p className="mt-0.5 text-xl font-semibold text-gray-900">{sections.length}</p>
+                        <div className="rounded-xl bg-gray-50 px-4 py-3 dark:bg-gray-900">
+                            <p className="text-xs text-gray-400 dark:text-white">Tổng học phần</p>
+                            <p className="mt-0.5 text-xl font-semibold text-gray-900 dark:text-[#eebbc3]">{sections.length}</p>
                         </div>
-                        <div className="rounded-xl bg-gray-50 px-4 py-3">
-                            <p className="text-xs text-gray-400">Tổng SV tối đa</p>
-                            <p className="mt-0.5 text-xl font-semibold text-gray-900">
+                        <div className="rounded-xl bg-gray-50 px-4 py-3 dark:bg-gray-900">
+                            <p className="text-xs text-gray-400 dark:text-white">Tổng SV tối đa</p>
+                            <p className="mt-0.5 text-xl font-semibold text-gray-900 dark:text-[#eebbc3]">
                                 {sections.reduce((acc, s) => acc + s.maxStudents, 0)}
                             </p>
                         </div>
@@ -78,10 +77,10 @@ export default function CourseSection() {
                 <div>
                     {selectedSection ? (
                         <>
-                            <div className="mb-4 flex items-center gap-3">
-                                <div className="h-8 w-1 rounded-full bg-blue-500" />
-                                <div>
-                                    <p className="text-sm font-medium text-gray-900">
+                            <div className="mb-4 flex items-center gap-3 dark:bg-gray-900">
+                                <div className="h-13 w-1 rounded-full bg-blue-500" />
+                                <div className='gap-2 flex flex-col'>
+                                    <p className="text-sm font-medium text-gray-900 dark:text-white">
                                         {selectedSection.subject.name}
                                     </p>
                                     <p className="text-xs text-gray-400">
@@ -101,8 +100,8 @@ export default function CourseSection() {
                                 </svg>
                             </div>
                             <div>
-                                <p className="text-sm font-medium text-gray-600">Chọn một học phần</p>
-                                <p className="mt-0.5 text-xs text-gray-400">
+                                <p className="text-sm font-medium text-gray-600 dark:text-white">Chọn một học phần</p>
+                                <p className="mt-0.5 text-xs text-gray-400 dark:text-[#eebbc3]">
                                     Danh sách sinh viên sẽ hiển thị ở đây
                                 </p>
                             </div>

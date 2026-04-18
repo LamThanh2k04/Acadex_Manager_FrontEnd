@@ -42,20 +42,20 @@ export default function Overview({ data }: { data: IOverview | undefined }) {
                 <div
                     key={index}
                     className={cn(
-                        "flex flex-col items-center justify-center p-4 rounded-2xl border transition-all duration-300 hover:shadow-md",
+                        "flex flex-col items-center justify-center dark:bg-gray-900 p-4 rounded-2xl border dark:border-none transition-all duration-300 hover:shadow-md",
                         stat.bgColor,
                         stat.borderColor
                     )}
                 >
-                    <div className={cn("p-2 rounded-full mb-2 bg-white shadow-sm", stat.color)}>
-                        <stat.icon size={20} strokeWidth={2.5} />
+                    <div className={cn("p-2 rounded-full mb-2 bg-white dark:bg-[#ec5d15] duration-300 transition-colors shadow-sm", stat.color)}>
+                        <stat.icon size={20} strokeWidth={2.5} className="dark:text-white duration-300 transition-colors" />
                     </div>
 
-                    <p className="text-[11px] font-medium text-gray-500 uppercase tracking-wider text-center">
+                    <p className="text-[11px] font-medium text-gray-500 dark:text-white duration-300 transition-colors uppercase tracking-wider text-center">
                         {stat.label}
                     </p>
 
-                    <p className={cn("text-xl font-bold mt-1", stat.color)}>
+                    <p className={cn("text-xl font-bold mt-1 dark:text-[#eebbc3] duration-300 transition-colors", stat.color)}>
                         {stat.value}
                     </p>
                 </div>

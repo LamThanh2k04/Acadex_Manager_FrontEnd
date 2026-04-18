@@ -61,13 +61,13 @@ export function AppSidebarLecturer({ ...props }: React.ComponentProps<typeof Sid
         { ssr: false }
     )
     return (
-        <Sidebar style={{ height: "100vh", position: "sticky", width: "200px", top: 0 }} className="rounded-xl bg-white mr-3 hidden md:flex" collapsible="none" {...props}>
+        <Sidebar style={{ height: "100vh", position: "sticky", width: "200px", top: 0 }} className="rounded-xl bg-white mr-3 dark:bg-[#232946] transition-colors duration-300 hidden md:flex" collapsible="none" {...props}>
             <SidebarHeader>
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild>
                             <Link href="#">
-                                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                                <div className="flex aspect-square size-8 items-center justify-center rounded-lg">
                                     <Image
                                         src="/images/acadex-logo.jpg"
                                         className="rounded-xl"

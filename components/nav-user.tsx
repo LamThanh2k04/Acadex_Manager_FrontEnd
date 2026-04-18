@@ -53,7 +53,7 @@ export function NavUser() {
                 <SidebarMenuItem>
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                            <SidebarMenuButton size="lg" className="hover:bg-orange-50">
+                            <SidebarMenuButton size="lg" className="hover:bg-orange-50 dark:hover:bg-gray-900 duration-300 transition-colors cursor-pointer">
                                 <Avatar className="w-8 h-8 rounded-lg">
                                     <AvatarImage src={user?.avatar || undefined} />
                                     <AvatarFallback className="rounded-lg bg-orange-100 text-[#ec5d15] font-semibold">

@@ -38,7 +38,7 @@ export default function LecturerInfo({ data }: ILecturerInfoProps) {
 
     return (
         <div className="max-w-xl mx-auto px-4 py-6 space-y-4 md:grid md:grid-cols-2 md:max-w-7xl md:gap-5">
-            <div className="bg-white border border-gray-100 rounded-2xl p-5 flex flex-col items-center text-center">
+            <div className="bg-white border border-gray-100 rounded-2xl p-5 flex flex-col items-center text-center dark:border-none dark:bg-gray-900 transition-colors duration-300">
                 {lecturer.avatar ? (
                     <img
                         src={lecturer.avatar}
@@ -50,14 +50,14 @@ export default function LecturerInfo({ data }: ILecturerInfoProps) {
                         <CircleUserRound className="size-12 text-orange-300" />
                     </div>
                 )}
-                <h1 className="text-xl font-bold text-gray-800">{lecturer.fullName}</h1>
-                <p className="text-sm text-gray-400 mt-0.5">{info.lecturerCode} • {info.faculty.name}</p>
+                <h1 className="text-xl font-bold text-gray-800 dark:text-white">{lecturer.fullName}</h1>
+                <p className="text-sm text-gray-400 mt-0.5 dark:text-[#eebbc3]">{info.lecturerCode} • {info.faculty.name}</p>
                 <span className={`mt-2 text-xs font-medium px-3 py-1 rounded-full ${status.className}`}>
                     {status.label}
                 </span>
             </div>
-            <div className="bg-white border border-gray-100 rounded-2xl p-5">
-                <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-4">
+            <div className="bg-white border dark:bg-gray-900 dark:border-none border-gray-100 rounded-2xl p-5">
+                <h2 className="text-xs font-semibold text-gray-400 dark:text-[#eebbc3] uppercase tracking-wide mb-4">
                     Thông tin liên hệ
                 </h2>
                 <div className="space-y-3">
@@ -86,8 +86,8 @@ export default function LecturerInfo({ data }: ILecturerInfoProps) {
                     />
                 </div>
             </div>
-            <div className="bg-white border border-gray-100 rounded-2xl p-5">
-                <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-4">
+            <div className="bg-white border border-gray-100 dark:bg-gray-900 dark:border-none rounded-2xl p-5">
+                <h2 className="text-xs font-semibold text-gray-400 dark:text-[#eebbc3] uppercase tracking-wide mb-4">
                     Thông tin cá nhân
                 </h2>
                 <div className="space-y-3">
@@ -122,8 +122,8 @@ export default function LecturerInfo({ data }: ILecturerInfoProps) {
                     />
                 </div>
             </div>
-            <div className="bg-white border border-gray-100 rounded-2xl p-5">
-                <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-4">
+            <div className="bg-white border border-gray-100 dark:bg-gray-900 dark:border-none rounded-2xl p-5">
+                <h2 className="text-xs font-semibold text-gray-400 dark:text-[#eebbc3] uppercase tracking-wide mb-4">
                     Thông tin chuyên môn
                 </h2>
                 <div className="space-y-3">

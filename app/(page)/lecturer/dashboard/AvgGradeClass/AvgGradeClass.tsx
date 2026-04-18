@@ -181,7 +181,7 @@ export default function AvgGradeClass({
 }: IAvgGradeClassProps) {
     if (!data || data.length === 0) {
         return (
-            <div className="rounded-2xl border bg-card p-4 md:p-5 space-y-4">
+            <div className="rounded-2xl border bg-card p-4 md:p-5 space-y-4 dark:bg-gray-900">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                     <div>
                         <p className="text-sm font-medium">Điểm trung bình theo lớp</p>
@@ -209,7 +209,7 @@ export default function AvgGradeClass({
                         </SelectContent>
                     </Select>
                 </div>
-                <div className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-gray-200 bg-gray-50 py-12 text-center">
+                <div className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-gray-200 bg-gray-50 dark:bg-gray-900 duration-300 transition-colors py-12 text-center">
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-gray-400">
                             <path d="M9 17H15M9 13H15M9 9H11M13 3H8C7.44772 3 7 3.44772 7 4V20C7 20.5523 7.44772 21 8 21H16C16.5523 21 17 20.5523 17 20V7L13 3Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -230,7 +230,7 @@ export default function AvgGradeClass({
     const minItem = data.reduce((a, b) => (a.avgScore < b.avgScore ? a : b));
 
     return (
-        <div className="rounded-2xl border bg-card p-4 md:p-5 space-y-4">
+        <div className="rounded-2xl border bg-card p-4 md:p-5 space-y-4 dark:bg-gray-900 duration-300 transition-colors">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                 <div>
                     <p className="text-sm font-medium">Điểm trung bình theo lớp</p>

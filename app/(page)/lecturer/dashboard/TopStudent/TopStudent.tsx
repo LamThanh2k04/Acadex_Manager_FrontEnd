@@ -76,7 +76,7 @@ function CardHeader({ courseSection, selectedId, onSelectId }: Pick<ITopStudentP
                 value={selectedId ? String(selectedId) : undefined}
                 onValueChange={(val) => onSelectId(Number(val))}
             >
-                <SelectTrigger className="w-30 h-8 text-xs rounded-lg border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 focus:ring-1 focus:ring-[#ec5d15]/40">
+                <SelectTrigger className="w-30 h-8 text-xs rounded-lg border-gray-200 dark:bg-gray-800 dark:text-gray-300 focus:ring-1 focus:ring-[#ec5d15]/40">
                     <SelectValue placeholder="Chọn môn học" />
                 </SelectTrigger>
                 <SelectContent className="dark:bg-gray-900 dark:border-gray-700">
@@ -230,9 +230,9 @@ function RankRow({ item, rank }: { item: ITopStudent; rank: number }) {
 export default function TopStudent({ data, courseSection, selectedId, onSelectId }: ITopStudentProps) {
     if (!data || data.length === 0) {
         return (
-            <div className="rounded-2xl border bg-card p-4 md:p-5 space-y-4">
+            <div className="rounded-2xl border bg-card p-4 md:p-5 space-y-4 dark:bg-gray-900">
                 <CardHeader courseSection={courseSection} selectedId={selectedId} onSelectId={onSelectId} />
-                <div className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-gray-200 bg-gray-50 py-12 text-center">
+                <div className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-gray-200 bg-gray-50 dark:bg-gray-900 duration-300 transition-colors py-12 text-center">
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-gray-400">
                             <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 12 12 15Z" stroke="currentColor" strokeWidth="1.5" />
@@ -251,7 +251,7 @@ export default function TopStudent({ data, courseSection, selectedId, onSelectId
     const [first, ...rest] = data;
 
     return (
-        <div className="rounded-2xl border bg-card p-4 md:p-5">
+        <div className="rounded-2xl border bg-card p-4 md:p-5 dark:bg-gray-900 duration-300 transition-colors">
             <CardHeader courseSection={courseSection} selectedId={selectedId} onSelectId={onSelectId} />
 
             {/* rank 1 */}
