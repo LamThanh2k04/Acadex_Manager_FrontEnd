@@ -5,6 +5,5 @@ export const useGetStudentsTuitionStatus = (status: string, page: number) => {
         queryKey: ['get-all-student-tuition-status', status, page],
         queryFn: () => adminService.getStudentsTuitionStatus(status, page),
         staleTime: 5 * 60 * 1000,
-        placeholderData: (prevData) => prevData
     })
 };
