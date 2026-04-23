@@ -1,5 +1,6 @@
+import LecturerInfoSkeleton from "./LecturerInfo/LecturerInfoSkeleton";
 export default function InfoLoading() {
     return (
-        <div></div>
+        <LecturerInfoSkeleton />
     )
 }
