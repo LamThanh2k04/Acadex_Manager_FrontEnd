@@ -1,6 +1,6 @@
 "use client";
 import { useAppSelector } from "@/lib/hook";
-import GlobalLoading from "../loading/global";
+import GlobalLoading from "../components/loading/global";
 
 export default function GlobalLoadingProvider() {
     const isGlobalLoading = useAppSelector((state) => state.loading.isGlobalLoading);

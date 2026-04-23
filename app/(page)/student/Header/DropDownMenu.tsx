@@ -48,7 +48,7 @@ export default function DropDownMenu() {
         } catch (error) {
             console.log(error);
         } finally {
-            setGlobalLoading(false);
+            dispatch(setGlobalLoading(false));
         };
     };
     const initials = user?.fullName

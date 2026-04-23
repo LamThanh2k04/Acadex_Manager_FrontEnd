@@ -3,9 +3,9 @@ import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from 'react-hot-toast';
 import { cn } from "@/lib/utils";
-import StoreProvider from "./StoreProvider";
-import QueryProvider from "@/components/providers/QueryProvider";
-import GlobalLoadingProvider from "@/components/providers/GlobalLoadingProvider";
+import QueryProvider from "@/providers/QueryProvider";
+import GlobalLoadingProvider from "@/providers/GlobalLoadingProvider";
+import StoreProvider from "@/providers/StoreProvider";
 
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
 
