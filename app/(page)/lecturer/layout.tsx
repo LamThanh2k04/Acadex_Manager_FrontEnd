@@ -3,7 +3,7 @@ import { cookies } from 'next/headers'
 import Header from "./components/Header/Header";
 import { AppSidebarLecturer } from "./app-sidebar-lecturer";
 import { SidebarProvider } from '@/components/ui/sidebar';
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 export default async function LayoutLecturer({ children }: Readonly<{ children: React.ReactNode }>) {
     const cookieStore = await cookies();
     const sidebarOpen = cookieStore.get("sidebar:state")?.value === "true";

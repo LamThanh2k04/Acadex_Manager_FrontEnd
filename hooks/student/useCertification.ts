@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { getCertificateProgram, submitCertificate, getAllCertificateStudent, getAllCertificationProgram } from '@/app/api/studentService/certification';
+import { getCertificateProgram, submitCertificate, getAllCertificateStudent, getAllCertificationProgram } from '@/api/studentService/certification';
 import { ICertificateProgram, ICertificicateStudentData, ICertificationProgramAll } from '@/app/types/student/certification.type';
 import toast from "react-hot-toast";
 

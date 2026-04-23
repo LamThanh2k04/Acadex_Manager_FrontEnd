@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { getTopStudent } from '@/app/api/lecturerService/dashboard/topStudent';
+import { getTopStudent } from '@/api/lecturerService/dashboard/topStudent';
 import { ITopStudent } from '@/app/types/lecturer/dashboard/topStudent.type';
 
 export const useGetTopStudent = (courseSectionId: number) => {

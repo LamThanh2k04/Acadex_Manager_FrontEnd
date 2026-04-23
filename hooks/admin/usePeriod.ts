@@ -1,4 +1,4 @@
-import { adminService } from "@/app/api/adminService"
+import { adminService } from "@/api/adminService"
 import { ICreatePeriod, TUpdatePeriod } from "@/app/types/admin/period.type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import toast from "react-hot-toast";

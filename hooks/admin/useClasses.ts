@@ -1,4 +1,4 @@
-import { adminService } from "@/app/api/adminService"
+import { adminService } from "@/api/adminService"
 import { IHoomroomLecturerSimple, IUpdateClassesInfo } from "@/app/types/admin/classes.type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import toast from "react-hot-toast";

@@ -1,5 +1,5 @@
 "use client"
-import { adminService } from "@/app/api/adminService";
+import { adminService } from "@/api/adminService";
 import { useState } from "react"
 import { Loader } from 'lucide-react';
 import { Download } from 'lucide-react';

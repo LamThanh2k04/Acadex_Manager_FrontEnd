@@ -12,7 +12,7 @@ import {
     X,
     Users,
 } from "lucide-react";
-import { minutestoHour, dayOfWeekToString } from "@/app/utils/schedule";
+import { minutestoHour, dayOfWeekToString } from "@/utils/schedule";
 import {
     IRegisterCourseSection,
     TScheduleGroupItem,

@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query"
-import { resetPassword } from '@/app/api/studentService/resetPassword';
+import { resetPassword } from '@/api/studentService/resetPassword';
 import { IResetPassword } from '@/app/types/student/resetPassword.type';
 import toast from "react-hot-toast";
 

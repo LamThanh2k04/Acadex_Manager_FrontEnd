@@ -1,4 +1,4 @@
-import { IOverview } from "@/app/types/lecturer/dashboard/overview.type";
+import { IOverview } from "@/types/lecturer/dashboard/overview.type";
 import { UsersRound, School, CalendarMinus2, CalendarCheck } from 'lucide-react';
 import { cn } from '@/lib/utils';
 export default function Overview({ data }: { data: IOverview | undefined }) {

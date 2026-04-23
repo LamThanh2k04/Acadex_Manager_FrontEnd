@@ -2,7 +2,7 @@ import { IScheduleData, IScheduleDataResponseProps } from "@/app/types/admin/sch
 import { Pencil, CalendarPlus } from 'lucide-react';
 import Pagination from '@/components/Pagination';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { dayOfWeekToString, minutestoHour } from "@/app/utils/schedule";
+import { dayOfWeekToString, minutestoHour } from "@/utils/schedule";
 import ScheduleSearchBar from "../ScheduleSearchBar/ScheduleSearchBar";
 import { useState } from "react";
 import ScheduleCreateModal from "../ScheduleModal/ScheduleCreateModal";

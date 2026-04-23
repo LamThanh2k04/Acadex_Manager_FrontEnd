@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 
 export default function LoginFormLayout({ children }: { children: React.ReactNode }) {
     return (

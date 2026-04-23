@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { getUnpaidEnrollment, createPayment, getPaidEnrollment } from '@/app/api/studentService/payment';
+import { getUnpaidEnrollment, createPayment, getPaidEnrollment } from '@/api/studentService/payment';
 import { ICreatePayment, IPaidEnrollmentData, IGetUnPaidEnrollmentData, IPaidEnrollmentDataResponse } from '@/app/types/student/payment.type';
 import toast from "react-hot-toast";
 

@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query"
-import { chatBoxMessage } from '@/app/api/studentService/chatbox';
+import { chatBoxMessage } from '@/api/studentService/chatbox';
 import { IChatBoxMessage } from "@/app/types/student/chatbox.type";
 import toast from "react-hot-toast";
 export const useChatBoxMessage = () => {

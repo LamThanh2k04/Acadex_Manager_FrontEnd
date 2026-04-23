@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { ICreateExamSchedule, ICreateExamScheduleForm } from "@/app/types/admin/exam.type";
 import ErrorResponse from "@/app/(auth)/login/ErrorResponse";
 import { useEffect } from "react";
-import { formatDateForInput } from "@/app/utils/date";
+import { formatDateForInput } from "@/utils/date";
 import { Loader } from "lucide-react";
 
 export default function ExamCreateModal({ onClose }: { onClose: () => void }) {

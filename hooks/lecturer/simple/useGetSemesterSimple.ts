@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { getAllSemesterSimple } from '@/app/api/lecturerService/simple/simple';
+import { getAllSemesterSimple } from '@/api/lecturerService/simple/simple';
 import { ISemesterSimple } from '@/app/types/lecturer/simple/semester.type';
 
 export const useGetSemesterSimple = () => {

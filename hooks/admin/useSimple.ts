@@ -1,4 +1,4 @@
-import { adminService } from "@/app/api/adminService"
+import { adminService } from "@/api/adminService"
 import { useQuery } from "@tanstack/react-query"
 import { IProgramSimple, IClassSimple } from '@/app/types/admin/student.type';
 import { ICertificateSimple, ILecturerSimple, IPeriodSimple, IRoomSimple, ISemesterSimple, ISubjectSimple } from "@/app/types/admin/simpleOrOther.type";

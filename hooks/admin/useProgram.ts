@@ -1,4 +1,4 @@
-import { adminService } from "@/app/api/adminService"
+import { adminService } from "@/api/adminService"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { ISemeterOrderByProgram } from '@/app/types/admin/simpleOrOther.type';
 import { ICreateCertificateOfProgram, ICreateProgram, ICreateSubjectOfProgram, IProgramDataResponse, IProgramInfoResponse, TUpdateProgramInfo, IUpdateSubjectOfProgram, ISubjectToProgram, ICertificateToProgram } from '@/app/types/admin/program.type';

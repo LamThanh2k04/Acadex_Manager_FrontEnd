@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { getAllScheduleEnrollment } from '@/app/api/studentService/scheduleEnrollment';
+import { getAllScheduleEnrollment } from '@/api/studentService/scheduleEnrollment';
 import { IScheduleEnrollmentParams, IScheduleEnrollmentData } from '@/app/types/student/scheduleEnrollment.type';
 
 export const useGetScheduleEnrollment = (params: IScheduleEnrollmentParams) => {

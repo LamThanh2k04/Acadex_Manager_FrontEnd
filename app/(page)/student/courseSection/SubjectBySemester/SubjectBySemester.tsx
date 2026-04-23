@@ -1,6 +1,6 @@
 import { ISubjectsBySemesterDataProps } from '@/app/types/student/courseSection.type';
 import { BookOpen } from 'lucide-react';
-import { minutestoHour } from '@/app/utils/schedule';
+import { minutestoHour } from '@/utils/schedule';
 import CourseSectionBySubject from '../CourseSectionBySubject/CourseSectionBySubject';
 import { useState } from 'react';
 import React from 'react';

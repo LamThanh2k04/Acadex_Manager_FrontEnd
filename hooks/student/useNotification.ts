@@ -1,4 +1,4 @@
-import { getAllNotifications, getInfoNotification } from "@/app/api/studentService/notification"
+import { getAllNotifications, getInfoNotification } from "@/api/studentService/notification"
 import { INotificationDataResponse } from '@/app/types/student/notification.type';
 import { useAppSelector } from "@/lib/hook";
 import { disconnectSocket, getSocket } from "@/lib/socket";

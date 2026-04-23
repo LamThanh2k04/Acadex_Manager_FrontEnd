@@ -1,5 +1,5 @@
 "use client"
-import { ICourseSection } from '@/app/types/lecturer/courseSection/courseSection.type';
+import { ICourseSection } from '@/types/lecturer/courseSection/courseSection.type';
 import { useGetCourseSection } from '@/hooks/lecturer/courseSection/useGetCourseSection';
 import { useGetSemesterSimple } from '@/hooks/lecturer/simple/useGetSemesterSimple';
 import { useState } from 'react';

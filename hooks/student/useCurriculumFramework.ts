@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { getSemeterOrderProgram, getSubjectBySemesterOrderProgram } from '@/app/api/studentService/curriculumFramework';
+import { getSemeterOrderProgram, getSubjectBySemesterOrderProgram } from '@/api/studentService/curriculumFramework';
 import { ISemesterOrderProgramResponse, ISubjectsBySemesterOrderProgramResponse } from '@/app/types/student/curriculumFramework.type';
 
 export const useGetSemesterOrderProgram = () => {

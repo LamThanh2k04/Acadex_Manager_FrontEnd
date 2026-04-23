@@ -3,7 +3,7 @@ import { cookies } from 'next/headers'
 import Header from './Header'
 import { Suspense } from "react"
 import { AppSidebarAdmin } from '@/app/(page)/admin/app-sidebar-admin';
-import { ThemeProvider } from '@/components/theme-provider';
+import { ThemeProvider } from '@/providers/ThemeProvider';
 export default async function LayoutAdmin({ children }: Readonly<{ children: React.ReactNode }>) {
     const cookieStore = await cookies();
     const sidebarOpen = cookieStore.get("sidebar:state")?.value === "true";

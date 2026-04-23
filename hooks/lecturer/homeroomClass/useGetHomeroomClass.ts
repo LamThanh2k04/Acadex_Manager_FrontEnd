@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { getHomeRoomClass } from '@/app/api/lecturerService/homeroomClass/homeroomClass';
+import { getHomeRoomClass } from '@/api/lecturerService/homeroomClass/homeroomClass';
 import { IHomeroomClass } from '@/app/types/lecturer/homeroomClass/homeroomClass.type';
 
 export const useGetHomeroomClass = (search: string, page: number) => {

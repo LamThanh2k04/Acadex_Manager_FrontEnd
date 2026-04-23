@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { getAvgGradeClass } from '@/app/api/lecturerService/dashboard/avgClassGrade';
+import { getAvgGradeClass } from '@/api/lecturerService/dashboard/avgClassGrade';
 import { IAvgGradeClass } from '@/app/types/lecturer/dashboard/avgGradeClass.type';
 
 export const useAvgGradeClass = (courseSectionId: number) => {

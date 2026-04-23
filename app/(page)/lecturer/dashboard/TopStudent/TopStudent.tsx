@@ -1,6 +1,6 @@
 "use client";
 
-import { ITopStudent } from "@/app/types/lecturer/dashboard/topStudent.type";
+import { ITopStudent } from "@/types/lecturer/dashboard/topStudent.type";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 interface ICourseSectionSimple {

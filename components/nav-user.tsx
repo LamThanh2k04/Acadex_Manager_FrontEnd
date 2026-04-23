@@ -27,7 +27,7 @@ import {
 } from "@/components/ui/sidebar"
 import { useRouter } from "next/navigation"
 import { removeUser } from "@/lib/features/user/userSlice"
-import { logoutUserAction } from "@/app/actions/auth.action"
+import { logoutUserAction } from "@/actions/auth.action"
 import toast from "react-hot-toast"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import ResetPasswordModal from '@/app/(page)/lecturer/components/Header/ResetPasswordModal';

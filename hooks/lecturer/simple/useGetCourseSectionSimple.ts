@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { getAllCourseSectionForLecturerSimple } from '@/app/api/lecturerService/simple/simple';
+import { getAllCourseSectionForLecturerSimple } from '@/api/lecturerService/simple/simple';
 import { ICourseSectionSimple } from '@/app/types/lecturer/simple/courseSection.type';
 
 export const useGetCourseSectionSimple = () => {

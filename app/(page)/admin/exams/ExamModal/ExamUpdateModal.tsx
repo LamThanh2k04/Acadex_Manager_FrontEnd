@@ -1,6 +1,6 @@
 "use client"
 import { IExamScheduleData, TUpdateExamScheduleInfo } from '@/app/types/admin/exam.type';
-import { formatDateForInput } from "@/app/utils/date"
+import { formatDateForInput } from "@/utils/date"
 import { useUpdateExamScheduleInfo, useGetAvailableRoomForExamSchedule } from '@/hooks/admin/useExam';
 import { useForm } from "react-hook-form"
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';

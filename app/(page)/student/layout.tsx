@@ -1,6 +1,5 @@
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 import ChatBox from "./components/ChatBox/ChatBox";
-
 export default function LayoutStudent({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
         <ThemeProvider

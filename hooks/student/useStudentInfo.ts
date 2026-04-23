@@ -1,4 +1,4 @@
-import { getInfoStudent } from '@/app/api/studentService/studentInfo';
+import { getInfoStudent } from '@/api/studentService/studentInfo';
 import { IStudentInfo } from '@/app/types/student/dashboard.type';
 import { useQuery } from '@tanstack/react-query';
 export const useGetInfoStudentOfStudent = () => {

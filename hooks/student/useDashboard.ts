@@ -1,4 +1,4 @@
-import { getAllEnrollmentBySemester, getInfoStudent, getResultStudyCreditsForPieChart, getTotalScoreForChart } from "@/app/api/studentService/dashboard"
+import { getAllEnrollmentBySemester, getInfoStudent, getResultStudyCreditsForPieChart, getTotalScoreForChart } from "@/api/studentService/dashboard"
 import { IEnrollmentSemester, IStudentInfo } from "@/app/types/student/dashboard.type";
 import { useQuery } from "@tanstack/react-query"
 // student info

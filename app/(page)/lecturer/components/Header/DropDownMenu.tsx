@@ -24,7 +24,7 @@ import {
 import { useAppDispatch, useAppSelector } from '@/lib/hook';
 import Link from 'next/link';
 import { removeUser } from '@/lib/features/user/userSlice';
-import { logoutUserAction } from '@/app/actions/auth.action';
+import { logoutUserAction } from '@/actions/auth.action';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';

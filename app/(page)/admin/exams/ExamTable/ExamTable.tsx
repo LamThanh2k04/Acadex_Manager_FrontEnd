@@ -2,7 +2,7 @@ import { IExamScheduleData, IExamScheduleDataResponseProps } from "@/app/types/a
 import { Pencil, CalendarPlus } from 'lucide-react';
 import Pagination from '@/components/Pagination';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { minutestoHour } from '@/app/utils/schedule';
+import { minutestoHour } from '@/utils/schedule';
 import ExamSearchBar from "../ExamSearchBar/ExamSearchBar";
 import { useState } from "react";
 import ExamCreateModal from "../ExamModal/ExamCreateModal";
