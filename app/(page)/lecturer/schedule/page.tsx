@@ -4,10 +4,17 @@ import { useSearchParams } from 'next/navigation';
 import ScheduleLecturer from './ScheduleLeturer/ScheduleLecturer';
 import { CalendarDays, Filter } from 'lucide-react';
 import ScheduleSelectDate from './ScheduleSelectDate/ScheduleSelectDate';
+import ScheduleLecturerSkeleton from './ScheduleLeturer/ScheduleLecturerSkeleton';
+import ScheduleLoading from './loading';
 export default function Schedule() {
     const searchParams = useSearchParams();
     const date = searchParams.get("date") ?? "";
-    const { data: scheduleData } = useGetSchedule(date);
+    const { data: scheduleData, isLoading: isLoadingSchedule } = useGetSchedule(date);
+    if (isLoadingSchedule) {
+        return (
+            <ScheduleLoading />
+        )
+    }
     return (
         <section className="space-y-6 p-4 md:p-6 mt-5">
             <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-none dark:bg-gray-900">

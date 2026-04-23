@@ -1,5 +1,6 @@
+import { Skeleton } from "@/components/ui/skeleton";
 export default function ScheduleSelectDateSkeleton() {
     return (
-        <div></div>
-    )
+        <Skeleton className="h-10 w-48 rounded-xl" />
+    );
 }
