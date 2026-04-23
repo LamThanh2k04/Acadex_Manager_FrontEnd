@@ -1,5 +1,7 @@
+import { Skeleton } from "@/components/ui/skeleton";
+
 export default function SearchBarSkeleton() {
     return (
-        <div></div>
+        <Skeleton className="h-9 w-full rounded-xl" />
     )
 }
