@@ -7,6 +7,7 @@ import { CourseSectionLecturer } from './CourseSectionLecturer/CourseSectionLect
 import { StudentEnrollmentIsPaid } from '@/app/(page)/lecturer/courseSection/StudentEnrollmentIsPaid/StudentEnrollmentIsPaid';
 import SearchInputCourseSection from './SearchInputCourseSection/SearchInputCoursSection';
 import { useSearchParams } from 'next/navigation';
+import CourseSectionLoading from './loading';
 export default function CourseSection() {
     const { data: semesterData } = useGetSemesterSimple();
     const semesters = semesterData ?? [];
@@ -59,7 +60,11 @@ export default function CourseSection() {
                     </div>
                     <div className="space-y-2">
                         {loadingSections ? (
-                            <div className="py-10 text-center text-sm text-gray-400">Đang tải...</div>
+                            <div className="space-y-2">
+                                {Array.from({ length: 6 }).map((_, i) => (
+                                    <CourseSectionLoading key={i} />
+                                ))}
+                            </div>
                         ) : sections.length === 0 ? (
                             <div className="py-10 text-center text-sm text-gray-400">Không có học phần nào</div>
                         ) : (

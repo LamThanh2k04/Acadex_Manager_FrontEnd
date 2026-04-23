@@ -1,5 +1,7 @@
+import { CourseSectionLecturerSkeleton } from "./CourseSectionLecturer/CourseSectionLecturerSkeleton";
+
 export default function CourseSectionLoading() {
     return (
-        <div></div>
+        <CourseSectionLecturerSkeleton />
     )
 }
