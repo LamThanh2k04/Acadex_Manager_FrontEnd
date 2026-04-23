@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 import { useAppDispatch } from '@/lib/hook';
 import { setUser } from '@/lib/features/user/userSlice';
 import { useQueryClient } from '@tanstack/react-query';
+import { setGlobalLoading } from '@/lib/features/loading/loadingSlice';
 export default function LoginForm() {
     const [toggle, setToggle] = useState(false);
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<ILoginUser>({ mode: "onBlur" })
@@ -18,6 +19,7 @@ export default function LoginForm() {
     const queryClient = useQueryClient();
     const dispatch = useAppDispatch();
     const onSubmit = async (data: ILoginUser) => {
+        dispatch(setGlobalLoading(true))
         const result = await loginUserAction(data);
         if (result.success) {
             queryClient.clear();
@@ -30,6 +32,7 @@ export default function LoginForm() {
             console.log("Đăng nhập thất bại", result.error);
             toast.error(result.error ?? "Đã có lỗi xảy ra");
         }
+        dispatch(setGlobalLoading(false));
     }
     return (
         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col items-center justify-center'>

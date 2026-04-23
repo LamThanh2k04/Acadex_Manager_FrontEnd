@@ -30,6 +30,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import ResetPasswordModal from './ResetPasswordModal';
+import { setGlobalLoading } from '@/lib/features/loading/loadingSlice';
 export default function DropDownMenu() {
     const user = useAppSelector((state) => state.user.userInfo);
     const dispatch = useAppDispatch();
@@ -37,12 +38,19 @@ export default function DropDownMenu() {
     const router = useRouter();
     const [openAlert, setOpenAlert] = useState(false)
     const handleLogout = async () => {
-        await logoutUserAction()
-        localStorage.removeItem("user_info")
-        dispatch(removeUser())
-        router.push("/login")
-        toast.success("Đăng xuất thành công")
-    }
+        dispatch(setGlobalLoading(true));
+        try {
+            await logoutUserAction()
+            localStorage.removeItem("user_info")
+            dispatch(removeUser())
+            router.push("/login")
+            toast.success("Đăng xuất thành công")
+        } catch (error) {
+            console.log(error);
+        } finally {
+            dispatch(setGlobalLoading(false));
+        };
+    };
     const initials = user?.fullName
         .split(" ")
         .slice(-2)

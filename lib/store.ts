@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import userSlice from './features/user/userSlice'
+import loadingSlice from './features/loading/loadingSlice'
 export const makeStore = () => {
     return configureStore({
         reducer: {
-            user: userSlice
+            user: userSlice,
+            loading: loadingSlice,
         },
     })
 }

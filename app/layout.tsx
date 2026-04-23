@@ -5,6 +5,7 @@ import { Toaster } from 'react-hot-toast';
 import { cn } from "@/lib/utils";
 import StoreProvider from "./StoreProvider";
 import QueryProvider from "@/components/providers/QueryProvider";
+import GlobalLoadingProvider from "@/components/providers/GlobalLoadingProvider";
 
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
 
@@ -38,6 +39,7 @@ export default function RootLayout({
       >
         <QueryProvider>
           <StoreProvider>
+            <GlobalLoadingProvider />
             {children}
           </StoreProvider>
           <Toaster

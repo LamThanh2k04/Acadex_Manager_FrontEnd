@@ -32,6 +32,7 @@ import toast from "react-hot-toast"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import ResetPasswordModal from '@/app/(page)/lecturer/components/Header/ResetPasswordModal';
 import { useQueryClient } from "@tanstack/react-query";
+import { setGlobalLoading } from "@/lib/features/loading/loadingSlice";
 export function NavUser() {
     const user = useAppSelector((state) => state.user.userInfo)
     const dispatch = useAppDispatch()
@@ -40,13 +41,20 @@ export function NavUser() {
     const [openAlert, setOpenAlert] = useState(false)
     const queryClient = useQueryClient();
     const handleLogout = async () => {
-        await logoutUserAction()
-        queryClient.clear();
-        localStorage.removeItem("user_info")
-        dispatch(removeUser())
-        router.push("/login")
-        toast.success("Đăng xuất thành công")
-    }
+        dispatch(setGlobalLoading(true));
+        try {
+            await logoutUserAction()
+            queryClient.clear();
+            localStorage.removeItem("user_info")
+            dispatch(removeUser())
+            router.push("/login")
+            toast.success("Đăng xuất thành công")
+        } catch (error) {
+            console.log(error);
+        } finally {
+            dispatch(setGlobalLoading(false));
+        };
+    };
     return (
         <>
             <SidebarMenu>
