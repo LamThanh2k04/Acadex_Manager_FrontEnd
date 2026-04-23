@@ -34,11 +34,11 @@ export default function LoginForm() {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col items-center justify-center'>
             <div className='flex flex-col p-5 relative'>
-                <label className='text-[#6a717e] text-sm mb-2'>Tài khoản</label>
+                <label className='text-white text-sm mb-2'>Tài khoản</label>
                 <span className='absolute top-14 left-7'><User /></span>
                 <input
                     type="text"
-                    className='border w-80 p-2 pl-10 border-gray-300 rounded-xl'
+                    className='border w-80 p-2 pl-10 border-white rounded-xl'
                     placeholder="e.g. 2200010762@edu.acadex/2200010762"
                     autoComplete="username"
                     {...register("identifier", {
@@ -51,9 +51,9 @@ export default function LoginForm() {
                 <ErrorResponse error={errors.identifier} />
             </div>
             <div className='flex flex-col p-5 relative'>
-                <label className='text-[#6a717e] text-sm mb-2'>Mật khẩu</label>
+                <label className='text-white text-sm mb-2'>Mật khẩu</label>
                 <span className='absolute top-14 left-7'><Lock /></span>
-                <input className='border w-80 p-2 pl-10 border-gray-300 rounded-xl'
+                <input className='border w-80 p-2 pl-10 border-white rounded-xl'
                     type={toggle ? "text" : "password"}
                     placeholder="e.g. *****************"
                     autoComplete="current-password"
