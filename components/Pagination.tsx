@@ -1,7 +1,7 @@
 "use client"
 import { useSearchParams, useRouter, usePathname } from "next/navigation"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { IPagination } from "@/app/types/pagination"
+import { IPagination } from "@/types/pagination"
 export default function Pagination({ pagination }: { pagination: IPagination }) {
     const searchParams = useSearchParams()
     const pathname = usePathname()

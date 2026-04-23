@@ -1,7 +1,7 @@
 import { useGetAllSchedulesByCourseSectionRegister } from '@/hooks/student/useCourseSection';
 import { Clock, MapPin, Calendar, Video, Layout, Loader2, X } from 'lucide-react';
 import { minutestoHour, dayOfWeekToString } from '@/utils/schedule';
-import { ISchedulesByCourseSectionRegister } from '@/app/types/student/courseSection.type';
+import { ISchedulesByCourseSectionRegister } from '@/types/student/courseSection.type';
 
 export default function ScheduleOfEnrollment({ onClose, selectedCourseSectionId }: { onClose: () => void; selectedCourseSectionId: number | null }) {
     const { data, isLoading } = useGetAllSchedulesByCourseSectionRegister(selectedCourseSectionId ?? 0);

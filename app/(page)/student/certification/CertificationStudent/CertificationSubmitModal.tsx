@@ -1,6 +1,6 @@
 "use client"
 import ErrorResponse from "@/app/(auth)/login/ErrorResponse";
-import { ISubmitCertificate } from "@/app/types/student/certification.type";
+import { ISubmitCertificate } from "@/types/student/certification.type";
 import { useGetAllCertificationProgram, useSubmitCertification } from "@/hooks/student/useCertification"
 import Image from "next/image";
 import { useState } from "react";

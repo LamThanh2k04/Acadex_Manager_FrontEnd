@@ -1,5 +1,5 @@
 "use client"
-import { ICreateRoom } from "@/app/types/admin/room.type";
+import { ICreateRoom } from "@/types/admin/room.type";
 import { useCreateRoom, useGetAllBuildingSimple } from "@/hooks/admin/useRoom";
 import { useForm } from "react-hook-form"
 import { Loader } from 'lucide-react';

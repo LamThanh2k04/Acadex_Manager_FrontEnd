@@ -1,5 +1,5 @@
 import { adminService } from "@/api/adminService"
-import { ICreateSemester, TUpdateSemester } from "@/app/types/admin/semester.type";
+import { ICreateSemester, TUpdateSemester } from "@/types/admin/semester.type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import toast from "react-hot-toast";
 

@@ -1,6 +1,6 @@
 "use client"
 import ErrorResponse from "@/app/(auth)/login/ErrorResponse"
-import { IAddStudent } from "@/app/types/admin/student.type"
+import { IAddStudent } from "@/types/admin/student.type"
 import { useCreateStudent } from "@/hooks/admin/useStudent"
 import { useGetAllProgramSimple, useGetAllClassSimple } from "@/hooks/admin/useSimple"
 import { useForm } from "react-hook-form"

@@ -1,4 +1,4 @@
-import { INotificationData, TUpdateNotification } from "@/app/types/admin/notification.type";
+import { INotificationData, TUpdateNotification } from "@/types/admin/notification.type";
 import { useUpdateNotification } from "@/hooks/admin/useNotification";
 import { useForm } from "react-hook-form";
 import { Loader } from 'lucide-react';

@@ -1,5 +1,5 @@
 "use client"
-import { IStudentEnrollmentIsPaid } from "@/app/types/lecturer/courseSection/courseSection.type";
+import { IStudentEnrollmentIsPaid } from "@/types/lecturer/courseSection/courseSection.type";
 import { useGetStudentEnrollmentIsPaid } from "@/hooks/lecturer/courseSection/useGetStudentEnrollmentIsPaid";
 import { useState } from "react";
 import GradeModal from "../GradeModal/GradeModal";

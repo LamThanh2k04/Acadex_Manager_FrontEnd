@@ -1,6 +1,6 @@
 "use client"
-import { ICertificicateStudentDataProps, TStatusOfCertificateStudent } from "@/app/types/student/certification.type";
-import { Upload, Hourglass, CircleCheck } from 'lucide-react';
+import { ICertificicateStudentDataProps } from "@/types/student/certification.type";
+import { Upload } from 'lucide-react';
 import Image from "next/image";
 import { useState } from "react";
 import {

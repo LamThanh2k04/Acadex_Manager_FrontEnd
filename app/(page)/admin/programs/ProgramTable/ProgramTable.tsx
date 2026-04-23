@@ -1,4 +1,4 @@
-import { IProgramData, IProgramDataResponseProps } from "@/app/types/admin/program.type";
+import { IProgramData, IProgramDataResponseProps } from "@/types/admin/program.type";
 import { Pencil, CirclePlus, Info } from 'lucide-react';
 import Pagination from '@/components/Pagination';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';

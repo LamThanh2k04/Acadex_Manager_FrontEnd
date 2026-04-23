@@ -1,6 +1,6 @@
 "use client"
-import InfoRow from "@/app/(page)/student/dashboard/StudentInfo/InfoRow";
-import { ILecturerInfoResponse } from '@/app/types/lecturer/info/info.type';
+import InfoRow from "@/components/InfoRow";
+import { ILecturerInfoResponse } from '@/types/lecturer/info/info.type';
 import {
     Mail, Phone, MapPin, User, BookOpen,
     Building2, GraduationCap, BadgeCheck, CircleUserRound

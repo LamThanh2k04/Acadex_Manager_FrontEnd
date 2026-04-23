@@ -1,6 +1,6 @@
 // NotificationDetail.tsx
 "use client"
-import { TTypeNotification } from "@/app/types/admin/notification.type";
+import { TTypeNotification } from "@/types/admin/notification.type";
 import { useGetNotificationInfo } from "@/hooks/student/useNotification";
 import { useQueryClient } from "@tanstack/react-query";
 import { X, Bell, Clock, CheckCircle2 } from "lucide-react";

@@ -1,5 +1,5 @@
 "use client"
-import { IGetUnPaidEnrollmentDataProps, IGetUnPaidEnrollmentData } from '@/app/types/student/payment.type';
+import { IGetUnPaidEnrollmentDataProps, IGetUnPaidEnrollmentData } from '@/types/student/payment.type';
 import { CreditCard, GraduationCap, User, CheckCircle2, XCircle, AlertCircle, Loader2 } from 'lucide-react';
 import { useCreatePayment } from '@/hooks/student/usePayment';
 import { useState } from 'react';

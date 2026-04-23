@@ -1,4 +1,4 @@
-import { IFaculty, IUpdateFalcuty } from "@/app/types/admin/faculty.type";
+import { IFaculty, IUpdateFalcuty } from "@/types/admin/faculty.type";
 import { useUpdateFacultiesInfo } from "@/hooks/admin/useFaculty"
 import { useForm } from "react-hook-form";
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';

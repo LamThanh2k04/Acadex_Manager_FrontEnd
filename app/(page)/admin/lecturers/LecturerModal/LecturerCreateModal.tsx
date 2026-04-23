@@ -1,6 +1,6 @@
 "use client"
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';
-import { ICreateLecturer, IMajorSimple } from '@/app/types/admin/lecturer.type';
+import { ICreateLecturer, IMajorSimple } from '@/types/admin/lecturer.type';
 import { useCreateLecture, useGetMajorsSimple } from '@/hooks/admin/useLecturer';
 import { Loader, Upload, EyeClosed, Eye } from 'lucide-react';
 import { useState, useRef } from 'react';

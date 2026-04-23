@@ -1,5 +1,5 @@
 import { adminService } from "@/api/adminService"
-import { IBuildingOfRoomSimple, ICreateRoom, IRoomDataResponse, TUpdateRoom } from "@/app/types/admin/room.type"
+import { IBuildingOfRoomSimple, ICreateRoom, IRoomDataResponse, TUpdateRoom } from "@/types/admin/room.type"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import toast from "react-hot-toast";
 

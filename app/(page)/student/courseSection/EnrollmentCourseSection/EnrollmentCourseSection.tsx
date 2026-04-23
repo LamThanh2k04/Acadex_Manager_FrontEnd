@@ -1,5 +1,5 @@
 "use client"
-import { IEnrollmentCourseSectionDataProps, IEnrollmentCourseSection } from '@/app/types/student/courseSection.type';
+import { IEnrollmentCourseSectionDataProps, IEnrollmentCourseSection } from '@/types/student/courseSection.type';
 import { BookOpen, CreditCard, GraduationCap, CheckCircle2, Clock, XCircle, User, AlertCircle, CalendarSearch, Trash2 } from 'lucide-react';
 import { useCancelCourseSection } from '@/hooks/student/useCourseSection';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';

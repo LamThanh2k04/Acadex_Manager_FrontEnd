@@ -2,7 +2,7 @@
 import { useUpdatePasswordStudent } from "@/hooks/admin/useStudent";
 import { Loader } from 'lucide-react';
 import { useForm } from "react-hook-form";
-import { INewPasswordForStudent } from "@/app/types/admin/student.type";
+import { INewPasswordForStudent } from "@/types/admin/student.type";
 import ErrorResponse from "@/app/(auth)/login/ErrorResponse";
 import { useState } from "react";
 import { Eye, EyeClosed } from 'lucide-react';

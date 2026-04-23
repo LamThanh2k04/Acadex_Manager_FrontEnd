@@ -14,7 +14,7 @@ import {
     IStudySchedules,
     IExamSchedules,
     TTypeOfStudySchedules,
-} from "@/app/types/student/scheduleEnrollment.type";
+} from "@/types/student/scheduleEnrollment.type";
 type ScheduleFilterType = "" | "STUDY" | "EXAM";
 
 interface StudyMeta {

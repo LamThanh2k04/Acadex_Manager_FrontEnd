@@ -4,7 +4,6 @@ import { useSearchParams } from 'next/navigation';
 import ScheduleLecturer from './ScheduleLeturer/ScheduleLecturer';
 import { CalendarDays, Filter } from 'lucide-react';
 import ScheduleSelectDate from './ScheduleSelectDate/ScheduleSelectDate';
-import ScheduleLecturerSkeleton from './ScheduleLeturer/ScheduleLecturerSkeleton';
 import ScheduleLoading from './loading';
 export default function Schedule() {
     const searchParams = useSearchParams();

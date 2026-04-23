@@ -1,5 +1,5 @@
 "use client"
-import { IStudentManager, IStudentManagerProps } from '@/app/types/admin/student.type';
+import { IStudentManager, IStudentManagerProps } from '@/types/admin/student.type';
 import { Pencil, UserRoundPlus, Settings, User } from 'lucide-react';
 import StudentSearchBar from '../StudentSearchBar/StudentSearchBar';
 import { useState } from 'react';

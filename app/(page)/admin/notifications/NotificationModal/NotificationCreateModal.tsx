@@ -1,5 +1,5 @@
 "use client";
-import { ICreateNotification } from "@/app/types/admin/notification.type";
+import { ICreateNotification } from "@/types/admin/notification.type";
 import { useGetStudentBySearch, useSendNotification } from "@/hooks/admin/useNotification";
 import { useForm } from "react-hook-form";
 import { Loader } from "lucide-react";

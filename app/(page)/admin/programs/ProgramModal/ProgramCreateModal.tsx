@@ -1,6 +1,6 @@
 "use client";
 import ErrorResponse from "@/app/(auth)/login/ErrorResponse";
-import { ICreateProgram } from "@/app/types/admin/program.type";
+import { ICreateProgram } from "@/types/admin/program.type";
 import { useGetMajorsSimple } from "@/hooks/admin/useLecturer";
 import { useCreateProgram } from "@/hooks/admin/useProgram";
 import { useForm } from "react-hook-form";

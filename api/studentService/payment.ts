@@ -1,5 +1,5 @@
 import { https } from "../config"
-import { ICreatePayment } from '@/app/types/student/payment.type';
+import { ICreatePayment } from '@/types/student/payment.type';
 
 export const getUnpaidEnrollment = async () => {
     const res = await https.get("/api/student/payment/getUnpaidEnrollments");

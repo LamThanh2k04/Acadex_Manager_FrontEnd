@@ -1,4 +1,4 @@
-import { ISubjectData, TUpdateSubject } from "@/app/types/admin/subject.type";
+import { ISubjectData, TUpdateSubject } from "@/types/admin/subject.type";
 import { useUpdateSubjectInfo } from "@/hooks/admin/useSubject";
 import { useForm } from "react-hook-form";
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';

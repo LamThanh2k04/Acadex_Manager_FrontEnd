@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
 import { getDetailedStudyResult } from '@/api/studentService/studyResult';
-import { IStudyResultDataResponse } from '@/app/types/student/studyResult.type';
+import { IStudyResultDataResponse } from '@/types/student/studyResult.type';
 
 export const useGetDetailedStudyResult = () => {
     return useQuery<IStudyResultDataResponse>({

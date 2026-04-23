@@ -1,5 +1,5 @@
 import { https } from "../config"
-import { IScheduleEnrollmentParams } from '@/app/types/student/scheduleEnrollment.type';
+import { IScheduleEnrollmentParams } from '@/types/student/scheduleEnrollment.type';
 export const getAllScheduleEnrollment = async ({ type, date }: IScheduleEnrollmentParams) => {
     const params = new URLSearchParams();
     if (type) params.set("type", type);

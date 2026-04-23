@@ -1,4 +1,4 @@
-import { IFaculty, IFacultyProps } from "@/app/types/admin/faculty.type";
+import { IFaculty, IFacultyProps } from "@/types/admin/faculty.type";
 import { Pencil, CirclePlus } from 'lucide-react';
 import Pagination from '@/components/Pagination';
 import FacultySearchBar from "../FacultySearchBar/FacultySearchBar";

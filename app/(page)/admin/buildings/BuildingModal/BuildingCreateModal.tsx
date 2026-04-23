@@ -1,5 +1,5 @@
 "use client"
-import { ICreateBuilding } from "@/app/types/admin/building.type";
+import { ICreateBuilding } from "@/types/admin/building.type";
 import { useCreateBuilding } from "@/hooks/admin/useBuilding";
 import { useForm } from "react-hook-form"
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';

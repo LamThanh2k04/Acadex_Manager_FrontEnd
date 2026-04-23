@@ -5,7 +5,7 @@ import { useGetScheduleEnrollment } from "@/hooks/student/useScheduleEnrollment"
 import ScheduleEnrollment from "./ScheduleEnrollment/ScheduleEnrollment";
 import ScheduleSelectDate from "./ScheduleSelectDate/ScheduleSelectDate";
 import ScheduleSelectType from "./ScheduleSelectType/ScheduleSelectType";
-import { IScheduleEnrollmentParams } from "@/app/types/student/scheduleEnrollment.type";
+import { IScheduleEnrollmentParams } from "@/types/student/scheduleEnrollment.type";
 export default function Schedule() {
     const searchParams = useSearchParams();
     const rawType = searchParams.get("type");

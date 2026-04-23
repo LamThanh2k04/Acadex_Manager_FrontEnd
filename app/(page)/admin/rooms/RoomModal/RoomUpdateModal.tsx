@@ -1,4 +1,4 @@
-import { IRoomData, TUpdateRoom } from "@/app/types/admin/room.type";
+import { IRoomData, TUpdateRoom } from "@/types/admin/room.type";
 import { useUpdateRoomInfo, useGetAllBuildingSimple } from '@/hooks/admin/useRoom';
 import { useForm } from "react-hook-form";
 import { Loader } from 'lucide-react';

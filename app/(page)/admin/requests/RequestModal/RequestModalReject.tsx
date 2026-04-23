@@ -1,6 +1,6 @@
 "use client";
 import { useRejectRequest } from "@/hooks/admin/useRequest";
-import { TRejectRequest } from "@/app/types/admin/request.type";
+import { TRejectRequest } from "@/types/admin/request.type";
 import { useForm } from "react-hook-form";
 import { Loader, CircleX } from "lucide-react";
 export default function RequestModalReject({ onClose, requestId }: { onClose: () => void, requestId: number }) {

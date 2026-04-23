@@ -1,5 +1,5 @@
 "use client"
-import { ICertificatePercentProps } from '@/app/types/student/certification.type';
+import { ICertificatePercentProps } from '@/types/student/certification.type';
 export default function CertificationProgram({ dataCertificationProgram, dataCertificationStudent }: ICertificatePercentProps) {
     const TOTAL_REQUIRED = dataCertificationProgram.result.length ?? 0;
     const issuedStudent = dataCertificationStudent?.certificates?.filter((st) => st.status === "ISSUED");

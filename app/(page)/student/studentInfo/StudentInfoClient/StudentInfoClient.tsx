@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import { GraduationCap, IdCard, BookOpen, UserRound, Mail, Phone, MapPin, CalendarDays } from "lucide-react";
-import InfoRow from "../../dashboard/StudentInfo/InfoRow";
-import { IStudentInfoProps } from "@/app/types/student/studentInfo.type";
+import InfoRow from "../../../../../components/InfoRow";
+import { IStudentInfoProps } from "@/types/student/studentInfo.type";
 const STATUS_MAP = {
     STUDYING: {
         label: "Đang học",

@@ -1,5 +1,5 @@
 "use client"
-import { ILecturerDataProps, ILecturerManager } from "@/app/types/admin/lecturer.type";
+import { ILecturerDataProps, ILecturerManager } from "@/types/admin/lecturer.type";
 import { Pencil, UserRoundPlus, Settings, User } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import Pagination from '@/components/Pagination';

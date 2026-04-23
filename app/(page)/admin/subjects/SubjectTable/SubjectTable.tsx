@@ -1,5 +1,5 @@
 "use client"
-import { ISubjectData, ISubjectDataResponseProps } from "@/app/types/admin/subject.type";
+import { ISubjectData, ISubjectDataResponseProps } from "@/types/admin/subject.type";
 import { Pencil, CirclePlus } from 'lucide-react';
 import Pagination from '@/components/Pagination';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';

@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { getSubjectsBySemester, getCourseSectionsBySubject, getScheduleByCourseSection, registerCourseSection, cancelCourseSection, getAllEnrollmentCourseSection, getAllSchedulesByCourseSectionRegister } from '@/api/studentService/courseSection';
-import { IRegisterCourseSection, ISchedulesByCourseSectionRegister, IEnrollmentCourseSectionData, IScheduleByCourseSection, ICourseSectionBySubjectData, ISubjectsBySemesterData, INewCourseSectionBySubject, ISubjectOfSubjectsBySemester } from '@/app/types/student/courseSection.type';
+import { IRegisterCourseSection, ISchedulesByCourseSectionRegister, IEnrollmentCourseSectionData, IScheduleByCourseSection, INewCourseSectionBySubject, ISubjectOfSubjectsBySemester } from '@/types/student/courseSection.type';
 import toast from "react-hot-toast";
 
 export const useGetSubjectsBySemester = (semesterId: number) => {

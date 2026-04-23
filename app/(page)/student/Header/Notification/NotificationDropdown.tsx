@@ -1,5 +1,5 @@
 "use client"
-import { INotificationDataResponseProps } from '@/app/types/student/notification.type';
+import { INotificationDataResponseProps } from '@/types/student/notification.type';
 import { Bell } from 'lucide-react';
 import {
     DropdownMenu,

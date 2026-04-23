@@ -1,4 +1,4 @@
-import NavBottom from "@/components/nav-bottom";
+import NavBottom from "@/components/NavBottom";
 import { cookies } from 'next/headers'
 import Header from "./components/Header/Header";
 import { AppSidebarLecturer } from "./app-sidebar-lecturer";

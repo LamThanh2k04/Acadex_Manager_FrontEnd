@@ -1,6 +1,6 @@
 "use client"
 import { CheckCircle2, XCircle, Minus } from "lucide-react";
-import { IStudyResultDataProps } from '@/app/types/student/studyResult.type';
+import { IStudyResultDataProps } from '@/types/student/studyResult.type';
 const fmt = (val: number | null) =>
     val !== null && val !== undefined ? val.toFixed(1) : "—";
 const classificationColor = (classification: string | null) => {

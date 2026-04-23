@@ -1,5 +1,5 @@
 "use client"
-import { IBuildingData, IBuildingDataResponseProps } from "@/app/types/admin/building.type";
+import { IBuildingData, IBuildingDataResponseProps } from "@/types/admin/building.type";
 import { Pencil, GitPullRequestCreateArrow } from 'lucide-react';
 import Pagination from '@/components/Pagination';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';

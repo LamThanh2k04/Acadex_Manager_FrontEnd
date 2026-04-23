@@ -1,7 +1,6 @@
 "use client";
-
 import { useApproveRequest } from "@/hooks/admin/useRequest";
-import { IApproveRequest } from "@/app/types/admin/request.type";
+import { IApproveRequest } from "@/types/admin/request.type";
 import { useForm } from "react-hook-form";
 import { Loader, CheckCircle2 } from "lucide-react";
 export default function RequestModalApprove({ onClose, requestId }: { onClose: () => void, requestId: number }) {

@@ -1,5 +1,5 @@
 import { getAllNotifications, getInfoNotification } from "@/api/studentService/notification"
-import { INotificationDataResponse } from '@/app/types/student/notification.type';
+import { INotificationDataResponse } from '@/types/student/notification.type';
 import { useAppSelector } from "@/lib/hook";
 import { disconnectSocket, getSocket } from "@/lib/socket";
 import { useQuery, useQueryClient } from "@tanstack/react-query"

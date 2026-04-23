@@ -1,5 +1,5 @@
 "use client"
-import { IMajorData, IMajorDataProps } from "@/app/types/admin/major.type";
+import { IMajorData, IMajorDataProps } from "@/types/admin/major.type";
 import { Pencil, CirclePlus } from 'lucide-react';
 import Pagination from '@/components/Pagination';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';

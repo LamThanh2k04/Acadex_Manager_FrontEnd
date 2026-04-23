@@ -1,5 +1,5 @@
 import { https } from "../config"
-import { IRegisterCourseSection } from '@/app/types/student/courseSection.type';
+import { IRegisterCourseSection } from '@/types/student/courseSection.type';
 export const getSubjectsBySemester = async (semesterId: number) => {
     const res = await https.get(`/api/student/courseSection/getSubjectsBySemester/${semesterId}`);
     return res.data.data.subjects;

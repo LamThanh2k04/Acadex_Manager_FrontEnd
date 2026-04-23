@@ -1,7 +1,7 @@
 "use client"
 import { PieChart, Pie, Cell } from "recharts"
 import { ChartContainer } from "@/components/ui/chart"
-import { IPieChartGendersProps } from "@/app/types/admin/overview.type"
+import { IPieChartGendersProps } from "@/types/admin/overview.type"
 import { Mars, Venus } from 'lucide-react';
 const chartConfig = {
     male: { color: "#A8D8EA" },

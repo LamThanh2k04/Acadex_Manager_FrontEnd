@@ -1,5 +1,5 @@
 "use client"
-import { IScheduleResponseProps } from "@/app/types/admin/overview.type"
+import { IScheduleResponseProps } from "@/types/admin/overview.type"
 import { Calendar } from "@/components/ui/calendar"
 import { format } from "date-fns"
 import { vi } from "date-fns/locale"

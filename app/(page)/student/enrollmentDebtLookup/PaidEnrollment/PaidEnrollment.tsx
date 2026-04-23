@@ -1,4 +1,4 @@
-import { IPaidEnrollmentDataProps, IEnrollmentOfPaid } from '@/app/types/student/payment.type';
+import { IPaidEnrollmentDataProps, IEnrollmentOfPaid } from '@/types/student/payment.type';
 import { CreditCard, GraduationCap, Calendar, CheckCircle2, BookOpen, Receipt, Hash } from 'lucide-react';
 
 const formatCurrency = (amount: number) =>

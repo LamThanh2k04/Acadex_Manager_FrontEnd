@@ -1,5 +1,5 @@
 "use client"
-import { IRequestData, IRequestDataResponseProps } from "@/app/types/admin/request.type";
+import { IRequestDataResponseProps } from "@/types/admin/request.type";
 import { Info } from "lucide-react";
 import Pagination from "@/components/Pagination";
 import Image from "next/image";

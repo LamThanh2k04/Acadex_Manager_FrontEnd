@@ -1,4 +1,4 @@
-import { ICreateCertification } from "@/app/types/admin/certification.type"
+import { ICreateCertification } from "@/types/admin/certification.type"
 import { useCreateCertification } from "@/hooks/admin/useCertification";
 import { useForm } from "react-hook-form"
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';

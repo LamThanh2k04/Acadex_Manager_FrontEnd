@@ -1,5 +1,5 @@
 "use client"
-import { IClassSimple, IStudentManager, IUpdateStudentInfo } from "@/app/types/admin/student.type";
+import { IClassSimple, IStudentManager, IUpdateStudentInfo } from "@/types/admin/student.type";
 import { useClassedByProgram, useUpdateStudentInfo } from "@/hooks/admin/useStudent";
 import { useState, useRef, useEffect } from 'react';
 import { useForm } from "react-hook-form";

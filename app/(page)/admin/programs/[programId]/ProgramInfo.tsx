@@ -5,11 +5,11 @@ import Link from "next/link";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import SubjectToProgramCreateModal from "./SubjectToProgram/SubjectToProgramCreateModal";
-import { IProgramSubject } from "@/app/types/admin/program.type";
 import SubjectToProgramUpdateModa from "./SubjectToProgram/SubjectToProgramUpdateModal";
 import CertificateToProgramCreateModal from "./CertificateToProgram/CertificateToProgramCreateModal";
 import AlertDialogBlockCertificationToProgram from "./CertificateToProgram/AlertDialogBlockCertificateToProgram";
 import AlertDialogUnBlockCertificationToProgram from "./CertificateToProgram/AlertDialogUnBlockCertificationToProgram";
+import { IProgramSubject, TTrainingLevel, TEducationType } from '@/types/admin/program.type';
 export default function ProgramInfo({ programId }: { programId: number }) {
     const { data, isLoading } = useGetProgramInfo(programId);
     const [isModalCreateSubject, setIsModalCreateSubject] = useState(false);
@@ -24,12 +24,12 @@ export default function ProgramInfo({ programId }: { programId: number }) {
             </div>
         )
     }
-    const trainingLevelRender = {
+    const trainingLevelRender: Record<TTrainingLevel, React.ReactNode> = {
         "BACHELOR": <span className="bg-blue-100 py-2 px-3 rounded-2xl text-blue-300">Cử nhân</span>,
         "COLLEGE": <span className="bg-orange-100 p-2 rounded-2xl text-orange-300">Cao đẳng</span>,
         "MASTER": <span className="bg-green-100 py-2 px-5 rounded-2xl text-green-300">Thạc sĩ</span>
     };
-    const educationTypeRender = {
+    const educationTypeRender: Record<TEducationType, React.ReactNode> = {
         "FULL_TIME": <span className="bg-purple-100 py-2 px-5 rounded-2xl text-purple-300">Chính quy</span>,
         "PART_TIME": <span className="bg-red-100 p-2 rounded-2xl text-red-300">Bán thời gian</span>,
         "DISTANCE_LEARNING": <span className="bg-pink-100 py-2 px-5 rounded-2xl text-pink-300">Học từ xa</span>
@@ -76,14 +76,14 @@ export default function ProgramInfo({ programId }: { programId: number }) {
                             <div className="flex flex-col gap-0.5">
                                 <span className="text-xs text-gray-400">Bậc đào tạo</span>
                                 <span className="text-sm font-medium mt-3 text-gray-700">
-                                    {trainingLevelRender[program.trainingLevel] ?? <span className="bg-gray-500">{program.trainingLevel}</span>}
+                                    {trainingLevelRender[program.trainingLevel]}
                                 </span>
                             </div>
                             <div className="h-px bg-gray-50" />
                             <div className="flex flex-col gap-0.5">
                                 <span className="text-xs text-gray-400">Hình thức đào tạo</span>
                                 <span className="text-sm font-medium mt-3 text-gray-700">
-                                    {educationTypeRender[program.educationType] ?? <span className="bg-gray-500">{program.educationType}</span>}
+                                    {educationTypeRender[program.educationType]}
                                 </span>
                             </div>
                             <div className="h-px bg-gray-50" />

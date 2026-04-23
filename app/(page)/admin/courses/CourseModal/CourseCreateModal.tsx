@@ -1,5 +1,5 @@
 "use client"
-import { ICourseForm } from '@/app/types/admin/course.type';
+import { ICourseForm } from '@/types/admin/course.type';
 import { useCreateCourse } from "@/hooks/admin/useCourse";
 import { useGetSemesterByProgram } from "@/hooks/admin/useProgram";
 import { useGetSubjectBySemesterOrder } from "@/hooks/admin/useSubject";

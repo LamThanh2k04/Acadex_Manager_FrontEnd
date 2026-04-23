@@ -1,4 +1,4 @@
-import { ISemesterData, TUpdateSemester } from "@/app/types/admin/semester.type";
+import { ISemesterData, TUpdateSemester } from "@/types/admin/semester.type";
 import { useUpdateSemesterInfo } from "@/hooks/admin/useSemester";
 import { useForm } from "react-hook-form";
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';

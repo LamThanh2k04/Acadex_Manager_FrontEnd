@@ -57,7 +57,7 @@ const data = {
 export function AppSidebarLecturer({ ...props }: React.ComponentProps<typeof Sidebar>) {
     const pathName = usePathname();
     const NavUser = dynamic(
-        () => import("../../../components/nav-user").then(m => m.NavUser),
+        () => import("../../../components/NavUser").then(m => m.NavUser),
         { ssr: false }
     )
     return (

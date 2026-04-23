@@ -1,4 +1,4 @@
-import { INotificationData } from '@/app/types/student/notification.type';
+import { INotificationData } from '@/types/student/notification.type';
 export default function NotificationMessage({ noti, onSelect }: { noti: INotificationData, onSelect: () => void }) {
     return (
         <div

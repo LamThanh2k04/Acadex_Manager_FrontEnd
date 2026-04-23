@@ -1,4 +1,4 @@
-import { IPeriodData, TUpdatePeriod } from "@/app/types/admin/period.type";
+import { IPeriodData, TUpdatePeriod } from "@/types/admin/period.type";
 import { useUpdatePeriodInfo } from "@/hooks/admin/usePeriod";
 import { useForm } from "react-hook-form";
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';

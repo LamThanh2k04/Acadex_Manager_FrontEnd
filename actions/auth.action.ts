@@ -1,7 +1,7 @@
 "use server"
 import { cookies } from "next/headers";
-import { ILoginUser } from "../types/auth.type";
 import { authService } from "@/api/authService";
+import { ILoginUser } from "@/types/auth.type";
 export const loginUserAction = async (data: ILoginUser) => {
     try {
         const res = await authService.login(data);

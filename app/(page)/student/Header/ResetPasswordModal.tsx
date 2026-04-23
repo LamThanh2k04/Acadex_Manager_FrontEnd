@@ -1,6 +1,6 @@
 "use client"
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';
-import { IResetPassword } from '@/app/types/student/resetPassword.type';
+import { IResetPassword } from '@/types/student/resetPassword.type';
 import { useResetPassword } from '@/hooks/student/useResetPassword';
 import { useForm } from 'react-hook-form';
 import { Loader, Lock, Eye, EyeOff } from 'lucide-react';

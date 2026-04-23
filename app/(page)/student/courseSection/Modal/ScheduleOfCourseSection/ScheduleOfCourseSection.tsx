@@ -17,7 +17,7 @@ import {
     IRegisterCourseSection,
     TScheduleGroupItem,
     IPracticeOfScheduleByCourseSection,
-} from "@/app/types/student/courseSection.type";
+} from "@/types/student/courseSection.type";
 import { useState } from "react";
 import toast from "react-hot-toast";
 const parseSlot = (slot: string): { current: number; total: number } | null => {

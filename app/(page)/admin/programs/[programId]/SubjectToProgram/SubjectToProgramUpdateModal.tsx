@@ -1,5 +1,5 @@
 "use client"
-import { IProgramSubject, IUpdateSubjectOfProgram } from "@/app/types/admin/program.type";
+import { IProgramSubject, IUpdateSubjectOfProgram } from "@/types/admin/program.type";
 import { useUpdateSubjectToProgram } from "@/hooks/admin/useProgram";
 import { useForm } from "react-hook-form";
 import { Loader } from 'lucide-react';

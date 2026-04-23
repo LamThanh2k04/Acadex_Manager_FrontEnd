@@ -1,5 +1,5 @@
 "use client"
-import { ICreateCertificateOfProgram } from "@/app/types/admin/program.type";
+import { ICreateCertificateOfProgram } from "@/types/admin/program.type";
 import { useCreateCertificateToProgram, useGetAllCertificateToProgram } from '@/hooks/admin/useProgram';
 import { useForm } from "react-hook-form"
 import { Loader } from 'lucide-react';

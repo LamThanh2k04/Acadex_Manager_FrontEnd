@@ -1,5 +1,5 @@
 import ErrorResponse from "@/app/(auth)/login/ErrorResponse";
-import { ICreateFalcuty } from "@/app/types/admin/faculty.type";
+import { ICreateFalcuty } from "@/types/admin/faculty.type";
 import { useCreateFaculties } from "@/hooks/admin/useFaculty"
 import { useForm } from "react-hook-form";
 import { Loader, Eye, EyeClosed } from 'lucide-react';

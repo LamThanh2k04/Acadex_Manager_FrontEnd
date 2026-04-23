@@ -1,4 +1,4 @@
-import { IChatTuitionData } from "@/app/types/student/chatbox.type";
+import { IChatTuitionData } from "@/types/student/chatbox.type";
 import { CreditCard, BookOpen, CheckCircle2, XCircle } from "lucide-react";
 
 const formatCurrency = (amount: number) =>

@@ -1,5 +1,5 @@
 "use client"
-import { IScheduleData, IScheduleFormUpdate, TUpdateSchedule } from '@/app/types/admin/schedule.type';
+import { IScheduleData, IScheduleFormUpdate, TUpdateSchedule } from '@/types/admin/schedule.type';
 import { useUpdateScheduleInfo } from '@/hooks/admin/useSchedule';
 import { useGetAllPeriodSimple, useGetAllRoomSimple } from '@/hooks/admin/useSimple';
 import { useForm } from 'react-hook-form';

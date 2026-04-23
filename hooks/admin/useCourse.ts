@@ -1,8 +1,8 @@
 import { adminService } from "@/api/adminService"
-import { ICreateCourse, TUpdateCourse } from "@/app/types/admin/course.type";
+import { ICreateCourse, TUpdateCourse } from "@/types/admin/course.type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import toast from "react-hot-toast";
-import { ICourseSectionBySemester } from '@/app/types/admin/simpleOrOther.type';
+import { ICourseSectionBySemester } from '@/types/admin/simpleOrOther.type';
 
 export const useGetAllCourse = (search: string, page: number) => {
     return useQuery({

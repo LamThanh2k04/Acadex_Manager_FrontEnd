@@ -1,4 +1,4 @@
-import { ICreatePeriod } from "@/app/types/admin/period.type";
+import { ICreatePeriod } from "@/types/admin/period.type";
 import { useCreatePeriod } from "@/hooks/admin/usePeriod"
 import { useForm } from "react-hook-form";
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';

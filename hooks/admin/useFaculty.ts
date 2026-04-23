@@ -1,5 +1,5 @@
 import { adminService } from "@/api/adminService"
-import { ICreateFalcuty, IFacultyResponse } from "@/app/types/admin/faculty.type";
+import { IFacultyResponse } from "@/types/admin/faculty.type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import toast from "react-hot-toast";
 

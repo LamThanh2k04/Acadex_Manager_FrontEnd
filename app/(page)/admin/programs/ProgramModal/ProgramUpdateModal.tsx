@@ -1,4 +1,4 @@
-import { IProgramData, TUpdateProgramInfo } from "@/app/types/admin/program.type";
+import { IProgramData, TUpdateProgramInfo } from "@/types/admin/program.type";
 import { useUpdateProgramInfo } from "@/hooks/admin/useProgram";
 import { useForm } from "react-hook-form";
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';

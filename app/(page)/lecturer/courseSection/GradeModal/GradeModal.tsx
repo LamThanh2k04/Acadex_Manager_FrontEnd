@@ -11,7 +11,7 @@ import {
 
 import { useEffect, useState } from "react"
 import { useComfirmGrade } from "@/hooks/lecturer/courseSection/useComfirmGrade"
-import { IConfirmGrade, IStudentEnrollmentIsPaid } from "@/app/types/lecturer/courseSection/courseSection.type"
+import { IConfirmGrade, IStudentEnrollmentIsPaid } from "@/types/lecturer/courseSection/courseSection.type"
 
 export default function GradeModal({
     student,

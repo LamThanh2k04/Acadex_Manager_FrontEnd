@@ -1,5 +1,5 @@
 "use client"
-import { INotificationData, INotificationDataResponseProps } from "@/app/types/admin/notification.type";
+import { INotificationData, INotificationDataResponseProps } from "@/types/admin/notification.type";
 import { Pencil, BellPlus } from 'lucide-react';
 import Pagination from '@/components/Pagination';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';

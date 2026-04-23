@@ -1,5 +1,5 @@
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';
-import { ICreateSemester } from '@/app/types/admin/semester.type';
+import { ICreateSemester } from '@/types/admin/semester.type';
 import { useCreateSemester } from '@/hooks/admin/useSemester';
 import { Loader } from 'lucide-react';
 import { useForm } from 'react-hook-form';

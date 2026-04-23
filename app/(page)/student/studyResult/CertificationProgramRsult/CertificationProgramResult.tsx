@@ -1,4 +1,4 @@
-import { ICertificateProgramProps } from "@/app/types/student/certification.type";
+import { ICertificateProgramProps } from "@/types/student/certification.type";
 import { CircleCheckBig, CircleX, FileX } from 'lucide-react';
 
 export default function CertificationProgramResult({ data }: ICertificateProgramProps) {

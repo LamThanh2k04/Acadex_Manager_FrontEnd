@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
 import { getInfoLecturer } from '@/api/lecturerService/info/lecturerInfo';
-import { ILecturerInfo, ILecturerInfoResponse } from '@/app/types/lecturer/info/info.type';
+import { ILecturerInfoResponse } from '@/types/lecturer/info/info.type';
 
 export const useGetInfoLecturer = () => {
     return useQuery<ILecturerInfoResponse>({

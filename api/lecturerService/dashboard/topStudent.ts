@@ -1,4 +1,4 @@
-import { https } from "../../config"
+import { https } from "@/api/config";
 
 export const getTopStudent = async (courseSectionId: number) => {
     const res = await https.get(`/api/lecturer/dashboard/getTopStudentGradeByCourseSection?courseSectionId=${courseSectionId}`);

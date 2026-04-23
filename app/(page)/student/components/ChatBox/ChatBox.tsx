@@ -2,7 +2,7 @@
 import { useState } from "react";
 import ChatBubble from "./ChatBubble";
 import ChatMessage from "./ChatMessage";
-import { IMessage } from "@/app/types/student/chatbox.type";
+import { IMessage } from "@/types/student/chatbox.type";
 export default function ChatBox() {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<IMessage[]>([]);

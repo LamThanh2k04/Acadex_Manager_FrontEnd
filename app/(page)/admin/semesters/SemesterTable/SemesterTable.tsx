@@ -1,5 +1,5 @@
 "use client"
-import { ISemesterData, ISemesterDataResponseProps } from "@/app/types/admin/semester.type"
+import { ISemesterData, ISemesterDataResponseProps } from "@/types/admin/semester.type"
 import { Pencil, CirclePlus } from 'lucide-react';
 import Pagination from '@/components/Pagination';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';

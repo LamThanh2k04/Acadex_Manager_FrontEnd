@@ -1,4 +1,4 @@
-import { IScheduleFormSemester, TCreateSchedule } from "@/app/types/admin/schedule.type"
+import { IScheduleFormSemester, TCreateSchedule } from "@/types/admin/schedule.type"
 import { useCreateSchedule } from "@/hooks/admin/useSchedule";
 import { useForm } from "react-hook-form"
 import { Loader } from 'lucide-react';

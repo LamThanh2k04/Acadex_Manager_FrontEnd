@@ -1,5 +1,5 @@
 "use client"
-import { IPeriodData, IPeriodDataResponseProps } from "@/app/types/admin/period.type";
+import { IPeriodData, IPeriodDataResponseProps } from "@/types/admin/period.type";
 import { Pencil, CalendarPlus } from 'lucide-react';
 import Pagination from '@/components/Pagination';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';

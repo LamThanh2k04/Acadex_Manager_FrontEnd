@@ -1,5 +1,5 @@
 "use client"
-import { ICreateClasses } from "@/app/types/admin/classes.type";
+import { ICreateClasses } from "@/types/admin/classes.type";
 import { useCreateClasses, useGetAllHomeroomLecturerSimple } from '@/hooks/admin/useClasses';
 import { useForm } from "react-hook-form";
 import { useGetMajorsSimple } from '@/hooks/admin/useLecturer';

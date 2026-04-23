@@ -1,5 +1,5 @@
 "use client"
-import { ILecturerManager, IUpdateLecturerInfo, IMajorSimple } from '@/app/types/admin/lecturer.type';
+import { ILecturerManager, IUpdateLecturerInfo, IMajorSimple } from '@/types/admin/lecturer.type';
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';
 import { Loader, Upload } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';

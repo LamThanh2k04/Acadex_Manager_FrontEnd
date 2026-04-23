@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Bot, Trash2 } from "lucide-react";
 import ChatInput from "./ChatInput";
-import { IMessage } from '@/app/types/student/chatbox.type';
+import { IMessage } from '@/types/student/chatbox.type';
 import { useChatBoxMessage } from "@/hooks/student/useChatBox";
 import ChatData from "./ChatData";
 import { WelcomeBubble } from "./WelcomeBubble";

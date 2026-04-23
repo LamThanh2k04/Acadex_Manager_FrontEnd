@@ -1,4 +1,4 @@
-import { ISubjectsBySemesterDataProps } from '@/app/types/student/courseSection.type';
+import { ISubjectsBySemesterDataProps } from '@/types/student/courseSection.type';
 import { BookOpen } from 'lucide-react';
 import { minutestoHour } from '@/utils/schedule';
 import CourseSectionBySubject from '../CourseSectionBySubject/CourseSectionBySubject';

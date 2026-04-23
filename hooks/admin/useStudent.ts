@@ -1,5 +1,5 @@
 import { adminService } from "@/api/adminService"
-import { IAddStudent, IClassSimple, INewPasswordForStudent, IProgramSimple, IStudentManagerRespone, IUpdateStudentInfo } from "@/app/types/admin/student.type";
+import { IStudentManagerRespone } from "@/types/admin/student.type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import toast from "react-hot-toast";
 

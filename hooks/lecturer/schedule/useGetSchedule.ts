@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
 import { getScheduleLecturer } from '@/api/lecturerService/schedule/schedule';
-import { IScheduleLecturer } from '@/app/types/lecturer/schedule/schedule.type';
+import { IScheduleLecturer } from '@/types/lecturer/schedule/schedule.type';
 
 export const useGetSchedule = (date: string) => {
     return useQuery<IScheduleLecturer>({

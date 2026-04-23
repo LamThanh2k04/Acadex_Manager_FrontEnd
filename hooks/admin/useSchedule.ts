@@ -1,5 +1,5 @@
 import { adminService } from "@/api/adminService"
-import { TCreateSchedule, TUpdateSchedule } from "@/app/types/admin/schedule.type";
+import { TCreateSchedule, TUpdateSchedule } from "@/types/admin/schedule.type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import toast from "react-hot-toast";
 

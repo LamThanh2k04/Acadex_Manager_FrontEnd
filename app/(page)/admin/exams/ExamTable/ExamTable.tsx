@@ -1,4 +1,4 @@
-import { IExamScheduleData, IExamScheduleDataResponseProps } from "@/app/types/admin/exam.type";
+import { IExamScheduleData, IExamScheduleDataResponseProps } from "@/types/admin/exam.type";
 import { Pencil, CalendarPlus } from 'lucide-react';
 import Pagination from '@/components/Pagination';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';

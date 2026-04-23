@@ -1,5 +1,5 @@
 import { getAllEnrollmentBySemester, getInfoStudent, getResultStudyCreditsForPieChart, getTotalScoreForChart } from "@/api/studentService/dashboard"
-import { IEnrollmentSemester, IStudentInfo } from "@/app/types/student/dashboard.type";
+import { IEnrollmentSemester, IStudentInfo } from "@/types/student/dashboard.type";
 import { useQuery } from "@tanstack/react-query"
 // student info
 export const useGetInfoStudent = () => {

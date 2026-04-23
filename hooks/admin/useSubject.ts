@@ -1,8 +1,8 @@
 import { adminService } from "@/api/adminService"
-import { ICreateSubject, TUpdateSubject } from "@/app/types/admin/subject.type";
+import { ICreateSubject, TUpdateSubject } from "@/types/admin/subject.type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import toast from "react-hot-toast";
-import { ISubjectBySemesterOrder } from '@/app/types/admin/simpleOrOther.type';
+import { ISubjectBySemesterOrder } from '@/types/admin/simpleOrOther.type';
 
 export const useGetAllSubjects = (search: string, page: number) => {
     return useQuery({

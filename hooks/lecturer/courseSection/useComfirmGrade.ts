@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { confirmGrade } from '@/api/lecturerService/courseSection/courseSection';
-import { IConfirmGrade } from '@/app/types/lecturer/courseSection/courseSection.type';
+import { IConfirmGrade } from '@/types/lecturer/courseSection/courseSection.type';
 import toast from 'react-hot-toast';
 export const useComfirmGrade = (onClose: () => void) => {
     const queryClient = useQueryClient();

@@ -1,4 +1,4 @@
-import { ISemesterOrderProgramResponseProps } from '@/app/types/student/curriculumFramework.type'
+import { ISemesterOrderProgramResponseProps } from '@/types/student/curriculumFramework.type'
 import { BookOpen } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import StatusBadge from './StatusBadge';

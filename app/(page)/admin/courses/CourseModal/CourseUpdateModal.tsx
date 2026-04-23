@@ -1,5 +1,5 @@
 "use client"
-import { ICourseData, TUpdateCourse } from "@/app/types/admin/course.type";
+import { ICourseData, TUpdateCourse } from "@/types/admin/course.type";
 import { useUpdateCourseInfo } from "@/hooks/admin/useCourse";
 import { useForm } from "react-hook-form";
 import { useGetAllLecturerSimple, useGetAllClassSimple } from '@/hooks/admin/useSimple';

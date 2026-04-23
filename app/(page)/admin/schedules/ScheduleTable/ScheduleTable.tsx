@@ -1,4 +1,4 @@
-import { IScheduleData, IScheduleDataResponseProps } from "@/app/types/admin/schedule.type";
+import { IScheduleData, IScheduleDataResponseProps } from "@/types/admin/schedule.type";
 import { Pencil, CalendarPlus } from 'lucide-react';
 import Pagination from '@/components/Pagination';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';

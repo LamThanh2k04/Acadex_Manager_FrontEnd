@@ -1,4 +1,4 @@
-import { IRoomData, IRoomDataResponseProps } from "@/app/types/admin/room.type";
+import { IRoomData, IRoomDataResponseProps } from "@/types/admin/room.type";
 import { Pencil, GitPullRequestCreateArrow } from 'lucide-react';
 import Pagination from '@/components/Pagination';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';

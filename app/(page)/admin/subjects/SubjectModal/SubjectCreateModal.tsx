@@ -1,4 +1,4 @@
-import { ICreateSubject } from "@/app/types/admin/subject.type";
+import { ICreateSubject } from "@/types/admin/subject.type";
 import { useCreateSubject } from "@/hooks/admin/useSubject"
 import { useForm } from "react-hook-form";
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';

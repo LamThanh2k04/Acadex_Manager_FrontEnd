@@ -1,7 +1,7 @@
 import { adminService } from "@/api/adminService"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { ISemeterOrderByProgram } from '@/app/types/admin/simpleOrOther.type';
-import { ICreateCertificateOfProgram, ICreateProgram, ICreateSubjectOfProgram, IProgramDataResponse, IProgramInfoResponse, TUpdateProgramInfo, IUpdateSubjectOfProgram, ISubjectToProgram, ICertificateToProgram } from '@/app/types/admin/program.type';
+import { ISemeterOrderByProgram } from '@/types/admin/simpleOrOther.type';
+import { ICreateCertificateOfProgram, ICreateProgram, ICreateSubjectOfProgram, IProgramDataResponse, IProgramInfoResponse, TUpdateProgramInfo, IUpdateSubjectOfProgram, ISubjectToProgram, ICertificateToProgram } from '@/types/admin/program.type';
 import toast from "react-hot-toast";
 
 export const useGetSemesterByProgram = (programId: number) => {

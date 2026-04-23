@@ -1,5 +1,5 @@
 "use client"
-import { ICreateMajor } from "@/app/types/admin/major.type"
+import { ICreateMajor } from "@/types/admin/major.type"
 import { useCreateMajor, useGetAllFacultiesSimple } from "@/hooks/admin/useMajor";
 import { useForm } from "react-hook-form"
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';

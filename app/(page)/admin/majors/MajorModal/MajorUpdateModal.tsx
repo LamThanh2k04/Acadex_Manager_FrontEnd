@@ -1,5 +1,5 @@
 "use client"
-import { IMajorData, IUpdateMajor } from "@/app/types/admin/major.type";
+import { IMajorData, IUpdateMajor } from "@/types/admin/major.type";
 import { useGetAllFacultiesSimple, useUpdateMajorInfo } from "@/hooks/admin/useMajor";
 import { useForm } from "react-hook-form";
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';

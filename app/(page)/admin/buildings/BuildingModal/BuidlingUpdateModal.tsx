@@ -1,4 +1,4 @@
-import { IBuildingData, TUpdateBuilding } from "@/app/types/admin/building.type";
+import { IBuildingData, TUpdateBuilding } from "@/types/admin/building.type";
 import { useUpdateBuildingInfo } from "@/hooks/admin/useBuilding";
 import { useForm } from "react-hook-form";
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';

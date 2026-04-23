@@ -1,4 +1,4 @@
-import { IChatGradeData } from "@/app/types/student/chatbox.type";
+import { IChatGradeData } from "@/types/student/chatbox.type";
 import { CheckCircle2, XCircle, BookOpen, CreditCard } from "lucide-react";
 
 const letterGradeColor = (grade: string | null) => {

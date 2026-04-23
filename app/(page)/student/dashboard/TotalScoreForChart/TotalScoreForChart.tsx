@@ -1,5 +1,5 @@
 "use client"
-import { ITotalScoreForChartProps } from '@/app/types/student/dashboard.type'
+import { ITotalScoreForChartProps } from '@/types/student/dashboard.type'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts'
 import { BarChart2 } from 'lucide-react'
 import {
@@ -9,8 +9,8 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import CustomTooltip from './Tooltip'
-import CustomLegend from './CustomLegend'
+import CustomTooltip from '@/components/CustomTooltip'
+import CustomLegend from '@/components/CustomLegend'
 export default function TotalScoreForChart({ data, semesters, selectedSemesterId, onChangeSemester, }: ITotalScoreForChartProps) {
     const selectedSemester = semesters.find((s) => s.id === selectedSemesterId)
     const avgScore = data.length

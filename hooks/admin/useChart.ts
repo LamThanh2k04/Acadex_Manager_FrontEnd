@@ -1,5 +1,5 @@
 import { adminService } from "@/api/adminService"
-import { IPassFailBarChart, IPieChartGenders, IRevenueChart } from "@/app/types/admin/overview.type"
+import { IPassFailBarChart, IPieChartGenders, IRevenueChart } from "@/types/admin/overview.type"
 import { useQuery } from "@tanstack/react-query"
 
 export const useRevenueChart = (year: number) => {

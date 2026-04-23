@@ -18,7 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { IRevenueAreaProps } from "@/app/types/admin/overview.type"
+import { IRevenueAreaProps } from "@/types/admin/overview.type"
 
 const chartConfig = {
   total: {

@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Loader, Lock, Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
 import { useResetPassword } from '@/hooks/lecturer/resetPassword/useResetPassword';
-import { IResetPassword } from '@/app/types/lecturer/resetPassword/resetPassword.type';
+import { IResetPassword } from '@/types/lecturer/resetPassword/resetPassword.type';
 function PasswordInput({ label, placeholder, error, registration }: {
     label: string;
     placeholder: string;

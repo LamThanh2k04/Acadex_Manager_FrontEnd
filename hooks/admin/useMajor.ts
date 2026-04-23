@@ -1,5 +1,5 @@
 import { adminService } from "@/api/adminService"
-import { TFacultyOfMajorSimple } from "@/app/types/admin/major.type";
+import { TFacultyOfMajorSimple } from "@/types/admin/major.type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import toast from "react-hot-toast";
 

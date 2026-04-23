@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import ErrorResponse from "@/app/(auth)/login/ErrorResponse";
 import { useState } from "react";
 import { Eye, EyeClosed } from 'lucide-react';
-import { IResetPasswordLecturer } from "@/app/types/admin/lecturer.type";
+import { IResetPasswordLecturer } from "@/types/admin/lecturer.type";
 import { useUpdatePasswordLecturer } from "@/hooks/admin/useLecturer";
 export default function LecturerResetPasswordModal({ lecturerId, onClose }: { lecturerId: number, onClose: () => void }) {
     const { register, handleSubmit, formState: { errors }, reset } = useForm<IResetPasswordLecturer>({ mode: "onBlur" });

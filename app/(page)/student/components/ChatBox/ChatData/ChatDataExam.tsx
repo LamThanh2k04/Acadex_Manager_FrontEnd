@@ -1,4 +1,4 @@
-import { IChatExamData } from "@/app/types/student/chatbox.type";
+import { IChatExamData } from "@/types/student/chatbox.type";
 import { Clock, MapPin, Calendar, AlertCircle, BookOpen } from "lucide-react";
 const minutesToTime = (minutes: number) => {
     const h = Math.floor(minutes / 60);

@@ -1,7 +1,7 @@
 import { adminService } from "@/api/adminService"
 import { useQuery } from "@tanstack/react-query"
-import { IProgramSimple, IClassSimple } from '@/app/types/admin/student.type';
-import { ICertificateSimple, ILecturerSimple, IPeriodSimple, IRoomSimple, ISemesterSimple, ISubjectSimple } from "@/app/types/admin/simpleOrOther.type";
+import { IProgramSimple, IClassSimple } from '@/types/admin/student.type';
+import { ICertificateSimple, ILecturerSimple, IPeriodSimple, IRoomSimple, ISemesterSimple, ISubjectSimple } from "@/types/admin/simpleOrOther.type";
 
 export const useGetAllLecturerSimple = () => {
     return useQuery<ILecturerSimple[]>({

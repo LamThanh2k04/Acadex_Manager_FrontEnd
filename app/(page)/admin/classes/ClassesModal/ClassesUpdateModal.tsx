@@ -1,5 +1,5 @@
 "use client"
-import { IClassesData, IUpdateClassesInfo } from "@/app/types/admin/classes.type"
+import { IClassesData, IUpdateClassesInfo } from "@/types/admin/classes.type"
 import { useUpdateClassesInfo, useGetAllHomeroomLecturerSimple } from '@/hooks/admin/useClasses';
 import { useForm } from "react-hook-form"
 import ErrorResponse from '@/app/(auth)/login/ErrorResponse';

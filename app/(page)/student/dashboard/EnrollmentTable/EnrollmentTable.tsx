@@ -1,4 +1,4 @@
-import { IEnrollmentSemesterProps } from "@/app/types/student/dashboard.type"
+import { IEnrollmentSemesterProps } from "@/types/student/dashboard.type"
 import { BookOpen } from "lucide-react"
 import {
     Select,

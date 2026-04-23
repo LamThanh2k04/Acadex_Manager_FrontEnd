@@ -1,5 +1,5 @@
 import { adminService } from "@/api/adminService"
-import { ICreateNotification, IGetStudentBySearch, TUpdateNotification } from "@/app/types/admin/notification.type";
+import { ICreateNotification, IGetStudentBySearch, TUpdateNotification } from "@/types/admin/notification.type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import toast from "react-hot-toast";
 

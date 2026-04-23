@@ -1,5 +1,5 @@
 // ChatData/ChatDataSchedule.tsx
-import { IChatScheduleData } from "@/app/types/student/chatbox.type";
+import { IChatScheduleData } from "@/types/student/chatbox.type";
 import { Clock, MapPin, Calendar, Video } from "lucide-react";
 
 const minutesToTime = (minutes: number) => {

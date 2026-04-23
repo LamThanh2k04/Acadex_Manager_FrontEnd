@@ -1,5 +1,5 @@
 import { https } from "../../config"
-import { IConfirmGrade } from '@/app/types/lecturer/courseSection/courseSection.type';
+import { IConfirmGrade } from '@/types/lecturer/courseSection/courseSection.type';
 
 export const getCourseSection = async (semesterId: number, search: string) => {
     const params = new URLSearchParams();

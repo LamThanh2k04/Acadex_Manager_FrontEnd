@@ -1,5 +1,5 @@
 "use client"
-import { ICertificationData, ICertificationDataResponesProps } from "@/app/types/admin/certification.type";
+import { ICertificationData, ICertificationDataResponesProps } from "@/types/admin/certification.type";
 import { Pencil, CirclePlus } from 'lucide-react';
 import Pagination from '@/components/Pagination';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';

@@ -1,6 +1,5 @@
+import { IPending } from '@/types/pending.type';
 import { LogIn, Loader } from 'lucide-react';
-import { IPending } from "@/app/types/pending.type";
-
 export default function ButtonLoginForm({ isPending }: IPending) {
     return (
         <button

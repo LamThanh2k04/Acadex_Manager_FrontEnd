@@ -1,8 +1,8 @@
 "use client"
-import { IResultStudyCreditsForPieChartProps } from '@/app/types/student/dashboard.type'
+import { IResultStudyCreditsForPieChartProps } from '@/types/student/dashboard.type'
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts'
 import { GraduationCap } from 'lucide-react'
-import CustomTooltip from './CustomTooltip'
+import CustomTooltip from '@/components/CustomTooltip'
 export default function CreditProgressChart({ data }: IResultStudyCreditsForPieChartProps) {
     const { creditsIsStudy, totalRequiredCredits } = data
     const remaining = totalRequiredCredits - creditsIsStudy

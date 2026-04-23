@@ -2,7 +2,7 @@
 import { useCreateExamSchedule, useGetAvailableRoomForExamSchedule, useGetCourseSectionHaveSchedule, useGetSuggestExamSchedule } from "@/hooks/admin/useExam";
 import { useGetAllSemesterSimple } from "@/hooks/admin/useSimple";
 import { useForm } from "react-hook-form";
-import { ICreateExamSchedule, ICreateExamScheduleForm } from "@/app/types/admin/exam.type";
+import { ICreateExamSchedule, ICreateExamScheduleForm } from "@/types/admin/exam.type";
 import ErrorResponse from "@/app/(auth)/login/ErrorResponse";
 import { useEffect } from "react";
 import { formatDateForInput } from "@/utils/date";

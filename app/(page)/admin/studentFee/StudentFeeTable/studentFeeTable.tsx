@@ -1,4 +1,4 @@
-import { IStudentTuitionStatusDataResponseProps } from '@/app/types/admin/studentFee.type';
+import { IStudentTuitionStatusDataResponseProps } from '@/types/admin/studentFee.type';
 import { User } from 'lucide-react';
 import Pagination from '@/components/Pagination';
 import Image from 'next/image';

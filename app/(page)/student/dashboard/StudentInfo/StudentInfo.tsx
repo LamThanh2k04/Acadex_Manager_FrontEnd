@@ -1,7 +1,7 @@
-import { IStudentInfoProps } from "@/app/types/student/dashboard.type"
+import { IStudentInfoProps } from "@/types/student/dashboard.type"
 import Image from "next/image"
 import { GraduationCap, IdCard, BookOpen, UserRound } from "lucide-react"
-import InfoRow from "./InfoRow"
+import InfoRow from "@/components/InfoRow"
 const STATUS_MAP = {
     STUDYING: {
         label: "Đang học",

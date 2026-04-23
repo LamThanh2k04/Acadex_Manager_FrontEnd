@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query"
 import { resetPassword } from '@/api/lecturerService/resetPassword/resetPassword';
-import { IResetPassword } from "@/app/types/lecturer/resetPassword/resetPassword.type";
+import { IResetPassword } from "@/types/lecturer/resetPassword/resetPassword.type";
 import toast from "react-hot-toast";
 
 export const useResetPassword = (onClose: () => void) => {

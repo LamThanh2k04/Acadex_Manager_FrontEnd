@@ -1,5 +1,4 @@
 "use client";
-
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -14,7 +13,7 @@ import {
     IScheduleLecturer,
     IStudySchedulesOfSchedule,
     TTypeLecturer,
-} from "@/app/types/lecturer/schedule/schedule.type";
+} from "@/types/lecturer/schedule/schedule.type";
 interface StudyMeta {
     kind: "STUDY";
     type: TTypeLecturer;

@@ -1,5 +1,5 @@
 "use client";
-import { IHomeroomClass, IStudentOfHomeroomClass } from '@/app/types/lecturer/homeroomClass/homeroomClass.type';
+import { IHomeroomClass, IStudentOfHomeroomClass } from '@/types/lecturer/homeroomClass/homeroomClass.type';
 import SearchBar from "../SearchBar/SearchBar";
 import Pagination from '@/components/Pagination';
 function getInitials(name: string) {
