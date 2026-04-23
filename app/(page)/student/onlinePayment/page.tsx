@@ -1,12 +1,12 @@
 "use client"
 import { useGetUnPaidEnrollment } from '@/hooks/student/usePayment';
 import UnPaidEnrollment from './UnPaidEnrollment/UnPaidEnrollment';
-import PaidEnrollmentSkeleton from '../enrollmentDebtLookup/PaidEnrollment/PaidEnrollmentSkeleton';
+import UnPaidEnrollmentSkeleton from './UnPaidEnrollment/UnPaidEnrollmentSkeleton';
 export default function OnlinePayment() {
     const { data: unPaidEnrollmentData, isLoading: isLoadingUnPaidEnrollment } = useGetUnPaidEnrollment();
 
     if (isLoadingUnPaidEnrollment) {
-        return <PaidEnrollmentSkeleton />
+        return <UnPaidEnrollmentSkeleton />
     }
     return (
         <div>

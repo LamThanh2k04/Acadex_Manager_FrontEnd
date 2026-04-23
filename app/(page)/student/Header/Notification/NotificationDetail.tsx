@@ -12,7 +12,6 @@ const TYPE_CONFIG = {
 };
 export default function NotificationDetail({ notificationId, onClose, }: { notificationId: number; onClose: () => void; }) {
     const { data, isLoading } = useGetNotificationInfo(notificationId);
-    console.log(data);
     const target = data?.target;
     const queryClient = useQueryClient();
     useEffect(() => {

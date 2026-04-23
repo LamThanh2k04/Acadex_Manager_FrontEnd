@@ -1,9 +1,9 @@
 import { ISemesterOrderProgramResponseProps } from '@/types/student/curriculumFramework.type'
 import { BookOpen } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import StatusBadge from './StatusBadge';
-import CreditDot from './CreditDot';
-import SectionLabel from './SectionLabel';
+import CreditDot from '@/components/CreditDot';
+import SectionLabel from '@/components/SectionLabel';
+import StatusBadge from '@/components/StatusBadge';
 export default function CurriculumFrameworkClient({
     data,
     subjects,

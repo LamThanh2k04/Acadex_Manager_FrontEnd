@@ -76,7 +76,6 @@ export default function CertificationStudent({ data }: ICertificicateStudentData
                     Hiện tại sinh viên vẫn chưa nộp yêu cầu duyệt chứng chỉ nào
                 </p>
             )}
-
             <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
                 <DialogContent className="max-w-2xl dark:bg-gray-900">
                     <DialogHeader>

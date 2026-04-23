@@ -12,6 +12,7 @@ import {
 import { useEffect, useState } from "react"
 import { useComfirmGrade } from "@/hooks/lecturer/courseSection/useComfirmGrade"
 import { IConfirmGrade, IStudentEnrollmentIsPaid } from "@/types/lecturer/courseSection/courseSection.type"
+import { Loader, Lock } from 'lucide-react';
 
 export default function GradeModal({
     student,
@@ -133,9 +134,18 @@ export default function GradeModal({
                     <button
                         disabled={!isValid() || isPending}
                         onClick={handleSubmit}
-                        className="flex-1 rounded-xl bg-orange-100 py-2 text-sm font-semibold text-orange-400 transition-all duration-300 hover:bg-orange-500 hover:text-white cursor-pointer disabled:opacity-50"
+                        className="flex-1 flex items-center justify-center gap-3 rounded-xl bg-orange-100 py-2 text-sm font-semibold text-orange-400 transition-all duration-300 hover:bg-orange-500 hover:text-white cursor-pointer disabled:opacity-50"
                     >
-                        {isPending ? "Đang lưu..." : "Xác nhận"}
+                        {isPending ? (
+                            <>
+                                <Loader className="size-3.5 animate-spin" />
+                                Đang nhập...
+                            </>
+                        ) : (
+                            <>
+                                Xác nhận
+                            </>
+                        )}
                     </button>
                 </DrawerFooter>
             </DrawerContent>

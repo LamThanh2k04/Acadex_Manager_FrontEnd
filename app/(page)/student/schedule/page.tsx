@@ -6,13 +6,20 @@ import ScheduleEnrollment from "./ScheduleEnrollment/ScheduleEnrollment";
 import ScheduleSelectDate from "./ScheduleSelectDate/ScheduleSelectDate";
 import ScheduleSelectType from "./ScheduleSelectType/ScheduleSelectType";
 import { IScheduleEnrollmentParams } from "@/types/student/scheduleEnrollment.type";
+import ScheduleLoading from "./loading";
+import ScheduleEnrollmentSkeleton from "./ScheduleEnrollment/ScheduleEnrollmentSkeleton";
 export default function Schedule() {
     const searchParams = useSearchParams();
     const rawType = searchParams.get("type");
     const type: IScheduleEnrollmentParams["type"] =
         rawType === "STUDY" || rawType === "EXAM" ? rawType : undefined;
     const date = searchParams.get("date") ?? "";
-    const { data } = useGetScheduleEnrollment({ type, date });
+    const { data, isLoading } = useGetScheduleEnrollment({ type, date });
+    if (isLoading) {
+        return (
+            <ScheduleLoading />
+        )
+    }
     return (
         <section className="space-y-6 p-4 md:p-6 mt-5">
             <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm dark:border-gray-800 dark:bg-gray-900">
@@ -75,22 +82,26 @@ export default function Schedule() {
                 </div>
             </div>
             <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm dark:border-neutral-800 dark:bg-neutral-950 md:p-5">
-                {data ? (
-                    <ScheduleEnrollment data={data} />
+                {isLoading ? (
+                    <ScheduleEnrollmentSkeleton />
                 ) : (
-                    <div className="flex min-h-55 flex-col items-center justify-center rounded-2xl border border-dashed border-gray-200 bg-gray-50 px-4 text-center dark:border-neutral-800 dark:bg-gray-900">
-                        <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-gray-100 dark:bg-neutral-800">
-                            <CalendarDays className="h-6 w-6 text-gray-500 dark:text-gray-400" />
-                        </div>
+                    data ? (
+                        <ScheduleEnrollment data={data} />
+                    ) : (
+                        <div className="flex min-h-55 flex-col items-center justify-center rounded-2xl border border-dashed border-gray-200 bg-gray-50 px-4 text-center dark:border-neutral-800 dark:bg-gray-900">
+                            <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-gray-100 dark:bg-neutral-800">
+                                <CalendarDays className="h-6 w-6 text-gray-500 dark:text-gray-400" />
+                            </div>
 
-                        <h3 className="text-base font-semibold text-gray-900 dark:text-white">
-                            Không có dữ liệu lịch
-                        </h3>
-                        <p className="mt-1 max-w-md text-sm text-gray-500 dark:text-gray-400">
-                            Hiện tại chưa có lịch phù hợp với bộ lọc bạn đã chọn. Hãy thử thay đổi
-                            loại lịch hoặc ngày để tìm kết quả khác.
-                        </p>
-                    </div>
+                            <h3 className="text-base font-semibold text-gray-900 dark:text-white">
+                                Không có dữ liệu lịch
+                            </h3>
+                            <p className="mt-1 max-w-md text-sm text-gray-500 dark:text-gray-400">
+                                Hiện tại chưa có lịch phù hợp với bộ lọc bạn đã chọn. Hãy thử thay đổi
+                                loại lịch hoặc ngày để tìm kết quả khác.
+                            </p>
+                        </div>
+                    )
                 )}
             </div>
         </section>

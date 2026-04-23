@@ -4,9 +4,15 @@ import { useGetDetailedStudyResult } from '@/hooks/student/useStudyResult';
 import CertificationProgramResult from './CertificationProgramRsult/CertificationProgramResult';
 import DetailedStudyResult from './DetailedStudyResult/DetailedStudyResult';
 import StudyResultTitle from './StudyResultTitle/StudyResultTitle';
+import StudyResultLoading from './loading';
 export default function StudyResult() {
-    const { data: studyResultData } = useGetDetailedStudyResult();
-    const { data: certificationProgramData } = useGetCertificationProgram();
+    const { data: studyResultData, isLoading: isLoadingStudyResult } = useGetDetailedStudyResult();
+    const { data: certificationProgramData, isLoading: isLoadingCertificationProgram } = useGetCertificationProgram();
+    if (isLoadingStudyResult || isLoadingCertificationProgram) {
+        return (
+            <StudyResultLoading />
+        )
+    }
     return (
         <div>
             <StudyResultTitle />

@@ -1,17 +1,6 @@
 "use client";
 import { useGetScheduleByCourseSection } from "@/hooks/student/useCourseSection";
-import {
-    Clock,
-    MapPin,
-    Calendar,
-    User,
-    Layout,
-    Loader2,
-    Video,
-    CheckCircle2,
-    X,
-    Users,
-} from "lucide-react";
+import { Clock, MapPin, Calendar, User, Layout, Loader2, Video, CheckCircle2, X, Users, Loader } from 'lucide-react';
 import { minutestoHour, dayOfWeekToString } from "@/utils/schedule";
 import {
     IRegisterCourseSection,
@@ -207,10 +196,12 @@ export default function ScheduleOfCourseSection({
     selectedCourseSectionId,
     onClose,
     onRegister,
+    isPending
 }: {
     selectedCourseSectionId: number | null;
     onClose: () => void;
     onRegister: (data: IRegisterCourseSection) => void;
+    isPending: boolean;
 }) {
     const { data, isLoading } = useGetScheduleByCourseSection(
         selectedCourseSectionId as number
@@ -236,18 +227,15 @@ export default function ScheduleOfCourseSection({
     };
     if (isLoading) {
         return (
-            <div className="flex flex-col items-center justify-center py-12 gap-3">
-                <Loader2 size={24} className="animate-spin text-[#ec5d15]" />
-                <p className="text-xs text-gray-400">Đang tải lịch học...</p>
+            <div className="flex items-center justify-center py-12">
+                <div className="w-6 h-6 border-2 border-[#ec5d15] border-t-transparent rounded-full animate-spin" />
             </div>
         );
     }
-
     const hasNoData =
         !data?.theory?.length &&
         !data?.practices?.length &&
         !data?.online?.length;
-
     return (
         <div className="flex flex-col max-h-[70vh]">
             <div className="flex-1 overflow-y-auto py-2 pr-2 custom-scrollbar space-y-1">
@@ -340,10 +328,20 @@ export default function ScheduleOfCourseSection({
                                    text-white rounded-xl text-xs font-bold transition-all
                                    shadow-md shadow-orange-200 dark:shadow-none cursor-pointer"
                     >
-                        <CheckCircle2 size={15} />
-                        {requireGroupSelection && selectedGroup === null
-                            ? "Chọn ca thực hành trước"
-                            : "Xác nhận đăng ký"}
+                        {isPending ? (
+                            <>
+                                <Loader className="size-3.5 animate-spin" />
+                                Đang đăng ký...
+                            </>
+                        ) : (
+                            <>
+                                <CheckCircle2 size={15} />
+                                {requireGroupSelection && selectedGroup === null
+                                    ? "Chọn ca thực hành trước"
+                                    : "Xác nhận đăng ký"
+                                }
+                            </>
+                        )}
                     </button>
                 </div>
             )}

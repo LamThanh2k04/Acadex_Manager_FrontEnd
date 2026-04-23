@@ -69,9 +69,8 @@ export default function ScheduleOfEnrollment({ onClose, selectedCourseSectionId 
     }
     if (isLoading) {
         return (
-            <div className="flex flex-col items-center justify-center py-12 gap-3">
-                <Loader2 size={24} className="animate-spin text-[#ec5d15]" />
-                <p className="text-xs text-gray-400">Đang tải lịch học...</p>
+            <div className="flex items-center justify-center py-12">
+                <div className="w-6 h-6 border-2 border-[#ec5d15] border-t-transparent rounded-full animate-spin" />
             </div>
         );
     }

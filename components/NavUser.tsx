@@ -34,11 +34,12 @@ import ResetPasswordModal from '@/app/(page)/lecturer/components/Header/ResetPas
 import { useQueryClient } from "@tanstack/react-query";
 import { setGlobalLoading } from "@/lib/features/loading/loadingSlice";
 export function NavUser() {
-    const user = useAppSelector((state) => state.user.userInfo)
-    const dispatch = useAppDispatch()
-    const router = useRouter()
+    const user = useAppSelector((state) => state.user.userInfo);
+    const dispatch = useAppDispatch();
+    const router = useRouter();
     const [isOpenResetPassword, setIsOpenResetPassword] = useState(false);
-    const [openAlert, setOpenAlert] = useState(false)
+    const [openAlert, setOpenAlert] = useState(false);
+    const [openDropdown, setOpenDropdown] = useState(false);
     const queryClient = useQueryClient();
     const handleLogout = async () => {
         dispatch(setGlobalLoading(true));
@@ -59,7 +60,7 @@ export function NavUser() {
         <>
             <SidebarMenu>
                 <SidebarMenuItem>
-                    <DropdownMenu>
+                    <DropdownMenu open={openDropdown} onOpenChange={setOpenDropdown}>
                         <DropdownMenuTrigger asChild>
                             <SidebarMenuButton size="lg" className="hover:bg-orange-50 dark:hover:bg-gray-900 duration-300 transition-colors cursor-pointer">
                                 <Avatar className="w-8 h-8 rounded-lg">
@@ -108,6 +109,7 @@ export function NavUser() {
                                 className="cursor-pointer gap-2 text-red-500 focus:text-red-500 focus:bg-red-50"
                                 onSelect={(e) => {
                                     e.preventDefault()
+                                    setOpenDropdown(false);
                                     setOpenAlert(true)
                                 }}
                             >
@@ -142,7 +144,10 @@ export function NavUser() {
                     <DialogHeader>
                         <DialogTitle>Cài đặt lại mật khẩu</DialogTitle>
                     </DialogHeader>
-                    <ResetPasswordModal onClose={() => setIsOpenResetPassword(false)} />
+                    <ResetPasswordModal onClose={() => {
+                        setOpenDropdown(false);
+                        setIsOpenResetPassword(false)
+                    }} />
                 </DialogContent>
             </Dialog>
         </>

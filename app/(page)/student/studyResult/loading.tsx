@@ -1,5 +1,13 @@
-export default function DetailedStudyResultLoading() {
+import CertificationProgramResultSkeleton from "./CertificationProgramRsult/CertificationProgramResultSkeleton";
+import StudyResultSkeleton from "./DetailedStudyResult/DetailedStudyResultSkeleton";
+import StudyResultTitleSkeleton from "./StudyResultTitle/StudyResultTitleSkeleton";
+
+export default function StudyResultLoading() {
     return (
-        <div></div>
+        <div>
+            <StudyResultTitleSkeleton />
+            <StudyResultSkeleton />
+            <CertificationProgramResultSkeleton />
+        </div>
     )
 }

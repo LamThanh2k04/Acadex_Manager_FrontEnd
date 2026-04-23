@@ -1,5 +1,5 @@
+import { Skeleton } from "@/components/ui/skeleton";
+
 export default function ScheduleSelectTypeSkeleton() {
-    return (
-        <div></div>
-    )
+    return <Skeleton className="h-10 min-w-45 rounded-xl" />;
 }

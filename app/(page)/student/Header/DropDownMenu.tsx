@@ -36,7 +36,8 @@ export default function DropDownMenu() {
     const [isOpenResetPassword, setIsOpenResetPassword] = useState(false);
     const dispatch = useAppDispatch();
     const router = useRouter();
-    const [openAlert, setOpenAlert] = useState(false)
+    const [openAlert, setOpenAlert] = useState(false);
+    const [openDropdown, setOpenDropdown] = useState(false);
     const handleLogout = async () => {
         dispatch(setGlobalLoading(true));
         try {
@@ -60,7 +61,7 @@ export default function DropDownMenu() {
 
     return (
         <>
-            <DropdownMenu>
+            <DropdownMenu open={openDropdown} onOpenChange={setOpenDropdown}>
                 <DropdownMenuTrigger asChild>
                     <Button
                         className="group relative p-2 h-10 w-10 rounded-full border-2 border-transparent bg-orange-50 hover:border-orange-500 hover:bg-orange-100 transition-all duration-300 focus-visible:ring-0 focus:outline-none overflow-hidden"
@@ -111,6 +112,7 @@ export default function DropDownMenu() {
                     <DropdownMenuItem
                         onSelect={(e) => {
                             e.preventDefault()
+                            setOpenDropdown(false);
                             setOpenAlert(true)
                         }}
                         className="flex items-center gap-3 p-2.5 rounded-xl cursor-pointer text-red-500 focus:bg-red-50 focus:text-red-600 transition-colors">
@@ -143,7 +145,10 @@ export default function DropDownMenu() {
                     <DialogHeader>
                         <DialogTitle>Cài đặt lại mật khẩu</DialogTitle>
                     </DialogHeader>
-                    <ResetPasswordModal onClose={() => setIsOpenResetPassword(false)} />
+                    <ResetPasswordModal onClose={() => {
+                        setOpenDropdown(false);
+                        setIsOpenResetPassword(false)
+                    }} />
                 </DialogContent>
             </Dialog>
         </>
