@@ -7,16 +7,19 @@ import { useState } from "react";
 import AvgGradeClass from "./AvgGradeClass/AvgGradeClass";
 import { useGetTopStudent } from '@/hooks/lecturer/dashboard/useGetTopStudent';
 import TopStudent from "./TopStudent/TopStudent";
+import DashboardLoading from "./loading";
 export default function DashboardLecturer() {
     const [courseSectionId, setCourseSectionId] = useState<number | null>(null);
-
-    const { data: overviewData } = useGetOverview();
-    const { data: courseSectionLecturerData } = useGetCourseSectionSimple();
-    const { data: avgGradeClassData } = useAvgGradeClass(courseSectionId as number);
-    const { data: topStudentData } = useGetTopStudent(courseSectionId as number);
-
+    const { data: overviewData, isLoading: isLoadingOverview } = useGetOverview();
+    const { data: courseSectionLecturerData, isLoading: isLoadingCourseSection } = useGetCourseSectionSimple();
+    const { data: avgGradeClassData, isLoading: isLoadingAvgGradeClass } = useAvgGradeClass(courseSectionId as number);
+    const { data: topStudentData, isLoading: isLoadingTopStudent } = useGetTopStudent(courseSectionId as number);
     const courseSection = courseSectionLecturerData ?? [];
-
+    if (isLoadingOverview || isLoadingCourseSection || isLoadingAvgGradeClass || isLoadingTopStudent) {
+        return (
+            <DashboardLoading />
+        )
+    }
     return (
         <div className="flex flex-col gap-5 p-2">
             {overviewData && <Overview data={overviewData} />}

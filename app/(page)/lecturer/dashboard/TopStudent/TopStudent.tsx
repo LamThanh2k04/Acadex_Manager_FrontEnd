@@ -15,9 +15,6 @@ interface ITopStudentProps {
     selectedId: number | null;
     onSelectId: (id: number | null) => void;
 }
-
-// ─── helpers ─────────────────────────────────────────────────────────────────
-
 function getInitials(name: string) {
     return name.split(" ").slice(-2).map((w) => w[0]).join("").toUpperCase();
 }
@@ -38,9 +35,6 @@ function scoreColor(score: number) {
     if (score >= 6.5) return "#378ADD";
     return "#E24B4A";
 }
-
-// ─── sub-components ───────────────────────────────────────────────────────────
-
 function Avatar({ avatar, fullName, size = 36 }: { avatar: string | null; fullName: string; size?: number }) {
     const { bg, text } = avatarColors(fullName);
     if (avatar) {
@@ -91,32 +85,14 @@ function CardHeader({ courseSection, selectedId, onSelectId }: Pick<ITopStudentP
                     ))}
                 </SelectContent>
             </Select>
-            {/* <select
-                value={selectedId ?? ""}
-                onChange={(e) => {
-                    const val = e.target.value;
-                    onSelectId(val === "" ? null : Number(val));
-                }}
-                className="w-full sm:w-auto text-sm rounded-xl border bg-muted/50 px-3 py-2 outline-none focus:ring-2 focus:ring-ring"
-            >
-                <option value="">Tất cả học phần</option>
-                {courseSection.map((s) => (
-                    <option key={s.id} value={s.id}>
-                        {s.subject.name} — {s.sectionCode}
-                    </option>
-                ))}
-            </select> */}
         </div>
     );
 }
-
-// rank 1 — featured card
 function RankOneCard({ item }: { item: ITopStudent }) {
     const score = item.grades?.totalScore ?? null;
 
     return (
         <div className="rounded-xl p-3 mb-3 flex items-center gap-3" style={{ backgroundColor: "#FAEEDA" }}>
-            {/* rank badge */}
             <div
                 className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-medium"
                 style={{ backgroundColor: "#EF9F27", color: "#412402" }}
@@ -130,18 +106,14 @@ function RankOneCard({ item }: { item: ITopStudent }) {
                 <p className="text-sm font-medium truncate" style={{ color: "#412402" }}>{item.student.user.fullName}</p>
                 <p className="text-[11px] mt-0.5" style={{ color: "#854F0B" }}>{item.student.studentCode}</p>
             </div>
-
-            {/* mobile: chỉ số — desktop: số + progress bar */}
             {score !== null ? (
                 <>
-                    {/* mobile */}
                     <div className="flex flex-col items-end sm:hidden flex-shrink-0">
                         <span className="text-xl font-medium" style={{ color: "#412402" }}>
                             {score.toFixed(1)}
                         </span>
                         <span className="text-[10px]" style={{ color: "#854F0B" }}>điểm</span>
                     </div>
-                    {/* desktop */}
                     <div className="hidden sm:block w-28 flex-shrink-0">
                         <div className="flex justify-between mb-1">
                             <span className="text-[10px]" style={{ color: "#854F0B" }}>Điểm TB</span>
@@ -168,14 +140,10 @@ function RankOneCard({ item }: { item: ITopStudent }) {
         </div>
     );
 }
-
-// rank 2–5 rows
 function RankRow({ item, rank }: { item: ITopStudent; rank: number }) {
     const score = item.grades?.totalScore ?? null;
-
     return (
         <div className="flex items-center gap-3 py-2.5 border-b border-border last:border-0">
-            {/* rank number */}
             <div className="w-6 h-6 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
                 <span className="text-[11px] text-muted-foreground">{rank}</span>
             </div>
@@ -191,14 +159,12 @@ function RankRow({ item, rank }: { item: ITopStudent; rank: number }) {
 
             {score !== null ? (
                 <>
-                    {/* mobile */}
                     <span
                         className="text-sm font-medium flex-shrink-0 sm:hidden"
                         style={{ color: scoreColor(score) }}
                     >
                         {score.toFixed(1)}
                     </span>
-                    {/* desktop: số + mini bar */}
                     <div className="hidden sm:block w-28 flex-shrink-0">
                         <div className="flex justify-end mb-1">
                             <span className="text-[11px] font-medium" style={{ color: scoreColor(score) }}>
@@ -224,9 +190,6 @@ function RankRow({ item, rank }: { item: ITopStudent; rank: number }) {
         </div>
     );
 }
-
-// ─── main ────────────────────────────────────────────────────────────────────
-
 export default function TopStudent({ data, courseSection, selectedId, onSelectId }: ITopStudentProps) {
     if (!data || data.length === 0) {
         return (
@@ -249,15 +212,10 @@ export default function TopStudent({ data, courseSection, selectedId, onSelectId
     }
 
     const [first, ...rest] = data;
-
     return (
         <div className="rounded-2xl border bg-card p-4 md:p-5 dark:bg-gray-900 duration-300 transition-colors">
             <CardHeader courseSection={courseSection} selectedId={selectedId} onSelectId={onSelectId} />
-
-            {/* rank 1 */}
             <RankOneCard item={first} />
-
-            {/* rank 2–5 */}
             <div>
                 {rest.map((item, index) => (
                     <RankRow key={item.student.studentCode + index} item={item} rank={index + 2} />

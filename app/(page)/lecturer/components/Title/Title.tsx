@@ -3,17 +3,16 @@ import { useAppSelector } from "@/lib/hook"
 import Image from 'next/image';
 import { GraduationCap, Mail, CalendarDays, Phone, CheckCircle2, XCircle } from 'lucide-react';
 import SwitchMode from "../Header/SwitchMode";
-
+import TitleSkeleton from "./TitleSkeleton";
 export default function Title() {
     const user = useAppSelector((state) => state.user.userInfo);
-
     const initials = user?.fullName
         ?.split(" ")
         .slice(-2)
         .map((w: string) => w[0])
         .join("")
         .toUpperCase() || "??";
-
+    if (!user) return <TitleSkeleton />
     return (
         <div className="mt-7 overflow-hidden bg-[#FFFF] dark:bg-gray-900 duration-300 transition-colors rounded-[32px] p-6 relative shadow-sm">
             <div className="absolute top-5 right-5 p-2 active:scale-95 transition-transform">
